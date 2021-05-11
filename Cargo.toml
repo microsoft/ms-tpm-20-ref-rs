@@ -1,0 +1,29 @@
+[package]
+name = "ms-tpm-20-ref-sys"
+version = "0.1.0"
+authors = ["Daniel Prilik <daprilik@microsoft.com>"]
+edition = "2018"
+license = "MIT"
+description = "FFI bindings to ms-tpm-20-ref"
+repository = "https://github.com/daprilik/ms-tpm-20-ref-rs"
+readme = "README.md"
+categories = ["cryptography", "external-ffi-bindings"]
+build = "build/main.rs"
+
+[features]
+vendored = ['openssl-src']
+
+[dependencies]
+libc = "0.2"
+serde = { version = "1.0", features = ["derive"] }
+zerocopy = "0.3"
+
+[build-dependencies]
+autocfg = "1.0"
+cc = { version = "1.0", features = ["parallel"] }
+openssl-src = { version = "111.0.1", optional = true }
+pkg-config = "0.3.9"
+walkdir = "2.3.2"
+
+[target.'cfg(target_env = "msvc")'.build-dependencies]
+vcpkg = "0.2.8"
