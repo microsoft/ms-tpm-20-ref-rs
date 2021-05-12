@@ -5437,41 +5437,14 @@ pub const SUBJECT_KEY_REF: u32 = 6;
 pub const SUBJECT_PUBLIC_KEY_REF: u32 = 7;
 pub const EXTENSIONS_REF: u32 = 8;
 pub const REF_COUNT: u32 = 9;
-pub const SYM_MODE_FIRST: u32 = 64;
-pub const SYM_MODE_LAST: u32 = 68;
-pub const NUM_SYM_MODES: u32 = 5;
-pub const DEFAULT_TEST_HASH: u32 = 12;
-pub const DEFAULT_TEST_DIGEST_SIZE: u32 = 48;
-pub const DEFAULT_TEST_HASH_BLOCK_SIZE: u32 = 128;
-pub const UINT_MTYPE: u32 = 0;
-pub const VALUES_MTYPE: u32 = 1;
-pub const TABLE_MTYPE: u32 = 2;
-pub const MIN_MAX_MTYPE: u32 = 3;
-pub const ATTRIBUTES_MTYPE: u32 = 4;
-pub const STRUCTURE_MTYPE: u32 = 5;
-pub const TPM2B_MTYPE: u32 = 6;
-pub const TPM2BS_MTYPE: u32 = 7;
-pub const LIST_MTYPE: u32 = 8;
-pub const ERROR_MTYPE: u32 = 9;
-pub const NULL_MTYPE: u32 = 10;
-pub const COMPOSITE_MTYPE: u32 = 11;
-pub const ONE_BYTES: u32 = 0;
-pub const TWO_BYTES: u32 = 1;
-pub const FOUR_BYTES: u32 = 2;
-pub const EIGHT_BYTES: u32 = 3;
-pub const SIZE_MASK: u32 = 3;
-pub const IS_SIGNED: u32 = 4;
-pub const SIGNED_MASK: u32 = 7;
-pub const TAKES_NULL: u32 = 128;
-pub const PROPAGATE_NULL: u32 = 128;
-pub const HAS_BITS: u32 = 64;
-pub const IS_ARRAY_UNION: u32 = 64;
-pub const SIZE_EQUAL: u32 = 64;
-pub const OFFSET_MASK: u32 = 15;
-pub const SIMPLE_STYPE: u32 = 0;
-pub const UNION_STYPE: u32 = 1;
-pub const ARRAY_STYPE: u32 = 2;
-pub const ELEMENT_PROPAGATE: u32 = 128;
+pub const _SYS_TIME_H: u32 = 1;
+pub const CLOCK_NOMINAL: u32 = 30000;
+pub const CLOCK_ADJUST_COARSE: u32 = 300;
+pub const CLOCK_ADJUST_MEDIUM: u32 = 30;
+pub const CLOCK_ADJUST_FINE: u32 = 1;
+pub const CLOCK_ADJUST_LIMIT: u32 = 5000;
+pub const VTPM: u32 = 1;
+pub const FILE_BACKED_NV: u32 = 1;
 pub type __u_char = ::std::os::raw::c_uchar;
 pub type __u_short = ::std::os::raw::c_ushort;
 pub type __u_int = ::std::os::raw::c_uint;
@@ -5507,7 +5480,7 @@ pub type __off_t = ::std::os::raw::c_long;
 pub type __off64_t = ::std::os::raw::c_long;
 pub type __pid_t = ::std::os::raw::c_int;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __fsid_t {
     pub __val: [::std::os::raw::c_int; 2usize],
 }
@@ -5590,7 +5563,7 @@ pub type INT32 = i32;
 pub type UINT64 = u64;
 pub type INT64 = i64;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B {
     pub size: UINT16,
     pub buffer: [BYTE; 1usize],
@@ -5683,6 +5656,11 @@ fn bindgen_test_layout_TPM2B_MAX_HASH_BLOCK__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_MAX_HASH_BLOCK__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_MAX_HASH_BLOCK() {
     assert_eq!(
@@ -5716,12 +5694,17 @@ fn bindgen_test_layout_TPM2B_MAX_HASH_BLOCK() {
         )
     );
 }
+impl Default for TPM2B_MAX_HASH_BLOCK {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_HASH_BLOCK = TPM2B_MAX_HASH_BLOCK;
 pub type size_t = ::std::os::raw::c_ulong;
 pub type wchar_t = ::std::os::raw::c_int;
 #[repr(C)]
 #[repr(align(16))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, PartialOrd, PartialEq)]
 pub struct max_align_t {
     pub __clang_max_align_nonce1: ::std::os::raw::c_longlong,
     pub __bindgen_padding_0: u64,
@@ -5802,6 +5785,11 @@ fn bindgen_test_layout_aes_key_st() {
             stringify!(rounds)
         )
     );
+}
+impl Default for aes_key_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type AES_KEY = aes_key_st;
 extern "C" {
@@ -5983,6 +5971,11 @@ fn bindgen_test_layout_camellia_key_st__bindgen_ty_1() {
         )
     );
 }
+impl Default for camellia_key_st__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_camellia_key_st() {
     assert_eq!(
@@ -6015,6 +6008,11 @@ fn bindgen_test_layout_camellia_key_st() {
             stringify!(grand_rounds)
         )
     );
+}
+impl Default for camellia_key_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type CAMELLIA_KEY = camellia_key_st;
 extern "C" {
@@ -6112,7 +6110,7 @@ extern "C" {
 }
 pub type __gwchar_t = ::std::os::raw::c_int;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct imaxdiv_t {
     pub quot: ::std::os::raw::c_long,
     pub rem: ::std::os::raw::c_long,
@@ -6233,6 +6231,11 @@ fn bindgen_test_layout___mbstate_t__bindgen_ty_1() {
         )
     );
 }
+impl Default for __mbstate_t__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout___mbstate_t() {
     assert_eq!(
@@ -6265,6 +6268,11 @@ fn bindgen_test_layout___mbstate_t() {
             stringify!(__value)
         )
     );
+}
+impl Default for __mbstate_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -6304,6 +6312,11 @@ fn bindgen_test_layout__G_fpos_t() {
             stringify!(__state)
         )
     );
+}
+impl Default for _G_fpos_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type __fpos_t = _G_fpos_t;
 #[repr(C)]
@@ -6345,6 +6358,11 @@ fn bindgen_test_layout__G_fpos64_t() {
         )
     );
 }
+impl Default for _G_fpos64_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type __fpos64_t = _G_fpos64_t;
 pub type __FILE = _IO_FILE;
 pub type FILE = _IO_FILE;
@@ -6365,7 +6383,7 @@ pub struct _IO_wide_data {
 }
 pub type _IO_lock_t = ::std::os::raw::c_void;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct _IO_FILE {
     pub _flags: ::std::os::raw::c_int,
     pub _IO_read_ptr: *mut ::std::os::raw::c_char,
@@ -6699,6 +6717,11 @@ fn bindgen_test_layout__IO_FILE() {
             stringify!(_unused2)
         )
     );
+}
+impl Default for _IO_FILE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type off_t = __off_t;
 pub type ssize_t = __ssize_t;
@@ -7642,7 +7665,7 @@ pub type _Float64 = f64;
 pub type _Float32x = f64;
 pub type _Float64x = u128;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct div_t {
     pub quot: ::std::os::raw::c_int,
     pub rem: ::std::os::raw::c_int,
@@ -7681,7 +7704,7 @@ fn bindgen_test_layout_div_t() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct ldiv_t {
     pub quot: ::std::os::raw::c_long,
     pub rem: ::std::os::raw::c_long,
@@ -7720,7 +7743,7 @@ fn bindgen_test_layout_ldiv_t() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct lldiv_t {
     pub quot: ::std::os::raw::c_longlong,
     pub rem: ::std::os::raw::c_longlong,
@@ -7871,7 +7894,7 @@ pub type u_int32_t = __uint32_t;
 pub type u_int64_t = __uint64_t;
 pub type register_t = ::std::os::raw::c_long;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __sigset_t {
     pub __val: [::std::os::raw::c_ulong; 16usize],
 }
@@ -7900,7 +7923,7 @@ fn bindgen_test_layout___sigset_t() {
 }
 pub type sigset_t = __sigset_t;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct timeval {
     pub tv_sec: __time_t,
     pub tv_usec: __suseconds_t,
@@ -7939,7 +7962,7 @@ fn bindgen_test_layout_timeval() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct timespec {
     pub tv_sec: __time_t,
     pub tv_nsec: __syscall_slong_t,
@@ -7980,7 +8003,7 @@ fn bindgen_test_layout_timespec() {
 pub type suseconds_t = __suseconds_t;
 pub type __fd_mask = ::std::os::raw::c_long;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct fd_set {
     pub __fds_bits: [__fd_mask; 16usize],
 }
@@ -8032,7 +8055,7 @@ pub type blkcnt_t = __blkcnt_t;
 pub type fsblkcnt_t = __fsblkcnt_t;
 pub type fsfilcnt_t = __fsfilcnt_t;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_internal_list {
     pub __prev: *mut __pthread_internal_list,
     pub __next: *mut __pthread_internal_list,
@@ -8070,9 +8093,14 @@ fn bindgen_test_layout___pthread_internal_list() {
         )
     );
 }
+impl Default for __pthread_internal_list {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type __pthread_list_t = __pthread_internal_list;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_internal_slist {
     pub __next: *mut __pthread_internal_slist,
 }
@@ -8099,9 +8127,14 @@ fn bindgen_test_layout___pthread_internal_slist() {
         )
     );
 }
+impl Default for __pthread_internal_slist {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type __pthread_slist_t = __pthread_internal_slist;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_mutex_s {
     pub __lock: ::std::os::raw::c_int,
     pub __count: ::std::os::raw::c_uint,
@@ -8205,8 +8238,13 @@ fn bindgen_test_layout___pthread_mutex_s() {
         )
     );
 }
+impl Default for __pthread_mutex_s {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_rwlock_arch_t {
     pub __readers: ::std::os::raw::c_uint,
     pub __writers: ::std::os::raw::c_uint,
@@ -8386,7 +8424,7 @@ pub union __pthread_cond_s__bindgen_ty_1 {
     pub __wseq32: __pthread_cond_s__bindgen_ty_1__bindgen_ty_1,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_cond_s__bindgen_ty_1__bindgen_ty_1 {
     pub __low: ::std::os::raw::c_uint,
     pub __high: ::std::os::raw::c_uint,
@@ -8473,6 +8511,11 @@ fn bindgen_test_layout___pthread_cond_s__bindgen_ty_1() {
         )
     );
 }
+impl Default for __pthread_cond_s__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union __pthread_cond_s__bindgen_ty_2 {
@@ -8480,7 +8523,7 @@ pub union __pthread_cond_s__bindgen_ty_2 {
     pub __g1_start32: __pthread_cond_s__bindgen_ty_2__bindgen_ty_1,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_cond_s__bindgen_ty_2__bindgen_ty_1 {
     pub __low: ::std::os::raw::c_uint,
     pub __high: ::std::os::raw::c_uint,
@@ -8569,6 +8612,11 @@ fn bindgen_test_layout___pthread_cond_s__bindgen_ty_2() {
         )
     );
 }
+impl Default for __pthread_cond_s__bindgen_ty_2 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout___pthread_cond_s() {
     assert_eq!(
@@ -8632,6 +8680,11 @@ fn bindgen_test_layout___pthread_cond_s() {
         )
     );
 }
+impl Default for __pthread_cond_s {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type pthread_t = ::std::os::raw::c_ulong;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -8672,6 +8725,11 @@ fn bindgen_test_layout_pthread_mutexattr_t() {
         )
     );
 }
+impl Default for pthread_mutexattr_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union pthread_condattr_t {
@@ -8710,6 +8768,11 @@ fn bindgen_test_layout_pthread_condattr_t() {
             stringify!(__align)
         )
     );
+}
+impl Default for pthread_condattr_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type pthread_key_t = ::std::os::raw::c_uint;
 pub type pthread_once_t = ::std::os::raw::c_int;
@@ -8751,6 +8814,11 @@ fn bindgen_test_layout_pthread_attr_t() {
             stringify!(__align)
         )
     );
+}
+impl Default for pthread_attr_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -8802,6 +8870,11 @@ fn bindgen_test_layout_pthread_mutex_t() {
         )
     );
 }
+impl Default for pthread_mutex_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union pthread_cond_t {
@@ -8851,6 +8924,11 @@ fn bindgen_test_layout_pthread_cond_t() {
             stringify!(__align)
         )
     );
+}
+impl Default for pthread_cond_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -8902,6 +8980,11 @@ fn bindgen_test_layout_pthread_rwlock_t() {
         )
     );
 }
+impl Default for pthread_rwlock_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union pthread_rwlockattr_t {
@@ -8940,6 +9023,11 @@ fn bindgen_test_layout_pthread_rwlockattr_t() {
             stringify!(__align)
         )
     );
+}
+impl Default for pthread_rwlockattr_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type pthread_spinlock_t = ::std::os::raw::c_int;
 #[repr(C)]
@@ -8981,6 +9069,11 @@ fn bindgen_test_layout_pthread_barrier_t() {
         )
     );
 }
+impl Default for pthread_barrier_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union pthread_barrierattr_t {
@@ -9020,6 +9113,11 @@ fn bindgen_test_layout_pthread_barrierattr_t() {
         )
     );
 }
+impl Default for pthread_barrierattr_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn random() -> ::std::os::raw::c_long;
 }
@@ -9037,7 +9135,7 @@ extern "C" {
     pub fn setstate(__statebuf: *mut ::std::os::raw::c_char) -> *mut ::std::os::raw::c_char;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct random_data {
     pub fptr: *mut i32,
     pub rptr: *mut i32,
@@ -9130,6 +9228,11 @@ fn bindgen_test_layout_random_data() {
         )
     );
 }
+impl Default for random_data {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn random_r(__buf: *mut random_data, __result: *mut i32) -> ::std::os::raw::c_int;
 }
@@ -9190,7 +9293,7 @@ extern "C" {
     pub fn lcong48(__param: *mut ::std::os::raw::c_ushort);
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct drand48_data {
     pub __x: [::std::os::raw::c_ushort; 3usize],
     pub __old_x: [::std::os::raw::c_ushort; 3usize],
@@ -9325,12 +9428,14 @@ extern "C" {
     ) -> *mut ::std::os::raw::c_void;
 }
 extern "C" {
+    #[must_use]
     pub fn realloc(
         __ptr: *mut ::std::os::raw::c_void,
         __size: ::std::os::raw::c_ulong,
     ) -> *mut ::std::os::raw::c_void;
 }
 extern "C" {
+    #[must_use]
     pub fn reallocarray(
         __ptr: *mut ::std::os::raw::c_void,
         __nmemb: size_t,
@@ -9602,7 +9707,7 @@ extern "C" {
         -> ::std::os::raw::c_int;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct tm {
     pub tm_sec: ::std::os::raw::c_int,
     pub tm_min: ::std::os::raw::c_int,
@@ -9739,8 +9844,13 @@ fn bindgen_test_layout_tm() {
         )
     );
 }
+impl Default for tm {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct itimerspec {
     pub it_interval: timespec,
     pub it_value: timespec,
@@ -9784,7 +9894,7 @@ pub struct sigevent {
     _unused: [u8; 0],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __locale_struct {
     pub __locales: [*mut __locale_data; 13usize],
     pub __ctype_b: *const ::std::os::raw::c_ushort,
@@ -9854,6 +9964,11 @@ fn bindgen_test_layout___locale_struct() {
             stringify!(__names)
         )
     );
+}
+impl Default for __locale_struct {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type __locale_t = *mut __locale_struct;
 pub type locale_t = __locale_t;
@@ -10191,7 +10306,7 @@ extern "C" {
     pub fn ERR_load_CRYPTO_strings() -> ::std::os::raw::c_int;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct CRYPTO_dynlock {
     pub dummy: ::std::os::raw::c_int,
 }
@@ -10243,7 +10358,7 @@ extern "C" {
     ) -> ::std::os::raw::c_int;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct crypto_ex_data_st {
     pub sk: *mut stack_st_void,
 }
@@ -10269,6 +10384,11 @@ fn bindgen_test_layout_crypto_ex_data_st() {
             stringify!(sk)
         )
     );
+}
+impl Default for crypto_ex_data_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
@@ -10411,7 +10531,7 @@ extern "C" {
     ) -> *mut ::std::os::raw::c_void;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct crypto_threadid_st {
     pub dummy: ::std::os::raw::c_int,
 }
@@ -10711,7 +10831,7 @@ extern "C" {
     pub fn OPENSSL_INIT_free(settings: *mut OPENSSL_INIT_SETTINGS);
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct sched_param {
     pub sched_priority: ::std::os::raw::c_int,
 }
@@ -10740,7 +10860,7 @@ fn bindgen_test_layout_sched_param() {
 }
 pub type __cpu_mask = ::std::os::raw::c_ulong;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct cpu_set_t {
     pub __bits: [__cpu_mask; 16usize],
 }
@@ -10841,7 +10961,7 @@ pub const PTHREAD_PROCESS_PRIVATE: ::std::os::raw::c_uint = 0;
 pub const PTHREAD_PROCESS_SHARED: ::std::os::raw::c_uint = 1;
 pub type _bindgen_ty_8 = ::std::os::raw::c_uint;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct _pthread_cleanup_buffer {
     pub __routine: ::std::option::Option<unsafe extern "C" fn(arg1: *mut ::std::os::raw::c_void)>,
     pub __arg: *mut ::std::os::raw::c_void,
@@ -10904,6 +11024,11 @@ fn bindgen_test_layout__pthread_cleanup_buffer() {
             stringify!(__prev)
         )
     );
+}
+impl Default for _pthread_cleanup_buffer {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub const PTHREAD_CANCEL_ENABLE: ::std::os::raw::c_uint = 0;
 pub const PTHREAD_CANCEL_DISABLE: ::std::os::raw::c_uint = 1;
@@ -11100,13 +11225,13 @@ extern "C" {
     pub fn pthread_testcancel();
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_unwind_buf_t {
     pub __cancel_jmp_buf: [__pthread_unwind_buf_t__bindgen_ty_1; 1usize],
     pub __pad: [*mut ::std::os::raw::c_void; 4usize],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_unwind_buf_t__bindgen_ty_1 {
     pub __cancel_jmp_buf: __jmp_buf,
     pub __mask_was_saved: ::std::os::raw::c_int,
@@ -11191,8 +11316,13 @@ fn bindgen_test_layout___pthread_unwind_buf_t() {
         )
     );
 }
+impl Default for __pthread_unwind_buf_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __pthread_cleanup_frame {
     pub __cancel_routine:
         ::std::option::Option<unsafe extern "C" fn(arg1: *mut ::std::os::raw::c_void)>,
@@ -11259,6 +11389,11 @@ fn bindgen_test_layout___pthread_cleanup_frame() {
             stringify!(__cancel_type)
         )
     );
+}
+impl Default for __pthread_cleanup_frame {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub fn __pthread_register_cancel(__buf: *mut __pthread_unwind_buf_t);
@@ -13389,6 +13524,11 @@ fn bindgen_test_layout_BIO_sock_info_u() {
         )
     );
 }
+impl Default for BIO_sock_info_u {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub const BIO_sock_info_type_BIO_SOCK_INFO_ADDRESS: BIO_sock_info_type = 0;
 pub type BIO_sock_info_type = ::std::os::raw::c_uint;
 extern "C" {
@@ -13737,7 +13877,7 @@ pub type sk_X509_ALGOR_freefunc = ::std::option::Option<unsafe extern "C" fn(a: 
 pub type sk_X509_ALGOR_copyfunc =
     ::std::option::Option<unsafe extern "C" fn(a: *const X509_ALGOR) -> *mut X509_ALGOR>;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct asn1_string_st {
     pub length: ::std::os::raw::c_int,
     pub type_: ::std::os::raw::c_int,
@@ -13797,8 +13937,13 @@ fn bindgen_test_layout_asn1_string_st() {
         )
     );
 }
+impl Default for asn1_string_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct ASN1_ENCODING_st {
     pub enc: *mut ::std::os::raw::c_uchar,
     pub len: ::std::os::raw::c_long,
@@ -13847,9 +13992,14 @@ fn bindgen_test_layout_ASN1_ENCODING_st() {
         )
     );
 }
+impl Default for ASN1_ENCODING_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type ASN1_ENCODING = ASN1_ENCODING_st;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct asn1_string_table_st {
     pub nid: ::std::os::raw::c_int,
     pub minsize: ::std::os::raw::c_long,
@@ -14312,6 +14462,11 @@ fn bindgen_test_layout_asn1_type_st__bindgen_ty_1() {
         )
     );
 }
+impl Default for asn1_type_st__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_asn1_type_st() {
     assert_eq!(
@@ -14344,6 +14499,11 @@ fn bindgen_test_layout_asn1_type_st() {
             stringify!(value)
         )
     );
+}
+impl Default for asn1_type_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type ASN1_TYPE = asn1_type_st;
 #[repr(C)]
@@ -14394,7 +14554,7 @@ extern "C" {
     pub static ASN1_SET_ANY_it: ASN1_ITEM;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct BIT_STRING_BITNAME_st {
     pub bitnum: ::std::os::raw::c_int,
     pub lname: *const ::std::os::raw::c_char,
@@ -14442,6 +14602,11 @@ fn bindgen_test_layout_BIT_STRING_BITNAME_st() {
             stringify!(sname)
         )
     );
+}
+impl Default for BIT_STRING_BITNAME_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type BIT_STRING_BITNAME = BIT_STRING_BITNAME_st;
 extern "C" {
@@ -15799,7 +15964,7 @@ extern "C" {
     pub fn ERR_load_OBJ_strings() -> ::std::os::raw::c_int;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct obj_name_st {
     pub type_: ::std::os::raw::c_int,
     pub alias: ::std::os::raw::c_int,
@@ -15858,6 +16023,11 @@ fn bindgen_test_layout_obj_name_st() {
             stringify!(data)
         )
     );
+}
+impl Default for obj_name_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type OBJ_NAME = obj_name_st;
 extern "C" {
@@ -16364,7 +16534,7 @@ extern "C" {
     >;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct EVP_CTRL_TLS1_1_MULTIBLOCK_PARAM {
     pub out: *mut ::std::os::raw::c_uchar,
     pub inp: *const ::std::os::raw::c_uchar,
@@ -16436,8 +16606,13 @@ fn bindgen_test_layout_EVP_CTRL_TLS1_1_MULTIBLOCK_PARAM() {
         )
     );
 }
+impl Default for EVP_CTRL_TLS1_1_MULTIBLOCK_PARAM {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct evp_cipher_info_st {
     pub cipher: *const EVP_CIPHER,
     pub iv: [::std::os::raw::c_uchar; 16usize],
@@ -16474,6 +16649,11 @@ fn bindgen_test_layout_evp_cipher_info_st() {
             stringify!(iv)
         )
     );
+}
+impl Default for evp_cipher_info_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type EVP_CIPHER_INFO = evp_cipher_info_st;
 pub type EVP_PBE_KEYGEN = ::std::option::Option<
@@ -19149,7 +19329,7 @@ extern "C" {
     pub fn EVP_add_alg_module();
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct SHAstate_st {
     pub h0: ::std::os::raw::c_uint,
     pub h1: ::std::os::raw::c_uint,
@@ -19289,7 +19469,7 @@ extern "C" {
     pub fn SHA1_Transform(c: *mut SHA_CTX, data: *const ::std::os::raw::c_uchar);
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct SHA256state_st {
     pub h: [::std::os::raw::c_uint; 8usize],
     pub Nl: ::std::os::raw::c_uint,
@@ -19470,6 +19650,11 @@ fn bindgen_test_layout_SHA512state_st__bindgen_ty_1() {
         )
     );
 }
+impl Default for SHA512state_st__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_SHA512state_st() {
     assert_eq!(
@@ -19542,6 +19727,11 @@ fn bindgen_test_layout_SHA512state_st() {
             stringify!(md_len)
         )
     );
+}
+impl Default for SHA512state_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type SHA512_CTX = SHA512state_st;
 extern "C" {
@@ -19969,7 +20159,7 @@ pub type TPMI_ALG_MAC_SCHEME = TPM_ALG_ID;
 pub type TPMI_ALG_CIPHER_MODE = TPM_ALG_ID;
 pub type TPMS_EMPTY = BYTE;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_ALGORITHM_DESCRIPTION {
     pub alg: TPM_ALG_ID,
     pub attributes: TPMA_ALGORITHM,
@@ -20059,6 +20249,11 @@ fn bindgen_test_layout_TPMU_HA() {
         )
     );
 }
+impl Default for TPMU_HA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_HA {
@@ -20097,6 +20292,11 @@ fn bindgen_test_layout_TPMT_HA() {
             stringify!(digest)
         )
     );
+}
+impl Default for TPMT_HA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -20145,6 +20345,11 @@ fn bindgen_test_layout_TPM2B_DIGEST__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_DIGEST__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_DIGEST() {
     assert_eq!(
@@ -20177,6 +20382,11 @@ fn bindgen_test_layout_TPM2B_DIGEST() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_DIGEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -20223,6 +20433,11 @@ fn bindgen_test_layout_TPM2B_DATA__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_DATA__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_DATA() {
     assert_eq!(
@@ -20255,6 +20470,11 @@ fn bindgen_test_layout_TPM2B_DATA() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPM2B_NONCE = TPM2B_DIGEST;
 pub type TPM2B_AUTH = TPM2B_DIGEST;
@@ -20306,6 +20526,11 @@ fn bindgen_test_layout_TPM2B_EVENT__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_EVENT__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_EVENT() {
     assert_eq!(
@@ -20338,6 +20563,11 @@ fn bindgen_test_layout_TPM2B_EVENT() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_EVENT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -20388,6 +20618,11 @@ fn bindgen_test_layout_TPM2B_MAX_BUFFER__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_MAX_BUFFER__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_MAX_BUFFER() {
     assert_eq!(
@@ -20420,6 +20655,11 @@ fn bindgen_test_layout_TPM2B_MAX_BUFFER() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_MAX_BUFFER {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -20474,6 +20714,11 @@ fn bindgen_test_layout_TPM2B_MAX_NV_BUFFER__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_MAX_NV_BUFFER__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_MAX_NV_BUFFER() {
     assert_eq!(
@@ -20507,6 +20752,11 @@ fn bindgen_test_layout_TPM2B_MAX_NV_BUFFER() {
         )
     );
 }
+impl Default for TPM2B_MAX_NV_BUFFER {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_TIMEOUT {
@@ -20514,7 +20764,7 @@ pub union TPM2B_TIMEOUT {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B_TIMEOUT__bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 8usize],
@@ -20589,6 +20839,11 @@ fn bindgen_test_layout_TPM2B_TIMEOUT() {
         )
     );
 }
+impl Default for TPM2B_TIMEOUT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_IV {
@@ -20596,7 +20851,7 @@ pub union TPM2B_IV {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B_IV__bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 16usize],
@@ -20667,6 +20922,11 @@ fn bindgen_test_layout_TPM2B_IV() {
         )
     );
 }
+impl Default for TPM2B_IV {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPMU_NAME {
@@ -20705,6 +20965,11 @@ fn bindgen_test_layout_TPMU_NAME() {
             stringify!(handle)
         )
     );
+}
+impl Default for TPMU_NAME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -20751,6 +21016,11 @@ fn bindgen_test_layout_TPM2B_NAME__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_NAME__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_NAME() {
     assert_eq!(
@@ -20784,8 +21054,13 @@ fn bindgen_test_layout_TPM2B_NAME() {
         )
     );
 }
+impl Default for TPM2B_NAME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_PCR_SELECT {
     pub sizeofSelect: UINT8,
     pub pcrSelect: [BYTE; 3usize],
@@ -20824,7 +21099,7 @@ fn bindgen_test_layout_TPMS_PCR_SELECT() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_PCR_SELECTION {
     pub hash: TPMI_ALG_HASH,
     pub sizeofSelect: UINT8,
@@ -20923,6 +21198,11 @@ fn bindgen_test_layout_TPMT_TK_CREATION() {
         )
     );
 }
+impl Default for TPMT_TK_CREATION {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_TK_VERIFIED {
@@ -20972,6 +21252,11 @@ fn bindgen_test_layout_TPMT_TK_VERIFIED() {
             stringify!(digest)
         )
     );
+}
+impl Default for TPMT_TK_VERIFIED {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -21023,6 +21308,11 @@ fn bindgen_test_layout_TPMT_TK_AUTH() {
         )
     );
 }
+impl Default for TPMT_TK_AUTH {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_TK_HASHCHECK {
@@ -21073,8 +21363,13 @@ fn bindgen_test_layout_TPMT_TK_HASHCHECK() {
         )
     );
 }
+impl Default for TPMT_TK_HASHCHECK {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_ALG_PROPERTY {
     pub alg: TPM_ALG_ID,
     pub algProperties: TPMA_ALGORITHM,
@@ -21113,7 +21408,7 @@ fn bindgen_test_layout_TPMS_ALG_PROPERTY() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_TAGGED_PROPERTY {
     pub property: TPM_PT,
     pub value: UINT32,
@@ -21152,7 +21447,7 @@ fn bindgen_test_layout_TPMS_TAGGED_PROPERTY() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_TAGGED_PCR_SELECT {
     pub tag: TPM_PT_PCR,
     pub sizeofSelect: UINT8,
@@ -21244,8 +21539,13 @@ fn bindgen_test_layout_TPMS_TAGGED_POLICY() {
         )
     );
 }
+impl Default for TPMS_TAGGED_POLICY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_ACT_DATA {
     pub handle: TPM_HANDLE,
     pub timeout: UINT32,
@@ -21333,6 +21633,11 @@ fn bindgen_test_layout_TPML_CC() {
         )
     );
 }
+impl Default for TPML_CC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPML_CCA {
@@ -21371,6 +21676,11 @@ fn bindgen_test_layout_TPML_CCA() {
             stringify!(commandAttributes)
         )
     );
+}
+impl Default for TPML_CCA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -21411,6 +21721,11 @@ fn bindgen_test_layout_TPML_ALG() {
         )
     );
 }
+impl Default for TPML_ALG {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPML_HANDLE {
@@ -21449,6 +21764,11 @@ fn bindgen_test_layout_TPML_HANDLE() {
             stringify!(handle)
         )
     );
+}
+impl Default for TPML_HANDLE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -21489,6 +21809,11 @@ fn bindgen_test_layout_TPML_DIGEST() {
         )
     );
 }
+impl Default for TPML_DIGEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPML_DIGEST_VALUES {
@@ -21528,8 +21853,13 @@ fn bindgen_test_layout_TPML_DIGEST_VALUES() {
         )
     );
 }
+impl Default for TPML_DIGEST_VALUES {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPML_PCR_SELECTION {
     pub count: UINT32,
     pub pcrSelections: [TPMS_PCR_SELECTION; 3usize],
@@ -21608,6 +21938,11 @@ fn bindgen_test_layout_TPML_ALG_PROPERTY() {
         )
     );
 }
+impl Default for TPML_ALG_PROPERTY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPML_TAGGED_TPM_PROPERTY {
@@ -21648,6 +21983,11 @@ fn bindgen_test_layout_TPML_TAGGED_TPM_PROPERTY() {
             stringify!(tpmProperty)
         )
     );
+}
+impl Default for TPML_TAGGED_TPM_PROPERTY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -21690,6 +22030,11 @@ fn bindgen_test_layout_TPML_TAGGED_PCR_PROPERTY() {
         )
     );
 }
+impl Default for TPML_TAGGED_PCR_PROPERTY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPML_ECC_CURVE {
@@ -21728,6 +22073,11 @@ fn bindgen_test_layout_TPML_ECC_CURVE() {
             stringify!(eccCurves)
         )
     );
+}
+impl Default for TPML_ECC_CURVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -21768,6 +22118,11 @@ fn bindgen_test_layout_TPML_TAGGED_POLICY() {
         )
     );
 }
+impl Default for TPML_TAGGED_POLICY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPML_ACT_DATA {
@@ -21806,6 +22161,11 @@ fn bindgen_test_layout_TPML_ACT_DATA() {
             stringify!(actData)
         )
     );
+}
+impl Default for TPML_ACT_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -21945,6 +22305,11 @@ fn bindgen_test_layout_TPMU_CAPABILITIES() {
         )
     );
 }
+impl Default for TPMU_CAPABILITIES {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_CAPABILITY_DATA {
@@ -21984,8 +22349,13 @@ fn bindgen_test_layout_TPMS_CAPABILITY_DATA() {
         )
     );
 }
+impl Default for TPMS_CAPABILITY_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_CLOCK_INFO {
     pub clock: UINT64,
     pub resetCount: UINT32,
@@ -22046,7 +22416,7 @@ fn bindgen_test_layout_TPMS_CLOCK_INFO() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_TIME_INFO {
     pub time: UINT64,
     pub clockInfo: TPMS_CLOCK_INFO,
@@ -22085,7 +22455,7 @@ fn bindgen_test_layout_TPMS_TIME_INFO() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_TIME_ATTEST_INFO {
     pub time: TPMS_TIME_INFO,
     pub firmwareVersion: UINT64,
@@ -22164,6 +22534,11 @@ fn bindgen_test_layout_TPMS_CERTIFY_INFO() {
         )
     );
 }
+impl Default for TPMS_CERTIFY_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_QUOTE_INFO {
@@ -22202,6 +22577,11 @@ fn bindgen_test_layout_TPMS_QUOTE_INFO() {
             stringify!(pcrDigest)
         )
     );
+}
+impl Default for TPMS_QUOTE_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22272,6 +22652,11 @@ fn bindgen_test_layout_TPMS_COMMAND_AUDIT_INFO() {
         )
     );
 }
+impl Default for TPMS_COMMAND_AUDIT_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_SESSION_AUDIT_INFO {
@@ -22316,6 +22701,11 @@ fn bindgen_test_layout_TPMS_SESSION_AUDIT_INFO() {
         )
     );
 }
+impl Default for TPMS_SESSION_AUDIT_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_CREATION_INFO {
@@ -22354,6 +22744,11 @@ fn bindgen_test_layout_TPMS_CREATION_INFO() {
             stringify!(creationHash)
         )
     );
+}
+impl Default for TPMS_CREATION_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22405,6 +22800,11 @@ fn bindgen_test_layout_TPMS_NV_CERTIFY_INFO() {
         )
     );
 }
+impl Default for TPMS_NV_CERTIFY_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_NV_DIGEST_CERTIFY_INFO {
@@ -22447,6 +22847,11 @@ fn bindgen_test_layout_TPMS_NV_DIGEST_CERTIFY_INFO() {
             stringify!(nvDigest)
         )
     );
+}
+impl Default for TPMS_NV_DIGEST_CERTIFY_INFO {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_ST_ATTEST = TPM_ST;
 #[repr(C)]
@@ -22554,6 +22959,11 @@ fn bindgen_test_layout_TPMU_ATTEST() {
         )
     );
 }
+impl Default for TPMU_ATTEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_ATTEST {
@@ -22648,6 +23058,11 @@ fn bindgen_test_layout_TPMS_ATTEST() {
         )
     );
 }
+impl Default for TPMS_ATTEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_ATTEST {
@@ -22696,6 +23111,11 @@ fn bindgen_test_layout_TPM2B_ATTEST__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_ATTEST__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_ATTEST() {
     assert_eq!(
@@ -22728,6 +23148,11 @@ fn bindgen_test_layout_TPM2B_ATTEST() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_ATTEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -22792,6 +23217,11 @@ fn bindgen_test_layout_TPMS_AUTH_COMMAND() {
         )
     );
 }
+impl Default for TPMS_AUTH_COMMAND {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_AUTH_RESPONSE {
@@ -22843,6 +23273,11 @@ fn bindgen_test_layout_TPMS_AUTH_RESPONSE() {
             stringify!(hmac)
         )
     );
+}
+impl Default for TPMS_AUTH_RESPONSE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_TDES_KEY_BITS = TPM_KEY_BITS;
 pub type TPMI_AES_KEY_BITS = TPM_KEY_BITS;
@@ -22909,6 +23344,11 @@ fn bindgen_test_layout_TPMU_SYM_KEY_BITS() {
         )
     );
 }
+impl Default for TPMU_SYM_KEY_BITS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPMU_SYM_MODE {
@@ -22958,6 +23398,11 @@ fn bindgen_test_layout_TPMU_SYM_MODE() {
             stringify!(sym)
         )
     );
+}
+impl Default for TPMU_SYM_MODE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23009,6 +23454,11 @@ fn bindgen_test_layout_TPMT_SYM_DEF() {
         )
     );
 }
+impl Default for TPMT_SYM_DEF {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_SYM_DEF_OBJECT {
@@ -23059,6 +23509,11 @@ fn bindgen_test_layout_TPMT_SYM_DEF_OBJECT() {
         )
     );
 }
+impl Default for TPMT_SYM_DEF_OBJECT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_SYM_KEY {
@@ -23066,7 +23521,7 @@ pub union TPM2B_SYM_KEY {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B_SYM_KEY__bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 32usize],
@@ -23141,6 +23596,11 @@ fn bindgen_test_layout_TPM2B_SYM_KEY() {
         )
     );
 }
+impl Default for TPM2B_SYM_KEY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_SYMCIPHER_PARMS {
@@ -23169,6 +23629,11 @@ fn bindgen_test_layout_TPMS_SYMCIPHER_PARMS() {
         )
     );
 }
+impl Default for TPMS_SYMCIPHER_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_LABEL {
@@ -23176,7 +23641,7 @@ pub union TPM2B_LABEL {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B_LABEL__bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 32usize],
@@ -23249,6 +23714,11 @@ fn bindgen_test_layout_TPM2B_LABEL() {
         )
     );
 }
+impl Default for TPM2B_LABEL {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_DERIVE {
@@ -23287,6 +23757,11 @@ fn bindgen_test_layout_TPMS_DERIVE() {
             stringify!(context)
         )
     );
+}
+impl Default for TPMS_DERIVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23335,6 +23810,11 @@ fn bindgen_test_layout_TPM2B_DERIVE__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_DERIVE__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_DERIVE() {
     assert_eq!(
@@ -23367,6 +23847,11 @@ fn bindgen_test_layout_TPM2B_DERIVE() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_DERIVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23406,6 +23891,11 @@ fn bindgen_test_layout_TPMU_SENSITIVE_CREATE() {
             stringify!(derive)
         )
     );
+}
+impl Default for TPMU_SENSITIVE_CREATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23460,6 +23950,11 @@ fn bindgen_test_layout_TPM2B_SENSITIVE_DATA__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_SENSITIVE_DATA__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_SENSITIVE_DATA() {
     assert_eq!(
@@ -23492,6 +23987,11 @@ fn bindgen_test_layout_TPM2B_SENSITIVE_DATA() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_SENSITIVE_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23531,6 +24031,11 @@ fn bindgen_test_layout_TPMS_SENSITIVE_CREATE() {
             stringify!(data)
         )
     );
+}
+impl Default for TPMS_SENSITIVE_CREATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -23573,8 +24078,13 @@ fn bindgen_test_layout_TPM2B_SENSITIVE_CREATE() {
         )
     );
 }
+impl Default for TPM2B_SENSITIVE_CREATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_SCHEME_HASH {
     pub hashAlg: TPMI_ALG_HASH,
 }
@@ -23602,7 +24112,7 @@ fn bindgen_test_layout_TPMS_SCHEME_HASH() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_SCHEME_ECDAA {
     pub hashAlg: TPMI_ALG_HASH,
     pub count: UINT16,
@@ -23643,7 +24153,7 @@ fn bindgen_test_layout_TPMS_SCHEME_ECDAA() {
 pub type TPMI_ALG_KEYEDHASH_SCHEME = TPM_ALG_ID;
 pub type TPMS_SCHEME_HMAC = TPMS_SCHEME_HASH;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_SCHEME_XOR {
     pub hashAlg: TPMI_ALG_HASH,
     pub kdf: TPMI_ALG_KDF,
@@ -23720,6 +24230,11 @@ fn bindgen_test_layout_TPMU_SCHEME_KEYEDHASH() {
         )
     );
 }
+impl Default for TPMU_SCHEME_KEYEDHASH {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_KEYEDHASH_SCHEME {
@@ -23758,6 +24273,11 @@ fn bindgen_test_layout_TPMT_KEYEDHASH_SCHEME() {
             stringify!(details)
         )
     );
+}
+impl Default for TPMT_KEYEDHASH_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMS_SIG_SCHEME_RSASSA = TPMS_SCHEME_HASH;
 pub type TPMS_SIG_SCHEME_RSAPSS = TPMS_SCHEME_HASH;
@@ -23859,6 +24379,11 @@ fn bindgen_test_layout_TPMU_SIG_SCHEME() {
         )
     );
 }
+impl Default for TPMU_SIG_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_SIG_SCHEME {
@@ -23897,6 +24422,11 @@ fn bindgen_test_layout_TPMT_SIG_SCHEME() {
             stringify!(details)
         )
     );
+}
+impl Default for TPMT_SIG_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMS_ENC_SCHEME_OAEP = TPMS_SCHEME_HASH;
 pub type TPMS_ENC_SCHEME_RSAES = TPMS_EMPTY;
@@ -23978,6 +24508,11 @@ fn bindgen_test_layout_TPMU_KDF_SCHEME() {
         )
     );
 }
+impl Default for TPMU_KDF_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_KDF_SCHEME {
@@ -24016,6 +24551,11 @@ fn bindgen_test_layout_TPMT_KDF_SCHEME() {
             stringify!(details)
         )
     );
+}
+impl Default for TPMT_KDF_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_ALG_ASYM_SCHEME = TPM_ALG_ID;
 #[repr(C)]
@@ -24134,6 +24674,11 @@ fn bindgen_test_layout_TPMU_ASYM_SCHEME() {
         )
     );
 }
+impl Default for TPMU_ASYM_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_ASYM_SCHEME {
@@ -24172,6 +24717,11 @@ fn bindgen_test_layout_TPMT_ASYM_SCHEME() {
             stringify!(details)
         )
     );
+}
+impl Default for TPMT_ASYM_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_ALG_RSA_SCHEME = TPM_ALG_ID;
 #[repr(C)]
@@ -24213,6 +24763,11 @@ fn bindgen_test_layout_TPMT_RSA_SCHEME() {
         )
     );
 }
+impl Default for TPMT_RSA_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPMI_ALG_RSA_DECRYPT = TPM_ALG_ID;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -24252,6 +24807,11 @@ fn bindgen_test_layout_TPMT_RSA_DECRYPT() {
             stringify!(details)
         )
     );
+}
+impl Default for TPMT_RSA_DECRYPT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -24306,6 +24866,11 @@ fn bindgen_test_layout_TPM2B_PUBLIC_KEY_RSA__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_PUBLIC_KEY_RSA__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_PUBLIC_KEY_RSA() {
     assert_eq!(
@@ -24338,6 +24903,11 @@ fn bindgen_test_layout_TPM2B_PUBLIC_KEY_RSA() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_PUBLIC_KEY_RSA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_RSA_KEY_BITS = TPM_KEY_BITS;
 #[repr(C)]
@@ -24394,6 +24964,11 @@ fn bindgen_test_layout_TPM2B_PRIVATE_KEY_RSA__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_PRIVATE_KEY_RSA__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_PRIVATE_KEY_RSA() {
     assert_eq!(
@@ -24426,6 +25001,11 @@ fn bindgen_test_layout_TPM2B_PRIVATE_KEY_RSA() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_PRIVATE_KEY_RSA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -24480,6 +25060,11 @@ fn bindgen_test_layout_TPM2B_ECC_PARAMETER__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_ECC_PARAMETER__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_ECC_PARAMETER() {
     assert_eq!(
@@ -24512,6 +25097,11 @@ fn bindgen_test_layout_TPM2B_ECC_PARAMETER() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_ECC_PARAMETER {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -24552,6 +25142,11 @@ fn bindgen_test_layout_TPMS_ECC_POINT() {
         )
     );
 }
+impl Default for TPMS_ECC_POINT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPM2B_ECC_POINT {
@@ -24590,6 +25185,11 @@ fn bindgen_test_layout_TPM2B_ECC_POINT() {
             stringify!(point)
         )
     );
+}
+impl Default for TPM2B_ECC_POINT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_ALG_ECC_SCHEME = TPM_ALG_ID;
 pub type TPMI_ECC_CURVE = TPM_ECC_CURVE;
@@ -24631,6 +25231,11 @@ fn bindgen_test_layout_TPMT_ECC_SCHEME() {
             stringify!(details)
         )
     );
+}
+impl Default for TPMT_ECC_SCHEME {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -24774,6 +25379,11 @@ fn bindgen_test_layout_TPMS_ALGORITHM_DETAIL_ECC() {
         )
     );
 }
+impl Default for TPMS_ALGORITHM_DETAIL_ECC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_SIGNATURE_RSA {
@@ -24812,6 +25422,11 @@ fn bindgen_test_layout_TPMS_SIGNATURE_RSA() {
             stringify!(sig)
         )
     );
+}
+impl Default for TPMS_SIGNATURE_RSA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMS_SIGNATURE_RSASSA = TPMS_SIGNATURE_RSA;
 pub type TPMS_SIGNATURE_RSAPSS = TPMS_SIGNATURE_RSA;
@@ -24864,6 +25479,11 @@ fn bindgen_test_layout_TPMS_SIGNATURE_ECC() {
             stringify!(signatureS)
         )
     );
+}
+impl Default for TPMS_SIGNATURE_ECC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMS_SIGNATURE_ECDAA = TPMS_SIGNATURE_ECC;
 pub type TPMS_SIGNATURE_ECDSA = TPMS_SIGNATURE_ECC;
@@ -24974,6 +25594,11 @@ fn bindgen_test_layout_TPMU_SIGNATURE() {
         )
     );
 }
+impl Default for TPMU_SIGNATURE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_SIGNATURE {
@@ -25012,6 +25637,11 @@ fn bindgen_test_layout_TPMT_SIGNATURE() {
             stringify!(signature)
         )
     );
+}
+impl Default for TPMT_SIGNATURE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25074,6 +25704,11 @@ fn bindgen_test_layout_TPMU_ENCRYPTED_SECRET() {
         )
     );
 }
+impl Default for TPMU_ENCRYPTED_SECRET {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_ENCRYPTED_SECRET {
@@ -25131,6 +25766,11 @@ fn bindgen_test_layout_TPM2B_ENCRYPTED_SECRET__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_ENCRYPTED_SECRET__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_ENCRYPTED_SECRET() {
     assert_eq!(
@@ -25163,6 +25803,11 @@ fn bindgen_test_layout_TPM2B_ENCRYPTED_SECRET() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_ENCRYPTED_SECRET {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPMI_ALG_PUBLIC = TPM_ALG_ID;
 #[repr(C)]
@@ -25237,6 +25882,11 @@ fn bindgen_test_layout_TPMU_PUBLIC_ID() {
         )
     );
 }
+impl Default for TPMU_PUBLIC_ID {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_KEYEDHASH_PARMS {
@@ -25264,6 +25914,11 @@ fn bindgen_test_layout_TPMS_KEYEDHASH_PARMS() {
             stringify!(scheme)
         )
     );
+}
+impl Default for TPMS_KEYEDHASH_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25303,6 +25958,11 @@ fn bindgen_test_layout_TPMS_ASYM_PARMS() {
             stringify!(scheme)
         )
     );
+}
+impl Default for TPMS_ASYM_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25365,6 +26025,11 @@ fn bindgen_test_layout_TPMS_RSA_PARMS() {
         )
     );
 }
+impl Default for TPMS_RSA_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMS_ECC_PARMS {
@@ -25425,6 +26090,11 @@ fn bindgen_test_layout_TPMS_ECC_PARMS() {
             stringify!(kdf)
         )
     );
+}
+impl Default for TPMS_ECC_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25500,6 +26170,11 @@ fn bindgen_test_layout_TPMU_PUBLIC_PARMS() {
         )
     );
 }
+impl Default for TPMU_PUBLIC_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_PUBLIC_PARMS {
@@ -25538,6 +26213,11 @@ fn bindgen_test_layout_TPMT_PUBLIC_PARMS() {
             stringify!(parameters)
         )
     );
+}
+impl Default for TPMT_PUBLIC_PARMS {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25622,6 +26302,11 @@ fn bindgen_test_layout_TPMT_PUBLIC() {
         )
     );
 }
+impl Default for TPMT_PUBLIC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPM2B_PUBLIC {
@@ -25660,6 +26345,11 @@ fn bindgen_test_layout_TPM2B_PUBLIC() {
             stringify!(publicArea)
         )
     );
+}
+impl Default for TPM2B_PUBLIC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25710,6 +26400,11 @@ fn bindgen_test_layout_TPM2B_TEMPLATE__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_TEMPLATE__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_TEMPLATE() {
     assert_eq!(
@@ -25742,6 +26437,11 @@ fn bindgen_test_layout_TPM2B_TEMPLATE() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_TEMPLATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25800,6 +26500,11 @@ fn bindgen_test_layout_TPM2B_PRIVATE_VENDOR_SPECIFIC__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_PRIVATE_VENDOR_SPECIFIC__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_PRIVATE_VENDOR_SPECIFIC() {
     assert_eq!(
@@ -25832,6 +26537,11 @@ fn bindgen_test_layout_TPM2B_PRIVATE_VENDOR_SPECIFIC() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_PRIVATE_VENDOR_SPECIFIC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -25905,6 +26615,11 @@ fn bindgen_test_layout_TPMU_SENSITIVE_COMPOSITE() {
         )
     );
 }
+impl Default for TPMU_SENSITIVE_COMPOSITE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPMT_SENSITIVE {
@@ -25966,6 +26681,11 @@ fn bindgen_test_layout_TPMT_SENSITIVE() {
         )
     );
 }
+impl Default for TPMT_SENSITIVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPM2B_SENSITIVE {
@@ -26004,6 +26724,11 @@ fn bindgen_test_layout_TPM2B_SENSITIVE() {
             stringify!(sensitiveArea)
         )
     );
+}
+impl Default for TPM2B_SENSITIVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26055,6 +26780,11 @@ fn bindgen_test_layout__PRIVATE() {
         )
     );
 }
+impl Default for _PRIVATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_PRIVATE {
@@ -26104,6 +26834,11 @@ fn bindgen_test_layout_TPM2B_PRIVATE__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_PRIVATE__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_PRIVATE() {
     assert_eq!(
@@ -26136,6 +26871,11 @@ fn bindgen_test_layout_TPM2B_PRIVATE() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_PRIVATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26175,6 +26915,11 @@ fn bindgen_test_layout_TPMS_ID_OBJECT() {
             stringify!(encIdentity)
         )
     );
+}
+impl Default for TPMS_ID_OBJECT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26226,6 +26971,11 @@ fn bindgen_test_layout_TPM2B_ID_OBJECT__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_ID_OBJECT__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_ID_OBJECT() {
     assert_eq!(
@@ -26259,10 +27009,15 @@ fn bindgen_test_layout_TPM2B_ID_OBJECT() {
         )
     );
 }
+impl Default for TPM2B_ID_OBJECT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM_NV_INDEX = UINT32;
 pub type TPM_NT = UINT32;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_NV_PIN_COUNTER_PARAMETERS {
     pub pinCount: UINT32,
     pub pinLimit: UINT32,
@@ -26377,6 +27132,11 @@ fn bindgen_test_layout_TPMS_NV_PUBLIC() {
         )
     );
 }
+impl Default for TPMS_NV_PUBLIC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPM2B_NV_PUBLIC {
@@ -26415,6 +27175,11 @@ fn bindgen_test_layout_TPM2B_NV_PUBLIC() {
             stringify!(nvPublic)
         )
     );
+}
+impl Default for TPM2B_NV_PUBLIC {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26473,6 +27238,11 @@ fn bindgen_test_layout_TPM2B_CONTEXT_SENSITIVE__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_CONTEXT_SENSITIVE__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_CONTEXT_SENSITIVE() {
     assert_eq!(
@@ -26505,6 +27275,11 @@ fn bindgen_test_layout_TPM2B_CONTEXT_SENSITIVE() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_CONTEXT_SENSITIVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26544,6 +27319,11 @@ fn bindgen_test_layout_TPMS_CONTEXT_DATA() {
             stringify!(encrypted)
         )
     );
+}
+impl Default for TPMS_CONTEXT_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26597,6 +27377,11 @@ fn bindgen_test_layout_TPM2B_CONTEXT_DATA__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_CONTEXT_DATA__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_CONTEXT_DATA() {
     assert_eq!(
@@ -26629,6 +27414,11 @@ fn bindgen_test_layout_TPM2B_CONTEXT_DATA() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_CONTEXT_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26690,6 +27480,11 @@ fn bindgen_test_layout_TPMS_CONTEXT() {
             stringify!(contextBlob)
         )
     );
+}
+impl Default for TPMS_CONTEXT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -26789,6 +27584,11 @@ fn bindgen_test_layout_TPMS_CREATION_DATA() {
         )
     );
 }
+impl Default for TPMS_CREATION_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct TPM2B_CREATION_DATA {
@@ -26830,10 +27630,15 @@ fn bindgen_test_layout_TPM2B_CREATION_DATA() {
         )
     );
 }
+impl Default for TPM2B_CREATION_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM_AT = UINT32;
 pub type TPM_AE = UINT32;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPMS_AC_OUTPUT {
     pub tag: TPM_AT,
     pub data: UINT32,
@@ -26912,10 +27717,15 @@ fn bindgen_test_layout_TPML_AC_CAPABILITIES() {
         )
     );
 }
+impl Default for TPML_AC_CAPABILITIES {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type COMMAND_ATTRIBUTES = UINT16;
 pub type ALGORITHM_VECTOR = [BYTE; 9usize];
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct CRYPTO_SELF_TEST_STATE {
     pub rng: UINT32,
     pub hash: UINT32,
@@ -26989,7 +27799,7 @@ fn bindgen_test_layout_CRYPTO_SELF_TEST_STATE() {
 pub type crypt_uword_t = u64;
 pub type crypt_word_t = i64;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct bignum_t {
     pub allocated: crypt_uword_t,
     pub size: crypt_uword_t,
@@ -27044,7 +27854,7 @@ extern "C" {
     pub static BnConstZero: bignum_t;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct _bn_point_t {
     pub x: bigNum,
     pub y: bigNum,
@@ -27093,11 +27903,16 @@ fn bindgen_test_layout__bn_point_t() {
         )
     );
 }
+impl Default for _bn_point_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type bn_point_t = _bn_point_t;
 pub type bigPoint = *mut bn_point_t;
 pub type pointConst = *const bn_point_t;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct constant_point_t {
     pub x: bigConst,
     pub y: bigConst,
@@ -27146,8 +27961,13 @@ fn bindgen_test_layout_constant_point_t() {
         )
     );
 }
+impl Default for constant_point_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct bn_ecc_t {
     pub allocated: crypt_uword_t,
     pub size: crypt_uword_t,
@@ -27197,7 +28017,7 @@ fn bindgen_test_layout_bn_ecc_t() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct ECC_CURVE_DATA {
     pub prime: bigConst,
     pub order: bigConst,
@@ -27278,6 +28098,11 @@ fn bindgen_test_layout_ECC_CURVE_DATA() {
             stringify!(base)
         )
     );
+}
+impl Default for ECC_CURVE_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub fn ERR_load_EC_strings() -> ::std::os::raw::c_int;
@@ -27537,7 +28362,7 @@ extern "C" {
     ) -> *mut ECPKPARAMETERS;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct EC_builtin_curve {
     pub nid: ::std::os::raw::c_int,
     pub comment: *const ::std::os::raw::c_char,
@@ -27574,6 +28399,11 @@ fn bindgen_test_layout_EC_builtin_curve() {
             stringify!(comment)
         )
     );
+}
+impl Default for EC_builtin_curve {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub fn EC_get_builtin_curves(r: *mut EC_builtin_curve, nitems: size_t) -> size_t;
@@ -28481,7 +29311,7 @@ extern "C" {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct bignum_st {
     pub d: *mut ::std::os::raw::c_ulong,
     pub top: ::std::os::raw::c_int,
@@ -28552,8 +29382,13 @@ fn bindgen_test_layout_bignum_st() {
         )
     );
 }
+impl Default for bignum_st {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct OSSL_CURVE_DATA {
     pub C: *const ECC_CURVE_DATA,
     pub G: *mut EC_GROUP,
@@ -28602,6 +29437,11 @@ fn bindgen_test_layout_OSSL_CURVE_DATA() {
         )
     );
 }
+impl Default for OSSL_CURVE_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type bigCurve = *mut OSSL_CURVE_DATA;
 extern "C" {
     pub fn SupportLibInit() -> ::std::os::raw::c_int;
@@ -28625,7 +29465,7 @@ pub type SMAC_END_METHOD = ::std::option::Option<
     unsafe extern "C" fn(state: *mut SMAC_STATES, size: UINT32, buffer: *mut BYTE) -> UINT16,
 >;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct sequenceMethods {
     pub data: SMAC_DATA_METHOD,
     pub end: SMAC_END_METHOD,
@@ -28736,6 +29576,11 @@ fn bindgen_test_layout_tpmCmacState() {
         )
     );
 }
+impl Default for tpmCmacState {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type tpmCmacState_t = tpmCmacState;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -28776,6 +29621,11 @@ fn bindgen_test_layout_SMAC_STATES() {
         )
     );
 }
+impl Default for SMAC_STATES {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct SMAC_STATE {
@@ -28814,6 +29664,11 @@ fn bindgen_test_layout_SMAC_STATE() {
             stringify!(state)
         )
     );
+}
+impl Default for SMAC_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -28887,6 +29742,11 @@ fn bindgen_test_layout_ANY_HASH_STATE() {
         )
     );
 }
+impl Default for ANY_HASH_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type PANY_HASH_STATE = *mut ANY_HASH_STATE;
 pub type PCANY_HASH_STATE = *const ANY_HASH_STATE;
 pub type ALIGNED_HASH_STATE = ANY_HASH_STATE;
@@ -28897,7 +29757,7 @@ pub type HASH_STATE_COPY_METHOD = ::std::option::Option<unsafe extern "C" fn()>;
 pub type HASH_STATE_EXPORT_METHOD = ::std::option::Option<unsafe extern "C" fn()>;
 pub type HASH_STATE_IMPORT_METHOD = ::std::option::Option<unsafe extern "C" fn()>;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct _HASH_METHODS {
     pub start: HASH_START_METHOD,
     pub data: HASH_DATA_METHOD,
@@ -28988,7 +29848,7 @@ pub union TPM2B_SHA1_DIGEST {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B_SHA1_DIGEST__bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 20usize],
@@ -29063,6 +29923,11 @@ fn bindgen_test_layout_TPM2B_SHA1_DIGEST() {
         )
     );
 }
+impl Default for TPM2B_SHA1_DIGEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_SHA256_DIGEST {
@@ -29070,7 +29935,7 @@ pub union TPM2B_SHA256_DIGEST {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct TPM2B_SHA256_DIGEST__bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 32usize],
@@ -29149,6 +30014,11 @@ fn bindgen_test_layout_TPM2B_SHA256_DIGEST() {
         )
     );
 }
+impl Default for TPM2B_SHA256_DIGEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union TPM2B_SHA384_DIGEST {
@@ -29202,6 +30072,11 @@ fn bindgen_test_layout_TPM2B_SHA384_DIGEST__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_SHA384_DIGEST__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_SHA384_DIGEST() {
     assert_eq!(
@@ -29235,8 +30110,13 @@ fn bindgen_test_layout_TPM2B_SHA384_DIGEST() {
         )
     );
 }
+impl Default for TPM2B_SHA384_DIGEST {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct HASH_DEF {
     pub method: HASH_METHODS,
     pub blockSize: u16,
@@ -29340,6 +30220,11 @@ fn bindgen_test_layout_HASH_DEF() {
         )
     );
 }
+impl Default for HASH_DEF {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type PHASH_DEF = *const HASH_DEF;
 pub type HASH_STATE_TYPE = BYTE;
 #[repr(C)]
@@ -29403,6 +30288,11 @@ fn bindgen_test_layout__HASH_STATE() {
         )
     );
 }
+impl Default for _HASH_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type HASH_STATE = _HASH_STATE;
 pub type PHASH_STATE = *mut _HASH_STATE;
 pub type PCHASH_STATE = *const HASH_STATE;
@@ -29445,6 +30335,11 @@ fn bindgen_test_layout_hmacState() {
         )
     );
 }
+impl Default for hmacState {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type HMAC_STATE = hmacState;
 pub type PHMAC_STATE = *mut hmacState;
 #[repr(C)]
@@ -29474,6 +30369,11 @@ fn bindgen_test_layout_EXPORT_HASH_STATE() {
             stringify!(buffer)
         )
     );
+}
+impl Default for EXPORT_HASH_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type PEXPORT_HASH_STATE = *mut EXPORT_HASH_STATE;
 pub type PCEXPORT_HASH_STATE = *const EXPORT_HASH_STATE;
@@ -29527,6 +30427,11 @@ fn bindgen_test_layout_tpmCryptKeySchedule_t() {
         )
     );
 }
+impl Default for tpmCryptKeySchedule_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type DRBG_KEY_SCHEDULE = AES_KEY;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -29567,6 +30472,11 @@ fn bindgen_test_layout_DRBG_KEY() {
         )
     );
 }
+impl Default for DRBG_KEY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union DRBG_IV {
@@ -29606,6 +30516,11 @@ fn bindgen_test_layout_DRBG_IV() {
         )
     );
 }
+impl Default for DRBG_IV {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union DRBG_SEED {
@@ -29644,6 +30559,11 @@ fn bindgen_test_layout_DRBG_SEED() {
             stringify!(words)
         )
     );
+}
+impl Default for DRBG_SEED {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -29705,6 +30625,11 @@ fn bindgen_test_layout_DRBG_STATE() {
             stringify!(lastValue)
         )
     );
+}
+impl Default for DRBG_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type pDRBG_STATE = *mut DRBG_STATE;
 #[repr(C)]
@@ -29834,6 +30759,11 @@ fn bindgen_test_layout_KDF_STATE() {
         )
     );
 }
+impl Default for KDF_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type pKDR_STATE = *mut KDF_STATE;
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -29873,6 +30803,11 @@ fn bindgen_test_layout_RAND_STATE() {
             stringify!(kdf)
         )
     );
+}
+impl Default for RAND_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub static mut s_random: *mut RAND_STATE;
@@ -29960,6 +30895,11 @@ fn bindgen_test_layout_ECC_CURVE() {
         )
     );
 }
+impl Default for ECC_CURVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub static eccCurves: [ECC_CURVE; 4usize];
 }
@@ -30013,8 +30953,13 @@ fn bindgen_test_layout_bn_rsa_t() {
         )
     );
 }
+impl Default for bn_rsa_t {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct bn_prime_t {
     pub allocated: crypt_uword_t,
     pub size: crypt_uword_t,
@@ -30064,7 +31009,7 @@ fn bindgen_test_layout_bn_prime_t() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct privateExponent {
     pub P: bigNum,
     pub Q: bigNum,
@@ -30146,8 +31091,13 @@ fn bindgen_test_layout_privateExponent() {
         )
     );
 }
+impl Default for privateExponent {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct NV_ENTRY_HEADER {
     pub size: UINT32,
     pub handle: TPM_HANDLE,
@@ -30186,7 +31136,7 @@ fn bindgen_test_layout_NV_ENTRY_HEADER() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct NV_RAM_HEADER {
     pub size: UINT32,
     pub handle: TPM_HANDLE,
@@ -30286,6 +31236,11 @@ fn bindgen_test_layout_ACT_STATE() {
         )
     );
 }
+impl Default for ACT_STATE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type P_ACT_STATE = *mut ACT_STATE;
 pub type NUMBYTES = UINT16;
 pub type AUTH_VALUE = [BYTE; 48usize];
@@ -30338,6 +31293,11 @@ fn bindgen_test_layout_TPM2B_PROOF__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_PROOF__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_PROOF() {
     assert_eq!(
@@ -30370,6 +31330,11 @@ fn bindgen_test_layout_TPM2B_PROOF() {
             stringify!(b)
         )
     );
+}
+impl Default for TPM2B_PROOF {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -30416,6 +31381,11 @@ fn bindgen_test_layout_TPM2B_SEED__bindgen_ty_1() {
         )
     );
 }
+impl Default for TPM2B_SEED__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[test]
 fn bindgen_test_layout_TPM2B_SEED() {
     assert_eq!(
@@ -30449,10 +31419,15 @@ fn bindgen_test_layout_TPM2B_SEED() {
         )
     );
 }
+impl Default for TPM2B_SEED {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type CLOCK_NONCE = UINT32;
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct OBJECT_ATTRIBUTES {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 3usize]>,
@@ -30850,6 +31825,11 @@ fn bindgen_test_layout_OBJECT() {
         )
     );
 }
+impl Default for OBJECT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct HASH_OBJECT {
@@ -30902,6 +31882,11 @@ fn bindgen_test_layout_HASH_OBJECT__bindgen_ty_1() {
             stringify!(hmacState)
         )
     );
+}
+impl Default for HASH_OBJECT__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[test]
 fn bindgen_test_layout_HASH_OBJECT() {
@@ -30976,6 +31961,11 @@ fn bindgen_test_layout_HASH_OBJECT() {
         )
     );
 }
+impl Default for HASH_OBJECT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type HASH_OBJECT_BUFFER = [BYTE; 760usize];
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -31016,11 +32006,16 @@ fn bindgen_test_layout_ANY_OBJECT() {
         )
     );
 }
+impl Default for ANY_OBJECT {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type ANY_OBJECT_BUFFER = [BYTE; 1208usize];
 pub type AUTH_ROLE = UINT32;
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct SESSION_ATTRIBUTES {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
@@ -31353,6 +32348,11 @@ fn bindgen_test_layout_SESSION__bindgen_ty_1() {
         )
     );
 }
+impl Default for SESSION__bindgen_ty_1 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union SESSION__bindgen_ty_2 {
@@ -31395,6 +32395,11 @@ fn bindgen_test_layout_SESSION__bindgen_ty_2() {
             stringify!(policyDigest)
         )
     );
+}
+impl Default for SESSION__bindgen_ty_2 {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[test]
 fn bindgen_test_layout_SESSION() {
@@ -31539,6 +32544,11 @@ fn bindgen_test_layout_SESSION() {
         )
     );
 }
+impl Default for SESSION {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type SESSION_BUF = [BYTE; 248usize];
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -31601,6 +32611,11 @@ fn bindgen_test_layout_PCR_SAVE() {
         )
     );
 }
+impl Default for PCR_SAVE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct PCR_POLICY {
@@ -31651,6 +32666,11 @@ fn bindgen_test_layout_PCR_POLICY() {
         )
     );
 }
+impl Default for PCR_POLICY {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct PCR_AUTH_VALUE {
@@ -31678,6 +32698,11 @@ fn bindgen_test_layout_PCR_AUTH_VALUE() {
             stringify!(auth)
         )
     );
+}
+impl Default for PCR_AUTH_VALUE {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type PCR_AUTHVALUE = PCR_AUTH_VALUE;
 pub const STARTUP_TYPE_SU_RESET: STARTUP_TYPE = 0;
@@ -31723,10 +32748,15 @@ fn bindgen_test_layout_NV_INDEX() {
         )
     );
 }
+impl Default for NV_INDEX {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type NV_REF = UINT32;
 pub type NV_RAM_REF = *mut BYTE;
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct PIN_DATA {
     pub pinLimit: UINT32,
     pub pinCount: UINT32,
@@ -31802,6 +32832,11 @@ fn bindgen_test_layout_NV_PIN() {
             stringify!(pin)
         )
     );
+}
+impl Default for NV_PIN {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
     pub static mut g_implementedAlgorithms: ALGORITHM_VECTOR;
@@ -32256,6 +33291,11 @@ fn bindgen_test_layout_PERSISTENT_DATA() {
         )
     );
 }
+impl Default for PERSISTENT_DATA {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub static mut gp: PERSISTENT_DATA;
 }
@@ -32385,6 +33425,11 @@ fn bindgen_test_layout_orderly_data() {
             stringify!(preservedSignaled)
         )
     );
+}
+impl Default for orderly_data {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type ORDERLY_DATA = orderly_data;
 extern "C" {
@@ -32516,6 +33561,11 @@ fn bindgen_test_layout_state_clear_data() {
             stringify!(act_A)
         )
     );
+}
+impl Default for state_clear_data {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type STATE_CLEAR_DATA = state_clear_data;
 extern "C" {
@@ -32674,6 +33724,11 @@ fn bindgen_test_layout_state_reset_data() {
         )
     );
 }
+impl Default for state_reset_data {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type STATE_RESET_DATA = state_reset_data;
 extern "C" {
     pub static mut gr: STATE_RESET_DATA;
@@ -32681,7 +33736,7 @@ extern "C" {
 pub type COMMAND_INDEX = UINT16;
 #[repr(C)]
 #[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct _COMMAND_FLAGS_ {
     pub _bitfield_align_1: [u8; 0],
     pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
@@ -32918,6 +33973,11 @@ fn bindgen_test_layout_COMMAND() {
         )
     );
 }
+impl Default for COMMAND {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub union PRIMARY_OBJECT_CREATION_ {
@@ -32925,7 +33985,7 @@ pub union PRIMARY_OBJECT_CREATION_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct PRIMARY_OBJECT_CREATION___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 24usize],
@@ -33008,6 +34068,11 @@ fn bindgen_test_layout_PRIMARY_OBJECT_CREATION_() {
         )
     );
 }
+impl Default for PRIMARY_OBJECT_CREATION_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_PRIMARY_OBJECT_CREATION_ = PRIMARY_OBJECT_CREATION_;
 extern "C" {
     pub static PRIMARY_OBJECT_CREATION_: TPM2B_PRIMARY_OBJECT_CREATION_;
@@ -33022,7 +34087,7 @@ pub union CFB_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct CFB_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 4usize],
@@ -33093,6 +34158,11 @@ fn bindgen_test_layout_CFB_KEY_() {
         )
     );
 }
+impl Default for CFB_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_CFB_KEY_ = CFB_KEY_;
 extern "C" {
     pub static CFB_KEY_: TPM2B_CFB_KEY_;
@@ -33107,7 +34177,7 @@ pub union CONTEXT_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct CONTEXT_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 8usize],
@@ -33180,6 +34250,11 @@ fn bindgen_test_layout_CONTEXT_KEY_() {
         )
     );
 }
+impl Default for CONTEXT_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_CONTEXT_KEY_ = CONTEXT_KEY_;
 extern "C" {
     pub static CONTEXT_KEY_: TPM2B_CONTEXT_KEY_;
@@ -33194,7 +34269,7 @@ pub union INTEGRITY_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct INTEGRITY_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 10usize],
@@ -33269,6 +34344,11 @@ fn bindgen_test_layout_INTEGRITY_KEY_() {
         )
     );
 }
+impl Default for INTEGRITY_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_INTEGRITY_KEY_ = INTEGRITY_KEY_;
 extern "C" {
     pub static INTEGRITY_KEY_: TPM2B_INTEGRITY_KEY_;
@@ -33283,7 +34363,7 @@ pub union SECRET_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct SECRET_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 7usize],
@@ -33356,6 +34436,11 @@ fn bindgen_test_layout_SECRET_KEY_() {
         )
     );
 }
+impl Default for SECRET_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_SECRET_KEY_ = SECRET_KEY_;
 extern "C" {
     pub static SECRET_KEY_: TPM2B_SECRET_KEY_;
@@ -33370,7 +34455,7 @@ pub union SESSION_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct SESSION_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 4usize],
@@ -33443,6 +34528,11 @@ fn bindgen_test_layout_SESSION_KEY_() {
         )
     );
 }
+impl Default for SESSION_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_SESSION_KEY_ = SESSION_KEY_;
 extern "C" {
     pub static SESSION_KEY_: TPM2B_SESSION_KEY_;
@@ -33457,7 +34547,7 @@ pub union STORAGE_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct STORAGE_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 8usize],
@@ -33530,6 +34620,11 @@ fn bindgen_test_layout_STORAGE_KEY_() {
         )
     );
 }
+impl Default for STORAGE_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_STORAGE_KEY_ = STORAGE_KEY_;
 extern "C" {
     pub static STORAGE_KEY_: TPM2B_STORAGE_KEY_;
@@ -33544,7 +34639,7 @@ pub union XOR_KEY_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct XOR_KEY___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 4usize],
@@ -33615,6 +34710,11 @@ fn bindgen_test_layout_XOR_KEY_() {
         )
     );
 }
+impl Default for XOR_KEY_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_XOR_KEY_ = XOR_KEY_;
 extern "C" {
     pub static XOR_KEY_: TPM2B_XOR_KEY_;
@@ -33629,7 +34729,7 @@ pub union COMMIT_STRING_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct COMMIT_STRING___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 13usize],
@@ -33704,6 +34804,11 @@ fn bindgen_test_layout_COMMIT_STRING_() {
         )
     );
 }
+impl Default for COMMIT_STRING_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_COMMIT_STRING_ = COMMIT_STRING_;
 extern "C" {
     pub static COMMIT_STRING_: TPM2B_COMMIT_STRING_;
@@ -33718,7 +34823,7 @@ pub union DUPLICATE_STRING_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct DUPLICATE_STRING___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 10usize],
@@ -33793,6 +34898,11 @@ fn bindgen_test_layout_DUPLICATE_STRING_() {
         )
     );
 }
+impl Default for DUPLICATE_STRING_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_DUPLICATE_STRING_ = DUPLICATE_STRING_;
 extern "C" {
     pub static DUPLICATE_STRING_: TPM2B_DUPLICATE_STRING_;
@@ -33807,7 +34917,7 @@ pub union IDENTITY_STRING_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct IDENTITY_STRING___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 9usize],
@@ -33882,6 +34992,11 @@ fn bindgen_test_layout_IDENTITY_STRING_() {
         )
     );
 }
+impl Default for IDENTITY_STRING_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_IDENTITY_STRING_ = IDENTITY_STRING_;
 extern "C" {
     pub static IDENTITY_STRING_: TPM2B_IDENTITY_STRING_;
@@ -33896,7 +35011,7 @@ pub union OBFUSCATE_STRING_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct OBFUSCATE_STRING___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 10usize],
@@ -33971,6 +35086,11 @@ fn bindgen_test_layout_OBFUSCATE_STRING_() {
         )
     );
 }
+impl Default for OBFUSCATE_STRING_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 pub type TPM2B_OBFUSCATE_STRING_ = OBFUSCATE_STRING_;
 extern "C" {
     pub static OBFUSCATE_STRING_: TPM2B_OBFUSCATE_STRING_;
@@ -33985,7 +35105,7 @@ pub union OAEP_TEST_STRING_ {
     pub b: TPM2B,
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct OAEP_TEST_STRING___bindgen_ty_1 {
     pub size: UINT16,
     pub buffer: [BYTE; 16usize],
@@ -34059,6 +35179,11 @@ fn bindgen_test_layout_OAEP_TEST_STRING_() {
             stringify!(b)
         )
     );
+}
+impl Default for OAEP_TEST_STRING_ {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 pub type TPM2B_OAEP_TEST_STRING_ = OAEP_TEST_STRING_;
 extern "C" {
@@ -38408,7 +39533,7 @@ extern "C" {
     pub static mut OID_ECC_SM2_P256: [BYTE; 0usize];
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct ASN1UnmarshalContext {
     pub buffer: *mut BYTE,
     pub size: INT16,
@@ -38468,8 +39593,13 @@ fn bindgen_test_layout_ASN1UnmarshalContext() {
         )
     );
 }
+impl Default for ASN1UnmarshalContext {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct ASN1MarshalContext {
     pub buffer: *mut BYTE,
     pub offset: INT16,
@@ -38540,8 +39670,13 @@ fn bindgen_test_layout_ASN1MarshalContext() {
         )
     );
 }
+impl Default for ASN1MarshalContext {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct stringRef {
     pub buf: *mut BYTE,
     pub len: INT16,
@@ -38578,6 +39713,11 @@ fn bindgen_test_layout_stringRef() {
             stringify!(len)
         )
     );
+}
+impl Default for stringRef {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -38618,6 +39758,11 @@ fn bindgen_test_layout_x509KeyUsageUnion() {
         )
     );
 }
+impl Default for x509KeyUsageUnion {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub static mut OID_KEY_USAGE_EXTENSION: [BYTE; 0usize];
 }
@@ -38631,789 +39776,499 @@ extern "C" {
     pub static mut KEY_USAGE_DECRYPT: x509KeyUsageUnion;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Startup_In {
-    pub startupType: TPM_SU,
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ACT_DATA {
+    pub remaining: u32,
+    pub newValue: u32,
+    pub signaled: u8,
+    pub pending: u8,
+    pub number: u8,
 }
 #[test]
-fn bindgen_test_layout_Startup_In() {
+fn bindgen_test_layout_ACT_DATA() {
     assert_eq!(
-        ::std::mem::size_of::<Startup_In>(),
-        2usize,
-        concat!("Size of: ", stringify!(Startup_In))
+        ::std::mem::size_of::<ACT_DATA>(),
+        12usize,
+        concat!("Size of: ", stringify!(ACT_DATA))
     );
     assert_eq!(
-        ::std::mem::align_of::<Startup_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Startup_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Startup_In>())).startupType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Startup_In),
-            "::",
-            stringify!(startupType)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Startup(in_: *mut Startup_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Shutdown_In {
-    pub shutdownType: TPM_SU,
-}
-#[test]
-fn bindgen_test_layout_Shutdown_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Shutdown_In>(),
-        2usize,
-        concat!("Size of: ", stringify!(Shutdown_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Shutdown_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Shutdown_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Shutdown_In>())).shutdownType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Shutdown_In),
-            "::",
-            stringify!(shutdownType)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Shutdown(in_: *mut Shutdown_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct SelfTest_In {
-    pub fullTest: TPMI_YES_NO,
-}
-#[test]
-fn bindgen_test_layout_SelfTest_In() {
-    assert_eq!(
-        ::std::mem::size_of::<SelfTest_In>(),
-        1usize,
-        concat!("Size of: ", stringify!(SelfTest_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SelfTest_In>(),
-        1usize,
-        concat!("Alignment of ", stringify!(SelfTest_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SelfTest_In>())).fullTest as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SelfTest_In),
-            "::",
-            stringify!(fullTest)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_SelfTest(in_: *mut SelfTest_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct IncrementalSelfTest_In {
-    pub toTest: TPML_ALG,
-}
-#[test]
-fn bindgen_test_layout_IncrementalSelfTest_In() {
-    assert_eq!(
-        ::std::mem::size_of::<IncrementalSelfTest_In>(),
-        132usize,
-        concat!("Size of: ", stringify!(IncrementalSelfTest_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<IncrementalSelfTest_In>(),
+        ::std::mem::align_of::<ACT_DATA>(),
         4usize,
-        concat!("Alignment of ", stringify!(IncrementalSelfTest_In))
+        concat!("Alignment of ", stringify!(ACT_DATA))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<IncrementalSelfTest_In>())).toTest as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<ACT_DATA>())).remaining as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(IncrementalSelfTest_In),
+            stringify!(ACT_DATA),
             "::",
-            stringify!(toTest)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct IncrementalSelfTest_Out {
-    pub toDoList: TPML_ALG,
-}
-#[test]
-fn bindgen_test_layout_IncrementalSelfTest_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<IncrementalSelfTest_Out>(),
-        132usize,
-        concat!("Size of: ", stringify!(IncrementalSelfTest_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<IncrementalSelfTest_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(IncrementalSelfTest_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<IncrementalSelfTest_Out>())).toDoList as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(IncrementalSelfTest_Out),
-            "::",
-            stringify!(toDoList)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_IncrementalSelfTest(
-        in_: *mut IncrementalSelfTest_In,
-        out: *mut IncrementalSelfTest_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GetTestResult_Out {
-    pub outData: TPM2B_MAX_BUFFER,
-    pub testResult: TPM_RC,
-}
-#[test]
-fn bindgen_test_layout_GetTestResult_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<GetTestResult_Out>(),
-        1032usize,
-        concat!("Size of: ", stringify!(GetTestResult_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<GetTestResult_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(GetTestResult_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetTestResult_Out>())).outData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetTestResult_Out),
-            "::",
-            stringify!(outData)
+            stringify!(remaining)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetTestResult_Out>())).testResult as *const _ as usize },
-        1028usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetTestResult_Out),
-            "::",
-            stringify!(testResult)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_GetTestResult(out: *mut GetTestResult_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct StartAuthSession_In {
-    pub tpmKey: TPMI_DH_OBJECT,
-    pub bind: TPMI_DH_ENTITY,
-    pub nonceCaller: TPM2B_NONCE,
-    pub encryptedSalt: TPM2B_ENCRYPTED_SECRET,
-    pub sessionType: TPM_SE,
-    pub symmetric: TPMT_SYM_DEF,
-    pub authHash: TPMI_ALG_HASH,
-}
-#[test]
-fn bindgen_test_layout_StartAuthSession_In() {
-    assert_eq!(
-        ::std::mem::size_of::<StartAuthSession_In>(),
-        328usize,
-        concat!("Size of: ", stringify!(StartAuthSession_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<StartAuthSession_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(StartAuthSession_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).tpmKey as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(StartAuthSession_In),
-            "::",
-            stringify!(tpmKey)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).bind as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<ACT_DATA>())).newValue as *const _ as usize },
         4usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_In),
+            stringify!(ACT_DATA),
             "::",
-            stringify!(bind)
+            stringify!(newValue)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).nonceCaller as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<ACT_DATA>())).signaled as *const _ as usize },
         8usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_In),
+            stringify!(ACT_DATA),
             "::",
-            stringify!(nonceCaller)
+            stringify!(signaled)
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<StartAuthSession_In>())).encryptedSalt as *const _ as usize
-        },
-        58usize,
+        unsafe { &(*(::std::ptr::null::<ACT_DATA>())).pending as *const _ as usize },
+        9usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_In),
+            stringify!(ACT_DATA),
             "::",
-            stringify!(encryptedSalt)
+            stringify!(pending)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).sessionType as *const _ as usize },
-        316usize,
+        unsafe { &(*(::std::ptr::null::<ACT_DATA>())).number as *const _ as usize },
+        10usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_In),
+            stringify!(ACT_DATA),
             "::",
-            stringify!(sessionType)
+            stringify!(number)
+        )
+    );
+}
+pub type P_ACT_DATA = *mut ACT_DATA;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct timezone {
+    pub tz_minuteswest: ::std::os::raw::c_int,
+    pub tz_dsttime: ::std::os::raw::c_int,
+}
+#[test]
+fn bindgen_test_layout_timezone() {
+    assert_eq!(
+        ::std::mem::size_of::<timezone>(),
+        8usize,
+        concat!("Size of: ", stringify!(timezone))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<timezone>(),
+        4usize,
+        concat!("Alignment of ", stringify!(timezone))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<timezone>())).tz_minuteswest as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(timezone),
+            "::",
+            stringify!(tz_minuteswest)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).symmetric as *const _ as usize },
-        318usize,
+        unsafe { &(*(::std::ptr::null::<timezone>())).tz_dsttime as *const _ as usize },
+        4usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_In),
+            stringify!(timezone),
             "::",
-            stringify!(symmetric)
+            stringify!(tz_dsttime)
+        )
+    );
+}
+extern "C" {
+    pub fn gettimeofday(
+        __tv: *mut timeval,
+        __tz: *mut ::std::os::raw::c_void,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn settimeofday(__tv: *const timeval, __tz: *const timezone) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn adjtime(__delta: *const timeval, __olddelta: *mut timeval) -> ::std::os::raw::c_int;
+}
+pub const __itimer_which_ITIMER_REAL: __itimer_which = 0;
+pub const __itimer_which_ITIMER_VIRTUAL: __itimer_which = 1;
+pub const __itimer_which_ITIMER_PROF: __itimer_which = 2;
+pub type __itimer_which = ::std::os::raw::c_uint;
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct itimerval {
+    pub it_interval: timeval,
+    pub it_value: timeval,
+}
+#[test]
+fn bindgen_test_layout_itimerval() {
+    assert_eq!(
+        ::std::mem::size_of::<itimerval>(),
+        32usize,
+        concat!("Size of: ", stringify!(itimerval))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<itimerval>(),
+        8usize,
+        concat!("Alignment of ", stringify!(itimerval))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<itimerval>())).it_interval as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(itimerval),
+            "::",
+            stringify!(it_interval)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).authHash as *const _ as usize },
-        324usize,
+        unsafe { &(*(::std::ptr::null::<itimerval>())).it_value as *const _ as usize },
+        16usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_In),
+            stringify!(itimerval),
             "::",
-            stringify!(authHash)
+            stringify!(it_value)
+        )
+    );
+}
+pub type __itimer_which_t = ::std::os::raw::c_int;
+extern "C" {
+    pub fn getitimer(__which: __itimer_which_t, __value: *mut itimerval) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn setitimer(
+        __which: __itimer_which_t,
+        __new: *const itimerval,
+        __old: *mut itimerval,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn utimes(
+        __file: *const ::std::os::raw::c_char,
+        __tvp: *const timeval,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn lutimes(
+        __file: *const ::std::os::raw::c_char,
+        __tvp: *const timeval,
+    ) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn futimes(__fd: ::std::os::raw::c_int, __tvp: *const timeval) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_isCanceled: ::std::os::raw::c_int;
+}
+pub type clock64_t = u64;
+extern "C" {
+    pub static mut s_realTimePrevious: clock64_t;
+}
+extern "C" {
+    pub static mut s_lastSystemTime: clock64_t;
+}
+extern "C" {
+    pub static mut s_lastReportedTime: clock64_t;
+}
+extern "C" {
+    pub static mut s_tpmTime: clock64_t;
+}
+extern "C" {
+    pub static mut s_timerReset: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_timerStopped: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_initClock: u64;
+}
+extern "C" {
+    pub static mut s_adjustRate: ::std::os::raw::c_uint;
+}
+extern "C" {
+    pub static mut s_locality: ::std::os::raw::c_uchar;
+}
+extern "C" {
+    pub static mut s_NV: [::std::os::raw::c_uchar; 16384usize];
+}
+extern "C" {
+    pub static mut s_NvIsAvailable: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_NV_unrecoverable: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_NV_recoverable: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_physicalPresence: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut s_powerLost: ::std::os::raw::c_int;
+}
+extern "C" {
+    pub static mut lastEntropy: u32;
+}
+extern "C" {
+    pub static mut ACT_0: ACT_DATA;
+}
+extern "C" {
+    pub static mut ACT_A: ACT_DATA;
+}
+extern "C" {
+    pub static mut actTicksAllowed: ::std::os::raw::c_int;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ACT_SetTimeout_In {
+    pub actHandle: TPMI_RH_ACT,
+    pub startTimeout: UINT32,
+}
+#[test]
+fn bindgen_test_layout_ACT_SetTimeout_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ACT_SetTimeout_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(ACT_SetTimeout_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ACT_SetTimeout_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ACT_SetTimeout_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ACT_SetTimeout_In>())).actHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ACT_SetTimeout_In),
+            "::",
+            stringify!(actHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ACT_SetTimeout_In>())).startTimeout as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ACT_SetTimeout_In),
+            "::",
+            stringify!(startTimeout)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ACT_SetTimeout(in_: *mut ACT_SetTimeout_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct AC_GetCapability_In {
+    pub ac: TPMI_RH_AC,
+    pub capability: TPM_AT,
+    pub count: UINT32,
+}
+#[test]
+fn bindgen_test_layout_AC_GetCapability_In() {
+    assert_eq!(
+        ::std::mem::size_of::<AC_GetCapability_In>(),
+        12usize,
+        concat!("Size of: ", stringify!(AC_GetCapability_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<AC_GetCapability_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(AC_GetCapability_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_GetCapability_In>())).ac as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_GetCapability_In),
+            "::",
+            stringify!(ac)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_GetCapability_In>())).capability as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_GetCapability_In),
+            "::",
+            stringify!(capability)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_GetCapability_In>())).count as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_GetCapability_In),
+            "::",
+            stringify!(count)
         )
     );
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct StartAuthSession_Out {
-    pub sessionHandle: TPMI_SH_AUTH_SESSION,
-    pub nonceTPM: TPM2B_NONCE,
+pub struct AC_GetCapability_Out {
+    pub moreData: TPMI_YES_NO,
+    pub capabilitiesData: TPML_AC_CAPABILITIES,
 }
 #[test]
-fn bindgen_test_layout_StartAuthSession_Out() {
+fn bindgen_test_layout_AC_GetCapability_Out() {
     assert_eq!(
-        ::std::mem::size_of::<StartAuthSession_Out>(),
-        56usize,
-        concat!("Size of: ", stringify!(StartAuthSession_Out))
+        ::std::mem::size_of::<AC_GetCapability_Out>(),
+        1024usize,
+        concat!("Size of: ", stringify!(AC_GetCapability_Out))
     );
     assert_eq!(
-        ::std::mem::align_of::<StartAuthSession_Out>(),
+        ::std::mem::align_of::<AC_GetCapability_Out>(),
         4usize,
-        concat!("Alignment of ", stringify!(StartAuthSession_Out))
+        concat!("Alignment of ", stringify!(AC_GetCapability_Out))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<StartAuthSession_Out>())).sessionHandle as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<AC_GetCapability_Out>())).moreData as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_Out),
+            stringify!(AC_GetCapability_Out),
             "::",
-            stringify!(sessionHandle)
+            stringify!(moreData)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StartAuthSession_Out>())).nonceTPM as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<AC_GetCapability_Out>())).capabilitiesData as *const _ as usize
+        },
         4usize,
         concat!(
             "Offset of field: ",
-            stringify!(StartAuthSession_Out),
+            stringify!(AC_GetCapability_Out),
             "::",
-            stringify!(nonceTPM)
+            stringify!(capabilitiesData)
         )
     );
 }
+impl Default for AC_GetCapability_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
-    pub fn TPM2_StartAuthSession(
-        in_: *mut StartAuthSession_In,
-        out: *mut StartAuthSession_Out,
+    pub fn TPM2_AC_GetCapability(
+        in_: *mut AC_GetCapability_In,
+        out: *mut AC_GetCapability_Out,
     ) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyRestart_In {
-    pub sessionHandle: TPMI_SH_POLICY,
+#[derive(Copy, Clone)]
+pub struct AC_Send_In {
+    pub sendObject: TPMI_DH_OBJECT,
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub ac: TPMI_RH_AC,
+    pub acDataIn: TPM2B_MAX_BUFFER,
 }
 #[test]
-fn bindgen_test_layout_PolicyRestart_In() {
+fn bindgen_test_layout_AC_Send_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicyRestart_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(PolicyRestart_In))
+        ::std::mem::size_of::<AC_Send_In>(),
+        1040usize,
+        concat!("Size of: ", stringify!(AC_Send_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<PolicyRestart_In>(),
+        ::std::mem::align_of::<AC_Send_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicyRestart_In))
+        concat!("Alignment of ", stringify!(AC_Send_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyRestart_In>())).sessionHandle as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).sendObject as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyRestart_In),
+            stringify!(AC_Send_In),
             "::",
-            stringify!(sessionHandle)
+            stringify!(sendObject)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).authHandle as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_Send_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).ac as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_Send_In),
+            "::",
+            stringify!(ac)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).acDataIn as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_Send_In),
+            "::",
+            stringify!(acDataIn)
+        )
+    );
+}
+impl Default for AC_Send_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct AC_Send_Out {
+    pub acDataOut: TPMS_AC_OUTPUT,
+}
+#[test]
+fn bindgen_test_layout_AC_Send_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<AC_Send_Out>(),
+        8usize,
+        concat!("Size of: ", stringify!(AC_Send_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<AC_Send_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(AC_Send_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<AC_Send_Out>())).acDataOut as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(AC_Send_Out),
+            "::",
+            stringify!(acDataOut)
         )
     );
 }
 extern "C" {
-    pub fn TPM2_PolicyRestart(in_: *mut PolicyRestart_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Create_In {
-    pub parentHandle: TPMI_DH_OBJECT,
-    pub inSensitive: TPM2B_SENSITIVE_CREATE,
-    pub inPublic: TPM2B_PUBLIC,
-    pub outsideInfo: TPM2B_DATA,
-    pub creationPCR: TPML_PCR_SELECTION,
-}
-#[test]
-fn bindgen_test_layout_Create_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Create_In>(),
-        608usize,
-        concat!("Size of: ", stringify!(Create_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Create_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Create_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_In>())).parentHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_In),
-            "::",
-            stringify!(parentHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_In>())).inSensitive as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_In),
-            "::",
-            stringify!(inSensitive)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_In>())).inPublic as *const _ as usize },
-        188usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_In),
-            "::",
-            stringify!(inPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_In>())).outsideInfo as *const _ as usize },
-        532usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_In),
-            "::",
-            stringify!(outsideInfo)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_In>())).creationPCR as *const _ as usize },
-        584usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_In),
-            "::",
-            stringify!(creationPCR)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Create_Out {
-    pub outPrivate: TPM2B_PRIVATE,
-    pub outPublic: TPM2B_PUBLIC,
-    pub creationData: TPM2B_CREATION_DATA,
-    pub creationHash: TPM2B_DIGEST,
-    pub creationTicket: TPMT_TK_CREATION,
-}
-#[test]
-fn bindgen_test_layout_Create_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Create_Out>(),
-        1548usize,
-        concat!("Size of: ", stringify!(Create_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Create_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Create_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_Out>())).outPrivate as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_Out),
-            "::",
-            stringify!(outPrivate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_Out>())).outPublic as *const _ as usize },
-        848usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_Out),
-            "::",
-            stringify!(outPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_Out>())).creationData as *const _ as usize },
-        1192usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_Out),
-            "::",
-            stringify!(creationData)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_Out>())).creationHash as *const _ as usize },
-        1436usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_Out),
-            "::",
-            stringify!(creationHash)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Create_Out>())).creationTicket as *const _ as usize },
-        1488usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Create_Out),
-            "::",
-            stringify!(creationTicket)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Create(in_: *mut Create_In, out: *mut Create_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Load_In {
-    pub parentHandle: TPMI_DH_OBJECT,
-    pub inPrivate: TPM2B_PRIVATE,
-    pub inPublic: TPM2B_PUBLIC,
-}
-#[test]
-fn bindgen_test_layout_Load_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Load_In>(),
-        1196usize,
-        concat!("Size of: ", stringify!(Load_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Load_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Load_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Load_In>())).parentHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Load_In),
-            "::",
-            stringify!(parentHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Load_In>())).inPrivate as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Load_In),
-            "::",
-            stringify!(inPrivate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Load_In>())).inPublic as *const _ as usize },
-        852usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Load_In),
-            "::",
-            stringify!(inPublic)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Load_Out {
-    pub objectHandle: TPM_HANDLE,
-    pub name: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_Load_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Load_Out>(),
-        60usize,
-        concat!("Size of: ", stringify!(Load_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Load_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Load_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Load_Out>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Load_Out),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Load_Out>())).name as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Load_Out),
-            "::",
-            stringify!(name)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Load(in_: *mut Load_In, out: *mut Load_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct LoadExternal_In {
-    pub inPrivate: TPM2B_SENSITIVE,
-    pub inPublic: TPM2B_PUBLIC,
-    pub hierarchy: TPMI_RH_HIERARCHY,
-}
-#[test]
-fn bindgen_test_layout_LoadExternal_In() {
-    assert_eq!(
-        ::std::mem::size_of::<LoadExternal_In>(),
-        1096usize,
-        concat!("Size of: ", stringify!(LoadExternal_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<LoadExternal_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(LoadExternal_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<LoadExternal_In>())).inPrivate as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(LoadExternal_In),
-            "::",
-            stringify!(inPrivate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<LoadExternal_In>())).inPublic as *const _ as usize },
-        748usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(LoadExternal_In),
-            "::",
-            stringify!(inPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<LoadExternal_In>())).hierarchy as *const _ as usize },
-        1092usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(LoadExternal_In),
-            "::",
-            stringify!(hierarchy)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct LoadExternal_Out {
-    pub objectHandle: TPM_HANDLE,
-    pub name: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_LoadExternal_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<LoadExternal_Out>(),
-        60usize,
-        concat!("Size of: ", stringify!(LoadExternal_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<LoadExternal_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(LoadExternal_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<LoadExternal_Out>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(LoadExternal_Out),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<LoadExternal_Out>())).name as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(LoadExternal_Out),
-            "::",
-            stringify!(name)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_LoadExternal(in_: *mut LoadExternal_In, out: *mut LoadExternal_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ReadPublic_In {
-    pub objectHandle: TPMI_DH_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_ReadPublic_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ReadPublic_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(ReadPublic_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ReadPublic_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ReadPublic_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ReadPublic_In>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ReadPublic_In),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ReadPublic_Out {
-    pub outPublic: TPM2B_PUBLIC,
-    pub name: TPM2B_NAME,
-    pub qualifiedName: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_ReadPublic_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ReadPublic_Out>(),
-        452usize,
-        concat!("Size of: ", stringify!(ReadPublic_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ReadPublic_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ReadPublic_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ReadPublic_Out>())).outPublic as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ReadPublic_Out),
-            "::",
-            stringify!(outPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ReadPublic_Out>())).name as *const _ as usize },
-        344usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ReadPublic_Out),
-            "::",
-            stringify!(name)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ReadPublic_Out>())).qualifiedName as *const _ as usize },
-        398usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ReadPublic_Out),
-            "::",
-            stringify!(qualifiedName)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ReadPublic(in_: *mut ReadPublic_In, out: *mut ReadPublic_Out) -> TPM_RC;
+    pub fn TPM2_AC_Send(in_: *mut AC_Send_In, out: *mut AC_Send_Out) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -39480,6 +40335,11 @@ fn bindgen_test_layout_ActivateCredential_In() {
         )
     );
 }
+impl Default for ActivateCredential_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct ActivateCredential_Out {
@@ -39508,2398 +40368,37 @@ fn bindgen_test_layout_ActivateCredential_Out() {
         )
     );
 }
+impl Default for ActivateCredential_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_ActivateCredential(
         in_: *mut ActivateCredential_In,
         out: *mut ActivateCredential_Out,
     ) -> TPM_RC;
 }
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct MakeCredential_In {
-    pub handle: TPMI_DH_OBJECT,
-    pub credential: TPM2B_DIGEST,
-    pub objectName: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_MakeCredential_In() {
-    assert_eq!(
-        ::std::mem::size_of::<MakeCredential_In>(),
-        108usize,
-        concat!("Size of: ", stringify!(MakeCredential_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MakeCredential_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(MakeCredential_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MakeCredential_In>())).handle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MakeCredential_In),
-            "::",
-            stringify!(handle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MakeCredential_In>())).credential as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MakeCredential_In),
-            "::",
-            stringify!(credential)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MakeCredential_In>())).objectName as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MakeCredential_In),
-            "::",
-            stringify!(objectName)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct MakeCredential_Out {
-    pub credentialBlob: TPM2B_ID_OBJECT,
-    pub secret: TPM2B_ENCRYPTED_SECRET,
-}
-#[test]
-fn bindgen_test_layout_MakeCredential_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<MakeCredential_Out>(),
-        360usize,
-        concat!("Size of: ", stringify!(MakeCredential_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MakeCredential_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(MakeCredential_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MakeCredential_Out>())).credentialBlob as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MakeCredential_Out),
-            "::",
-            stringify!(credentialBlob)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MakeCredential_Out>())).secret as *const _ as usize },
-        102usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MakeCredential_Out),
-            "::",
-            stringify!(secret)
-        )
+extern "C" {
+    pub fn FillInAttestInfo(
+        signHandle: TPMI_DH_OBJECT,
+        scheme: *mut TPMT_SIG_SCHEME,
+        data: *mut TPM2B_DATA,
+        attest: *mut TPMS_ATTEST,
     );
 }
 extern "C" {
-    pub fn TPM2_MakeCredential(in_: *mut MakeCredential_In, out: *mut MakeCredential_Out)
-        -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Unseal_In {
-    pub itemHandle: TPMI_DH_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_Unseal_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Unseal_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(Unseal_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Unseal_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Unseal_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Unseal_In>())).itemHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Unseal_In),
-            "::",
-            stringify!(itemHandle)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Unseal_Out {
-    pub outData: TPM2B_SENSITIVE_DATA,
-}
-#[test]
-fn bindgen_test_layout_Unseal_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Unseal_Out>(),
-        130usize,
-        concat!("Size of: ", stringify!(Unseal_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Unseal_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Unseal_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Unseal_Out>())).outData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Unseal_Out),
-            "::",
-            stringify!(outData)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Unseal(in_: *mut Unseal_In, out: *mut Unseal_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ObjectChangeAuth_In {
-    pub objectHandle: TPMI_DH_OBJECT,
-    pub parentHandle: TPMI_DH_OBJECT,
-    pub newAuth: TPM2B_AUTH,
-}
-#[test]
-fn bindgen_test_layout_ObjectChangeAuth_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ObjectChangeAuth_In>(),
-        60usize,
-        concat!("Size of: ", stringify!(ObjectChangeAuth_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ObjectChangeAuth_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ObjectChangeAuth_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<ObjectChangeAuth_In>())).objectHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ObjectChangeAuth_In),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<ObjectChangeAuth_In>())).parentHandle as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ObjectChangeAuth_In),
-            "::",
-            stringify!(parentHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ObjectChangeAuth_In>())).newAuth as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ObjectChangeAuth_In),
-            "::",
-            stringify!(newAuth)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ObjectChangeAuth_Out {
-    pub outPrivate: TPM2B_PRIVATE,
-}
-#[test]
-fn bindgen_test_layout_ObjectChangeAuth_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ObjectChangeAuth_Out>(),
-        848usize,
-        concat!("Size of: ", stringify!(ObjectChangeAuth_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ObjectChangeAuth_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ObjectChangeAuth_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ObjectChangeAuth_Out>())).outPrivate as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ObjectChangeAuth_Out),
-            "::",
-            stringify!(outPrivate)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ObjectChangeAuth(
-        in_: *mut ObjectChangeAuth_In,
-        out: *mut ObjectChangeAuth_Out,
+    pub fn SignAttestInfo(
+        signKey: *mut OBJECT,
+        scheme: *mut TPMT_SIG_SCHEME,
+        certifyInfo: *mut TPMS_ATTEST,
+        qualifyingData: *mut TPM2B_DATA,
+        attest: *mut TPM2B_ATTEST,
+        signature: *mut TPMT_SIGNATURE,
     ) -> TPM_RC;
 }
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct CreateLoaded_In {
-    pub parentHandle: TPMI_DH_PARENT,
-    pub inSensitive: TPM2B_SENSITIVE_CREATE,
-    pub inPublic: TPM2B_TEMPLATE,
-}
-#[test]
-fn bindgen_test_layout_CreateLoaded_In() {
-    assert_eq!(
-        ::std::mem::size_of::<CreateLoaded_In>(),
-        528usize,
-        concat!("Size of: ", stringify!(CreateLoaded_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<CreateLoaded_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(CreateLoaded_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_In>())).parentHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_In),
-            "::",
-            stringify!(parentHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_In>())).inSensitive as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_In),
-            "::",
-            stringify!(inSensitive)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_In>())).inPublic as *const _ as usize },
-        186usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_In),
-            "::",
-            stringify!(inPublic)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct CreateLoaded_Out {
-    pub objectHandle: TPM_HANDLE,
-    pub outPrivate: TPM2B_PRIVATE,
-    pub outPublic: TPM2B_PUBLIC,
-    pub name: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_CreateLoaded_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<CreateLoaded_Out>(),
-        1252usize,
-        concat!("Size of: ", stringify!(CreateLoaded_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<CreateLoaded_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(CreateLoaded_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_Out),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).outPrivate as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_Out),
-            "::",
-            stringify!(outPrivate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).outPublic as *const _ as usize },
-        852usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_Out),
-            "::",
-            stringify!(outPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).name as *const _ as usize },
-        1196usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreateLoaded_Out),
-            "::",
-            stringify!(name)
-        )
-    );
-}
 extern "C" {
-    pub fn TPM2_CreateLoaded(in_: *mut CreateLoaded_In, out: *mut CreateLoaded_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Duplicate_In {
-    pub objectHandle: TPMI_DH_OBJECT,
-    pub newParentHandle: TPMI_DH_OBJECT,
-    pub encryptionKeyIn: TPM2B_DATA,
-    pub symmetricAlg: TPMT_SYM_DEF_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_Duplicate_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Duplicate_In>(),
-        68usize,
-        concat!("Size of: ", stringify!(Duplicate_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Duplicate_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Duplicate_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_In),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).newParentHandle as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_In),
-            "::",
-            stringify!(newParentHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).encryptionKeyIn as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_In),
-            "::",
-            stringify!(encryptionKeyIn)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).symmetricAlg as *const _ as usize },
-        60usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_In),
-            "::",
-            stringify!(symmetricAlg)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Duplicate_Out {
-    pub encryptionKeyOut: TPM2B_DATA,
-    pub duplicate: TPM2B_PRIVATE,
-    pub outSymSeed: TPM2B_ENCRYPTED_SECRET,
-}
-#[test]
-fn bindgen_test_layout_Duplicate_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Duplicate_Out>(),
-        1158usize,
-        concat!("Size of: ", stringify!(Duplicate_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Duplicate_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Duplicate_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_Out>())).encryptionKeyOut as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_Out),
-            "::",
-            stringify!(encryptionKeyOut)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_Out>())).duplicate as *const _ as usize },
-        52usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_Out),
-            "::",
-            stringify!(duplicate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Duplicate_Out>())).outSymSeed as *const _ as usize },
-        900usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Duplicate_Out),
-            "::",
-            stringify!(outSymSeed)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Duplicate(in_: *mut Duplicate_In, out: *mut Duplicate_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Rewrap_In {
-    pub oldParent: TPMI_DH_OBJECT,
-    pub newParent: TPMI_DH_OBJECT,
-    pub inDuplicate: TPM2B_PRIVATE,
-    pub name: TPM2B_NAME,
-    pub inSymSeed: TPM2B_ENCRYPTED_SECRET,
-}
-#[test]
-fn bindgen_test_layout_Rewrap_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Rewrap_In>(),
-        1168usize,
-        concat!("Size of: ", stringify!(Rewrap_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Rewrap_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Rewrap_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).oldParent as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_In),
-            "::",
-            stringify!(oldParent)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).newParent as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_In),
-            "::",
-            stringify!(newParent)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).inDuplicate as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_In),
-            "::",
-            stringify!(inDuplicate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).name as *const _ as usize },
-        856usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_In),
-            "::",
-            stringify!(name)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).inSymSeed as *const _ as usize },
-        910usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_In),
-            "::",
-            stringify!(inSymSeed)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Rewrap_Out {
-    pub outDuplicate: TPM2B_PRIVATE,
-    pub outSymSeed: TPM2B_ENCRYPTED_SECRET,
-}
-#[test]
-fn bindgen_test_layout_Rewrap_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Rewrap_Out>(),
-        1106usize,
-        concat!("Size of: ", stringify!(Rewrap_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Rewrap_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Rewrap_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_Out>())).outDuplicate as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_Out),
-            "::",
-            stringify!(outDuplicate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Rewrap_Out>())).outSymSeed as *const _ as usize },
-        848usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Rewrap_Out),
-            "::",
-            stringify!(outSymSeed)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Rewrap(in_: *mut Rewrap_In, out: *mut Rewrap_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Import_In {
-    pub parentHandle: TPMI_DH_OBJECT,
-    pub encryptionKey: TPM2B_DATA,
-    pub objectPublic: TPM2B_PUBLIC,
-    pub duplicate: TPM2B_PRIVATE,
-    pub inSymSeed: TPM2B_ENCRYPTED_SECRET,
-    pub symmetricAlg: TPMT_SYM_DEF_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_Import_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Import_In>(),
-        1512usize,
-        concat!("Size of: ", stringify!(Import_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Import_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Import_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_In>())).parentHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_In),
-            "::",
-            stringify!(parentHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_In>())).encryptionKey as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_In),
-            "::",
-            stringify!(encryptionKey)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_In>())).objectPublic as *const _ as usize },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_In),
-            "::",
-            stringify!(objectPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_In>())).duplicate as *const _ as usize },
-        400usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_In),
-            "::",
-            stringify!(duplicate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_In>())).inSymSeed as *const _ as usize },
-        1248usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_In),
-            "::",
-            stringify!(inSymSeed)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_In>())).symmetricAlg as *const _ as usize },
-        1506usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_In),
-            "::",
-            stringify!(symmetricAlg)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Import_Out {
-    pub outPrivate: TPM2B_PRIVATE,
-}
-#[test]
-fn bindgen_test_layout_Import_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Import_Out>(),
-        848usize,
-        concat!("Size of: ", stringify!(Import_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Import_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Import_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Import_Out>())).outPrivate as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Import_Out),
-            "::",
-            stringify!(outPrivate)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Import(in_: *mut Import_In, out: *mut Import_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct RSA_Encrypt_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub message: TPM2B_PUBLIC_KEY_RSA,
-    pub inScheme: TPMT_RSA_DECRYPT,
-    pub label: TPM2B_DATA,
-}
-#[test]
-fn bindgen_test_layout_RSA_Encrypt_In() {
-    assert_eq!(
-        ::std::mem::size_of::<RSA_Encrypt_In>(),
-        320usize,
-        concat!("Size of: ", stringify!(RSA_Encrypt_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<RSA_Encrypt_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(RSA_Encrypt_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Encrypt_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).message as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Encrypt_In),
-            "::",
-            stringify!(message)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).inScheme as *const _ as usize },
-        262usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Encrypt_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).label as *const _ as usize },
-        268usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Encrypt_In),
-            "::",
-            stringify!(label)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct RSA_Encrypt_Out {
-    pub outData: TPM2B_PUBLIC_KEY_RSA,
-}
-#[test]
-fn bindgen_test_layout_RSA_Encrypt_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<RSA_Encrypt_Out>(),
-        258usize,
-        concat!("Size of: ", stringify!(RSA_Encrypt_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<RSA_Encrypt_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(RSA_Encrypt_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_Out>())).outData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Encrypt_Out),
-            "::",
-            stringify!(outData)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_RSA_Encrypt(in_: *mut RSA_Encrypt_In, out: *mut RSA_Encrypt_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct RSA_Decrypt_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub cipherText: TPM2B_PUBLIC_KEY_RSA,
-    pub inScheme: TPMT_RSA_DECRYPT,
-    pub label: TPM2B_DATA,
-}
-#[test]
-fn bindgen_test_layout_RSA_Decrypt_In() {
-    assert_eq!(
-        ::std::mem::size_of::<RSA_Decrypt_In>(),
-        320usize,
-        concat!("Size of: ", stringify!(RSA_Decrypt_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<RSA_Decrypt_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(RSA_Decrypt_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Decrypt_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).cipherText as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Decrypt_In),
-            "::",
-            stringify!(cipherText)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).inScheme as *const _ as usize },
-        262usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Decrypt_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).label as *const _ as usize },
-        268usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Decrypt_In),
-            "::",
-            stringify!(label)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct RSA_Decrypt_Out {
-    pub message: TPM2B_PUBLIC_KEY_RSA,
-}
-#[test]
-fn bindgen_test_layout_RSA_Decrypt_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<RSA_Decrypt_Out>(),
-        258usize,
-        concat!("Size of: ", stringify!(RSA_Decrypt_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<RSA_Decrypt_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(RSA_Decrypt_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_Out>())).message as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(RSA_Decrypt_Out),
-            "::",
-            stringify!(message)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_RSA_Decrypt(in_: *mut RSA_Decrypt_In, out: *mut RSA_Decrypt_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ECDH_KeyGen_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_ECDH_KeyGen_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ECDH_KeyGen_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(ECDH_KeyGen_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECDH_KeyGen_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ECDH_KeyGen_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECDH_KeyGen_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECDH_KeyGen_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECDH_KeyGen_Out {
-    pub zPoint: TPM2B_ECC_POINT,
-    pub pubPoint: TPM2B_ECC_POINT,
-}
-#[test]
-fn bindgen_test_layout_ECDH_KeyGen_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ECDH_KeyGen_Out>(),
-        204usize,
-        concat!("Size of: ", stringify!(ECDH_KeyGen_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECDH_KeyGen_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ECDH_KeyGen_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECDH_KeyGen_Out>())).zPoint as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECDH_KeyGen_Out),
-            "::",
-            stringify!(zPoint)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECDH_KeyGen_Out>())).pubPoint as *const _ as usize },
-        102usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECDH_KeyGen_Out),
-            "::",
-            stringify!(pubPoint)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ECDH_KeyGen(in_: *mut ECDH_KeyGen_In, out: *mut ECDH_KeyGen_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECDH_ZGen_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub inPoint: TPM2B_ECC_POINT,
-}
-#[test]
-fn bindgen_test_layout_ECDH_ZGen_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ECDH_ZGen_In>(),
-        108usize,
-        concat!("Size of: ", stringify!(ECDH_ZGen_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECDH_ZGen_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ECDH_ZGen_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECDH_ZGen_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECDH_ZGen_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECDH_ZGen_In>())).inPoint as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECDH_ZGen_In),
-            "::",
-            stringify!(inPoint)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECDH_ZGen_Out {
-    pub outPoint: TPM2B_ECC_POINT,
-}
-#[test]
-fn bindgen_test_layout_ECDH_ZGen_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ECDH_ZGen_Out>(),
-        102usize,
-        concat!("Size of: ", stringify!(ECDH_ZGen_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECDH_ZGen_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ECDH_ZGen_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECDH_ZGen_Out>())).outPoint as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECDH_ZGen_Out),
-            "::",
-            stringify!(outPoint)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ECDH_ZGen(in_: *mut ECDH_ZGen_In, out: *mut ECDH_ZGen_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ECC_Parameters_In {
-    pub curveID: TPMI_ECC_CURVE,
-}
-#[test]
-fn bindgen_test_layout_ECC_Parameters_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ECC_Parameters_In>(),
-        2usize,
-        concat!("Size of: ", stringify!(ECC_Parameters_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECC_Parameters_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ECC_Parameters_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Parameters_In>())).curveID as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Parameters_In),
-            "::",
-            stringify!(curveID)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECC_Parameters_Out {
-    pub parameters: TPMS_ALGORITHM_DETAIL_ECC,
-}
-#[test]
-fn bindgen_test_layout_ECC_Parameters_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ECC_Parameters_Out>(),
-        364usize,
-        concat!("Size of: ", stringify!(ECC_Parameters_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECC_Parameters_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ECC_Parameters_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Parameters_Out>())).parameters as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Parameters_Out),
-            "::",
-            stringify!(parameters)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ECC_Parameters(in_: *mut ECC_Parameters_In, out: *mut ECC_Parameters_Out)
-        -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ZGen_2Phase_In {
-    pub keyA: TPMI_DH_OBJECT,
-    pub inQsB: TPM2B_ECC_POINT,
-    pub inQeB: TPM2B_ECC_POINT,
-    pub inScheme: TPMI_ECC_KEY_EXCHANGE,
-    pub counter: UINT16,
-}
-#[test]
-fn bindgen_test_layout_ZGen_2Phase_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ZGen_2Phase_In>(),
-        212usize,
-        concat!("Size of: ", stringify!(ZGen_2Phase_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ZGen_2Phase_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ZGen_2Phase_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).keyA as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_In),
-            "::",
-            stringify!(keyA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).inQsB as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_In),
-            "::",
-            stringify!(inQsB)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).inQeB as *const _ as usize },
-        106usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_In),
-            "::",
-            stringify!(inQeB)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).inScheme as *const _ as usize },
-        208usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).counter as *const _ as usize },
-        210usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_In),
-            "::",
-            stringify!(counter)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ZGen_2Phase_Out {
-    pub outZ1: TPM2B_ECC_POINT,
-    pub outZ2: TPM2B_ECC_POINT,
-}
-#[test]
-fn bindgen_test_layout_ZGen_2Phase_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ZGen_2Phase_Out>(),
-        204usize,
-        concat!("Size of: ", stringify!(ZGen_2Phase_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ZGen_2Phase_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ZGen_2Phase_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_Out>())).outZ1 as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_Out),
-            "::",
-            stringify!(outZ1)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_Out>())).outZ2 as *const _ as usize },
-        102usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ZGen_2Phase_Out),
-            "::",
-            stringify!(outZ2)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ZGen_2Phase(in_: *mut ZGen_2Phase_In, out: *mut ZGen_2Phase_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECC_Encrypt_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub plainText: TPM2B_MAX_BUFFER,
-    pub inScheme: TPMT_KDF_SCHEME,
-}
-#[test]
-fn bindgen_test_layout_ECC_Encrypt_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ECC_Encrypt_In>(),
-        1036usize,
-        concat!("Size of: ", stringify!(ECC_Encrypt_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECC_Encrypt_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ECC_Encrypt_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Encrypt_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_In>())).plainText as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Encrypt_In),
-            "::",
-            stringify!(plainText)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_In>())).inScheme as *const _ as usize },
-        1030usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Encrypt_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECC_Encrypt_Out {
-    pub C1: TPM2B_ECC_POINT,
-    pub C2: TPM2B_MAX_BUFFER,
-    pub C3: TPM2B_DIGEST,
-}
-#[test]
-fn bindgen_test_layout_ECC_Encrypt_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ECC_Encrypt_Out>(),
-        1178usize,
-        concat!("Size of: ", stringify!(ECC_Encrypt_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECC_Encrypt_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ECC_Encrypt_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_Out>())).C1 as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Encrypt_Out),
-            "::",
-            stringify!(C1)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_Out>())).C2 as *const _ as usize },
-        102usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Encrypt_Out),
-            "::",
-            stringify!(C2)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_Out>())).C3 as *const _ as usize },
-        1128usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Encrypt_Out),
-            "::",
-            stringify!(C3)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ECC_Encrypt(in_: *mut ECC_Encrypt_In, out: *mut ECC_Encrypt_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECC_Decrypt_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub C1: TPM2B_ECC_POINT,
-    pub C2: TPM2B_MAX_BUFFER,
-    pub C3: TPM2B_DIGEST,
-    pub inScheme: TPMT_KDF_SCHEME,
-}
-#[test]
-fn bindgen_test_layout_ECC_Decrypt_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ECC_Decrypt_In>(),
-        1188usize,
-        concat!("Size of: ", stringify!(ECC_Decrypt_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECC_Decrypt_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ECC_Decrypt_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Decrypt_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).C1 as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Decrypt_In),
-            "::",
-            stringify!(C1)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).C2 as *const _ as usize },
-        106usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Decrypt_In),
-            "::",
-            stringify!(C2)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).C3 as *const _ as usize },
-        1132usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Decrypt_In),
-            "::",
-            stringify!(C3)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).inScheme as *const _ as usize },
-        1182usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Decrypt_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ECC_Decrypt_Out {
-    pub plainText: TPM2B_MAX_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_ECC_Decrypt_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ECC_Decrypt_Out>(),
-        1026usize,
-        concat!("Size of: ", stringify!(ECC_Decrypt_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ECC_Decrypt_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ECC_Decrypt_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_Out>())).plainText as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ECC_Decrypt_Out),
-            "::",
-            stringify!(plainText)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ECC_Decrypt(in_: *mut ECC_Decrypt_In, out: *mut ECC_Decrypt_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EncryptDecrypt_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub decrypt: TPMI_YES_NO,
-    pub mode: TPMI_ALG_CIPHER_MODE,
-    pub ivIn: TPM2B_IV,
-    pub inData: TPM2B_MAX_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_EncryptDecrypt_In() {
-    assert_eq!(
-        ::std::mem::size_of::<EncryptDecrypt_In>(),
-        1052usize,
-        concat!("Size of: ", stringify!(EncryptDecrypt_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EncryptDecrypt_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(EncryptDecrypt_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).decrypt as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_In),
-            "::",
-            stringify!(decrypt)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).mode as *const _ as usize },
-        6usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_In),
-            "::",
-            stringify!(mode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).ivIn as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_In),
-            "::",
-            stringify!(ivIn)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).inData as *const _ as usize },
-        26usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_In),
-            "::",
-            stringify!(inData)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EncryptDecrypt_Out {
-    pub outData: TPM2B_MAX_BUFFER,
-    pub ivOut: TPM2B_IV,
-}
-#[test]
-fn bindgen_test_layout_EncryptDecrypt_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<EncryptDecrypt_Out>(),
-        1044usize,
-        concat!("Size of: ", stringify!(EncryptDecrypt_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EncryptDecrypt_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(EncryptDecrypt_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_Out>())).outData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_Out),
-            "::",
-            stringify!(outData)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_Out>())).ivOut as *const _ as usize },
-        1026usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt_Out),
-            "::",
-            stringify!(ivOut)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_EncryptDecrypt(in_: *mut EncryptDecrypt_In, out: *mut EncryptDecrypt_Out)
-        -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EncryptDecrypt2_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub inData: TPM2B_MAX_BUFFER,
-    pub decrypt: TPMI_YES_NO,
-    pub mode: TPMI_ALG_CIPHER_MODE,
-    pub ivIn: TPM2B_IV,
-}
-#[test]
-fn bindgen_test_layout_EncryptDecrypt2_In() {
-    assert_eq!(
-        ::std::mem::size_of::<EncryptDecrypt2_In>(),
-        1052usize,
-        concat!("Size of: ", stringify!(EncryptDecrypt2_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EncryptDecrypt2_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(EncryptDecrypt2_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).inData as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_In),
-            "::",
-            stringify!(inData)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).decrypt as *const _ as usize },
-        1030usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_In),
-            "::",
-            stringify!(decrypt)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).mode as *const _ as usize },
-        1032usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_In),
-            "::",
-            stringify!(mode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).ivIn as *const _ as usize },
-        1034usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_In),
-            "::",
-            stringify!(ivIn)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EncryptDecrypt2_Out {
-    pub outData: TPM2B_MAX_BUFFER,
-    pub ivOut: TPM2B_IV,
-}
-#[test]
-fn bindgen_test_layout_EncryptDecrypt2_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<EncryptDecrypt2_Out>(),
-        1044usize,
-        concat!("Size of: ", stringify!(EncryptDecrypt2_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EncryptDecrypt2_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(EncryptDecrypt2_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_Out>())).outData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_Out),
-            "::",
-            stringify!(outData)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_Out>())).ivOut as *const _ as usize },
-        1026usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EncryptDecrypt2_Out),
-            "::",
-            stringify!(ivOut)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_EncryptDecrypt2(
-        in_: *mut EncryptDecrypt2_In,
-        out: *mut EncryptDecrypt2_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Hash_In {
-    pub data: TPM2B_MAX_BUFFER,
-    pub hashAlg: TPMI_ALG_HASH,
-    pub hierarchy: TPMI_RH_HIERARCHY,
-}
-#[test]
-fn bindgen_test_layout_Hash_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Hash_In>(),
-        1032usize,
-        concat!("Size of: ", stringify!(Hash_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Hash_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Hash_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hash_In>())).data as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hash_In),
-            "::",
-            stringify!(data)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hash_In>())).hashAlg as *const _ as usize },
-        1026usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hash_In),
-            "::",
-            stringify!(hashAlg)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hash_In>())).hierarchy as *const _ as usize },
-        1028usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hash_In),
-            "::",
-            stringify!(hierarchy)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Hash_Out {
-    pub outHash: TPM2B_DIGEST,
-    pub validation: TPMT_TK_HASHCHECK,
-}
-#[test]
-fn bindgen_test_layout_Hash_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Hash_Out>(),
-        112usize,
-        concat!("Size of: ", stringify!(Hash_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Hash_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Hash_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hash_Out>())).outHash as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hash_Out),
-            "::",
-            stringify!(outHash)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Hash_Out>())).validation as *const _ as usize },
-        52usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Hash_Out),
-            "::",
-            stringify!(validation)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Hash(in_: *mut Hash_In, out: *mut Hash_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct MAC_In {
-    pub handle: TPMI_DH_OBJECT,
-    pub buffer: TPM2B_MAX_BUFFER,
-    pub inScheme: TPMI_ALG_MAC_SCHEME,
-}
-#[test]
-fn bindgen_test_layout_MAC_In() {
-    assert_eq!(
-        ::std::mem::size_of::<MAC_In>(),
-        1032usize,
-        concat!("Size of: ", stringify!(MAC_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MAC_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(MAC_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_In>())).handle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_In),
-            "::",
-            stringify!(handle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_In>())).buffer as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_In),
-            "::",
-            stringify!(buffer)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_In>())).inScheme as *const _ as usize },
-        1030usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct MAC_Out {
-    pub outMAC: TPM2B_DIGEST,
-}
-#[test]
-fn bindgen_test_layout_MAC_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<MAC_Out>(),
-        50usize,
-        concat!("Size of: ", stringify!(MAC_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MAC_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(MAC_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_Out>())).outMAC as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_Out),
-            "::",
-            stringify!(outMAC)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_MAC(in_: *mut MAC_In, out: *mut MAC_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct GetRandom_In {
-    pub bytesRequested: UINT16,
-}
-#[test]
-fn bindgen_test_layout_GetRandom_In() {
-    assert_eq!(
-        ::std::mem::size_of::<GetRandom_In>(),
-        2usize,
-        concat!("Size of: ", stringify!(GetRandom_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<GetRandom_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(GetRandom_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetRandom_In>())).bytesRequested as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetRandom_In),
-            "::",
-            stringify!(bytesRequested)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GetRandom_Out {
-    pub randomBytes: TPM2B_DIGEST,
-}
-#[test]
-fn bindgen_test_layout_GetRandom_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<GetRandom_Out>(),
-        50usize,
-        concat!("Size of: ", stringify!(GetRandom_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<GetRandom_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(GetRandom_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetRandom_Out>())).randomBytes as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetRandom_Out),
-            "::",
-            stringify!(randomBytes)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_GetRandom(in_: *mut GetRandom_In, out: *mut GetRandom_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct StirRandom_In {
-    pub inData: TPM2B_SENSITIVE_DATA,
-}
-#[test]
-fn bindgen_test_layout_StirRandom_In() {
-    assert_eq!(
-        ::std::mem::size_of::<StirRandom_In>(),
-        130usize,
-        concat!("Size of: ", stringify!(StirRandom_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<StirRandom_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(StirRandom_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StirRandom_In>())).inData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(StirRandom_In),
-            "::",
-            stringify!(inData)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_StirRandom(in_: *mut StirRandom_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct MAC_Start_In {
-    pub handle: TPMI_DH_OBJECT,
-    pub auth: TPM2B_AUTH,
-    pub inScheme: TPMI_ALG_MAC_SCHEME,
-}
-#[test]
-fn bindgen_test_layout_MAC_Start_In() {
-    assert_eq!(
-        ::std::mem::size_of::<MAC_Start_In>(),
-        56usize,
-        concat!("Size of: ", stringify!(MAC_Start_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MAC_Start_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(MAC_Start_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_Start_In>())).handle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_Start_In),
-            "::",
-            stringify!(handle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_Start_In>())).auth as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_Start_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_Start_In>())).inScheme as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_Start_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct MAC_Start_Out {
-    pub sequenceHandle: TPMI_DH_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_MAC_Start_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<MAC_Start_Out>(),
-        4usize,
-        concat!("Size of: ", stringify!(MAC_Start_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MAC_Start_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(MAC_Start_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MAC_Start_Out>())).sequenceHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MAC_Start_Out),
-            "::",
-            stringify!(sequenceHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_MAC_Start(in_: *mut MAC_Start_In, out: *mut MAC_Start_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct HashSequenceStart_In {
-    pub auth: TPM2B_AUTH,
-    pub hashAlg: TPMI_ALG_HASH,
-}
-#[test]
-fn bindgen_test_layout_HashSequenceStart_In() {
-    assert_eq!(
-        ::std::mem::size_of::<HashSequenceStart_In>(),
-        52usize,
-        concat!("Size of: ", stringify!(HashSequenceStart_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<HashSequenceStart_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(HashSequenceStart_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HashSequenceStart_In>())).auth as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HashSequenceStart_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HashSequenceStart_In>())).hashAlg as *const _ as usize },
-        50usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HashSequenceStart_In),
-            "::",
-            stringify!(hashAlg)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct HashSequenceStart_Out {
-    pub sequenceHandle: TPMI_DH_OBJECT,
-}
-#[test]
-fn bindgen_test_layout_HashSequenceStart_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<HashSequenceStart_Out>(),
-        4usize,
-        concat!("Size of: ", stringify!(HashSequenceStart_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<HashSequenceStart_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(HashSequenceStart_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<HashSequenceStart_Out>())).sequenceHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HashSequenceStart_Out),
-            "::",
-            stringify!(sequenceHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_HashSequenceStart(
-        in_: *mut HashSequenceStart_In,
-        out: *mut HashSequenceStart_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct SequenceUpdate_In {
-    pub sequenceHandle: TPMI_DH_OBJECT,
-    pub buffer: TPM2B_MAX_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_SequenceUpdate_In() {
-    assert_eq!(
-        ::std::mem::size_of::<SequenceUpdate_In>(),
-        1032usize,
-        concat!("Size of: ", stringify!(SequenceUpdate_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SequenceUpdate_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SequenceUpdate_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SequenceUpdate_In>())).sequenceHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceUpdate_In),
-            "::",
-            stringify!(sequenceHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SequenceUpdate_In>())).buffer as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceUpdate_In),
-            "::",
-            stringify!(buffer)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_SequenceUpdate(in_: *mut SequenceUpdate_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct SequenceComplete_In {
-    pub sequenceHandle: TPMI_DH_OBJECT,
-    pub buffer: TPM2B_MAX_BUFFER,
-    pub hierarchy: TPMI_RH_HIERARCHY,
-}
-#[test]
-fn bindgen_test_layout_SequenceComplete_In() {
-    assert_eq!(
-        ::std::mem::size_of::<SequenceComplete_In>(),
-        1036usize,
-        concat!("Size of: ", stringify!(SequenceComplete_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SequenceComplete_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SequenceComplete_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SequenceComplete_In>())).sequenceHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceComplete_In),
-            "::",
-            stringify!(sequenceHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SequenceComplete_In>())).buffer as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceComplete_In),
-            "::",
-            stringify!(buffer)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SequenceComplete_In>())).hierarchy as *const _ as usize },
-        1032usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceComplete_In),
-            "::",
-            stringify!(hierarchy)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct SequenceComplete_Out {
-    pub result: TPM2B_DIGEST,
-    pub validation: TPMT_TK_HASHCHECK,
-}
-#[test]
-fn bindgen_test_layout_SequenceComplete_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<SequenceComplete_Out>(),
-        112usize,
-        concat!("Size of: ", stringify!(SequenceComplete_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SequenceComplete_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SequenceComplete_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SequenceComplete_Out>())).result as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceComplete_Out),
-            "::",
-            stringify!(result)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SequenceComplete_Out>())).validation as *const _ as usize },
-        52usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SequenceComplete_Out),
-            "::",
-            stringify!(validation)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_SequenceComplete(
-        in_: *mut SequenceComplete_In,
-        out: *mut SequenceComplete_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EventSequenceComplete_In {
-    pub pcrHandle: TPMI_DH_PCR,
-    pub sequenceHandle: TPMI_DH_OBJECT,
-    pub buffer: TPM2B_MAX_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_EventSequenceComplete_In() {
-    assert_eq!(
-        ::std::mem::size_of::<EventSequenceComplete_In>(),
-        1036usize,
-        concat!("Size of: ", stringify!(EventSequenceComplete_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EventSequenceComplete_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(EventSequenceComplete_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<EventSequenceComplete_In>())).pcrHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EventSequenceComplete_In),
-            "::",
-            stringify!(pcrHandle)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<EventSequenceComplete_In>())).sequenceHandle as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EventSequenceComplete_In),
-            "::",
-            stringify!(sequenceHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EventSequenceComplete_In>())).buffer as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EventSequenceComplete_In),
-            "::",
-            stringify!(buffer)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EventSequenceComplete_Out {
-    pub results: TPML_DIGEST_VALUES,
-}
-#[test]
-fn bindgen_test_layout_EventSequenceComplete_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<EventSequenceComplete_Out>(),
-        156usize,
-        concat!("Size of: ", stringify!(EventSequenceComplete_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EventSequenceComplete_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(EventSequenceComplete_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<EventSequenceComplete_Out>())).results as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EventSequenceComplete_Out),
-            "::",
-            stringify!(results)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_EventSequenceComplete(
-        in_: *mut EventSequenceComplete_In,
-        out: *mut EventSequenceComplete_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Certify_In {
-    pub objectHandle: TPMI_DH_OBJECT,
-    pub signHandle: TPMI_DH_OBJECT,
-    pub qualifyingData: TPM2B_DATA,
-    pub inScheme: TPMT_SIG_SCHEME,
-}
-#[test]
-fn bindgen_test_layout_Certify_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Certify_In>(),
-        68usize,
-        concat!("Size of: ", stringify!(Certify_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Certify_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Certify_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Certify_In>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Certify_In),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Certify_In>())).signHandle as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Certify_In),
-            "::",
-            stringify!(signHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Certify_In>())).qualifyingData as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Certify_In),
-            "::",
-            stringify!(qualifyingData)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Certify_In>())).inScheme as *const _ as usize },
-        60usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Certify_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Certify_Out {
-    pub certifyInfo: TPM2B_ATTEST,
-    pub signature: TPMT_SIGNATURE,
-}
-#[test]
-fn bindgen_test_layout_Certify_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Certify_Out>(),
-        1496usize,
-        concat!("Size of: ", stringify!(Certify_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Certify_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Certify_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Certify_Out>())).certifyInfo as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Certify_Out),
-            "::",
-            stringify!(certifyInfo)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Certify_Out>())).signature as *const _ as usize },
-        1234usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Certify_Out),
-            "::",
-            stringify!(signature)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Certify(in_: *mut Certify_In, out: *mut Certify_Out) -> TPM_RC;
+    pub fn IsSigningObject(object: *mut OBJECT) -> BOOL;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -41988,6 +40487,11 @@ fn bindgen_test_layout_CertifyCreation_In() {
         )
     );
 }
+impl Default for CertifyCreation_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct CertifyCreation_Out {
@@ -42027,6 +40531,11 @@ fn bindgen_test_layout_CertifyCreation_Out() {
         )
     );
 }
+impl Default for CertifyCreation_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_CertifyCreation(
         in_: *mut CertifyCreation_In,
@@ -42035,106 +40544,2689 @@ extern "C" {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct Quote_In {
+pub struct CertifyX509_In {
+    pub objectHandle: TPMI_DH_OBJECT,
     pub signHandle: TPMI_DH_OBJECT,
-    pub qualifyingData: TPM2B_DATA,
+    pub reserved: TPM2B_DATA,
     pub inScheme: TPMT_SIG_SCHEME,
-    pub PCRselect: TPML_PCR_SELECTION,
+    pub partialCertificate: TPM2B_MAX_BUFFER,
 }
 #[test]
-fn bindgen_test_layout_Quote_In() {
+fn bindgen_test_layout_CertifyX509_In() {
     assert_eq!(
-        ::std::mem::size_of::<Quote_In>(),
-        88usize,
-        concat!("Size of: ", stringify!(Quote_In))
+        ::std::mem::size_of::<CertifyX509_In>(),
+        1092usize,
+        concat!("Size of: ", stringify!(CertifyX509_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<Quote_In>(),
+        ::std::mem::align_of::<CertifyX509_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(Quote_In))
+        concat!("Alignment of ", stringify!(CertifyX509_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Quote_In>())).signHandle as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).objectHandle as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(Quote_In),
+            stringify!(CertifyX509_In),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).signHandle as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CertifyX509_In),
             "::",
             stringify!(signHandle)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Quote_In>())).qualifyingData as *const _ as usize },
-        4usize,
+        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).reserved as *const _ as usize },
+        8usize,
         concat!(
             "Offset of field: ",
-            stringify!(Quote_In),
+            stringify!(CertifyX509_In),
             "::",
-            stringify!(qualifyingData)
+            stringify!(reserved)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Quote_In>())).inScheme as *const _ as usize },
-        56usize,
+        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).inScheme as *const _ as usize },
+        60usize,
         concat!(
             "Offset of field: ",
-            stringify!(Quote_In),
+            stringify!(CertifyX509_In),
             "::",
             stringify!(inScheme)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Quote_In>())).PCRselect as *const _ as usize },
-        64usize,
+        unsafe {
+            &(*(::std::ptr::null::<CertifyX509_In>())).partialCertificate as *const _ as usize
+        },
+        66usize,
         concat!(
             "Offset of field: ",
-            stringify!(Quote_In),
+            stringify!(CertifyX509_In),
             "::",
-            stringify!(PCRselect)
+            stringify!(partialCertificate)
         )
     );
+}
+impl Default for CertifyX509_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct Quote_Out {
-    pub quoted: TPM2B_ATTEST,
+pub struct CertifyX509_Out {
+    pub addedToCertificate: TPM2B_MAX_BUFFER,
+    pub tbsDigest: TPM2B_DIGEST,
     pub signature: TPMT_SIGNATURE,
 }
 #[test]
-fn bindgen_test_layout_Quote_Out() {
+fn bindgen_test_layout_CertifyX509_Out() {
     assert_eq!(
-        ::std::mem::size_of::<Quote_Out>(),
-        1496usize,
-        concat!("Size of: ", stringify!(Quote_Out))
+        ::std::mem::size_of::<CertifyX509_Out>(),
+        1338usize,
+        concat!("Size of: ", stringify!(CertifyX509_Out))
     );
     assert_eq!(
-        ::std::mem::align_of::<Quote_Out>(),
+        ::std::mem::align_of::<CertifyX509_Out>(),
         2usize,
-        concat!("Alignment of ", stringify!(Quote_Out))
+        concat!("Alignment of ", stringify!(CertifyX509_Out))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Quote_Out>())).quoted as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<CertifyX509_Out>())).addedToCertificate as *const _ as usize
+        },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(Quote_Out),
+            stringify!(CertifyX509_Out),
             "::",
-            stringify!(quoted)
+            stringify!(addedToCertificate)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Quote_Out>())).signature as *const _ as usize },
-        1234usize,
+        unsafe { &(*(::std::ptr::null::<CertifyX509_Out>())).tbsDigest as *const _ as usize },
+        1026usize,
         concat!(
             "Offset of field: ",
-            stringify!(Quote_Out),
+            stringify!(CertifyX509_Out),
+            "::",
+            stringify!(tbsDigest)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CertifyX509_Out>())).signature as *const _ as usize },
+        1076usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CertifyX509_Out),
             "::",
             stringify!(signature)
         )
     );
 }
+impl Default for CertifyX509_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
-    pub fn TPM2_Quote(in_: *mut Quote_In, out: *mut Quote_Out) -> TPM_RC;
+    pub fn TPM2_CertifyX509(in_: *mut CertifyX509_In, out: *mut CertifyX509_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Certify_In {
+    pub objectHandle: TPMI_DH_OBJECT,
+    pub signHandle: TPMI_DH_OBJECT,
+    pub qualifyingData: TPM2B_DATA,
+    pub inScheme: TPMT_SIG_SCHEME,
+}
+#[test]
+fn bindgen_test_layout_Certify_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Certify_In>(),
+        68usize,
+        concat!("Size of: ", stringify!(Certify_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Certify_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Certify_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Certify_In>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Certify_In),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Certify_In>())).signHandle as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Certify_In),
+            "::",
+            stringify!(signHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Certify_In>())).qualifyingData as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Certify_In),
+            "::",
+            stringify!(qualifyingData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Certify_In>())).inScheme as *const _ as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Certify_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+}
+impl Default for Certify_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Certify_Out {
+    pub certifyInfo: TPM2B_ATTEST,
+    pub signature: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_Certify_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Certify_Out>(),
+        1496usize,
+        concat!("Size of: ", stringify!(Certify_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Certify_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Certify_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Certify_Out>())).certifyInfo as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Certify_Out),
+            "::",
+            stringify!(certifyInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Certify_Out>())).signature as *const _ as usize },
+        1234usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Certify_Out),
+            "::",
+            stringify!(signature)
+        )
+    );
+}
+impl Default for Certify_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Certify(in_: *mut Certify_In, out: *mut Certify_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ChangeEPS_In {
+    pub authHandle: TPMI_RH_PLATFORM,
+}
+#[test]
+fn bindgen_test_layout_ChangeEPS_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ChangeEPS_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(ChangeEPS_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ChangeEPS_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ChangeEPS_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ChangeEPS_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ChangeEPS_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ChangeEPS(in_: *mut ChangeEPS_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ChangePPS_In {
+    pub authHandle: TPMI_RH_PLATFORM,
+}
+#[test]
+fn bindgen_test_layout_ChangePPS_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ChangePPS_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(ChangePPS_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ChangePPS_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ChangePPS_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ChangePPS_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ChangePPS_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ChangePPS(in_: *mut ChangePPS_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ClearControl_In {
+    pub auth: TPMI_RH_CLEAR,
+    pub disable: TPMI_YES_NO,
+}
+#[test]
+fn bindgen_test_layout_ClearControl_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ClearControl_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(ClearControl_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ClearControl_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ClearControl_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ClearControl_In>())).auth as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ClearControl_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ClearControl_In>())).disable as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ClearControl_In),
+            "::",
+            stringify!(disable)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ClearControl(in_: *mut ClearControl_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct Clear_In {
+    pub authHandle: TPMI_RH_CLEAR,
+}
+#[test]
+fn bindgen_test_layout_Clear_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Clear_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(Clear_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Clear_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Clear_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Clear_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Clear_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_Clear(in_: *mut Clear_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ClockRateAdjust_In {
+    pub auth: TPMI_RH_PROVISION,
+    pub rateAdjust: TPM_CLOCK_ADJUST,
+}
+#[test]
+fn bindgen_test_layout_ClockRateAdjust_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ClockRateAdjust_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(ClockRateAdjust_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ClockRateAdjust_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ClockRateAdjust_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ClockRateAdjust_In>())).auth as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ClockRateAdjust_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ClockRateAdjust_In>())).rateAdjust as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ClockRateAdjust_In),
+            "::",
+            stringify!(rateAdjust)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ClockRateAdjust(in_: *mut ClockRateAdjust_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ClockSet_In {
+    pub auth: TPMI_RH_PROVISION,
+    pub newTime: UINT64,
+}
+#[test]
+fn bindgen_test_layout_ClockSet_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ClockSet_In>(),
+        16usize,
+        concat!("Size of: ", stringify!(ClockSet_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ClockSet_In>(),
+        8usize,
+        concat!("Alignment of ", stringify!(ClockSet_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ClockSet_In>())).auth as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ClockSet_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ClockSet_In>())).newTime as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ClockSet_In),
+            "::",
+            stringify!(newTime)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ClockSet(in_: *mut ClockSet_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Commit_In {
+    pub signHandle: TPMI_DH_OBJECT,
+    pub P1: TPM2B_ECC_POINT,
+    pub s2: TPM2B_SENSITIVE_DATA,
+    pub y2: TPM2B_ECC_PARAMETER,
+}
+#[test]
+fn bindgen_test_layout_Commit_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Commit_In>(),
+        288usize,
+        concat!("Size of: ", stringify!(Commit_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Commit_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Commit_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_In>())).signHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_In),
+            "::",
+            stringify!(signHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_In>())).P1 as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_In),
+            "::",
+            stringify!(P1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_In>())).s2 as *const _ as usize },
+        106usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_In),
+            "::",
+            stringify!(s2)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_In>())).y2 as *const _ as usize },
+        236usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_In),
+            "::",
+            stringify!(y2)
+        )
+    );
+}
+impl Default for Commit_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Commit_Out {
+    pub K: TPM2B_ECC_POINT,
+    pub L: TPM2B_ECC_POINT,
+    pub E: TPM2B_ECC_POINT,
+    pub counter: UINT16,
+}
+#[test]
+fn bindgen_test_layout_Commit_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Commit_Out>(),
+        308usize,
+        concat!("Size of: ", stringify!(Commit_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Commit_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Commit_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_Out>())).K as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_Out),
+            "::",
+            stringify!(K)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_Out>())).L as *const _ as usize },
+        102usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_Out),
+            "::",
+            stringify!(L)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_Out>())).E as *const _ as usize },
+        204usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_Out),
+            "::",
+            stringify!(E)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Commit_Out>())).counter as *const _ as usize },
+        306usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Commit_Out),
+            "::",
+            stringify!(counter)
+        )
+    );
+}
+impl Default for Commit_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Commit(in_: *mut Commit_In, out: *mut Commit_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ContextLoad_In {
+    pub context: TPMS_CONTEXT,
+}
+#[test]
+fn bindgen_test_layout_ContextLoad_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ContextLoad_In>(),
+        1416usize,
+        concat!("Size of: ", stringify!(ContextLoad_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ContextLoad_In>(),
+        8usize,
+        concat!("Alignment of ", stringify!(ContextLoad_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ContextLoad_In>())).context as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ContextLoad_In),
+            "::",
+            stringify!(context)
+        )
+    );
+}
+impl Default for ContextLoad_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ContextLoad_Out {
+    pub loadedHandle: TPMI_DH_CONTEXT,
+}
+#[test]
+fn bindgen_test_layout_ContextLoad_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ContextLoad_Out>(),
+        4usize,
+        concat!("Size of: ", stringify!(ContextLoad_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ContextLoad_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ContextLoad_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ContextLoad_Out>())).loadedHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ContextLoad_Out),
+            "::",
+            stringify!(loadedHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ContextLoad(in_: *mut ContextLoad_In, out: *mut ContextLoad_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ContextSave_In {
+    pub saveHandle: TPMI_DH_CONTEXT,
+}
+#[test]
+fn bindgen_test_layout_ContextSave_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ContextSave_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(ContextSave_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ContextSave_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ContextSave_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ContextSave_In>())).saveHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ContextSave_In),
+            "::",
+            stringify!(saveHandle)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ContextSave_Out {
+    pub context: TPMS_CONTEXT,
+}
+#[test]
+fn bindgen_test_layout_ContextSave_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ContextSave_Out>(),
+        1416usize,
+        concat!("Size of: ", stringify!(ContextSave_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ContextSave_Out>(),
+        8usize,
+        concat!("Alignment of ", stringify!(ContextSave_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ContextSave_Out>())).context as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ContextSave_Out),
+            "::",
+            stringify!(context)
+        )
+    );
+}
+impl Default for ContextSave_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ContextSave(in_: *mut ContextSave_In, out: *mut ContextSave_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct CreateLoaded_In {
+    pub parentHandle: TPMI_DH_PARENT,
+    pub inSensitive: TPM2B_SENSITIVE_CREATE,
+    pub inPublic: TPM2B_TEMPLATE,
+}
+#[test]
+fn bindgen_test_layout_CreateLoaded_In() {
+    assert_eq!(
+        ::std::mem::size_of::<CreateLoaded_In>(),
+        528usize,
+        concat!("Size of: ", stringify!(CreateLoaded_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<CreateLoaded_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(CreateLoaded_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_In>())).parentHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_In),
+            "::",
+            stringify!(parentHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_In>())).inSensitive as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_In),
+            "::",
+            stringify!(inSensitive)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_In>())).inPublic as *const _ as usize },
+        186usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_In),
+            "::",
+            stringify!(inPublic)
+        )
+    );
+}
+impl Default for CreateLoaded_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct CreateLoaded_Out {
+    pub objectHandle: TPM_HANDLE,
+    pub outPrivate: TPM2B_PRIVATE,
+    pub outPublic: TPM2B_PUBLIC,
+    pub name: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_CreateLoaded_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<CreateLoaded_Out>(),
+        1252usize,
+        concat!("Size of: ", stringify!(CreateLoaded_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<CreateLoaded_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(CreateLoaded_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_Out),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).outPrivate as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_Out),
+            "::",
+            stringify!(outPrivate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).outPublic as *const _ as usize },
+        852usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_Out),
+            "::",
+            stringify!(outPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreateLoaded_Out>())).name as *const _ as usize },
+        1196usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreateLoaded_Out),
+            "::",
+            stringify!(name)
+        )
+    );
+}
+impl Default for CreateLoaded_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_CreateLoaded(in_: *mut CreateLoaded_In, out: *mut CreateLoaded_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct CreatePrimary_In {
+    pub primaryHandle: TPMI_RH_HIERARCHY,
+    pub inSensitive: TPM2B_SENSITIVE_CREATE,
+    pub inPublic: TPM2B_PUBLIC,
+    pub outsideInfo: TPM2B_DATA,
+    pub creationPCR: TPML_PCR_SELECTION,
+}
+#[test]
+fn bindgen_test_layout_CreatePrimary_In() {
+    assert_eq!(
+        ::std::mem::size_of::<CreatePrimary_In>(),
+        608usize,
+        concat!("Size of: ", stringify!(CreatePrimary_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<CreatePrimary_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(CreatePrimary_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).primaryHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_In),
+            "::",
+            stringify!(primaryHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).inSensitive as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_In),
+            "::",
+            stringify!(inSensitive)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).inPublic as *const _ as usize },
+        188usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_In),
+            "::",
+            stringify!(inPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).outsideInfo as *const _ as usize },
+        532usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_In),
+            "::",
+            stringify!(outsideInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).creationPCR as *const _ as usize },
+        584usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_In),
+            "::",
+            stringify!(creationPCR)
+        )
+    );
+}
+impl Default for CreatePrimary_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct CreatePrimary_Out {
+    pub objectHandle: TPM_HANDLE,
+    pub outPublic: TPM2B_PUBLIC,
+    pub creationData: TPM2B_CREATION_DATA,
+    pub creationHash: TPM2B_DIGEST,
+    pub creationTicket: TPMT_TK_CREATION,
+    pub name: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_CreatePrimary_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<CreatePrimary_Out>(),
+        760usize,
+        concat!("Size of: ", stringify!(CreatePrimary_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<CreatePrimary_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(CreatePrimary_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_Out),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).outPublic as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_Out),
+            "::",
+            stringify!(outPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).creationData as *const _ as usize },
+        348usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_Out),
+            "::",
+            stringify!(creationData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).creationHash as *const _ as usize },
+        592usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_Out),
+            "::",
+            stringify!(creationHash)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<CreatePrimary_Out>())).creationTicket as *const _ as usize
+        },
+        644usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_Out),
+            "::",
+            stringify!(creationTicket)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).name as *const _ as usize },
+        704usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(CreatePrimary_Out),
+            "::",
+            stringify!(name)
+        )
+    );
+}
+impl Default for CreatePrimary_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_CreatePrimary(in_: *mut CreatePrimary_In, out: *mut CreatePrimary_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Create_In {
+    pub parentHandle: TPMI_DH_OBJECT,
+    pub inSensitive: TPM2B_SENSITIVE_CREATE,
+    pub inPublic: TPM2B_PUBLIC,
+    pub outsideInfo: TPM2B_DATA,
+    pub creationPCR: TPML_PCR_SELECTION,
+}
+#[test]
+fn bindgen_test_layout_Create_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Create_In>(),
+        608usize,
+        concat!("Size of: ", stringify!(Create_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Create_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Create_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_In>())).parentHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_In),
+            "::",
+            stringify!(parentHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_In>())).inSensitive as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_In),
+            "::",
+            stringify!(inSensitive)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_In>())).inPublic as *const _ as usize },
+        188usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_In),
+            "::",
+            stringify!(inPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_In>())).outsideInfo as *const _ as usize },
+        532usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_In),
+            "::",
+            stringify!(outsideInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_In>())).creationPCR as *const _ as usize },
+        584usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_In),
+            "::",
+            stringify!(creationPCR)
+        )
+    );
+}
+impl Default for Create_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Create_Out {
+    pub outPrivate: TPM2B_PRIVATE,
+    pub outPublic: TPM2B_PUBLIC,
+    pub creationData: TPM2B_CREATION_DATA,
+    pub creationHash: TPM2B_DIGEST,
+    pub creationTicket: TPMT_TK_CREATION,
+}
+#[test]
+fn bindgen_test_layout_Create_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Create_Out>(),
+        1548usize,
+        concat!("Size of: ", stringify!(Create_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Create_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Create_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_Out>())).outPrivate as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_Out),
+            "::",
+            stringify!(outPrivate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_Out>())).outPublic as *const _ as usize },
+        848usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_Out),
+            "::",
+            stringify!(outPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_Out>())).creationData as *const _ as usize },
+        1192usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_Out),
+            "::",
+            stringify!(creationData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_Out>())).creationHash as *const _ as usize },
+        1436usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_Out),
+            "::",
+            stringify!(creationHash)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Create_Out>())).creationTicket as *const _ as usize },
+        1488usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Create_Out),
+            "::",
+            stringify!(creationTicket)
+        )
+    );
+}
+impl Default for Create_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Create(in_: *mut Create_In, out: *mut Create_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct DictionaryAttackLockReset_In {
+    pub lockHandle: TPMI_RH_LOCKOUT,
+}
+#[test]
+fn bindgen_test_layout_DictionaryAttackLockReset_In() {
+    assert_eq!(
+        ::std::mem::size_of::<DictionaryAttackLockReset_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(DictionaryAttackLockReset_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<DictionaryAttackLockReset_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(DictionaryAttackLockReset_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<DictionaryAttackLockReset_In>())).lockHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(DictionaryAttackLockReset_In),
+            "::",
+            stringify!(lockHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_DictionaryAttackLockReset(in_: *mut DictionaryAttackLockReset_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct DictionaryAttackParameters_In {
+    pub lockHandle: TPMI_RH_LOCKOUT,
+    pub newMaxTries: UINT32,
+    pub newRecoveryTime: UINT32,
+    pub lockoutRecovery: UINT32,
+}
+#[test]
+fn bindgen_test_layout_DictionaryAttackParameters_In() {
+    assert_eq!(
+        ::std::mem::size_of::<DictionaryAttackParameters_In>(),
+        16usize,
+        concat!("Size of: ", stringify!(DictionaryAttackParameters_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<DictionaryAttackParameters_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(DictionaryAttackParameters_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).lockHandle as *const _
+                as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(DictionaryAttackParameters_In),
+            "::",
+            stringify!(lockHandle)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).newMaxTries as *const _
+                as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(DictionaryAttackParameters_In),
+            "::",
+            stringify!(newMaxTries)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).newRecoveryTime as *const _
+                as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(DictionaryAttackParameters_In),
+            "::",
+            stringify!(newRecoveryTime)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).lockoutRecovery as *const _
+                as usize
+        },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(DictionaryAttackParameters_In),
+            "::",
+            stringify!(lockoutRecovery)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_DictionaryAttackParameters(in_: *mut DictionaryAttackParameters_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Duplicate_In {
+    pub objectHandle: TPMI_DH_OBJECT,
+    pub newParentHandle: TPMI_DH_OBJECT,
+    pub encryptionKeyIn: TPM2B_DATA,
+    pub symmetricAlg: TPMT_SYM_DEF_OBJECT,
+}
+#[test]
+fn bindgen_test_layout_Duplicate_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Duplicate_In>(),
+        68usize,
+        concat!("Size of: ", stringify!(Duplicate_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Duplicate_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Duplicate_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_In),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).newParentHandle as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_In),
+            "::",
+            stringify!(newParentHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).encryptionKeyIn as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_In),
+            "::",
+            stringify!(encryptionKeyIn)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_In>())).symmetricAlg as *const _ as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_In),
+            "::",
+            stringify!(symmetricAlg)
+        )
+    );
+}
+impl Default for Duplicate_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Duplicate_Out {
+    pub encryptionKeyOut: TPM2B_DATA,
+    pub duplicate: TPM2B_PRIVATE,
+    pub outSymSeed: TPM2B_ENCRYPTED_SECRET,
+}
+#[test]
+fn bindgen_test_layout_Duplicate_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Duplicate_Out>(),
+        1158usize,
+        concat!("Size of: ", stringify!(Duplicate_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Duplicate_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Duplicate_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_Out>())).encryptionKeyOut as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_Out),
+            "::",
+            stringify!(encryptionKeyOut)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_Out>())).duplicate as *const _ as usize },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_Out),
+            "::",
+            stringify!(duplicate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Duplicate_Out>())).outSymSeed as *const _ as usize },
+        900usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Duplicate_Out),
+            "::",
+            stringify!(outSymSeed)
+        )
+    );
+}
+impl Default for Duplicate_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Duplicate(in_: *mut Duplicate_In, out: *mut Duplicate_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECC_Decrypt_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub C1: TPM2B_ECC_POINT,
+    pub C2: TPM2B_MAX_BUFFER,
+    pub C3: TPM2B_DIGEST,
+    pub inScheme: TPMT_KDF_SCHEME,
+}
+#[test]
+fn bindgen_test_layout_ECC_Decrypt_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ECC_Decrypt_In>(),
+        1188usize,
+        concat!("Size of: ", stringify!(ECC_Decrypt_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECC_Decrypt_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ECC_Decrypt_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Decrypt_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).C1 as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Decrypt_In),
+            "::",
+            stringify!(C1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).C2 as *const _ as usize },
+        106usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Decrypt_In),
+            "::",
+            stringify!(C2)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).C3 as *const _ as usize },
+        1132usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Decrypt_In),
+            "::",
+            stringify!(C3)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_In>())).inScheme as *const _ as usize },
+        1182usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Decrypt_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+}
+impl Default for ECC_Decrypt_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECC_Decrypt_Out {
+    pub plainText: TPM2B_MAX_BUFFER,
+}
+#[test]
+fn bindgen_test_layout_ECC_Decrypt_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ECC_Decrypt_Out>(),
+        1026usize,
+        concat!("Size of: ", stringify!(ECC_Decrypt_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECC_Decrypt_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ECC_Decrypt_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Decrypt_Out>())).plainText as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Decrypt_Out),
+            "::",
+            stringify!(plainText)
+        )
+    );
+}
+impl Default for ECC_Decrypt_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ECC_Decrypt(in_: *mut ECC_Decrypt_In, out: *mut ECC_Decrypt_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECC_Encrypt_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub plainText: TPM2B_MAX_BUFFER,
+    pub inScheme: TPMT_KDF_SCHEME,
+}
+#[test]
+fn bindgen_test_layout_ECC_Encrypt_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ECC_Encrypt_In>(),
+        1036usize,
+        concat!("Size of: ", stringify!(ECC_Encrypt_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECC_Encrypt_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ECC_Encrypt_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Encrypt_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_In>())).plainText as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Encrypt_In),
+            "::",
+            stringify!(plainText)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_In>())).inScheme as *const _ as usize },
+        1030usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Encrypt_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+}
+impl Default for ECC_Encrypt_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECC_Encrypt_Out {
+    pub C1: TPM2B_ECC_POINT,
+    pub C2: TPM2B_MAX_BUFFER,
+    pub C3: TPM2B_DIGEST,
+}
+#[test]
+fn bindgen_test_layout_ECC_Encrypt_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ECC_Encrypt_Out>(),
+        1178usize,
+        concat!("Size of: ", stringify!(ECC_Encrypt_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECC_Encrypt_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ECC_Encrypt_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_Out>())).C1 as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Encrypt_Out),
+            "::",
+            stringify!(C1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_Out>())).C2 as *const _ as usize },
+        102usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Encrypt_Out),
+            "::",
+            stringify!(C2)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Encrypt_Out>())).C3 as *const _ as usize },
+        1128usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Encrypt_Out),
+            "::",
+            stringify!(C3)
+        )
+    );
+}
+impl Default for ECC_Encrypt_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ECC_Encrypt(in_: *mut ECC_Encrypt_In, out: *mut ECC_Encrypt_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ECC_Parameters_In {
+    pub curveID: TPMI_ECC_CURVE,
+}
+#[test]
+fn bindgen_test_layout_ECC_Parameters_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ECC_Parameters_In>(),
+        2usize,
+        concat!("Size of: ", stringify!(ECC_Parameters_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECC_Parameters_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ECC_Parameters_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Parameters_In>())).curveID as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Parameters_In),
+            "::",
+            stringify!(curveID)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECC_Parameters_Out {
+    pub parameters: TPMS_ALGORITHM_DETAIL_ECC,
+}
+#[test]
+fn bindgen_test_layout_ECC_Parameters_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ECC_Parameters_Out>(),
+        364usize,
+        concat!("Size of: ", stringify!(ECC_Parameters_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECC_Parameters_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ECC_Parameters_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECC_Parameters_Out>())).parameters as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECC_Parameters_Out),
+            "::",
+            stringify!(parameters)
+        )
+    );
+}
+impl Default for ECC_Parameters_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ECC_Parameters(in_: *mut ECC_Parameters_In, out: *mut ECC_Parameters_Out)
+        -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ECDH_KeyGen_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+}
+#[test]
+fn bindgen_test_layout_ECDH_KeyGen_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ECDH_KeyGen_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(ECDH_KeyGen_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECDH_KeyGen_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ECDH_KeyGen_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECDH_KeyGen_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECDH_KeyGen_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECDH_KeyGen_Out {
+    pub zPoint: TPM2B_ECC_POINT,
+    pub pubPoint: TPM2B_ECC_POINT,
+}
+#[test]
+fn bindgen_test_layout_ECDH_KeyGen_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ECDH_KeyGen_Out>(),
+        204usize,
+        concat!("Size of: ", stringify!(ECDH_KeyGen_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECDH_KeyGen_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ECDH_KeyGen_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECDH_KeyGen_Out>())).zPoint as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECDH_KeyGen_Out),
+            "::",
+            stringify!(zPoint)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECDH_KeyGen_Out>())).pubPoint as *const _ as usize },
+        102usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECDH_KeyGen_Out),
+            "::",
+            stringify!(pubPoint)
+        )
+    );
+}
+impl Default for ECDH_KeyGen_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ECDH_KeyGen(in_: *mut ECDH_KeyGen_In, out: *mut ECDH_KeyGen_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECDH_ZGen_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub inPoint: TPM2B_ECC_POINT,
+}
+#[test]
+fn bindgen_test_layout_ECDH_ZGen_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ECDH_ZGen_In>(),
+        108usize,
+        concat!("Size of: ", stringify!(ECDH_ZGen_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECDH_ZGen_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ECDH_ZGen_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECDH_ZGen_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECDH_ZGen_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECDH_ZGen_In>())).inPoint as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECDH_ZGen_In),
+            "::",
+            stringify!(inPoint)
+        )
+    );
+}
+impl Default for ECDH_ZGen_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ECDH_ZGen_Out {
+    pub outPoint: TPM2B_ECC_POINT,
+}
+#[test]
+fn bindgen_test_layout_ECDH_ZGen_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ECDH_ZGen_Out>(),
+        102usize,
+        concat!("Size of: ", stringify!(ECDH_ZGen_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ECDH_ZGen_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ECDH_ZGen_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ECDH_ZGen_Out>())).outPoint as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ECDH_ZGen_Out),
+            "::",
+            stringify!(outPoint)
+        )
+    );
+}
+impl Default for ECDH_ZGen_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ECDH_ZGen(in_: *mut ECDH_ZGen_In, out: *mut ECDH_ZGen_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct EC_Ephemeral_In {
+    pub curveID: TPMI_ECC_CURVE,
+}
+#[test]
+fn bindgen_test_layout_EC_Ephemeral_In() {
+    assert_eq!(
+        ::std::mem::size_of::<EC_Ephemeral_In>(),
+        2usize,
+        concat!("Size of: ", stringify!(EC_Ephemeral_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EC_Ephemeral_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(EC_Ephemeral_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EC_Ephemeral_In>())).curveID as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EC_Ephemeral_In),
+            "::",
+            stringify!(curveID)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EC_Ephemeral_Out {
+    pub Q: TPM2B_ECC_POINT,
+    pub counter: UINT16,
+}
+#[test]
+fn bindgen_test_layout_EC_Ephemeral_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<EC_Ephemeral_Out>(),
+        104usize,
+        concat!("Size of: ", stringify!(EC_Ephemeral_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EC_Ephemeral_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(EC_Ephemeral_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EC_Ephemeral_Out>())).Q as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EC_Ephemeral_Out),
+            "::",
+            stringify!(Q)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EC_Ephemeral_Out>())).counter as *const _ as usize },
+        102usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EC_Ephemeral_Out),
+            "::",
+            stringify!(counter)
+        )
+    );
+}
+impl Default for EC_Ephemeral_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_EC_Ephemeral(in_: *mut EC_Ephemeral_In, out: *mut EC_Ephemeral_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EncryptDecrypt2_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub inData: TPM2B_MAX_BUFFER,
+    pub decrypt: TPMI_YES_NO,
+    pub mode: TPMI_ALG_CIPHER_MODE,
+    pub ivIn: TPM2B_IV,
+}
+#[test]
+fn bindgen_test_layout_EncryptDecrypt2_In() {
+    assert_eq!(
+        ::std::mem::size_of::<EncryptDecrypt2_In>(),
+        1052usize,
+        concat!("Size of: ", stringify!(EncryptDecrypt2_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EncryptDecrypt2_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(EncryptDecrypt2_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).inData as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_In),
+            "::",
+            stringify!(inData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).decrypt as *const _ as usize },
+        1030usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_In),
+            "::",
+            stringify!(decrypt)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).mode as *const _ as usize },
+        1032usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_In),
+            "::",
+            stringify!(mode)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_In>())).ivIn as *const _ as usize },
+        1034usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_In),
+            "::",
+            stringify!(ivIn)
+        )
+    );
+}
+impl Default for EncryptDecrypt2_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EncryptDecrypt2_Out {
+    pub outData: TPM2B_MAX_BUFFER,
+    pub ivOut: TPM2B_IV,
+}
+#[test]
+fn bindgen_test_layout_EncryptDecrypt2_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<EncryptDecrypt2_Out>(),
+        1044usize,
+        concat!("Size of: ", stringify!(EncryptDecrypt2_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EncryptDecrypt2_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(EncryptDecrypt2_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_Out>())).outData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_Out),
+            "::",
+            stringify!(outData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt2_Out>())).ivOut as *const _ as usize },
+        1026usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt2_Out),
+            "::",
+            stringify!(ivOut)
+        )
+    );
+}
+impl Default for EncryptDecrypt2_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_EncryptDecrypt2(
+        in_: *mut EncryptDecrypt2_In,
+        out: *mut EncryptDecrypt2_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EncryptDecrypt_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub decrypt: TPMI_YES_NO,
+    pub mode: TPMI_ALG_CIPHER_MODE,
+    pub ivIn: TPM2B_IV,
+    pub inData: TPM2B_MAX_BUFFER,
+}
+#[test]
+fn bindgen_test_layout_EncryptDecrypt_In() {
+    assert_eq!(
+        ::std::mem::size_of::<EncryptDecrypt_In>(),
+        1052usize,
+        concat!("Size of: ", stringify!(EncryptDecrypt_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EncryptDecrypt_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(EncryptDecrypt_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).decrypt as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_In),
+            "::",
+            stringify!(decrypt)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).mode as *const _ as usize },
+        6usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_In),
+            "::",
+            stringify!(mode)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).ivIn as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_In),
+            "::",
+            stringify!(ivIn)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_In>())).inData as *const _ as usize },
+        26usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_In),
+            "::",
+            stringify!(inData)
+        )
+    );
+}
+impl Default for EncryptDecrypt_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EncryptDecrypt_Out {
+    pub outData: TPM2B_MAX_BUFFER,
+    pub ivOut: TPM2B_IV,
+}
+#[test]
+fn bindgen_test_layout_EncryptDecrypt_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<EncryptDecrypt_Out>(),
+        1044usize,
+        concat!("Size of: ", stringify!(EncryptDecrypt_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EncryptDecrypt_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(EncryptDecrypt_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_Out>())).outData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_Out),
+            "::",
+            stringify!(outData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EncryptDecrypt_Out>())).ivOut as *const _ as usize },
+        1026usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EncryptDecrypt_Out),
+            "::",
+            stringify!(ivOut)
+        )
+    );
+}
+impl Default for EncryptDecrypt_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_EncryptDecrypt(in_: *mut EncryptDecrypt_In, out: *mut EncryptDecrypt_Out)
+        -> TPM_RC;
+}
+extern "C" {
+    pub fn EncryptDecryptShared(
+        keyHandleIn: TPMI_DH_OBJECT,
+        decryptIn: TPMI_YES_NO,
+        modeIn: TPMI_ALG_SYM_MODE,
+        ivIn: *mut TPM2B_IV,
+        inData: *mut TPM2B_MAX_BUFFER,
+        out: *mut EncryptDecrypt_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EventSequenceComplete_In {
+    pub pcrHandle: TPMI_DH_PCR,
+    pub sequenceHandle: TPMI_DH_OBJECT,
+    pub buffer: TPM2B_MAX_BUFFER,
+}
+#[test]
+fn bindgen_test_layout_EventSequenceComplete_In() {
+    assert_eq!(
+        ::std::mem::size_of::<EventSequenceComplete_In>(),
+        1036usize,
+        concat!("Size of: ", stringify!(EventSequenceComplete_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EventSequenceComplete_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(EventSequenceComplete_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<EventSequenceComplete_In>())).pcrHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EventSequenceComplete_In),
+            "::",
+            stringify!(pcrHandle)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<EventSequenceComplete_In>())).sequenceHandle as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EventSequenceComplete_In),
+            "::",
+            stringify!(sequenceHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EventSequenceComplete_In>())).buffer as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EventSequenceComplete_In),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+impl Default for EventSequenceComplete_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct EventSequenceComplete_Out {
+    pub results: TPML_DIGEST_VALUES,
+}
+#[test]
+fn bindgen_test_layout_EventSequenceComplete_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<EventSequenceComplete_Out>(),
+        156usize,
+        concat!("Size of: ", stringify!(EventSequenceComplete_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EventSequenceComplete_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(EventSequenceComplete_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<EventSequenceComplete_Out>())).results as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EventSequenceComplete_Out),
+            "::",
+            stringify!(results)
+        )
+    );
+}
+impl Default for EventSequenceComplete_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_EventSequenceComplete(
+        in_: *mut EventSequenceComplete_In,
+        out: *mut EventSequenceComplete_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct EvictControl_In {
+    pub auth: TPMI_RH_PROVISION,
+    pub objectHandle: TPMI_DH_OBJECT,
+    pub persistentHandle: TPMI_DH_PERSISTENT,
+}
+#[test]
+fn bindgen_test_layout_EvictControl_In() {
+    assert_eq!(
+        ::std::mem::size_of::<EvictControl_In>(),
+        12usize,
+        concat!("Size of: ", stringify!(EvictControl_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<EvictControl_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(EvictControl_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EvictControl_In>())).auth as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EvictControl_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<EvictControl_In>())).objectHandle as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EvictControl_In),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<EvictControl_In>())).persistentHandle as *const _ as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(EvictControl_In),
+            "::",
+            stringify!(persistentHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_EvictControl(in_: *mut EvictControl_In) -> TPM_RC;
+}
+extern "C" {
+    pub fn ExecuteCommand(
+        requestSize: u32,
+        request: *mut ::std::os::raw::c_uchar,
+        responseSize: *mut u32,
+        response: *mut *mut ::std::os::raw::c_uchar,
+    );
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct FlushContext_In {
+    pub flushHandle: TPMI_DH_CONTEXT,
+}
+#[test]
+fn bindgen_test_layout_FlushContext_In() {
+    assert_eq!(
+        ::std::mem::size_of::<FlushContext_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(FlushContext_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<FlushContext_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(FlushContext_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<FlushContext_In>())).flushHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(FlushContext_In),
+            "::",
+            stringify!(flushHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_FlushContext(in_: *mut FlushContext_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct GetCapability_In {
+    pub capability: TPM_CAP,
+    pub property: UINT32,
+    pub propertyCount: UINT32,
+}
+#[test]
+fn bindgen_test_layout_GetCapability_In() {
+    assert_eq!(
+        ::std::mem::size_of::<GetCapability_In>(),
+        12usize,
+        concat!("Size of: ", stringify!(GetCapability_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<GetCapability_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(GetCapability_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<GetCapability_In>())).capability as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCapability_In),
+            "::",
+            stringify!(capability)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<GetCapability_In>())).property as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCapability_In),
+            "::",
+            stringify!(property)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<GetCapability_In>())).propertyCount as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCapability_In),
+            "::",
+            stringify!(propertyCount)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GetCapability_Out {
+    pub moreData: TPMI_YES_NO,
+    pub capabilityData: TPMS_CAPABILITY_DATA,
+}
+#[test]
+fn bindgen_test_layout_GetCapability_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<GetCapability_Out>(),
+        1028usize,
+        concat!("Size of: ", stringify!(GetCapability_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<GetCapability_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(GetCapability_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<GetCapability_Out>())).moreData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCapability_Out),
+            "::",
+            stringify!(moreData)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCapability_Out>())).capabilityData as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCapability_Out),
+            "::",
+            stringify!(capabilityData)
+        )
+    );
+}
+impl Default for GetCapability_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_GetCapability(in_: *mut GetCapability_In, out: *mut GetCapability_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GetCommandAuditDigest_In {
+    pub privacyHandle: TPMI_RH_ENDORSEMENT,
+    pub signHandle: TPMI_DH_OBJECT,
+    pub qualifyingData: TPM2B_DATA,
+    pub inScheme: TPMT_SIG_SCHEME,
+}
+#[test]
+fn bindgen_test_layout_GetCommandAuditDigest_In() {
+    assert_eq!(
+        ::std::mem::size_of::<GetCommandAuditDigest_In>(),
+        68usize,
+        concat!("Size of: ", stringify!(GetCommandAuditDigest_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<GetCommandAuditDigest_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(GetCommandAuditDigest_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).privacyHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCommandAuditDigest_In),
+            "::",
+            stringify!(privacyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).signHandle as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCommandAuditDigest_In),
+            "::",
+            stringify!(signHandle)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).qualifyingData as *const _ as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCommandAuditDigest_In),
+            "::",
+            stringify!(qualifyingData)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).inScheme as *const _ as usize
+        },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCommandAuditDigest_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+}
+impl Default for GetCommandAuditDigest_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GetCommandAuditDigest_Out {
+    pub auditInfo: TPM2B_ATTEST,
+    pub signature: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_GetCommandAuditDigest_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<GetCommandAuditDigest_Out>(),
+        1496usize,
+        concat!("Size of: ", stringify!(GetCommandAuditDigest_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<GetCommandAuditDigest_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(GetCommandAuditDigest_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCommandAuditDigest_Out>())).auditInfo as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCommandAuditDigest_Out),
+            "::",
+            stringify!(auditInfo)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<GetCommandAuditDigest_Out>())).signature as *const _ as usize
+        },
+        1234usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetCommandAuditDigest_Out),
+            "::",
+            stringify!(signature)
+        )
+    );
+}
+impl Default for GetCommandAuditDigest_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_GetCommandAuditDigest(
+        in_: *mut GetCommandAuditDigest_In,
+        out: *mut GetCommandAuditDigest_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct GetRandom_In {
+    pub bytesRequested: UINT16,
+}
+#[test]
+fn bindgen_test_layout_GetRandom_In() {
+    assert_eq!(
+        ::std::mem::size_of::<GetRandom_In>(),
+        2usize,
+        concat!("Size of: ", stringify!(GetRandom_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<GetRandom_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(GetRandom_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<GetRandom_In>())).bytesRequested as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetRandom_In),
+            "::",
+            stringify!(bytesRequested)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct GetRandom_Out {
+    pub randomBytes: TPM2B_DIGEST,
+}
+#[test]
+fn bindgen_test_layout_GetRandom_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<GetRandom_Out>(),
+        50usize,
+        concat!("Size of: ", stringify!(GetRandom_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<GetRandom_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(GetRandom_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<GetRandom_Out>())).randomBytes as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(GetRandom_Out),
+            "::",
+            stringify!(randomBytes)
+        )
+    );
+}
+impl Default for GetRandom_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_GetRandom(in_: *mut GetRandom_In, out: *mut GetRandom_Out) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -42219,6 +43311,11 @@ fn bindgen_test_layout_GetSessionAuditDigest_In() {
         )
     );
 }
+impl Default for GetSessionAuditDigest_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GetSessionAuditDigest_Out {
@@ -42262,6 +43359,11 @@ fn bindgen_test_layout_GetSessionAuditDigest_Out() {
         )
     );
 }
+impl Default for GetSessionAuditDigest_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_GetSessionAuditDigest(
         in_: *mut GetSessionAuditDigest_In,
@@ -42270,121 +43372,50 @@ extern "C" {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct GetCommandAuditDigest_In {
-    pub privacyHandle: TPMI_RH_ENDORSEMENT,
-    pub signHandle: TPMI_DH_OBJECT,
-    pub qualifyingData: TPM2B_DATA,
-    pub inScheme: TPMT_SIG_SCHEME,
+pub struct GetTestResult_Out {
+    pub outData: TPM2B_MAX_BUFFER,
+    pub testResult: TPM_RC,
 }
 #[test]
-fn bindgen_test_layout_GetCommandAuditDigest_In() {
+fn bindgen_test_layout_GetTestResult_Out() {
     assert_eq!(
-        ::std::mem::size_of::<GetCommandAuditDigest_In>(),
-        68usize,
-        concat!("Size of: ", stringify!(GetCommandAuditDigest_In))
+        ::std::mem::size_of::<GetTestResult_Out>(),
+        1032usize,
+        concat!("Size of: ", stringify!(GetTestResult_Out))
     );
     assert_eq!(
-        ::std::mem::align_of::<GetCommandAuditDigest_In>(),
+        ::std::mem::align_of::<GetTestResult_Out>(),
         4usize,
-        concat!("Alignment of ", stringify!(GetCommandAuditDigest_In))
+        concat!("Alignment of ", stringify!(GetTestResult_Out))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).privacyHandle as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<GetTestResult_Out>())).outData as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(GetCommandAuditDigest_In),
+            stringify!(GetTestResult_Out),
             "::",
-            stringify!(privacyHandle)
+            stringify!(outData)
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).signHandle as *const _ as usize
-        },
-        4usize,
+        unsafe { &(*(::std::ptr::null::<GetTestResult_Out>())).testResult as *const _ as usize },
+        1028usize,
         concat!(
             "Offset of field: ",
-            stringify!(GetCommandAuditDigest_In),
+            stringify!(GetTestResult_Out),
             "::",
-            stringify!(signHandle)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).qualifyingData as *const _ as usize
-        },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCommandAuditDigest_In),
-            "::",
-            stringify!(qualifyingData)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCommandAuditDigest_In>())).inScheme as *const _ as usize
-        },
-        60usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCommandAuditDigest_In),
-            "::",
-            stringify!(inScheme)
+            stringify!(testResult)
         )
     );
 }
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GetCommandAuditDigest_Out {
-    pub auditInfo: TPM2B_ATTEST,
-    pub signature: TPMT_SIGNATURE,
-}
-#[test]
-fn bindgen_test_layout_GetCommandAuditDigest_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<GetCommandAuditDigest_Out>(),
-        1496usize,
-        concat!("Size of: ", stringify!(GetCommandAuditDigest_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<GetCommandAuditDigest_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(GetCommandAuditDigest_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCommandAuditDigest_Out>())).auditInfo as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCommandAuditDigest_Out),
-            "::",
-            stringify!(auditInfo)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCommandAuditDigest_Out>())).signature as *const _ as usize
-        },
-        1234usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCommandAuditDigest_Out),
-            "::",
-            stringify!(signature)
-        )
-    );
+impl Default for GetTestResult_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
-    pub fn TPM2_GetCommandAuditDigest(
-        in_: *mut GetCommandAuditDigest_In,
-        out: *mut GetCommandAuditDigest_Out,
-    ) -> TPM_RC;
+    pub fn TPM2_GetTestResult(out: *mut GetTestResult_Out) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -42447,6 +43478,11 @@ fn bindgen_test_layout_GetTime_In() {
         )
     );
 }
+impl Default for GetTime_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct GetTime_Out {
@@ -42486,622 +43522,2034 @@ fn bindgen_test_layout_GetTime_Out() {
         )
     );
 }
+impl Default for GetTime_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_GetTime(in_: *mut GetTime_In, out: *mut GetTime_Out) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct CertifyX509_In {
-    pub objectHandle: TPMI_DH_OBJECT,
-    pub signHandle: TPMI_DH_OBJECT,
-    pub reserved: TPM2B_DATA,
-    pub inScheme: TPMT_SIG_SCHEME,
-    pub partialCertificate: TPM2B_MAX_BUFFER,
+pub struct HashSequenceStart_In {
+    pub auth: TPM2B_AUTH,
+    pub hashAlg: TPMI_ALG_HASH,
 }
 #[test]
-fn bindgen_test_layout_CertifyX509_In() {
+fn bindgen_test_layout_HashSequenceStart_In() {
     assert_eq!(
-        ::std::mem::size_of::<CertifyX509_In>(),
-        1092usize,
-        concat!("Size of: ", stringify!(CertifyX509_In))
+        ::std::mem::size_of::<HashSequenceStart_In>(),
+        52usize,
+        concat!("Size of: ", stringify!(HashSequenceStart_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<CertifyX509_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(CertifyX509_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_In),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).signHandle as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_In),
-            "::",
-            stringify!(signHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).reserved as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_In),
-            "::",
-            stringify!(reserved)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CertifyX509_In>())).inScheme as *const _ as usize },
-        60usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<CertifyX509_In>())).partialCertificate as *const _ as usize
-        },
-        66usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_In),
-            "::",
-            stringify!(partialCertificate)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct CertifyX509_Out {
-    pub addedToCertificate: TPM2B_MAX_BUFFER,
-    pub tbsDigest: TPM2B_DIGEST,
-    pub signature: TPMT_SIGNATURE,
-}
-#[test]
-fn bindgen_test_layout_CertifyX509_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<CertifyX509_Out>(),
-        1338usize,
-        concat!("Size of: ", stringify!(CertifyX509_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<CertifyX509_Out>(),
+        ::std::mem::align_of::<HashSequenceStart_In>(),
         2usize,
-        concat!("Alignment of ", stringify!(CertifyX509_Out))
+        concat!("Alignment of ", stringify!(HashSequenceStart_In))
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<CertifyX509_Out>())).addedToCertificate as *const _ as usize
-        },
+        unsafe { &(*(::std::ptr::null::<HashSequenceStart_In>())).auth as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(CertifyX509_Out),
-            "::",
-            stringify!(addedToCertificate)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CertifyX509_Out>())).tbsDigest as *const _ as usize },
-        1026usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_Out),
-            "::",
-            stringify!(tbsDigest)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CertifyX509_Out>())).signature as *const _ as usize },
-        1076usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CertifyX509_Out),
-            "::",
-            stringify!(signature)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_CertifyX509(in_: *mut CertifyX509_In, out: *mut CertifyX509_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Commit_In {
-    pub signHandle: TPMI_DH_OBJECT,
-    pub P1: TPM2B_ECC_POINT,
-    pub s2: TPM2B_SENSITIVE_DATA,
-    pub y2: TPM2B_ECC_PARAMETER,
-}
-#[test]
-fn bindgen_test_layout_Commit_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Commit_In>(),
-        288usize,
-        concat!("Size of: ", stringify!(Commit_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Commit_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Commit_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_In>())).signHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_In),
-            "::",
-            stringify!(signHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_In>())).P1 as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_In),
-            "::",
-            stringify!(P1)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_In>())).s2 as *const _ as usize },
-        106usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_In),
-            "::",
-            stringify!(s2)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_In>())).y2 as *const _ as usize },
-        236usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_In),
-            "::",
-            stringify!(y2)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Commit_Out {
-    pub K: TPM2B_ECC_POINT,
-    pub L: TPM2B_ECC_POINT,
-    pub E: TPM2B_ECC_POINT,
-    pub counter: UINT16,
-}
-#[test]
-fn bindgen_test_layout_Commit_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Commit_Out>(),
-        308usize,
-        concat!("Size of: ", stringify!(Commit_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Commit_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Commit_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_Out>())).K as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_Out),
-            "::",
-            stringify!(K)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_Out>())).L as *const _ as usize },
-        102usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_Out),
-            "::",
-            stringify!(L)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_Out>())).E as *const _ as usize },
-        204usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_Out),
-            "::",
-            stringify!(E)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Commit_Out>())).counter as *const _ as usize },
-        306usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Commit_Out),
-            "::",
-            stringify!(counter)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Commit(in_: *mut Commit_In, out: *mut Commit_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct EC_Ephemeral_In {
-    pub curveID: TPMI_ECC_CURVE,
-}
-#[test]
-fn bindgen_test_layout_EC_Ephemeral_In() {
-    assert_eq!(
-        ::std::mem::size_of::<EC_Ephemeral_In>(),
-        2usize,
-        concat!("Size of: ", stringify!(EC_Ephemeral_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EC_Ephemeral_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(EC_Ephemeral_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EC_Ephemeral_In>())).curveID as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EC_Ephemeral_In),
-            "::",
-            stringify!(curveID)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct EC_Ephemeral_Out {
-    pub Q: TPM2B_ECC_POINT,
-    pub counter: UINT16,
-}
-#[test]
-fn bindgen_test_layout_EC_Ephemeral_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<EC_Ephemeral_Out>(),
-        104usize,
-        concat!("Size of: ", stringify!(EC_Ephemeral_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EC_Ephemeral_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(EC_Ephemeral_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EC_Ephemeral_Out>())).Q as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EC_Ephemeral_Out),
-            "::",
-            stringify!(Q)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EC_Ephemeral_Out>())).counter as *const _ as usize },
-        102usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EC_Ephemeral_Out),
-            "::",
-            stringify!(counter)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_EC_Ephemeral(in_: *mut EC_Ephemeral_In, out: *mut EC_Ephemeral_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct VerifySignature_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub digest: TPM2B_DIGEST,
-    pub signature: TPMT_SIGNATURE,
-}
-#[test]
-fn bindgen_test_layout_VerifySignature_In() {
-    assert_eq!(
-        ::std::mem::size_of::<VerifySignature_In>(),
-        316usize,
-        concat!("Size of: ", stringify!(VerifySignature_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<VerifySignature_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(VerifySignature_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<VerifySignature_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(VerifySignature_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<VerifySignature_In>())).digest as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(VerifySignature_In),
-            "::",
-            stringify!(digest)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<VerifySignature_In>())).signature as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(VerifySignature_In),
-            "::",
-            stringify!(signature)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct VerifySignature_Out {
-    pub validation: TPMT_TK_VERIFIED,
-}
-#[test]
-fn bindgen_test_layout_VerifySignature_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<VerifySignature_Out>(),
-        60usize,
-        concat!("Size of: ", stringify!(VerifySignature_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<VerifySignature_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(VerifySignature_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<VerifySignature_Out>())).validation as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(VerifySignature_Out),
-            "::",
-            stringify!(validation)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_VerifySignature(
-        in_: *mut VerifySignature_In,
-        out: *mut VerifySignature_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Sign_In {
-    pub keyHandle: TPMI_DH_OBJECT,
-    pub digest: TPM2B_DIGEST,
-    pub inScheme: TPMT_SIG_SCHEME,
-    pub validation: TPMT_TK_HASHCHECK,
-}
-#[test]
-fn bindgen_test_layout_Sign_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Sign_In>(),
-        120usize,
-        concat!("Size of: ", stringify!(Sign_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Sign_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Sign_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Sign_In>())).keyHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Sign_In),
-            "::",
-            stringify!(keyHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Sign_In>())).digest as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Sign_In),
-            "::",
-            stringify!(digest)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Sign_In>())).inScheme as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Sign_In),
-            "::",
-            stringify!(inScheme)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Sign_In>())).validation as *const _ as usize },
-        60usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Sign_In),
-            "::",
-            stringify!(validation)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Sign_Out {
-    pub signature: TPMT_SIGNATURE,
-}
-#[test]
-fn bindgen_test_layout_Sign_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Sign_Out>(),
-        262usize,
-        concat!("Size of: ", stringify!(Sign_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Sign_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Sign_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Sign_Out>())).signature as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Sign_Out),
-            "::",
-            stringify!(signature)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Sign(in_: *mut Sign_In, out: *mut Sign_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct SetCommandCodeAuditStatus_In {
-    pub auth: TPMI_RH_PROVISION,
-    pub auditAlg: TPMI_ALG_HASH,
-    pub setList: TPML_CC,
-    pub clearList: TPML_CC,
-}
-#[test]
-fn bindgen_test_layout_SetCommandCodeAuditStatus_In() {
-    assert_eq!(
-        ::std::mem::size_of::<SetCommandCodeAuditStatus_In>(),
-        2048usize,
-        concat!("Size of: ", stringify!(SetCommandCodeAuditStatus_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SetCommandCodeAuditStatus_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SetCommandCodeAuditStatus_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).auth as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetCommandCodeAuditStatus_In),
+            stringify!(HashSequenceStart_In),
             "::",
             stringify!(auth)
         )
     );
     assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).auditAlg as *const _ as usize
-        },
-        4usize,
+        unsafe { &(*(::std::ptr::null::<HashSequenceStart_In>())).hashAlg as *const _ as usize },
+        50usize,
         concat!(
             "Offset of field: ",
-            stringify!(SetCommandCodeAuditStatus_In),
+            stringify!(HashSequenceStart_In),
             "::",
-            stringify!(auditAlg)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).setList as *const _ as usize
-        },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetCommandCodeAuditStatus_In),
-            "::",
-            stringify!(setList)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).clearList as *const _ as usize
-        },
-        1028usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetCommandCodeAuditStatus_In),
-            "::",
-            stringify!(clearList)
+            stringify!(hashAlg)
         )
     );
 }
-extern "C" {
-    pub fn TPM2_SetCommandCodeAuditStatus(in_: *mut SetCommandCodeAuditStatus_In) -> TPM_RC;
+impl Default for HashSequenceStart_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PCR_Extend_In {
-    pub pcrHandle: TPMI_DH_PCR,
-    pub digests: TPML_DIGEST_VALUES,
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct HashSequenceStart_Out {
+    pub sequenceHandle: TPMI_DH_OBJECT,
 }
 #[test]
-fn bindgen_test_layout_PCR_Extend_In() {
+fn bindgen_test_layout_HashSequenceStart_Out() {
     assert_eq!(
-        ::std::mem::size_of::<PCR_Extend_In>(),
-        160usize,
-        concat!("Size of: ", stringify!(PCR_Extend_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PCR_Extend_In>(),
+        ::std::mem::size_of::<HashSequenceStart_Out>(),
         4usize,
-        concat!("Alignment of ", stringify!(PCR_Extend_In))
+        concat!("Size of: ", stringify!(HashSequenceStart_Out))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Extend_In>())).pcrHandle as *const _ as usize },
+        ::std::mem::align_of::<HashSequenceStart_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(HashSequenceStart_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<HashSequenceStart_Out>())).sequenceHandle as *const _ as usize
+        },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PCR_Extend_In),
+            stringify!(HashSequenceStart_Out),
             "::",
-            stringify!(pcrHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Extend_In>())).digests as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Extend_In),
-            "::",
-            stringify!(digests)
+            stringify!(sequenceHandle)
         )
     );
 }
 extern "C" {
-    pub fn TPM2_PCR_Extend(in_: *mut PCR_Extend_In) -> TPM_RC;
+    pub fn TPM2_HashSequenceStart(
+        in_: *mut HashSequenceStart_In,
+        out: *mut HashSequenceStart_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Hash_In {
+    pub data: TPM2B_MAX_BUFFER,
+    pub hashAlg: TPMI_ALG_HASH,
+    pub hierarchy: TPMI_RH_HIERARCHY,
+}
+#[test]
+fn bindgen_test_layout_Hash_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Hash_In>(),
+        1032usize,
+        concat!("Size of: ", stringify!(Hash_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Hash_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Hash_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hash_In>())).data as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hash_In),
+            "::",
+            stringify!(data)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hash_In>())).hashAlg as *const _ as usize },
+        1026usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hash_In),
+            "::",
+            stringify!(hashAlg)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hash_In>())).hierarchy as *const _ as usize },
+        1028usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hash_In),
+            "::",
+            stringify!(hierarchy)
+        )
+    );
+}
+impl Default for Hash_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Hash_Out {
+    pub outHash: TPM2B_DIGEST,
+    pub validation: TPMT_TK_HASHCHECK,
+}
+#[test]
+fn bindgen_test_layout_Hash_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Hash_Out>(),
+        112usize,
+        concat!("Size of: ", stringify!(Hash_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Hash_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Hash_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hash_Out>())).outHash as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hash_Out),
+            "::",
+            stringify!(outHash)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Hash_Out>())).validation as *const _ as usize },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Hash_Out),
+            "::",
+            stringify!(validation)
+        )
+    );
+}
+impl Default for Hash_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Hash(in_: *mut Hash_In, out: *mut Hash_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct HierarchyChangeAuth_In {
+    pub authHandle: TPMI_RH_HIERARCHY_AUTH,
+    pub newAuth: TPM2B_AUTH,
+}
+#[test]
+fn bindgen_test_layout_HierarchyChangeAuth_In() {
+    assert_eq!(
+        ::std::mem::size_of::<HierarchyChangeAuth_In>(),
+        56usize,
+        concat!("Size of: ", stringify!(HierarchyChangeAuth_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<HierarchyChangeAuth_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(HierarchyChangeAuth_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<HierarchyChangeAuth_In>())).authHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HierarchyChangeAuth_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HierarchyChangeAuth_In>())).newAuth as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HierarchyChangeAuth_In),
+            "::",
+            stringify!(newAuth)
+        )
+    );
+}
+impl Default for HierarchyChangeAuth_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_HierarchyChangeAuth(in_: *mut HierarchyChangeAuth_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct HierarchyControl_In {
+    pub authHandle: TPMI_RH_HIERARCHY,
+    pub enable: TPMI_RH_ENABLES,
+    pub state: TPMI_YES_NO,
+}
+#[test]
+fn bindgen_test_layout_HierarchyControl_In() {
+    assert_eq!(
+        ::std::mem::size_of::<HierarchyControl_In>(),
+        12usize,
+        concat!("Size of: ", stringify!(HierarchyControl_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<HierarchyControl_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(HierarchyControl_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HierarchyControl_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HierarchyControl_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HierarchyControl_In>())).enable as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HierarchyControl_In),
+            "::",
+            stringify!(enable)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<HierarchyControl_In>())).state as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(HierarchyControl_In),
+            "::",
+            stringify!(state)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_HierarchyControl(in_: *mut HierarchyControl_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Import_In {
+    pub parentHandle: TPMI_DH_OBJECT,
+    pub encryptionKey: TPM2B_DATA,
+    pub objectPublic: TPM2B_PUBLIC,
+    pub duplicate: TPM2B_PRIVATE,
+    pub inSymSeed: TPM2B_ENCRYPTED_SECRET,
+    pub symmetricAlg: TPMT_SYM_DEF_OBJECT,
+}
+#[test]
+fn bindgen_test_layout_Import_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Import_In>(),
+        1512usize,
+        concat!("Size of: ", stringify!(Import_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Import_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Import_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_In>())).parentHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_In),
+            "::",
+            stringify!(parentHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_In>())).encryptionKey as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_In),
+            "::",
+            stringify!(encryptionKey)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_In>())).objectPublic as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_In),
+            "::",
+            stringify!(objectPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_In>())).duplicate as *const _ as usize },
+        400usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_In),
+            "::",
+            stringify!(duplicate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_In>())).inSymSeed as *const _ as usize },
+        1248usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_In),
+            "::",
+            stringify!(inSymSeed)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_In>())).symmetricAlg as *const _ as usize },
+        1506usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_In),
+            "::",
+            stringify!(symmetricAlg)
+        )
+    );
+}
+impl Default for Import_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Import_Out {
+    pub outPrivate: TPM2B_PRIVATE,
+}
+#[test]
+fn bindgen_test_layout_Import_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Import_Out>(),
+        848usize,
+        concat!("Size of: ", stringify!(Import_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Import_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Import_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Import_Out>())).outPrivate as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Import_Out),
+            "::",
+            stringify!(outPrivate)
+        )
+    );
+}
+impl Default for Import_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Import(in_: *mut Import_In, out: *mut Import_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct IncrementalSelfTest_In {
+    pub toTest: TPML_ALG,
+}
+#[test]
+fn bindgen_test_layout_IncrementalSelfTest_In() {
+    assert_eq!(
+        ::std::mem::size_of::<IncrementalSelfTest_In>(),
+        132usize,
+        concat!("Size of: ", stringify!(IncrementalSelfTest_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<IncrementalSelfTest_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(IncrementalSelfTest_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<IncrementalSelfTest_In>())).toTest as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(IncrementalSelfTest_In),
+            "::",
+            stringify!(toTest)
+        )
+    );
+}
+impl Default for IncrementalSelfTest_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct IncrementalSelfTest_Out {
+    pub toDoList: TPML_ALG,
+}
+#[test]
+fn bindgen_test_layout_IncrementalSelfTest_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<IncrementalSelfTest_Out>(),
+        132usize,
+        concat!("Size of: ", stringify!(IncrementalSelfTest_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<IncrementalSelfTest_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(IncrementalSelfTest_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<IncrementalSelfTest_Out>())).toDoList as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(IncrementalSelfTest_Out),
+            "::",
+            stringify!(toDoList)
+        )
+    );
+}
+impl Default for IncrementalSelfTest_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_IncrementalSelfTest(
+        in_: *mut IncrementalSelfTest_In,
+        out: *mut IncrementalSelfTest_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct LoadExternal_In {
+    pub inPrivate: TPM2B_SENSITIVE,
+    pub inPublic: TPM2B_PUBLIC,
+    pub hierarchy: TPMI_RH_HIERARCHY,
+}
+#[test]
+fn bindgen_test_layout_LoadExternal_In() {
+    assert_eq!(
+        ::std::mem::size_of::<LoadExternal_In>(),
+        1096usize,
+        concat!("Size of: ", stringify!(LoadExternal_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<LoadExternal_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(LoadExternal_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<LoadExternal_In>())).inPrivate as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(LoadExternal_In),
+            "::",
+            stringify!(inPrivate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<LoadExternal_In>())).inPublic as *const _ as usize },
+        748usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(LoadExternal_In),
+            "::",
+            stringify!(inPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<LoadExternal_In>())).hierarchy as *const _ as usize },
+        1092usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(LoadExternal_In),
+            "::",
+            stringify!(hierarchy)
+        )
+    );
+}
+impl Default for LoadExternal_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct LoadExternal_Out {
+    pub objectHandle: TPM_HANDLE,
+    pub name: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_LoadExternal_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<LoadExternal_Out>(),
+        60usize,
+        concat!("Size of: ", stringify!(LoadExternal_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<LoadExternal_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(LoadExternal_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<LoadExternal_Out>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(LoadExternal_Out),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<LoadExternal_Out>())).name as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(LoadExternal_Out),
+            "::",
+            stringify!(name)
+        )
+    );
+}
+impl Default for LoadExternal_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_LoadExternal(in_: *mut LoadExternal_In, out: *mut LoadExternal_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Load_In {
+    pub parentHandle: TPMI_DH_OBJECT,
+    pub inPrivate: TPM2B_PRIVATE,
+    pub inPublic: TPM2B_PUBLIC,
+}
+#[test]
+fn bindgen_test_layout_Load_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Load_In>(),
+        1196usize,
+        concat!("Size of: ", stringify!(Load_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Load_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Load_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Load_In>())).parentHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Load_In),
+            "::",
+            stringify!(parentHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Load_In>())).inPrivate as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Load_In),
+            "::",
+            stringify!(inPrivate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Load_In>())).inPublic as *const _ as usize },
+        852usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Load_In),
+            "::",
+            stringify!(inPublic)
+        )
+    );
+}
+impl Default for Load_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Load_Out {
+    pub objectHandle: TPM_HANDLE,
+    pub name: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_Load_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Load_Out>(),
+        60usize,
+        concat!("Size of: ", stringify!(Load_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Load_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Load_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Load_Out>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Load_Out),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Load_Out>())).name as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Load_Out),
+            "::",
+            stringify!(name)
+        )
+    );
+}
+impl Default for Load_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Load(in_: *mut Load_In, out: *mut Load_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct MAC_Start_In {
+    pub handle: TPMI_DH_OBJECT,
+    pub auth: TPM2B_AUTH,
+    pub inScheme: TPMI_ALG_MAC_SCHEME,
+}
+#[test]
+fn bindgen_test_layout_MAC_Start_In() {
+    assert_eq!(
+        ::std::mem::size_of::<MAC_Start_In>(),
+        56usize,
+        concat!("Size of: ", stringify!(MAC_Start_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MAC_Start_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(MAC_Start_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_Start_In>())).handle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_Start_In),
+            "::",
+            stringify!(handle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_Start_In>())).auth as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_Start_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_Start_In>())).inScheme as *const _ as usize },
+        54usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_Start_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+}
+impl Default for MAC_Start_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct MAC_Start_Out {
+    pub sequenceHandle: TPMI_DH_OBJECT,
+}
+#[test]
+fn bindgen_test_layout_MAC_Start_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<MAC_Start_Out>(),
+        4usize,
+        concat!("Size of: ", stringify!(MAC_Start_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MAC_Start_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(MAC_Start_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_Start_Out>())).sequenceHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_Start_Out),
+            "::",
+            stringify!(sequenceHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_MAC_Start(in_: *mut MAC_Start_In, out: *mut MAC_Start_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct MAC_In {
+    pub handle: TPMI_DH_OBJECT,
+    pub buffer: TPM2B_MAX_BUFFER,
+    pub inScheme: TPMI_ALG_MAC_SCHEME,
+}
+#[test]
+fn bindgen_test_layout_MAC_In() {
+    assert_eq!(
+        ::std::mem::size_of::<MAC_In>(),
+        1032usize,
+        concat!("Size of: ", stringify!(MAC_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MAC_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(MAC_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_In>())).handle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_In),
+            "::",
+            stringify!(handle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_In>())).buffer as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_In),
+            "::",
+            stringify!(buffer)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_In>())).inScheme as *const _ as usize },
+        1030usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+}
+impl Default for MAC_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct MAC_Out {
+    pub outMAC: TPM2B_DIGEST,
+}
+#[test]
+fn bindgen_test_layout_MAC_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<MAC_Out>(),
+        50usize,
+        concat!("Size of: ", stringify!(MAC_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MAC_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(MAC_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MAC_Out>())).outMAC as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MAC_Out),
+            "::",
+            stringify!(outMAC)
+        )
+    );
+}
+impl Default for MAC_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_MAC(in_: *mut MAC_In, out: *mut MAC_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct MakeCredential_In {
+    pub handle: TPMI_DH_OBJECT,
+    pub credential: TPM2B_DIGEST,
+    pub objectName: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_MakeCredential_In() {
+    assert_eq!(
+        ::std::mem::size_of::<MakeCredential_In>(),
+        108usize,
+        concat!("Size of: ", stringify!(MakeCredential_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MakeCredential_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(MakeCredential_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MakeCredential_In>())).handle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MakeCredential_In),
+            "::",
+            stringify!(handle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MakeCredential_In>())).credential as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MakeCredential_In),
+            "::",
+            stringify!(credential)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MakeCredential_In>())).objectName as *const _ as usize },
+        54usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MakeCredential_In),
+            "::",
+            stringify!(objectName)
+        )
+    );
+}
+impl Default for MakeCredential_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct MakeCredential_Out {
+    pub credentialBlob: TPM2B_ID_OBJECT,
+    pub secret: TPM2B_ENCRYPTED_SECRET,
+}
+#[test]
+fn bindgen_test_layout_MakeCredential_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<MakeCredential_Out>(),
+        360usize,
+        concat!("Size of: ", stringify!(MakeCredential_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<MakeCredential_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(MakeCredential_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<MakeCredential_Out>())).credentialBlob as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MakeCredential_Out),
+            "::",
+            stringify!(credentialBlob)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<MakeCredential_Out>())).secret as *const _ as usize },
+        102usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(MakeCredential_Out),
+            "::",
+            stringify!(secret)
+        )
+    );
+}
+impl Default for MakeCredential_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_MakeCredential(in_: *mut MakeCredential_In, out: *mut MakeCredential_Out)
+        -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_Certify_In {
+    pub signHandle: TPMI_DH_OBJECT,
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub qualifyingData: TPM2B_DATA,
+    pub inScheme: TPMT_SIG_SCHEME,
+    pub size: UINT16,
+    pub offset: UINT16,
+}
+#[test]
+fn bindgen_test_layout_NV_Certify_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Certify_In>(),
+        76usize,
+        concat!("Size of: ", stringify!(NV_Certify_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Certify_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_Certify_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).signHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(signHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).authHandle as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).nvIndex as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).qualifyingData as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(qualifyingData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).inScheme as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).size as *const _ as usize },
+        70usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).offset as *const _ as usize },
+        72usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_In),
+            "::",
+            stringify!(offset)
+        )
+    );
+}
+impl Default for NV_Certify_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_Certify_Out {
+    pub certifyInfo: TPM2B_ATTEST,
+    pub signature: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_NV_Certify_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Certify_Out>(),
+        1496usize,
+        concat!("Size of: ", stringify!(NV_Certify_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Certify_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(NV_Certify_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_Out>())).certifyInfo as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_Out),
+            "::",
+            stringify!(certifyInfo)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Certify_Out>())).signature as *const _ as usize },
+        1234usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Certify_Out),
+            "::",
+            stringify!(signature)
+        )
+    );
+}
+impl Default for NV_Certify_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_Certify(in_: *mut NV_Certify_In, out: *mut NV_Certify_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_ChangeAuth_In {
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub newAuth: TPM2B_AUTH,
+}
+#[test]
+fn bindgen_test_layout_NV_ChangeAuth_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_ChangeAuth_In>(),
+        56usize,
+        concat!("Size of: ", stringify!(NV_ChangeAuth_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_ChangeAuth_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_ChangeAuth_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ChangeAuth_In>())).nvIndex as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ChangeAuth_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ChangeAuth_In>())).newAuth as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ChangeAuth_In),
+            "::",
+            stringify!(newAuth)
+        )
+    );
+}
+impl Default for NV_ChangeAuth_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_ChangeAuth(in_: *mut NV_ChangeAuth_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_DefineSpace_In {
+    pub authHandle: TPMI_RH_PROVISION,
+    pub auth: TPM2B_AUTH,
+    pub publicInfo: TPM2B_NV_PUBLIC,
+}
+#[test]
+fn bindgen_test_layout_NV_DefineSpace_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_DefineSpace_In>(),
+        124usize,
+        concat!("Size of: ", stringify!(NV_DefineSpace_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_DefineSpace_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_DefineSpace_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_DefineSpace_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_DefineSpace_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_DefineSpace_In>())).auth as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_DefineSpace_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_DefineSpace_In>())).publicInfo as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_DefineSpace_In),
+            "::",
+            stringify!(publicInfo)
+        )
+    );
+}
+impl Default for NV_DefineSpace_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_DefineSpace(in_: *mut NV_DefineSpace_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_Extend_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub data: TPM2B_MAX_NV_BUFFER,
+}
+#[test]
+fn bindgen_test_layout_NV_Extend_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Extend_In>(),
+        1036usize,
+        concat!("Size of: ", stringify!(NV_Extend_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Extend_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_Extend_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Extend_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Extend_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Extend_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Extend_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Extend_In>())).data as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Extend_In),
+            "::",
+            stringify!(data)
+        )
+    );
+}
+impl Default for NV_Extend_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_Extend(in_: *mut NV_Extend_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_GlobalWriteLock_In {
+    pub authHandle: TPMI_RH_PROVISION,
+}
+#[test]
+fn bindgen_test_layout_NV_GlobalWriteLock_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_GlobalWriteLock_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(NV_GlobalWriteLock_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_GlobalWriteLock_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_GlobalWriteLock_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<NV_GlobalWriteLock_In>())).authHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_GlobalWriteLock_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_GlobalWriteLock(in_: *mut NV_GlobalWriteLock_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_Increment_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+}
+#[test]
+fn bindgen_test_layout_NV_Increment_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Increment_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(NV_Increment_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Increment_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_Increment_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Increment_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Increment_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Increment_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Increment_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_Increment(in_: *mut NV_Increment_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_ReadLock_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+}
+#[test]
+fn bindgen_test_layout_NV_ReadLock_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_ReadLock_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(NV_ReadLock_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_ReadLock_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_ReadLock_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ReadLock_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ReadLock_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ReadLock_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ReadLock_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_ReadLock(in_: *mut NV_ReadLock_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_ReadPublic_In {
+    pub nvIndex: TPMI_RH_NV_INDEX,
+}
+#[test]
+fn bindgen_test_layout_NV_ReadPublic_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_ReadPublic_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(NV_ReadPublic_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_ReadPublic_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_ReadPublic_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ReadPublic_In>())).nvIndex as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ReadPublic_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_ReadPublic_Out {
+    pub nvPublic: TPM2B_NV_PUBLIC,
+    pub nvName: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_NV_ReadPublic_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_ReadPublic_Out>(),
+        124usize,
+        concat!("Size of: ", stringify!(NV_ReadPublic_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_ReadPublic_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_ReadPublic_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ReadPublic_Out>())).nvPublic as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ReadPublic_Out),
+            "::",
+            stringify!(nvPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_ReadPublic_Out>())).nvName as *const _ as usize },
+        68usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_ReadPublic_Out),
+            "::",
+            stringify!(nvName)
+        )
+    );
+}
+impl Default for NV_ReadPublic_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_ReadPublic(in_: *mut NV_ReadPublic_In, out: *mut NV_ReadPublic_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_Read_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub size: UINT16,
+    pub offset: UINT16,
+}
+#[test]
+fn bindgen_test_layout_NV_Read_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Read_In>(),
+        12usize,
+        concat!("Size of: ", stringify!(NV_Read_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Read_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_Read_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Read_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Read_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).size as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Read_In),
+            "::",
+            stringify!(size)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).offset as *const _ as usize },
+        10usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Read_In),
+            "::",
+            stringify!(offset)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_Read_Out {
+    pub data: TPM2B_MAX_NV_BUFFER,
+}
+#[test]
+fn bindgen_test_layout_NV_Read_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Read_Out>(),
+        1026usize,
+        concat!("Size of: ", stringify!(NV_Read_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Read_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(NV_Read_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Read_Out>())).data as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Read_Out),
+            "::",
+            stringify!(data)
+        )
+    );
+}
+impl Default for NV_Read_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_Read(in_: *mut NV_Read_In, out: *mut NV_Read_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_SetBits_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub bits: UINT64,
+}
+#[test]
+fn bindgen_test_layout_NV_SetBits_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_SetBits_In>(),
+        16usize,
+        concat!("Size of: ", stringify!(NV_SetBits_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_SetBits_In>(),
+        8usize,
+        concat!("Alignment of ", stringify!(NV_SetBits_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_SetBits_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_SetBits_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_SetBits_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_SetBits_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_SetBits_In>())).bits as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_SetBits_In),
+            "::",
+            stringify!(bits)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_SetBits(in_: *mut NV_SetBits_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_UndefineSpaceSpecial_In {
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub platform: TPMI_RH_PLATFORM,
+}
+#[test]
+fn bindgen_test_layout_NV_UndefineSpaceSpecial_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_UndefineSpaceSpecial_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(NV_UndefineSpaceSpecial_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_UndefineSpaceSpecial_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_UndefineSpaceSpecial_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<NV_UndefineSpaceSpecial_In>())).nvIndex as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_UndefineSpaceSpecial_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<NV_UndefineSpaceSpecial_In>())).platform as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_UndefineSpaceSpecial_In),
+            "::",
+            stringify!(platform)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_UndefineSpaceSpecial(in_: *mut NV_UndefineSpaceSpecial_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_UndefineSpace_In {
+    pub authHandle: TPMI_RH_PROVISION,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+}
+#[test]
+fn bindgen_test_layout_NV_UndefineSpace_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_UndefineSpace_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(NV_UndefineSpace_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_UndefineSpace_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_UndefineSpace_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_UndefineSpace_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_UndefineSpace_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_UndefineSpace_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_UndefineSpace_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_UndefineSpace(in_: *mut NV_UndefineSpace_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct NV_WriteLock_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+}
+#[test]
+fn bindgen_test_layout_NV_WriteLock_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_WriteLock_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(NV_WriteLock_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_WriteLock_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_WriteLock_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_WriteLock_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_WriteLock_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_WriteLock_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_WriteLock_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_NV_WriteLock(in_: *mut NV_WriteLock_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct NV_Write_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
+    pub data: TPM2B_MAX_NV_BUFFER,
+    pub offset: UINT16,
+}
+#[test]
+fn bindgen_test_layout_NV_Write_In() {
+    assert_eq!(
+        ::std::mem::size_of::<NV_Write_In>(),
+        1036usize,
+        concat!("Size of: ", stringify!(NV_Write_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<NV_Write_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(NV_Write_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Write_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).nvIndex as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Write_In),
+            "::",
+            stringify!(nvIndex)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).data as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Write_In),
+            "::",
+            stringify!(data)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).offset as *const _ as usize },
+        1034usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(NV_Write_In),
+            "::",
+            stringify!(offset)
+        )
+    );
+}
+impl Default for NV_Write_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_NV_Write(in_: *mut NV_Write_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ObjectChangeAuth_In {
+    pub objectHandle: TPMI_DH_OBJECT,
+    pub parentHandle: TPMI_DH_OBJECT,
+    pub newAuth: TPM2B_AUTH,
+}
+#[test]
+fn bindgen_test_layout_ObjectChangeAuth_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ObjectChangeAuth_In>(),
+        60usize,
+        concat!("Size of: ", stringify!(ObjectChangeAuth_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ObjectChangeAuth_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ObjectChangeAuth_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<ObjectChangeAuth_In>())).objectHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ObjectChangeAuth_In),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<ObjectChangeAuth_In>())).parentHandle as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ObjectChangeAuth_In),
+            "::",
+            stringify!(parentHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ObjectChangeAuth_In>())).newAuth as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ObjectChangeAuth_In),
+            "::",
+            stringify!(newAuth)
+        )
+    );
+}
+impl Default for ObjectChangeAuth_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ObjectChangeAuth_Out {
+    pub outPrivate: TPM2B_PRIVATE,
+}
+#[test]
+fn bindgen_test_layout_ObjectChangeAuth_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ObjectChangeAuth_Out>(),
+        848usize,
+        concat!("Size of: ", stringify!(ObjectChangeAuth_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ObjectChangeAuth_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ObjectChangeAuth_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ObjectChangeAuth_Out>())).outPrivate as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ObjectChangeAuth_Out),
+            "::",
+            stringify!(outPrivate)
+        )
+    );
+}
+impl Default for ObjectChangeAuth_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ObjectChangeAuth(
+        in_: *mut ObjectChangeAuth_In,
+        out: *mut ObjectChangeAuth_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PCR_Allocate_In {
+    pub authHandle: TPMI_RH_PLATFORM,
+    pub pcrAllocation: TPML_PCR_SELECTION,
+}
+#[test]
+fn bindgen_test_layout_PCR_Allocate_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PCR_Allocate_In>(),
+        28usize,
+        concat!("Size of: ", stringify!(PCR_Allocate_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PCR_Allocate_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PCR_Allocate_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Allocate_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Allocate_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Allocate_In>())).pcrAllocation as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Allocate_In),
+            "::",
+            stringify!(pcrAllocation)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PCR_Allocate_Out {
+    pub allocationSuccess: TPMI_YES_NO,
+    pub maxPCR: UINT32,
+    pub sizeNeeded: UINT32,
+    pub sizeAvailable: UINT32,
+}
+#[test]
+fn bindgen_test_layout_PCR_Allocate_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<PCR_Allocate_Out>(),
+        16usize,
+        concat!("Size of: ", stringify!(PCR_Allocate_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PCR_Allocate_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PCR_Allocate_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PCR_Allocate_Out>())).allocationSuccess as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Allocate_Out),
+            "::",
+            stringify!(allocationSuccess)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Allocate_Out>())).maxPCR as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Allocate_Out),
+            "::",
+            stringify!(maxPCR)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Allocate_Out>())).sizeNeeded as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Allocate_Out),
+            "::",
+            stringify!(sizeNeeded)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Allocate_Out>())).sizeAvailable as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Allocate_Out),
+            "::",
+            stringify!(sizeAvailable)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_PCR_Allocate(in_: *mut PCR_Allocate_In, out: *mut PCR_Allocate_Out) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -43142,6 +45590,11 @@ fn bindgen_test_layout_PCR_Event_In() {
         )
     );
 }
+impl Default for PCR_Event_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub struct PCR_Event_Out {
@@ -43170,11 +45623,63 @@ fn bindgen_test_layout_PCR_Event_Out() {
         )
     );
 }
+impl Default for PCR_Event_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PCR_Event(in_: *mut PCR_Event_In, out: *mut PCR_Event_Out) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Copy, Clone)]
+pub struct PCR_Extend_In {
+    pub pcrHandle: TPMI_DH_PCR,
+    pub digests: TPML_DIGEST_VALUES,
+}
+#[test]
+fn bindgen_test_layout_PCR_Extend_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PCR_Extend_In>(),
+        160usize,
+        concat!("Size of: ", stringify!(PCR_Extend_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PCR_Extend_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PCR_Extend_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Extend_In>())).pcrHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Extend_In),
+            "::",
+            stringify!(pcrHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Extend_In>())).digests as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PCR_Extend_In),
+            "::",
+            stringify!(digests)
+        )
+    );
+}
+impl Default for PCR_Extend_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PCR_Extend(in_: *mut PCR_Extend_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct PCR_Read_In {
     pub pcrSelectionIn: TPML_PCR_SELECTION,
 }
@@ -43251,113 +45756,44 @@ fn bindgen_test_layout_PCR_Read_Out() {
         )
     );
 }
+impl Default for PCR_Read_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PCR_Read(in_: *mut PCR_Read_In, out: *mut PCR_Read_Out) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PCR_Allocate_In {
-    pub authHandle: TPMI_RH_PLATFORM,
-    pub pcrAllocation: TPML_PCR_SELECTION,
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PCR_Reset_In {
+    pub pcrHandle: TPMI_DH_PCR,
 }
 #[test]
-fn bindgen_test_layout_PCR_Allocate_In() {
+fn bindgen_test_layout_PCR_Reset_In() {
     assert_eq!(
-        ::std::mem::size_of::<PCR_Allocate_In>(),
-        28usize,
-        concat!("Size of: ", stringify!(PCR_Allocate_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PCR_Allocate_In>(),
+        ::std::mem::size_of::<PCR_Reset_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PCR_Allocate_In))
+        concat!("Size of: ", stringify!(PCR_Reset_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Allocate_In>())).authHandle as *const _ as usize },
+        ::std::mem::align_of::<PCR_Reset_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PCR_Reset_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PCR_Reset_In>())).pcrHandle as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PCR_Allocate_In),
+            stringify!(PCR_Reset_In),
             "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Allocate_In>())).pcrAllocation as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Allocate_In),
-            "::",
-            stringify!(pcrAllocation)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PCR_Allocate_Out {
-    pub allocationSuccess: TPMI_YES_NO,
-    pub maxPCR: UINT32,
-    pub sizeNeeded: UINT32,
-    pub sizeAvailable: UINT32,
-}
-#[test]
-fn bindgen_test_layout_PCR_Allocate_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<PCR_Allocate_Out>(),
-        16usize,
-        concat!("Size of: ", stringify!(PCR_Allocate_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PCR_Allocate_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PCR_Allocate_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PCR_Allocate_Out>())).allocationSuccess as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Allocate_Out),
-            "::",
-            stringify!(allocationSuccess)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Allocate_Out>())).maxPCR as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Allocate_Out),
-            "::",
-            stringify!(maxPCR)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Allocate_Out>())).sizeNeeded as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Allocate_Out),
-            "::",
-            stringify!(sizeNeeded)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Allocate_Out>())).sizeAvailable as *const _ as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Allocate_Out),
-            "::",
-            stringify!(sizeAvailable)
+            stringify!(pcrHandle)
         )
     );
 }
 extern "C" {
-    pub fn TPM2_PCR_Allocate(in_: *mut PCR_Allocate_In, out: *mut PCR_Allocate_Out) -> TPM_RC;
+    pub fn TPM2_PCR_Reset(in_: *mut PCR_Reset_In) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -43420,6 +45856,11 @@ fn bindgen_test_layout_PCR_SetAuthPolicy_In() {
         )
     );
 }
+impl Default for PCR_SetAuthPolicy_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PCR_SetAuthPolicy(in_: *mut PCR_SetAuthPolicy_In) -> TPM_RC;
 }
@@ -43462,484 +45903,559 @@ fn bindgen_test_layout_PCR_SetAuthValue_In() {
         )
     );
 }
+impl Default for PCR_SetAuthValue_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PCR_SetAuthValue(in_: *mut PCR_SetAuthValue_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PCR_Reset_In {
-    pub pcrHandle: TPMI_DH_PCR,
-}
-#[test]
-fn bindgen_test_layout_PCR_Reset_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PCR_Reset_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(PCR_Reset_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PCR_Reset_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PCR_Reset_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PCR_Reset_In>())).pcrHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PCR_Reset_In),
-            "::",
-            stringify!(pcrHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PCR_Reset(in_: *mut PCR_Reset_In) -> TPM_RC;
-}
-#[repr(C)]
 #[derive(Copy, Clone)]
-pub struct PolicySigned_In {
-    pub authObject: TPMI_DH_OBJECT,
-    pub policySession: TPMI_SH_POLICY,
-    pub nonceTPM: TPM2B_NONCE,
-    pub cpHashA: TPM2B_DIGEST,
-    pub policyRef: TPM2B_NONCE,
-    pub expiration: INT32,
-    pub auth: TPMT_SIGNATURE,
+pub struct PP_Commands_In {
+    pub auth: TPMI_RH_PLATFORM,
+    pub setList: TPML_CC,
+    pub clearList: TPML_CC,
 }
 #[test]
-fn bindgen_test_layout_PolicySigned_In() {
+fn bindgen_test_layout_PP_Commands_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicySigned_In>(),
-        428usize,
-        concat!("Size of: ", stringify!(PolicySigned_In))
+        ::std::mem::size_of::<PP_Commands_In>(),
+        2044usize,
+        concat!("Size of: ", stringify!(PP_Commands_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<PolicySigned_In>(),
+        ::std::mem::align_of::<PP_Commands_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicySigned_In))
+        concat!("Alignment of ", stringify!(PP_Commands_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).authObject as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PP_Commands_In>())).auth as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySigned_In),
-            "::",
-            stringify!(authObject)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).policySession as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySigned_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).nonceTPM as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySigned_In),
-            "::",
-            stringify!(nonceTPM)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).cpHashA as *const _ as usize },
-        58usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySigned_In),
-            "::",
-            stringify!(cpHashA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).policyRef as *const _ as usize },
-        108usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySigned_In),
-            "::",
-            stringify!(policyRef)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).expiration as *const _ as usize },
-        160usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySigned_In),
-            "::",
-            stringify!(expiration)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).auth as *const _ as usize },
-        164usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySigned_In),
+            stringify!(PP_Commands_In),
             "::",
             stringify!(auth)
         )
     );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicySigned_Out {
-    pub timeout: TPM2B_TIMEOUT,
-    pub policyTicket: TPMT_TK_AUTH,
-}
-#[test]
-fn bindgen_test_layout_PolicySigned_Out() {
     assert_eq!(
-        ::std::mem::size_of::<PolicySigned_Out>(),
-        72usize,
-        concat!("Size of: ", stringify!(PolicySigned_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicySigned_Out>(),
+        unsafe { &(*(::std::ptr::null::<PP_Commands_In>())).setList as *const _ as usize },
         4usize,
-        concat!("Alignment of ", stringify!(PolicySigned_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_Out>())).timeout as *const _ as usize },
-        0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySigned_Out),
+            stringify!(PP_Commands_In),
             "::",
-            stringify!(timeout)
+            stringify!(setList)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySigned_Out>())).policyTicket as *const _ as usize },
-        12usize,
+        unsafe { &(*(::std::ptr::null::<PP_Commands_In>())).clearList as *const _ as usize },
+        1024usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySigned_Out),
+            stringify!(PP_Commands_In),
             "::",
-            stringify!(policyTicket)
+            stringify!(clearList)
+        )
+    );
+}
+impl Default for PP_Commands_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PP_Commands(in_: *mut PP_Commands_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyAuthValue_In {
+    pub policySession: TPMI_SH_POLICY,
+}
+#[test]
+fn bindgen_test_layout_PolicyAuthValue_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyAuthValue_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(PolicyAuthValue_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyAuthValue_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyAuthValue_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyAuthValue_In>())).policySession as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyAuthValue_In),
+            "::",
+            stringify!(policySession)
         )
     );
 }
 extern "C" {
-    pub fn TPM2_PolicySigned(in_: *mut PolicySigned_In, out: *mut PolicySigned_Out) -> TPM_RC;
+    pub fn TPM2_PolicyAuthValue(in_: *mut PolicyAuthValue_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicySecret_In {
-    pub authHandle: TPMI_DH_ENTITY,
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyAuthorizeNV_In {
+    pub authHandle: TPMI_RH_NV_AUTH,
+    pub nvIndex: TPMI_RH_NV_INDEX,
     pub policySession: TPMI_SH_POLICY,
-    pub nonceTPM: TPM2B_NONCE,
-    pub cpHashA: TPM2B_DIGEST,
-    pub policyRef: TPM2B_NONCE,
-    pub expiration: INT32,
 }
 #[test]
-fn bindgen_test_layout_PolicySecret_In() {
+fn bindgen_test_layout_PolicyAuthorizeNV_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicySecret_In>(),
-        164usize,
-        concat!("Size of: ", stringify!(PolicySecret_In))
+        ::std::mem::size_of::<PolicyAuthorizeNV_In>(),
+        12usize,
+        concat!("Size of: ", stringify!(PolicyAuthorizeNV_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<PolicySecret_In>(),
+        ::std::mem::align_of::<PolicyAuthorizeNV_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicySecret_In))
+        concat!("Alignment of ", stringify!(PolicyAuthorizeNV_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).authHandle as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PolicyAuthorizeNV_In>())).authHandle as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySecret_In),
+            stringify!(PolicyAuthorizeNV_In),
             "::",
             stringify!(authHandle)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).policySession as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PolicyAuthorizeNV_In>())).nvIndex as *const _ as usize },
         4usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySecret_In),
+            stringify!(PolicyAuthorizeNV_In),
             "::",
-            stringify!(policySession)
+            stringify!(nvIndex)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).nonceTPM as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<PolicyAuthorizeNV_In>())).policySession as *const _ as usize
+        },
         8usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySecret_In),
+            stringify!(PolicyAuthorizeNV_In),
             "::",
-            stringify!(nonceTPM)
+            stringify!(policySession)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_PolicyAuthorizeNV(in_: *mut PolicyAuthorizeNV_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicyAuthorize_In {
+    pub policySession: TPMI_SH_POLICY,
+    pub approvedPolicy: TPM2B_DIGEST,
+    pub policyRef: TPM2B_NONCE,
+    pub keySign: TPM2B_NAME,
+    pub checkTicket: TPMT_TK_VERIFIED,
+}
+#[test]
+fn bindgen_test_layout_PolicyAuthorize_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyAuthorize_In>(),
+        220usize,
+        concat!("Size of: ", stringify!(PolicyAuthorize_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyAuthorize_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyAuthorize_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyAuthorize_In>())).policySession as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyAuthorize_In),
+            "::",
+            stringify!(policySession)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).cpHashA as *const _ as usize },
-        58usize,
+        unsafe {
+            &(*(::std::ptr::null::<PolicyAuthorize_In>())).approvedPolicy as *const _ as usize
+        },
+        4usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySecret_In),
+            stringify!(PolicyAuthorize_In),
             "::",
-            stringify!(cpHashA)
+            stringify!(approvedPolicy)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).policyRef as *const _ as usize },
-        108usize,
+        unsafe { &(*(::std::ptr::null::<PolicyAuthorize_In>())).policyRef as *const _ as usize },
+        54usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySecret_In),
+            stringify!(PolicyAuthorize_In),
             "::",
             stringify!(policyRef)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).expiration as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PolicyAuthorize_In>())).keySign as *const _ as usize },
+        104usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyAuthorize_In),
+            "::",
+            stringify!(keySign)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyAuthorize_In>())).checkTicket as *const _ as usize },
         160usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicySecret_In),
+            stringify!(PolicyAuthorize_In),
             "::",
-            stringify!(expiration)
+            stringify!(checkTicket)
         )
     );
 }
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicySecret_Out {
-    pub timeout: TPM2B_TIMEOUT,
-    pub policyTicket: TPMT_TK_AUTH,
-}
-#[test]
-fn bindgen_test_layout_PolicySecret_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicySecret_Out>(),
-        72usize,
-        concat!("Size of: ", stringify!(PolicySecret_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicySecret_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicySecret_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_Out>())).timeout as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySecret_Out),
-            "::",
-            stringify!(timeout)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicySecret_Out>())).policyTicket as *const _ as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicySecret_Out),
-            "::",
-            stringify!(policyTicket)
-        )
-    );
+impl Default for PolicyAuthorize_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
-    pub fn TPM2_PolicySecret(in_: *mut PolicySecret_In, out: *mut PolicySecret_Out) -> TPM_RC;
+    pub fn TPM2_PolicyAuthorize(in_: *mut PolicyAuthorize_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyTicket_In {
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyCommandCode_In {
     pub policySession: TPMI_SH_POLICY,
-    pub timeout: TPM2B_TIMEOUT,
-    pub cpHashA: TPM2B_DIGEST,
-    pub policyRef: TPM2B_NONCE,
-    pub authName: TPM2B_NAME,
-    pub ticket: TPMT_TK_AUTH,
+    pub code: TPM_CC,
 }
 #[test]
-fn bindgen_test_layout_PolicyTicket_In() {
+fn bindgen_test_layout_PolicyCommandCode_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicyTicket_In>(),
-        228usize,
-        concat!("Size of: ", stringify!(PolicyTicket_In))
+        ::std::mem::size_of::<PolicyCommandCode_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(PolicyCommandCode_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<PolicyTicket_In>(),
+        ::std::mem::align_of::<PolicyCommandCode_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicyTicket_In))
+        concat!("Alignment of ", stringify!(PolicyCommandCode_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).policySession as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<PolicyCommandCode_In>())).policySession as *const _ as usize
+        },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyTicket_In),
+            stringify!(PolicyCommandCode_In),
             "::",
             stringify!(policySession)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).timeout as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PolicyCommandCode_In>())).code as *const _ as usize },
         4usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyTicket_In),
+            stringify!(PolicyCommandCode_In),
             "::",
-            stringify!(timeout)
+            stringify!(code)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_PolicyCommandCode(in_: *mut PolicyCommandCode_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicyCounterTimer_In {
+    pub policySession: TPMI_SH_POLICY,
+    pub operandB: TPM2B_OPERAND,
+    pub offset: UINT16,
+    pub operation: TPM_EO,
+}
+#[test]
+fn bindgen_test_layout_PolicyCounterTimer_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyCounterTimer_In>(),
+        60usize,
+        concat!("Size of: ", stringify!(PolicyCounterTimer_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyCounterTimer_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyCounterTimer_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyCounterTimer_In>())).policySession as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyCounterTimer_In),
+            "::",
+            stringify!(policySession)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).cpHashA as *const _ as usize },
-        14usize,
+        unsafe { &(*(::std::ptr::null::<PolicyCounterTimer_In>())).operandB as *const _ as usize },
+        4usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyTicket_In),
+            stringify!(PolicyCounterTimer_In),
+            "::",
+            stringify!(operandB)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyCounterTimer_In>())).offset as *const _ as usize },
+        54usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyCounterTimer_In),
+            "::",
+            stringify!(offset)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyCounterTimer_In>())).operation as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyCounterTimer_In),
+            "::",
+            stringify!(operation)
+        )
+    );
+}
+impl Default for PolicyCounterTimer_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PolicyCounterTimer(in_: *mut PolicyCounterTimer_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicyCpHash_In {
+    pub policySession: TPMI_SH_POLICY,
+    pub cpHashA: TPM2B_DIGEST,
+}
+#[test]
+fn bindgen_test_layout_PolicyCpHash_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyCpHash_In>(),
+        56usize,
+        concat!("Size of: ", stringify!(PolicyCpHash_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyCpHash_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyCpHash_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyCpHash_In>())).policySession as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyCpHash_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyCpHash_In>())).cpHashA as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyCpHash_In),
             "::",
             stringify!(cpHashA)
         )
     );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).policyRef as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyTicket_In),
-            "::",
-            stringify!(policyRef)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).authName as *const _ as usize },
-        114usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyTicket_In),
-            "::",
-            stringify!(authName)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).ticket as *const _ as usize },
-        168usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyTicket_In),
-            "::",
-            stringify!(ticket)
-        )
-    );
+}
+impl Default for PolicyCpHash_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
-    pub fn TPM2_PolicyTicket(in_: *mut PolicyTicket_In) -> TPM_RC;
+    pub fn TPM2_PolicyCpHash(in_: *mut PolicyCpHash_In) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct PolicyOR_In {
+pub struct PolicyDuplicationSelect_In {
     pub policySession: TPMI_SH_POLICY,
-    pub pHashList: TPML_DIGEST,
+    pub objectName: TPM2B_NAME,
+    pub newParentName: TPM2B_NAME,
+    pub includeObject: TPMI_YES_NO,
 }
 #[test]
-fn bindgen_test_layout_PolicyOR_In() {
+fn bindgen_test_layout_PolicyDuplicationSelect_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicyOR_In>(),
-        408usize,
-        concat!("Size of: ", stringify!(PolicyOR_In))
+        ::std::mem::size_of::<PolicyDuplicationSelect_In>(),
+        116usize,
+        concat!("Size of: ", stringify!(PolicyDuplicationSelect_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<PolicyOR_In>(),
+        ::std::mem::align_of::<PolicyDuplicationSelect_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicyOR_In))
+        concat!("Alignment of ", stringify!(PolicyDuplicationSelect_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyOR_In>())).policySession as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).policySession as *const _
+                as usize
+        },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyOR_In),
+            stringify!(PolicyDuplicationSelect_In),
             "::",
             stringify!(policySession)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyOR_In>())).pHashList as *const _ as usize },
+        unsafe {
+            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).objectName as *const _ as usize
+        },
         4usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyOR_In),
+            stringify!(PolicyDuplicationSelect_In),
             "::",
-            stringify!(pHashList)
+            stringify!(objectName)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).newParentName as *const _
+                as usize
+        },
+        58usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyDuplicationSelect_In),
+            "::",
+            stringify!(newParentName)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).includeObject as *const _
+                as usize
+        },
+        112usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyDuplicationSelect_In),
+            "::",
+            stringify!(includeObject)
         )
     );
 }
+impl Default for PolicyDuplicationSelect_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
-    pub fn TPM2_PolicyOR(in_: *mut PolicyOR_In) -> TPM_RC;
+    pub fn TPM2_PolicyDuplicationSelect(in_: *mut PolicyDuplicationSelect_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyPCR_In {
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyGetDigest_In {
     pub policySession: TPMI_SH_POLICY,
-    pub pcrDigest: TPM2B_DIGEST,
-    pub pcrs: TPML_PCR_SELECTION,
 }
 #[test]
-fn bindgen_test_layout_PolicyPCR_In() {
+fn bindgen_test_layout_PolicyGetDigest_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicyPCR_In>(),
-        80usize,
-        concat!("Size of: ", stringify!(PolicyPCR_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyPCR_In>(),
+        ::std::mem::size_of::<PolicyGetDigest_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicyPCR_In))
+        concat!("Size of: ", stringify!(PolicyGetDigest_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyPCR_In>())).policySession as *const _ as usize },
+        ::std::mem::align_of::<PolicyGetDigest_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyGetDigest_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyGetDigest_In>())).policySession as *const _ as usize
+        },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyPCR_In),
+            stringify!(PolicyGetDigest_In),
             "::",
             stringify!(policySession)
         )
     );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyPCR_In>())).pcrDigest as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyPCR_In),
-            "::",
-            stringify!(pcrDigest)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyPCR_In>())).pcrs as *const _ as usize },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyPCR_In),
-            "::",
-            stringify!(pcrs)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyPCR(in_: *mut PolicyPCR_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Copy, Clone)]
+pub struct PolicyGetDigest_Out {
+    pub policyDigest: TPM2B_DIGEST,
+}
+#[test]
+fn bindgen_test_layout_PolicyGetDigest_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyGetDigest_Out>(),
+        50usize,
+        concat!("Size of: ", stringify!(PolicyGetDigest_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyGetDigest_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(PolicyGetDigest_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyGetDigest_Out>())).policyDigest as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyGetDigest_Out),
+            "::",
+            stringify!(policyDigest)
+        )
+    );
+}
+impl Default for PolicyGetDigest_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PolicyGetDigest(
+        in_: *mut PolicyGetDigest_In,
+        out: *mut PolicyGetDigest_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct PolicyLocality_In {
     pub policySession: TPMI_SH_POLICY,
     pub locality: TPMA_LOCALITY,
@@ -44063,193 +46579,13 @@ fn bindgen_test_layout_PolicyNV_In() {
         )
     );
 }
+impl Default for PolicyNV_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PolicyNV(in_: *mut PolicyNV_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyCounterTimer_In {
-    pub policySession: TPMI_SH_POLICY,
-    pub operandB: TPM2B_OPERAND,
-    pub offset: UINT16,
-    pub operation: TPM_EO,
-}
-#[test]
-fn bindgen_test_layout_PolicyCounterTimer_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyCounterTimer_In>(),
-        60usize,
-        concat!("Size of: ", stringify!(PolicyCounterTimer_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyCounterTimer_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyCounterTimer_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyCounterTimer_In>())).policySession as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCounterTimer_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyCounterTimer_In>())).operandB as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCounterTimer_In),
-            "::",
-            stringify!(operandB)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyCounterTimer_In>())).offset as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCounterTimer_In),
-            "::",
-            stringify!(offset)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyCounterTimer_In>())).operation as *const _ as usize },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCounterTimer_In),
-            "::",
-            stringify!(operation)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyCounterTimer(in_: *mut PolicyCounterTimer_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyCommandCode_In {
-    pub policySession: TPMI_SH_POLICY,
-    pub code: TPM_CC,
-}
-#[test]
-fn bindgen_test_layout_PolicyCommandCode_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyCommandCode_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(PolicyCommandCode_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyCommandCode_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyCommandCode_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyCommandCode_In>())).policySession as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCommandCode_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyCommandCode_In>())).code as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCommandCode_In),
-            "::",
-            stringify!(code)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyCommandCode(in_: *mut PolicyCommandCode_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyPhysicalPresence_In {
-    pub policySession: TPMI_SH_POLICY,
-}
-#[test]
-fn bindgen_test_layout_PolicyPhysicalPresence_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyPhysicalPresence_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(PolicyPhysicalPresence_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyPhysicalPresence_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyPhysicalPresence_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyPhysicalPresence_In>())).policySession as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyPhysicalPresence_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyPhysicalPresence(in_: *mut PolicyPhysicalPresence_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyCpHash_In {
-    pub policySession: TPMI_SH_POLICY,
-    pub cpHashA: TPM2B_DIGEST,
-}
-#[test]
-fn bindgen_test_layout_PolicyCpHash_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyCpHash_In>(),
-        56usize,
-        concat!("Size of: ", stringify!(PolicyCpHash_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyCpHash_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyCpHash_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyCpHash_In>())).policySession as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCpHash_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyCpHash_In>())).cpHashA as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyCpHash_In),
-            "::",
-            stringify!(cpHashA)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyCpHash(in_: *mut PolicyCpHash_In) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -44290,295 +46626,16 @@ fn bindgen_test_layout_PolicyNameHash_In() {
         )
     );
 }
+impl Default for PolicyNameHash_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PolicyNameHash(in_: *mut PolicyNameHash_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyDuplicationSelect_In {
-    pub policySession: TPMI_SH_POLICY,
-    pub objectName: TPM2B_NAME,
-    pub newParentName: TPM2B_NAME,
-    pub includeObject: TPMI_YES_NO,
-}
-#[test]
-fn bindgen_test_layout_PolicyDuplicationSelect_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyDuplicationSelect_In>(),
-        116usize,
-        concat!("Size of: ", stringify!(PolicyDuplicationSelect_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyDuplicationSelect_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyDuplicationSelect_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).policySession as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyDuplicationSelect_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).objectName as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyDuplicationSelect_In),
-            "::",
-            stringify!(objectName)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).newParentName as *const _
-                as usize
-        },
-        58usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyDuplicationSelect_In),
-            "::",
-            stringify!(newParentName)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyDuplicationSelect_In>())).includeObject as *const _
-                as usize
-        },
-        112usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyDuplicationSelect_In),
-            "::",
-            stringify!(includeObject)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyDuplicationSelect(in_: *mut PolicyDuplicationSelect_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyAuthorize_In {
-    pub policySession: TPMI_SH_POLICY,
-    pub approvedPolicy: TPM2B_DIGEST,
-    pub policyRef: TPM2B_NONCE,
-    pub keySign: TPM2B_NAME,
-    pub checkTicket: TPMT_TK_VERIFIED,
-}
-#[test]
-fn bindgen_test_layout_PolicyAuthorize_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyAuthorize_In>(),
-        220usize,
-        concat!("Size of: ", stringify!(PolicyAuthorize_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyAuthorize_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyAuthorize_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyAuthorize_In>())).policySession as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorize_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyAuthorize_In>())).approvedPolicy as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorize_In),
-            "::",
-            stringify!(approvedPolicy)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyAuthorize_In>())).policyRef as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorize_In),
-            "::",
-            stringify!(policyRef)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyAuthorize_In>())).keySign as *const _ as usize },
-        104usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorize_In),
-            "::",
-            stringify!(keySign)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyAuthorize_In>())).checkTicket as *const _ as usize },
-        160usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorize_In),
-            "::",
-            stringify!(checkTicket)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyAuthorize(in_: *mut PolicyAuthorize_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyAuthValue_In {
-    pub policySession: TPMI_SH_POLICY,
-}
-#[test]
-fn bindgen_test_layout_PolicyAuthValue_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyAuthValue_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(PolicyAuthValue_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyAuthValue_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyAuthValue_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyAuthValue_In>())).policySession as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthValue_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyAuthValue(in_: *mut PolicyAuthValue_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyPassword_In {
-    pub policySession: TPMI_SH_POLICY,
-}
-#[test]
-fn bindgen_test_layout_PolicyPassword_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyPassword_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(PolicyPassword_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyPassword_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyPassword_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyPassword_In>())).policySession as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyPassword_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyPassword(in_: *mut PolicyPassword_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyGetDigest_In {
-    pub policySession: TPMI_SH_POLICY,
-}
-#[test]
-fn bindgen_test_layout_PolicyGetDigest_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyGetDigest_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(PolicyGetDigest_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyGetDigest_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PolicyGetDigest_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyGetDigest_In>())).policySession as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyGetDigest_In),
-            "::",
-            stringify!(policySession)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PolicyGetDigest_Out {
-    pub policyDigest: TPM2B_DIGEST,
-}
-#[test]
-fn bindgen_test_layout_PolicyGetDigest_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<PolicyGetDigest_Out>(),
-        50usize,
-        concat!("Size of: ", stringify!(PolicyGetDigest_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PolicyGetDigest_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(PolicyGetDigest_Out))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyGetDigest_Out>())).policyDigest as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyGetDigest_Out),
-            "::",
-            stringify!(policyDigest)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PolicyGetDigest(
-        in_: *mut PolicyGetDigest_In,
-        out: *mut PolicyGetDigest_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct PolicyNvWritten_In {
     pub policySession: TPMI_SH_POLICY,
     pub writtenSet: TPMI_YES_NO,
@@ -44623,6 +46680,487 @@ extern "C" {
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
+pub struct PolicyOR_In {
+    pub policySession: TPMI_SH_POLICY,
+    pub pHashList: TPML_DIGEST,
+}
+#[test]
+fn bindgen_test_layout_PolicyOR_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyOR_In>(),
+        408usize,
+        concat!("Size of: ", stringify!(PolicyOR_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyOR_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyOR_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyOR_In>())).policySession as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyOR_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyOR_In>())).pHashList as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyOR_In),
+            "::",
+            stringify!(pHashList)
+        )
+    );
+}
+impl Default for PolicyOR_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PolicyOR(in_: *mut PolicyOR_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicyPCR_In {
+    pub policySession: TPMI_SH_POLICY,
+    pub pcrDigest: TPM2B_DIGEST,
+    pub pcrs: TPML_PCR_SELECTION,
+}
+#[test]
+fn bindgen_test_layout_PolicyPCR_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyPCR_In>(),
+        80usize,
+        concat!("Size of: ", stringify!(PolicyPCR_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyPCR_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyPCR_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyPCR_In>())).policySession as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyPCR_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyPCR_In>())).pcrDigest as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyPCR_In),
+            "::",
+            stringify!(pcrDigest)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyPCR_In>())).pcrs as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyPCR_In),
+            "::",
+            stringify!(pcrs)
+        )
+    );
+}
+impl Default for PolicyPCR_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PolicyPCR(in_: *mut PolicyPCR_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyPassword_In {
+    pub policySession: TPMI_SH_POLICY,
+}
+#[test]
+fn bindgen_test_layout_PolicyPassword_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyPassword_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(PolicyPassword_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyPassword_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyPassword_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyPassword_In>())).policySession as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyPassword_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_PolicyPassword(in_: *mut PolicyPassword_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyPhysicalPresence_In {
+    pub policySession: TPMI_SH_POLICY,
+}
+#[test]
+fn bindgen_test_layout_PolicyPhysicalPresence_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyPhysicalPresence_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(PolicyPhysicalPresence_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyPhysicalPresence_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyPhysicalPresence_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<PolicyPhysicalPresence_In>())).policySession as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyPhysicalPresence_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_PolicyPhysicalPresence(in_: *mut PolicyPhysicalPresence_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct PolicyRestart_In {
+    pub sessionHandle: TPMI_SH_POLICY,
+}
+#[test]
+fn bindgen_test_layout_PolicyRestart_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicyRestart_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(PolicyRestart_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicyRestart_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicyRestart_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicyRestart_In>())).sessionHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicyRestart_In),
+            "::",
+            stringify!(sessionHandle)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_PolicyRestart(in_: *mut PolicyRestart_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicySecret_In {
+    pub authHandle: TPMI_DH_ENTITY,
+    pub policySession: TPMI_SH_POLICY,
+    pub nonceTPM: TPM2B_NONCE,
+    pub cpHashA: TPM2B_DIGEST,
+    pub policyRef: TPM2B_NONCE,
+    pub expiration: INT32,
+}
+#[test]
+fn bindgen_test_layout_PolicySecret_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicySecret_In>(),
+        164usize,
+        concat!("Size of: ", stringify!(PolicySecret_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicySecret_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicySecret_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).policySession as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).nonceTPM as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_In),
+            "::",
+            stringify!(nonceTPM)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).cpHashA as *const _ as usize },
+        58usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_In),
+            "::",
+            stringify!(cpHashA)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).policyRef as *const _ as usize },
+        108usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_In),
+            "::",
+            stringify!(policyRef)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_In>())).expiration as *const _ as usize },
+        160usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_In),
+            "::",
+            stringify!(expiration)
+        )
+    );
+}
+impl Default for PolicySecret_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicySecret_Out {
+    pub timeout: TPM2B_TIMEOUT,
+    pub policyTicket: TPMT_TK_AUTH,
+}
+#[test]
+fn bindgen_test_layout_PolicySecret_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicySecret_Out>(),
+        72usize,
+        concat!("Size of: ", stringify!(PolicySecret_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicySecret_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicySecret_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_Out>())).timeout as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_Out),
+            "::",
+            stringify!(timeout)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySecret_Out>())).policyTicket as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySecret_Out),
+            "::",
+            stringify!(policyTicket)
+        )
+    );
+}
+impl Default for PolicySecret_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PolicySecret(in_: *mut PolicySecret_In, out: *mut PolicySecret_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicySigned_In {
+    pub authObject: TPMI_DH_OBJECT,
+    pub policySession: TPMI_SH_POLICY,
+    pub nonceTPM: TPM2B_NONCE,
+    pub cpHashA: TPM2B_DIGEST,
+    pub policyRef: TPM2B_NONCE,
+    pub expiration: INT32,
+    pub auth: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_PolicySigned_In() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicySigned_In>(),
+        428usize,
+        concat!("Size of: ", stringify!(PolicySigned_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicySigned_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicySigned_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).authObject as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(authObject)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).policySession as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(policySession)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).nonceTPM as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(nonceTPM)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).cpHashA as *const _ as usize },
+        58usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(cpHashA)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).policyRef as *const _ as usize },
+        108usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(policyRef)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).expiration as *const _ as usize },
+        160usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(expiration)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_In>())).auth as *const _ as usize },
+        164usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+}
+impl Default for PolicySigned_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct PolicySigned_Out {
+    pub timeout: TPM2B_TIMEOUT,
+    pub policyTicket: TPMT_TK_AUTH,
+}
+#[test]
+fn bindgen_test_layout_PolicySigned_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<PolicySigned_Out>(),
+        72usize,
+        concat!("Size of: ", stringify!(PolicySigned_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<PolicySigned_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(PolicySigned_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_Out>())).timeout as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_Out),
+            "::",
+            stringify!(timeout)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<PolicySigned_Out>())).policyTicket as *const _ as usize },
+        12usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(PolicySigned_Out),
+            "::",
+            stringify!(policyTicket)
+        )
+    );
+}
+impl Default for PolicySigned_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_PolicySigned(in_: *mut PolicySigned_In, out: *mut PolicySigned_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
 pub struct PolicyTemplate_In {
     pub policySession: TPMI_SH_POLICY,
     pub templateHash: TPM2B_DIGEST,
@@ -44660,2155 +47198,104 @@ fn bindgen_test_layout_PolicyTemplate_In() {
         )
     );
 }
+impl Default for PolicyTemplate_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_PolicyTemplate(in_: *mut PolicyTemplate_In) -> TPM_RC;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct PolicyAuthorizeNV_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
+#[derive(Copy, Clone)]
+pub struct PolicyTicket_In {
     pub policySession: TPMI_SH_POLICY,
+    pub timeout: TPM2B_TIMEOUT,
+    pub cpHashA: TPM2B_DIGEST,
+    pub policyRef: TPM2B_NONCE,
+    pub authName: TPM2B_NAME,
+    pub ticket: TPMT_TK_AUTH,
 }
 #[test]
-fn bindgen_test_layout_PolicyAuthorizeNV_In() {
+fn bindgen_test_layout_PolicyTicket_In() {
     assert_eq!(
-        ::std::mem::size_of::<PolicyAuthorizeNV_In>(),
-        12usize,
-        concat!("Size of: ", stringify!(PolicyAuthorizeNV_In))
+        ::std::mem::size_of::<PolicyTicket_In>(),
+        228usize,
+        concat!("Size of: ", stringify!(PolicyTicket_In))
     );
     assert_eq!(
-        ::std::mem::align_of::<PolicyAuthorizeNV_In>(),
+        ::std::mem::align_of::<PolicyTicket_In>(),
         4usize,
-        concat!("Alignment of ", stringify!(PolicyAuthorizeNV_In))
+        concat!("Alignment of ", stringify!(PolicyTicket_In))
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyAuthorizeNV_In>())).authHandle as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).policySession as *const _ as usize },
         0usize,
         concat!(
             "Offset of field: ",
-            stringify!(PolicyAuthorizeNV_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PolicyAuthorizeNV_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorizeNV_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<PolicyAuthorizeNV_In>())).policySession as *const _ as usize
-        },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PolicyAuthorizeNV_In),
+            stringify!(PolicyTicket_In),
             "::",
             stringify!(policySession)
         )
     );
-}
-extern "C" {
-    pub fn TPM2_PolicyAuthorizeNV(in_: *mut PolicyAuthorizeNV_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct CreatePrimary_In {
-    pub primaryHandle: TPMI_RH_HIERARCHY,
-    pub inSensitive: TPM2B_SENSITIVE_CREATE,
-    pub inPublic: TPM2B_PUBLIC,
-    pub outsideInfo: TPM2B_DATA,
-    pub creationPCR: TPML_PCR_SELECTION,
-}
-#[test]
-fn bindgen_test_layout_CreatePrimary_In() {
     assert_eq!(
-        ::std::mem::size_of::<CreatePrimary_In>(),
-        608usize,
-        concat!("Size of: ", stringify!(CreatePrimary_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<CreatePrimary_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(CreatePrimary_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).primaryHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_In),
-            "::",
-            stringify!(primaryHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).inSensitive as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_In),
-            "::",
-            stringify!(inSensitive)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).inPublic as *const _ as usize },
-        188usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_In),
-            "::",
-            stringify!(inPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).outsideInfo as *const _ as usize },
-        532usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_In),
-            "::",
-            stringify!(outsideInfo)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_In>())).creationPCR as *const _ as usize },
-        584usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_In),
-            "::",
-            stringify!(creationPCR)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct CreatePrimary_Out {
-    pub objectHandle: TPM_HANDLE,
-    pub outPublic: TPM2B_PUBLIC,
-    pub creationData: TPM2B_CREATION_DATA,
-    pub creationHash: TPM2B_DIGEST,
-    pub creationTicket: TPMT_TK_CREATION,
-    pub name: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_CreatePrimary_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<CreatePrimary_Out>(),
-        760usize,
-        concat!("Size of: ", stringify!(CreatePrimary_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<CreatePrimary_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(CreatePrimary_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).objectHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_Out),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).outPublic as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_Out),
-            "::",
-            stringify!(outPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).creationData as *const _ as usize },
-        348usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_Out),
-            "::",
-            stringify!(creationData)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).creationHash as *const _ as usize },
-        592usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_Out),
-            "::",
-            stringify!(creationHash)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<CreatePrimary_Out>())).creationTicket as *const _ as usize
-        },
-        644usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_Out),
-            "::",
-            stringify!(creationTicket)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CreatePrimary_Out>())).name as *const _ as usize },
-        704usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CreatePrimary_Out),
-            "::",
-            stringify!(name)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_CreatePrimary(in_: *mut CreatePrimary_In, out: *mut CreatePrimary_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct HierarchyControl_In {
-    pub authHandle: TPMI_RH_HIERARCHY,
-    pub enable: TPMI_RH_ENABLES,
-    pub state: TPMI_YES_NO,
-}
-#[test]
-fn bindgen_test_layout_HierarchyControl_In() {
-    assert_eq!(
-        ::std::mem::size_of::<HierarchyControl_In>(),
-        12usize,
-        concat!("Size of: ", stringify!(HierarchyControl_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<HierarchyControl_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(HierarchyControl_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HierarchyControl_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HierarchyControl_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HierarchyControl_In>())).enable as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HierarchyControl_In),
-            "::",
-            stringify!(enable)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HierarchyControl_In>())).state as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HierarchyControl_In),
-            "::",
-            stringify!(state)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_HierarchyControl(in_: *mut HierarchyControl_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct SetPrimaryPolicy_In {
-    pub authHandle: TPMI_RH_HIERARCHY_POLICY,
-    pub authPolicy: TPM2B_DIGEST,
-    pub hashAlg: TPMI_ALG_HASH,
-}
-#[test]
-fn bindgen_test_layout_SetPrimaryPolicy_In() {
-    assert_eq!(
-        ::std::mem::size_of::<SetPrimaryPolicy_In>(),
-        56usize,
-        concat!("Size of: ", stringify!(SetPrimaryPolicy_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SetPrimaryPolicy_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SetPrimaryPolicy_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SetPrimaryPolicy_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetPrimaryPolicy_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SetPrimaryPolicy_In>())).authPolicy as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetPrimaryPolicy_In),
-            "::",
-            stringify!(authPolicy)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SetPrimaryPolicy_In>())).hashAlg as *const _ as usize },
-        54usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetPrimaryPolicy_In),
-            "::",
-            stringify!(hashAlg)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_SetPrimaryPolicy(in_: *mut SetPrimaryPolicy_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ChangePPS_In {
-    pub authHandle: TPMI_RH_PLATFORM,
-}
-#[test]
-fn bindgen_test_layout_ChangePPS_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ChangePPS_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(ChangePPS_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ChangePPS_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ChangePPS_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ChangePPS_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ChangePPS_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ChangePPS(in_: *mut ChangePPS_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ChangeEPS_In {
-    pub authHandle: TPMI_RH_PLATFORM,
-}
-#[test]
-fn bindgen_test_layout_ChangeEPS_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ChangeEPS_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(ChangeEPS_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ChangeEPS_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ChangeEPS_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ChangeEPS_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ChangeEPS_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ChangeEPS(in_: *mut ChangeEPS_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Clear_In {
-    pub authHandle: TPMI_RH_CLEAR,
-}
-#[test]
-fn bindgen_test_layout_Clear_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Clear_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(Clear_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Clear_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Clear_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Clear_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Clear_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Clear(in_: *mut Clear_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ClearControl_In {
-    pub auth: TPMI_RH_CLEAR,
-    pub disable: TPMI_YES_NO,
-}
-#[test]
-fn bindgen_test_layout_ClearControl_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ClearControl_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(ClearControl_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ClearControl_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ClearControl_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ClearControl_In>())).auth as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ClearControl_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ClearControl_In>())).disable as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ClearControl_In),
-            "::",
-            stringify!(disable)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ClearControl(in_: *mut ClearControl_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct HierarchyChangeAuth_In {
-    pub authHandle: TPMI_RH_HIERARCHY_AUTH,
-    pub newAuth: TPM2B_AUTH,
-}
-#[test]
-fn bindgen_test_layout_HierarchyChangeAuth_In() {
-    assert_eq!(
-        ::std::mem::size_of::<HierarchyChangeAuth_In>(),
-        56usize,
-        concat!("Size of: ", stringify!(HierarchyChangeAuth_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<HierarchyChangeAuth_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(HierarchyChangeAuth_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<HierarchyChangeAuth_In>())).authHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HierarchyChangeAuth_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<HierarchyChangeAuth_In>())).newAuth as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(HierarchyChangeAuth_In),
-            "::",
-            stringify!(newAuth)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_HierarchyChangeAuth(in_: *mut HierarchyChangeAuth_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct DictionaryAttackLockReset_In {
-    pub lockHandle: TPMI_RH_LOCKOUT,
-}
-#[test]
-fn bindgen_test_layout_DictionaryAttackLockReset_In() {
-    assert_eq!(
-        ::std::mem::size_of::<DictionaryAttackLockReset_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(DictionaryAttackLockReset_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<DictionaryAttackLockReset_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(DictionaryAttackLockReset_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<DictionaryAttackLockReset_In>())).lockHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(DictionaryAttackLockReset_In),
-            "::",
-            stringify!(lockHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_DictionaryAttackLockReset(in_: *mut DictionaryAttackLockReset_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct DictionaryAttackParameters_In {
-    pub lockHandle: TPMI_RH_LOCKOUT,
-    pub newMaxTries: UINT32,
-    pub newRecoveryTime: UINT32,
-    pub lockoutRecovery: UINT32,
-}
-#[test]
-fn bindgen_test_layout_DictionaryAttackParameters_In() {
-    assert_eq!(
-        ::std::mem::size_of::<DictionaryAttackParameters_In>(),
-        16usize,
-        concat!("Size of: ", stringify!(DictionaryAttackParameters_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<DictionaryAttackParameters_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(DictionaryAttackParameters_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).lockHandle as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(DictionaryAttackParameters_In),
-            "::",
-            stringify!(lockHandle)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).newMaxTries as *const _
-                as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(DictionaryAttackParameters_In),
-            "::",
-            stringify!(newMaxTries)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).newRecoveryTime as *const _
-                as usize
-        },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(DictionaryAttackParameters_In),
-            "::",
-            stringify!(newRecoveryTime)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<DictionaryAttackParameters_In>())).lockoutRecovery as *const _
-                as usize
-        },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(DictionaryAttackParameters_In),
-            "::",
-            stringify!(lockoutRecovery)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_DictionaryAttackParameters(in_: *mut DictionaryAttackParameters_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct PP_Commands_In {
-    pub auth: TPMI_RH_PLATFORM,
-    pub setList: TPML_CC,
-    pub clearList: TPML_CC,
-}
-#[test]
-fn bindgen_test_layout_PP_Commands_In() {
-    assert_eq!(
-        ::std::mem::size_of::<PP_Commands_In>(),
-        2044usize,
-        concat!("Size of: ", stringify!(PP_Commands_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<PP_Commands_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(PP_Commands_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PP_Commands_In>())).auth as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PP_Commands_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PP_Commands_In>())).setList as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PP_Commands_In),
-            "::",
-            stringify!(setList)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<PP_Commands_In>())).clearList as *const _ as usize },
-        1024usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(PP_Commands_In),
-            "::",
-            stringify!(clearList)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_PP_Commands(in_: *mut PP_Commands_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct SetAlgorithmSet_In {
-    pub authHandle: TPMI_RH_PLATFORM,
-    pub algorithmSet: UINT32,
-}
-#[test]
-fn bindgen_test_layout_SetAlgorithmSet_In() {
-    assert_eq!(
-        ::std::mem::size_of::<SetAlgorithmSet_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(SetAlgorithmSet_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SetAlgorithmSet_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(SetAlgorithmSet_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SetAlgorithmSet_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetAlgorithmSet_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SetAlgorithmSet_In>())).algorithmSet as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SetAlgorithmSet_In),
-            "::",
-            stringify!(algorithmSet)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_SetAlgorithmSet(in_: *mut SetAlgorithmSet_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ContextSave_In {
-    pub saveHandle: TPMI_DH_CONTEXT,
-}
-#[test]
-fn bindgen_test_layout_ContextSave_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ContextSave_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(ContextSave_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ContextSave_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ContextSave_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ContextSave_In>())).saveHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ContextSave_In),
-            "::",
-            stringify!(saveHandle)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ContextSave_Out {
-    pub context: TPMS_CONTEXT,
-}
-#[test]
-fn bindgen_test_layout_ContextSave_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ContextSave_Out>(),
-        1416usize,
-        concat!("Size of: ", stringify!(ContextSave_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ContextSave_Out>(),
-        8usize,
-        concat!("Alignment of ", stringify!(ContextSave_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ContextSave_Out>())).context as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ContextSave_Out),
-            "::",
-            stringify!(context)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ContextSave(in_: *mut ContextSave_In, out: *mut ContextSave_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct ContextLoad_In {
-    pub context: TPMS_CONTEXT,
-}
-#[test]
-fn bindgen_test_layout_ContextLoad_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ContextLoad_In>(),
-        1416usize,
-        concat!("Size of: ", stringify!(ContextLoad_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ContextLoad_In>(),
-        8usize,
-        concat!("Alignment of ", stringify!(ContextLoad_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ContextLoad_In>())).context as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ContextLoad_In),
-            "::",
-            stringify!(context)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ContextLoad_Out {
-    pub loadedHandle: TPMI_DH_CONTEXT,
-}
-#[test]
-fn bindgen_test_layout_ContextLoad_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ContextLoad_Out>(),
-        4usize,
-        concat!("Size of: ", stringify!(ContextLoad_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ContextLoad_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ContextLoad_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ContextLoad_Out>())).loadedHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ContextLoad_Out),
-            "::",
-            stringify!(loadedHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ContextLoad(in_: *mut ContextLoad_In, out: *mut ContextLoad_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct FlushContext_In {
-    pub flushHandle: TPMI_DH_CONTEXT,
-}
-#[test]
-fn bindgen_test_layout_FlushContext_In() {
-    assert_eq!(
-        ::std::mem::size_of::<FlushContext_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(FlushContext_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<FlushContext_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(FlushContext_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<FlushContext_In>())).flushHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(FlushContext_In),
-            "::",
-            stringify!(flushHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_FlushContext(in_: *mut FlushContext_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct EvictControl_In {
-    pub auth: TPMI_RH_PROVISION,
-    pub objectHandle: TPMI_DH_OBJECT,
-    pub persistentHandle: TPMI_DH_PERSISTENT,
-}
-#[test]
-fn bindgen_test_layout_EvictControl_In() {
-    assert_eq!(
-        ::std::mem::size_of::<EvictControl_In>(),
-        12usize,
-        concat!("Size of: ", stringify!(EvictControl_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<EvictControl_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(EvictControl_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EvictControl_In>())).auth as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EvictControl_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<EvictControl_In>())).objectHandle as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EvictControl_In),
-            "::",
-            stringify!(objectHandle)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<EvictControl_In>())).persistentHandle as *const _ as usize
-        },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(EvictControl_In),
-            "::",
-            stringify!(persistentHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_EvictControl(in_: *mut EvictControl_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ReadClock_Out {
-    pub currentTime: TPMS_TIME_INFO,
-}
-#[test]
-fn bindgen_test_layout_ReadClock_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<ReadClock_Out>(),
-        32usize,
-        concat!("Size of: ", stringify!(ReadClock_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ReadClock_Out>(),
-        8usize,
-        concat!("Alignment of ", stringify!(ReadClock_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ReadClock_Out>())).currentTime as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ReadClock_Out),
-            "::",
-            stringify!(currentTime)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ReadClock(out: *mut ReadClock_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ClockSet_In {
-    pub auth: TPMI_RH_PROVISION,
-    pub newTime: UINT64,
-}
-#[test]
-fn bindgen_test_layout_ClockSet_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ClockSet_In>(),
-        16usize,
-        concat!("Size of: ", stringify!(ClockSet_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ClockSet_In>(),
-        8usize,
-        concat!("Alignment of ", stringify!(ClockSet_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ClockSet_In>())).auth as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ClockSet_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ClockSet_In>())).newTime as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ClockSet_In),
-            "::",
-            stringify!(newTime)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ClockSet(in_: *mut ClockSet_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ClockRateAdjust_In {
-    pub auth: TPMI_RH_PROVISION,
-    pub rateAdjust: TPM_CLOCK_ADJUST,
-}
-#[test]
-fn bindgen_test_layout_ClockRateAdjust_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ClockRateAdjust_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(ClockRateAdjust_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ClockRateAdjust_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ClockRateAdjust_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ClockRateAdjust_In>())).auth as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ClockRateAdjust_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ClockRateAdjust_In>())).rateAdjust as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ClockRateAdjust_In),
-            "::",
-            stringify!(rateAdjust)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ClockRateAdjust(in_: *mut ClockRateAdjust_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct GetCapability_In {
-    pub capability: TPM_CAP,
-    pub property: UINT32,
-    pub propertyCount: UINT32,
-}
-#[test]
-fn bindgen_test_layout_GetCapability_In() {
-    assert_eq!(
-        ::std::mem::size_of::<GetCapability_In>(),
-        12usize,
-        concat!("Size of: ", stringify!(GetCapability_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<GetCapability_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(GetCapability_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetCapability_In>())).capability as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCapability_In),
-            "::",
-            stringify!(capability)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetCapability_In>())).property as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCapability_In),
-            "::",
-            stringify!(property)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetCapability_In>())).propertyCount as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCapability_In),
-            "::",
-            stringify!(propertyCount)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct GetCapability_Out {
-    pub moreData: TPMI_YES_NO,
-    pub capabilityData: TPMS_CAPABILITY_DATA,
-}
-#[test]
-fn bindgen_test_layout_GetCapability_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<GetCapability_Out>(),
-        1028usize,
-        concat!("Size of: ", stringify!(GetCapability_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<GetCapability_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(GetCapability_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<GetCapability_Out>())).moreData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCapability_Out),
-            "::",
-            stringify!(moreData)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<GetCapability_Out>())).capabilityData as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(GetCapability_Out),
-            "::",
-            stringify!(capabilityData)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_GetCapability(in_: *mut GetCapability_In, out: *mut GetCapability_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct TestParms_In {
-    pub parameters: TPMT_PUBLIC_PARMS,
-}
-#[test]
-fn bindgen_test_layout_TestParms_In() {
-    assert_eq!(
-        ::std::mem::size_of::<TestParms_In>(),
-        24usize,
-        concat!("Size of: ", stringify!(TestParms_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TestParms_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TestParms_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TestParms_In>())).parameters as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TestParms_In),
-            "::",
-            stringify!(parameters)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_TestParms(in_: *mut TestParms_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_DefineSpace_In {
-    pub authHandle: TPMI_RH_PROVISION,
-    pub auth: TPM2B_AUTH,
-    pub publicInfo: TPM2B_NV_PUBLIC,
-}
-#[test]
-fn bindgen_test_layout_NV_DefineSpace_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_DefineSpace_In>(),
-        124usize,
-        concat!("Size of: ", stringify!(NV_DefineSpace_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_DefineSpace_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_DefineSpace_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_DefineSpace_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_DefineSpace_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_DefineSpace_In>())).auth as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_DefineSpace_In),
-            "::",
-            stringify!(auth)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_DefineSpace_In>())).publicInfo as *const _ as usize },
-        56usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_DefineSpace_In),
-            "::",
-            stringify!(publicInfo)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_DefineSpace(in_: *mut NV_DefineSpace_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_UndefineSpace_In {
-    pub authHandle: TPMI_RH_PROVISION,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-}
-#[test]
-fn bindgen_test_layout_NV_UndefineSpace_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_UndefineSpace_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(NV_UndefineSpace_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_UndefineSpace_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_UndefineSpace_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_UndefineSpace_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_UndefineSpace_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_UndefineSpace_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_UndefineSpace_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_UndefineSpace(in_: *mut NV_UndefineSpace_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_UndefineSpaceSpecial_In {
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub platform: TPMI_RH_PLATFORM,
-}
-#[test]
-fn bindgen_test_layout_NV_UndefineSpaceSpecial_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_UndefineSpaceSpecial_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(NV_UndefineSpaceSpecial_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_UndefineSpaceSpecial_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_UndefineSpaceSpecial_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<NV_UndefineSpaceSpecial_In>())).nvIndex as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_UndefineSpaceSpecial_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<NV_UndefineSpaceSpecial_In>())).platform as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_UndefineSpaceSpecial_In),
-            "::",
-            stringify!(platform)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_UndefineSpaceSpecial(in_: *mut NV_UndefineSpaceSpecial_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_ReadPublic_In {
-    pub nvIndex: TPMI_RH_NV_INDEX,
-}
-#[test]
-fn bindgen_test_layout_NV_ReadPublic_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_ReadPublic_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(NV_ReadPublic_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_ReadPublic_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_ReadPublic_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ReadPublic_In>())).nvIndex as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ReadPublic_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_ReadPublic_Out {
-    pub nvPublic: TPM2B_NV_PUBLIC,
-    pub nvName: TPM2B_NAME,
-}
-#[test]
-fn bindgen_test_layout_NV_ReadPublic_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_ReadPublic_Out>(),
-        124usize,
-        concat!("Size of: ", stringify!(NV_ReadPublic_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_ReadPublic_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_ReadPublic_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ReadPublic_Out>())).nvPublic as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ReadPublic_Out),
-            "::",
-            stringify!(nvPublic)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ReadPublic_Out>())).nvName as *const _ as usize },
-        68usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ReadPublic_Out),
-            "::",
-            stringify!(nvName)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_ReadPublic(in_: *mut NV_ReadPublic_In, out: *mut NV_ReadPublic_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_Write_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub data: TPM2B_MAX_NV_BUFFER,
-    pub offset: UINT16,
-}
-#[test]
-fn bindgen_test_layout_NV_Write_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Write_In>(),
-        1036usize,
-        concat!("Size of: ", stringify!(NV_Write_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Write_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_Write_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Write_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Write_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).data as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Write_In),
-            "::",
-            stringify!(data)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Write_In>())).offset as *const _ as usize },
-        1034usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Write_In),
-            "::",
-            stringify!(offset)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_Write(in_: *mut NV_Write_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_Increment_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-}
-#[test]
-fn bindgen_test_layout_NV_Increment_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Increment_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(NV_Increment_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Increment_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_Increment_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Increment_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Increment_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Increment_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Increment_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_Increment(in_: *mut NV_Increment_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_Extend_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub data: TPM2B_MAX_NV_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_NV_Extend_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Extend_In>(),
-        1036usize,
-        concat!("Size of: ", stringify!(NV_Extend_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Extend_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_Extend_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Extend_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Extend_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Extend_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Extend_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Extend_In>())).data as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Extend_In),
-            "::",
-            stringify!(data)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_Extend(in_: *mut NV_Extend_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_SetBits_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub bits: UINT64,
-}
-#[test]
-fn bindgen_test_layout_NV_SetBits_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_SetBits_In>(),
-        16usize,
-        concat!("Size of: ", stringify!(NV_SetBits_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_SetBits_In>(),
-        8usize,
-        concat!("Alignment of ", stringify!(NV_SetBits_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_SetBits_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_SetBits_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_SetBits_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_SetBits_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_SetBits_In>())).bits as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_SetBits_In),
-            "::",
-            stringify!(bits)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_SetBits(in_: *mut NV_SetBits_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_WriteLock_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-}
-#[test]
-fn bindgen_test_layout_NV_WriteLock_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_WriteLock_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(NV_WriteLock_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_WriteLock_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_WriteLock_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_WriteLock_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_WriteLock_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_WriteLock_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_WriteLock_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_WriteLock(in_: *mut NV_WriteLock_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_GlobalWriteLock_In {
-    pub authHandle: TPMI_RH_PROVISION,
-}
-#[test]
-fn bindgen_test_layout_NV_GlobalWriteLock_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_GlobalWriteLock_In>(),
-        4usize,
-        concat!("Size of: ", stringify!(NV_GlobalWriteLock_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_GlobalWriteLock_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_GlobalWriteLock_In))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<NV_GlobalWriteLock_In>())).authHandle as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_GlobalWriteLock_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_GlobalWriteLock(in_: *mut NV_GlobalWriteLock_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_Read_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub size: UINT16,
-    pub offset: UINT16,
-}
-#[test]
-fn bindgen_test_layout_NV_Read_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Read_In>(),
-        12usize,
-        concat!("Size of: ", stringify!(NV_Read_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Read_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_Read_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Read_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Read_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).size as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Read_In),
-            "::",
-            stringify!(size)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Read_In>())).offset as *const _ as usize },
-        10usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Read_In),
-            "::",
-            stringify!(offset)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_Read_Out {
-    pub data: TPM2B_MAX_NV_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_NV_Read_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Read_Out>(),
-        1026usize,
-        concat!("Size of: ", stringify!(NV_Read_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Read_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(NV_Read_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Read_Out>())).data as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Read_Out),
-            "::",
-            stringify!(data)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_Read(in_: *mut NV_Read_In, out: *mut NV_Read_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NV_ReadLock_In {
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-}
-#[test]
-fn bindgen_test_layout_NV_ReadLock_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_ReadLock_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(NV_ReadLock_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_ReadLock_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_ReadLock_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ReadLock_In>())).authHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ReadLock_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ReadLock_In>())).nvIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ReadLock_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_ReadLock(in_: *mut NV_ReadLock_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_ChangeAuth_In {
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub newAuth: TPM2B_AUTH,
-}
-#[test]
-fn bindgen_test_layout_NV_ChangeAuth_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_ChangeAuth_In>(),
-        56usize,
-        concat!("Size of: ", stringify!(NV_ChangeAuth_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_ChangeAuth_In>(),
+        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).timeout as *const _ as usize },
         4usize,
-        concat!("Alignment of ", stringify!(NV_ChangeAuth_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ChangeAuth_In>())).nvIndex as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ChangeAuth_In),
-            "::",
-            stringify!(nvIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_ChangeAuth_In>())).newAuth as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_ChangeAuth_In),
-            "::",
-            stringify!(newAuth)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_NV_ChangeAuth(in_: *mut NV_ChangeAuth_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_Certify_In {
-    pub signHandle: TPMI_DH_OBJECT,
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub nvIndex: TPMI_RH_NV_INDEX,
-    pub qualifyingData: TPM2B_DATA,
-    pub inScheme: TPMT_SIG_SCHEME,
-    pub size: UINT16,
-    pub offset: UINT16,
-}
-#[test]
-fn bindgen_test_layout_NV_Certify_In() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Certify_In>(),
-        76usize,
-        concat!("Size of: ", stringify!(NV_Certify_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Certify_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(NV_Certify_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).signHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Certify_In),
-            "::",
-            stringify!(signHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).authHandle as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Certify_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).nvIndex as *const _ as usize },
-        8usize,
         concat!(
             "Offset of field: ",
-            stringify!(NV_Certify_In),
+            stringify!(PolicyTicket_In),
             "::",
-            stringify!(nvIndex)
+            stringify!(timeout)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).qualifyingData as *const _ as usize },
-        12usize,
+        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).cpHashA as *const _ as usize },
+        14usize,
         concat!(
             "Offset of field: ",
-            stringify!(NV_Certify_In),
+            stringify!(PolicyTicket_In),
             "::",
-            stringify!(qualifyingData)
+            stringify!(cpHashA)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).inScheme as *const _ as usize },
+        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).policyRef as *const _ as usize },
         64usize,
         concat!(
             "Offset of field: ",
-            stringify!(NV_Certify_In),
+            stringify!(PolicyTicket_In),
             "::",
-            stringify!(inScheme)
+            stringify!(policyRef)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).size as *const _ as usize },
-        70usize,
+        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).authName as *const _ as usize },
+        114usize,
         concat!(
             "Offset of field: ",
-            stringify!(NV_Certify_In),
+            stringify!(PolicyTicket_In),
             "::",
-            stringify!(size)
+            stringify!(authName)
         )
     );
     assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_In>())).offset as *const _ as usize },
-        72usize,
+        unsafe { &(*(::std::ptr::null::<PolicyTicket_In>())).ticket as *const _ as usize },
+        168usize,
         concat!(
             "Offset of field: ",
-            stringify!(NV_Certify_In),
+            stringify!(PolicyTicket_In),
             "::",
-            stringify!(offset)
+            stringify!(ticket)
         )
     );
 }
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct NV_Certify_Out {
-    pub certifyInfo: TPM2B_ATTEST,
-    pub signature: TPMT_SIGNATURE,
-}
-#[test]
-fn bindgen_test_layout_NV_Certify_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<NV_Certify_Out>(),
-        1496usize,
-        concat!("Size of: ", stringify!(NV_Certify_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NV_Certify_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(NV_Certify_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_Out>())).certifyInfo as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Certify_Out),
-            "::",
-            stringify!(certifyInfo)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NV_Certify_Out>())).signature as *const _ as usize },
-        1234usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NV_Certify_Out),
-            "::",
-            stringify!(signature)
-        )
-    );
+impl Default for PolicyTicket_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
 }
 extern "C" {
-    pub fn TPM2_NV_Certify(in_: *mut NV_Certify_In, out: *mut NV_Certify_Out) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct AC_GetCapability_In {
-    pub ac: TPMI_RH_AC,
-    pub capability: TPM_AT,
-    pub count: UINT32,
-}
-#[test]
-fn bindgen_test_layout_AC_GetCapability_In() {
-    assert_eq!(
-        ::std::mem::size_of::<AC_GetCapability_In>(),
-        12usize,
-        concat!("Size of: ", stringify!(AC_GetCapability_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<AC_GetCapability_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(AC_GetCapability_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_GetCapability_In>())).ac as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_GetCapability_In),
-            "::",
-            stringify!(ac)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_GetCapability_In>())).capability as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_GetCapability_In),
-            "::",
-            stringify!(capability)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_GetCapability_In>())).count as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_GetCapability_In),
-            "::",
-            stringify!(count)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct AC_GetCapability_Out {
-    pub moreData: TPMI_YES_NO,
-    pub capabilitiesData: TPML_AC_CAPABILITIES,
-}
-#[test]
-fn bindgen_test_layout_AC_GetCapability_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<AC_GetCapability_Out>(),
-        1024usize,
-        concat!("Size of: ", stringify!(AC_GetCapability_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<AC_GetCapability_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(AC_GetCapability_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_GetCapability_Out>())).moreData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_GetCapability_Out),
-            "::",
-            stringify!(moreData)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<AC_GetCapability_Out>())).capabilitiesData as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_GetCapability_Out),
-            "::",
-            stringify!(capabilitiesData)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_AC_GetCapability(
-        in_: *mut AC_GetCapability_In,
-        out: *mut AC_GetCapability_Out,
-    ) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct AC_Send_In {
-    pub sendObject: TPMI_DH_OBJECT,
-    pub authHandle: TPMI_RH_NV_AUTH,
-    pub ac: TPMI_RH_AC,
-    pub acDataIn: TPM2B_MAX_BUFFER,
-}
-#[test]
-fn bindgen_test_layout_AC_Send_In() {
-    assert_eq!(
-        ::std::mem::size_of::<AC_Send_In>(),
-        1040usize,
-        concat!("Size of: ", stringify!(AC_Send_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<AC_Send_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(AC_Send_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).sendObject as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_Send_In),
-            "::",
-            stringify!(sendObject)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).authHandle as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_Send_In),
-            "::",
-            stringify!(authHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).ac as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_Send_In),
-            "::",
-            stringify!(ac)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_Send_In>())).acDataIn as *const _ as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_Send_In),
-            "::",
-            stringify!(acDataIn)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct AC_Send_Out {
-    pub acDataOut: TPMS_AC_OUTPUT,
-}
-#[test]
-fn bindgen_test_layout_AC_Send_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<AC_Send_Out>(),
-        8usize,
-        concat!("Size of: ", stringify!(AC_Send_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<AC_Send_Out>(),
-        4usize,
-        concat!("Alignment of ", stringify!(AC_Send_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AC_Send_Out>())).acDataOut as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AC_Send_Out),
-            "::",
-            stringify!(acDataOut)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_AC_Send(in_: *mut AC_Send_In, out: *mut AC_Send_Out) -> TPM_RC;
+    pub fn TPM2_PolicyTicket(in_: *mut PolicyTicket_In) -> TPM_RC;
 }
 #[repr(C)]
 #[derive(Copy, Clone)]
@@ -46890,14567 +47377,13 @@ fn bindgen_test_layout_Policy_AC_SendSelect_In() {
         )
     );
 }
+impl Default for Policy_AC_SendSelect_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 extern "C" {
     pub fn TPM2_Policy_AC_SendSelect(in_: *mut Policy_AC_SendSelect_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ACT_SetTimeout_In {
-    pub actHandle: TPMI_RH_ACT,
-    pub startTimeout: UINT32,
-}
-#[test]
-fn bindgen_test_layout_ACT_SetTimeout_In() {
-    assert_eq!(
-        ::std::mem::size_of::<ACT_SetTimeout_In>(),
-        8usize,
-        concat!("Size of: ", stringify!(ACT_SetTimeout_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ACT_SetTimeout_In>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ACT_SetTimeout_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ACT_SetTimeout_In>())).actHandle as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ACT_SetTimeout_In),
-            "::",
-            stringify!(actHandle)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ACT_SetTimeout_In>())).startTimeout as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ACT_SetTimeout_In),
-            "::",
-            stringify!(startTimeout)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_ACT_SetTimeout(in_: *mut ACT_SetTimeout_In) -> TPM_RC;
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Vendor_TCG_Test_In {
-    pub inputData: TPM2B_DATA,
-}
-#[test]
-fn bindgen_test_layout_Vendor_TCG_Test_In() {
-    assert_eq!(
-        ::std::mem::size_of::<Vendor_TCG_Test_In>(),
-        52usize,
-        concat!("Size of: ", stringify!(Vendor_TCG_Test_In))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Vendor_TCG_Test_In>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Vendor_TCG_Test_In))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Vendor_TCG_Test_In>())).inputData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Vendor_TCG_Test_In),
-            "::",
-            stringify!(inputData)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct Vendor_TCG_Test_Out {
-    pub outputData: TPM2B_DATA,
-}
-#[test]
-fn bindgen_test_layout_Vendor_TCG_Test_Out() {
-    assert_eq!(
-        ::std::mem::size_of::<Vendor_TCG_Test_Out>(),
-        52usize,
-        concat!("Size of: ", stringify!(Vendor_TCG_Test_Out))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Vendor_TCG_Test_Out>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Vendor_TCG_Test_Out))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Vendor_TCG_Test_Out>())).outputData as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Vendor_TCG_Test_Out),
-            "::",
-            stringify!(outputData)
-        )
-    );
-}
-extern "C" {
-    pub fn TPM2_Vendor_TCG_Test(
-        in_: *mut Vendor_TCG_Test_In,
-        out: *mut Vendor_TCG_Test_Out,
-    ) -> TPM_RC;
-}
-pub type SYM_INDEX = UINT32;
-pub type SYM_MODES = BYTE;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct SYMMETRIC_TEST_VECTOR {
-    pub alg: TPM_ALG_ID,
-    pub keyBits: UINT16,
-    pub key: *const BYTE,
-    pub ivSize: UINT32,
-    pub dataInOutSize: UINT32,
-    pub dataIn: *const BYTE,
-    pub dataOut: [*const BYTE; 5usize],
-}
-#[test]
-fn bindgen_test_layout_SYMMETRIC_TEST_VECTOR() {
-    assert_eq!(
-        ::std::mem::size_of::<SYMMETRIC_TEST_VECTOR>(),
-        72usize,
-        concat!("Size of: ", stringify!(SYMMETRIC_TEST_VECTOR))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<SYMMETRIC_TEST_VECTOR>(),
-        8usize,
-        concat!("Alignment of ", stringify!(SYMMETRIC_TEST_VECTOR))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).alg as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(alg)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).keyBits as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(keyBits)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).key as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(key)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).ivSize as *const _ as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(ivSize)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).dataInOutSize as *const _ as usize
-        },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(dataInOutSize)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).dataIn as *const _ as usize },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(dataIn)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<SYMMETRIC_TEST_VECTOR>())).dataOut as *const _ as usize },
-        32usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(SYMMETRIC_TEST_VECTOR),
-            "::",
-            stringify!(dataOut)
-        )
-    );
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct integerModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
-    pub __bindgen_padding_0: u16,
-}
-#[test]
-fn bindgen_test_layout_integerModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<integerModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(integerModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<integerModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(integerModifier))
-    );
-}
-impl integerModifier {
-    #[inline]
-    pub fn size(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_size(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sign(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(2usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sign(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(2usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(3usize, 7u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(3usize, 7u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        size: ::std::os::raw::c_uint,
-        sign: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 2usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 2usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 2u8, {
-            let size: u32 = unsafe { ::std::mem::transmute(size) };
-            size as u64
-        });
-        __bindgen_bitfield_unit.set(2usize, 1u8, {
-            let sign: u32 = unsafe { ::std::mem::transmute(sign) };
-            sign as u64
-        });
-        __bindgen_bitfield_unit.set(3usize, 7u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct valuesModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 2usize]>,
-    pub __bindgen_padding_0: u16,
-}
-#[test]
-fn bindgen_test_layout_valuesModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<valuesModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(valuesModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<valuesModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(valuesModifier))
-    );
-}
-impl valuesModifier {
-    #[inline]
-    pub fn size(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_size(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sign(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(2usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sign(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(2usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(3usize, 5u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(3usize, 5u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn takesNull(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(8usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_takesNull(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(8usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        size: ::std::os::raw::c_uint,
-        sign: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-        takesNull: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 2usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 2usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 2u8, {
-            let size: u32 = unsafe { ::std::mem::transmute(size) };
-            size as u64
-        });
-        __bindgen_bitfield_unit.set(2usize, 1u8, {
-            let sign: u32 = unsafe { ::std::mem::transmute(sign) };
-            sign as u64
-        });
-        __bindgen_bitfield_unit.set(3usize, 5u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit.set(8usize, 1u8, {
-            let takesNull: u32 = unsafe { ::std::mem::transmute(takesNull) };
-            takesNull as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct tableModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
-    pub __bindgen_padding_0: [u8; 3usize],
-}
-#[test]
-fn bindgen_test_layout_tableModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<tableModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(tableModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<tableModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(tableModifier))
-    );
-}
-impl tableModifier {
-    #[inline]
-    pub fn size(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_size(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sign(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(2usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sign(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(2usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(3usize, 3u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(3usize, 3u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn hasBits(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(6usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_hasBits(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(6usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn takesNull(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(7usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_takesNull(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(7usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        size: ::std::os::raw::c_uint,
-        sign: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-        hasBits: ::std::os::raw::c_uint,
-        takesNull: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 1usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 1usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 2u8, {
-            let size: u32 = unsafe { ::std::mem::transmute(size) };
-            size as u64
-        });
-        __bindgen_bitfield_unit.set(2usize, 1u8, {
-            let sign: u32 = unsafe { ::std::mem::transmute(sign) };
-            sign as u64
-        });
-        __bindgen_bitfield_unit.set(3usize, 3u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit.set(6usize, 1u8, {
-            let hasBits: u32 = unsafe { ::std::mem::transmute(hasBits) };
-            hasBits as u64
-        });
-        __bindgen_bitfield_unit.set(7usize, 1u8, {
-            let takesNull: u32 = unsafe { ::std::mem::transmute(takesNull) };
-            takesNull as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct minMaxModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
-    pub __bindgen_padding_0: [u8; 3usize],
-}
-#[test]
-fn bindgen_test_layout_minMaxModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<minMaxModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(minMaxModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<minMaxModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(minMaxModifier))
-    );
-}
-impl minMaxModifier {
-    #[inline]
-    pub fn size(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_size(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sign(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(2usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sign(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(2usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(3usize, 3u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(3usize, 3u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn hasBits(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(6usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_hasBits(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(6usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn takesNull(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(7usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_takesNull(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(7usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        size: ::std::os::raw::c_uint,
-        sign: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-        hasBits: ::std::os::raw::c_uint,
-        takesNull: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 1usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 1usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 2u8, {
-            let size: u32 = unsafe { ::std::mem::transmute(size) };
-            size as u64
-        });
-        __bindgen_bitfield_unit.set(2usize, 1u8, {
-            let sign: u32 = unsafe { ::std::mem::transmute(sign) };
-            sign as u64
-        });
-        __bindgen_bitfield_unit.set(3usize, 3u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit.set(6usize, 1u8, {
-            let hasBits: u32 = unsafe { ::std::mem::transmute(hasBits) };
-            hasBits as u64
-        });
-        __bindgen_bitfield_unit.set(7usize, 1u8, {
-            let takesNull: u32 = unsafe { ::std::mem::transmute(takesNull) };
-            takesNull as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct attributesModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
-    pub __bindgen_padding_0: [u8; 3usize],
-}
-#[test]
-fn bindgen_test_layout_attributesModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<attributesModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(attributesModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<attributesModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(attributesModifier))
-    );
-}
-impl attributesModifier {
-    #[inline]
-    pub fn size(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_size(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sign(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(2usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sign(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(2usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(3usize, 5u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(3usize, 5u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        size: ::std::os::raw::c_uint,
-        sign: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 1usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 1usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 2u8, {
-            let size: u32 = unsafe { ::std::mem::transmute(size) };
-            size as u64
-        });
-        __bindgen_bitfield_unit.set(2usize, 1u8, {
-            let sign: u32 = unsafe { ::std::mem::transmute(sign) };
-            sign as u64
-        });
-        __bindgen_bitfield_unit.set(3usize, 5u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct tpm2bsModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
-    pub __bindgen_padding_0: [u8; 3usize],
-}
-#[test]
-fn bindgen_test_layout_tpm2bsModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<tpm2bsModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(tpm2bsModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<tpm2bsModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(tpm2bsModifier))
-    );
-}
-impl tpm2bsModifier {
-    #[inline]
-    pub fn offset(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 4u8) as u32) }
-    }
-    #[inline]
-    pub fn set_offset(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 4u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(4usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(4usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sizeEqual(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(6usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sizeEqual(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(6usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn propigateNull(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(7usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_propigateNull(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(7usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        offset: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-        sizeEqual: ::std::os::raw::c_uint,
-        propigateNull: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 1usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 1usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 4u8, {
-            let offset: u32 = unsafe { ::std::mem::transmute(offset) };
-            offset as u64
-        });
-        __bindgen_bitfield_unit.set(4usize, 2u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit.set(6usize, 1u8, {
-            let sizeEqual: u32 = unsafe { ::std::mem::transmute(sizeEqual) };
-            sizeEqual as u64
-        });
-        __bindgen_bitfield_unit.set(7usize, 1u8, {
-            let propigateNull: u32 = unsafe { ::std::mem::transmute(propigateNull) };
-            propigateNull as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-#[repr(C)]
-#[repr(align(4))]
-#[derive(Debug, Copy, Clone)]
-pub struct listModifier {
-    pub _bitfield_align_1: [u8; 0],
-    pub _bitfield_1: __BindgenBitfieldUnit<[u8; 1usize]>,
-    pub __bindgen_padding_0: [u8; 3usize],
-}
-#[test]
-fn bindgen_test_layout_listModifier() {
-    assert_eq!(
-        ::std::mem::size_of::<listModifier>(),
-        4usize,
-        concat!("Size of: ", stringify!(listModifier))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<listModifier>(),
-        4usize,
-        concat!("Alignment of ", stringify!(listModifier))
-    );
-}
-impl listModifier {
-    #[inline]
-    pub fn offset(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(0usize, 4u8) as u32) }
-    }
-    #[inline]
-    pub fn set_offset(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(0usize, 4u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn unused(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(4usize, 2u8) as u32) }
-    }
-    #[inline]
-    pub fn set_unused(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(4usize, 2u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn sizeEqual(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(6usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_sizeEqual(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(6usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn propigateNull(&self) -> ::std::os::raw::c_uint {
-        unsafe { ::std::mem::transmute(self._bitfield_1.get(7usize, 1u8) as u32) }
-    }
-    #[inline]
-    pub fn set_propigateNull(&mut self, val: ::std::os::raw::c_uint) {
-        unsafe {
-            let val: u32 = ::std::mem::transmute(val);
-            self._bitfield_1.set(7usize, 1u8, val as u64)
-        }
-    }
-    #[inline]
-    pub fn new_bitfield_1(
-        offset: ::std::os::raw::c_uint,
-        unused: ::std::os::raw::c_uint,
-        sizeEqual: ::std::os::raw::c_uint,
-        propigateNull: ::std::os::raw::c_uint,
-    ) -> __BindgenBitfieldUnit<[u8; 1usize]> {
-        let mut __bindgen_bitfield_unit: __BindgenBitfieldUnit<[u8; 1usize]> = Default::default();
-        __bindgen_bitfield_unit.set(0usize, 4u8, {
-            let offset: u32 = unsafe { ::std::mem::transmute(offset) };
-            offset as u64
-        });
-        __bindgen_bitfield_unit.set(4usize, 2u8, {
-            let unused: u32 = unsafe { ::std::mem::transmute(unused) };
-            unused as u64
-        });
-        __bindgen_bitfield_unit.set(6usize, 1u8, {
-            let sizeEqual: u32 = unsafe { ::std::mem::transmute(sizeEqual) };
-            sizeEqual as u64
-        });
-        __bindgen_bitfield_unit.set(7usize, 1u8, {
-            let propigateNull: u32 = unsafe { ::std::mem::transmute(propigateNull) };
-            propigateNull as u64
-        });
-        __bindgen_bitfield_unit
-    }
-}
-pub type marshalIndex_t = UINT16;
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct simpleStructureEntry_t {
-    pub qualifiers: UINT16,
-    pub index: marshalIndex_t,
-    pub offset: UINT16,
-}
-#[test]
-fn bindgen_test_layout_simpleStructureEntry_t() {
-    assert_eq!(
-        ::std::mem::size_of::<simpleStructureEntry_t>(),
-        6usize,
-        concat!("Size of: ", stringify!(simpleStructureEntry_t))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<simpleStructureEntry_t>(),
-        2usize,
-        concat!("Alignment of ", stringify!(simpleStructureEntry_t))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<simpleStructureEntry_t>())).qualifiers as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(simpleStructureEntry_t),
-            "::",
-            stringify!(qualifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<simpleStructureEntry_t>())).index as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(simpleStructureEntry_t),
-            "::",
-            stringify!(index)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<simpleStructureEntry_t>())).offset as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(simpleStructureEntry_t),
-            "::",
-            stringify!(offset)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct UintMarshal_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-}
-#[test]
-fn bindgen_test_layout_UintMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<UintMarshal_mst>(),
-        2usize,
-        concat!("Size of: ", stringify!(UintMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<UintMarshal_mst>(),
-        1usize,
-        concat!("Alignment of ", stringify!(UintMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<UintMarshal_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(UintMarshal_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<UintMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(UintMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct UnionMarshal_mst {
-    pub countOfselectors: UINT8,
-    pub modifiers: UINT8,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_UnionMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<UnionMarshal_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(UnionMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<UnionMarshal_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(UnionMarshal_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<UnionMarshal_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(UnionMarshal_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<UnionMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(UnionMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<UnionMarshal_mst>())).offsetOfUnmarshalTypes as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(UnionMarshal_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<UnionMarshal_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(UnionMarshal_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct NullUnionMarshal_mst {
-    pub count: UINT8,
-}
-#[test]
-fn bindgen_test_layout_NullUnionMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<NullUnionMarshal_mst>(),
-        1usize,
-        concat!("Size of: ", stringify!(NullUnionMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<NullUnionMarshal_mst>(),
-        1usize,
-        concat!("Alignment of ", stringify!(NullUnionMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<NullUnionMarshal_mst>())).count as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(NullUnionMarshal_mst),
-            "::",
-            stringify!(count)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct MarshalHeader_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-}
-#[test]
-fn bindgen_test_layout_MarshalHeader_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<MarshalHeader_mst>(),
-        3usize,
-        concat!("Size of: ", stringify!(MarshalHeader_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MarshalHeader_mst>(),
-        1usize,
-        concat!("Alignment of ", stringify!(MarshalHeader_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalHeader_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalHeader_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalHeader_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalHeader_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalHeader_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalHeader_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ArrayMarshal_mst {
-    pub type_: marshalIndex_t,
-    pub stride: UINT16,
-}
-#[test]
-fn bindgen_test_layout_ArrayMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<ArrayMarshal_mst>(),
-        4usize,
-        concat!("Size of: ", stringify!(ArrayMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ArrayMarshal_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ArrayMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ArrayMarshal_mst>())).type_ as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ArrayMarshal_mst),
-            "::",
-            stringify!(type_)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ArrayMarshal_mst>())).stride as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ArrayMarshal_mst),
-            "::",
-            stringify!(stride)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct StructMarshal_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 1usize],
-}
-#[test]
-fn bindgen_test_layout_StructMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<StructMarshal_mst>(),
-        4usize,
-        concat!("Size of: ", stringify!(StructMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<StructMarshal_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(StructMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StructMarshal_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(StructMarshal_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StructMarshal_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(StructMarshal_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<StructMarshal_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(StructMarshal_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ValuesMarshal_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_ValuesMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<ValuesMarshal_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(ValuesMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ValuesMarshal_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(ValuesMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ValuesMarshal_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ValuesMarshal_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ValuesMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ValuesMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ValuesMarshal_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ValuesMarshal_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ValuesMarshal_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ValuesMarshal_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ValuesMarshal_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ValuesMarshal_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ValuesMarshal_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ValuesMarshal_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TableMarshal_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_TableMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TableMarshal_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TableMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TableMarshal_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TableMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TableMarshal_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TableMarshal_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TableMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TableMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TableMarshal_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TableMarshal_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TableMarshal_mst>())).singles as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TableMarshal_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TableMarshal_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TableMarshal_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct MinMaxMarshal_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_MinMaxMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<MinMaxMarshal_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(MinMaxMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MinMaxMarshal_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(MinMaxMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MinMaxMarshal_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MinMaxMarshal_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MinMaxMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MinMaxMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MinMaxMarshal_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MinMaxMarshal_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MinMaxMarshal_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MinMaxMarshal_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Tpm2bMarshal_mst {
-    pub unmarshalType: UINT8,
-    pub sizeIndex: UINT16,
-}
-#[test]
-fn bindgen_test_layout_Tpm2bMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Tpm2bMarshal_mst>(),
-        4usize,
-        concat!("Size of: ", stringify!(Tpm2bMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Tpm2bMarshal_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Tpm2bMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Tpm2bMarshal_mst>())).unmarshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Tpm2bMarshal_mst),
-            "::",
-            stringify!(unmarshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Tpm2bMarshal_mst>())).sizeIndex as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Tpm2bMarshal_mst),
-            "::",
-            stringify!(sizeIndex)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Tpm2bsMarshal_mst {
-    pub unmarshalType: UINT8,
-    pub modifiers: UINT8,
-    pub sizeIndex: UINT16,
-    pub dataIndex: UINT16,
-}
-#[test]
-fn bindgen_test_layout_Tpm2bsMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Tpm2bsMarshal_mst>(),
-        6usize,
-        concat!("Size of: ", stringify!(Tpm2bsMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Tpm2bsMarshal_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(Tpm2bsMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Tpm2bsMarshal_mst>())).unmarshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Tpm2bsMarshal_mst),
-            "::",
-            stringify!(unmarshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Tpm2bsMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Tpm2bsMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Tpm2bsMarshal_mst>())).sizeIndex as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Tpm2bsMarshal_mst),
-            "::",
-            stringify!(sizeIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Tpm2bsMarshal_mst>())).dataIndex as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Tpm2bsMarshal_mst),
-            "::",
-            stringify!(dataIndex)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct ListMarshal_mst {
-    pub unmarshalType: UINT8,
-    pub modifiers: UINT8,
-    pub sizeIndex: UINT16,
-    pub arrayRef: UINT16,
-}
-#[test]
-fn bindgen_test_layout_ListMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<ListMarshal_mst>(),
-        6usize,
-        concat!("Size of: ", stringify!(ListMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<ListMarshal_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(ListMarshal_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ListMarshal_mst>())).unmarshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ListMarshal_mst),
-            "::",
-            stringify!(unmarshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ListMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ListMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ListMarshal_mst>())).sizeIndex as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ListMarshal_mst),
-            "::",
-            stringify!(sizeIndex)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<ListMarshal_mst>())).arrayRef as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(ListMarshal_mst),
-            "::",
-            stringify!(arrayRef)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct AttributesMarshal_mst {
-    pub unmarashalType: UINT8,
-    pub modifiers: UINT8,
-    pub attributeMask: UINT32,
-}
-#[test]
-fn bindgen_test_layout_AttributesMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<AttributesMarshal_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(AttributesMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<AttributesMarshal_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(AttributesMarshal_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<AttributesMarshal_mst>())).unmarashalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AttributesMarshal_mst),
-            "::",
-            stringify!(unmarashalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<AttributesMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AttributesMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<AttributesMarshal_mst>())).attributeMask as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(AttributesMarshal_mst),
-            "::",
-            stringify!(attributeMask)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct CompositeMarshal_mst {
-    pub unmashalType: UINT8,
-    pub modifiers: UINT8,
-    pub types: [marshalIndex_t; 1usize],
-}
-#[test]
-fn bindgen_test_layout_CompositeMarshal_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<CompositeMarshal_mst>(),
-        4usize,
-        concat!("Size of: ", stringify!(CompositeMarshal_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<CompositeMarshal_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(CompositeMarshal_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<CompositeMarshal_mst>())).unmashalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CompositeMarshal_mst),
-            "::",
-            stringify!(unmashalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CompositeMarshal_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CompositeMarshal_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<CompositeMarshal_mst>())).types as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(CompositeMarshal_mst),
-            "::",
-            stringify!(types)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_ECC_CURVE_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_ECC_CURVE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_ECC_CURVE_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPM_ECC_CURVE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_ECC_CURVE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_ECC_CURVE_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_ECC_CURVE_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_ECC_CURVE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_ECC_CURVE_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_ECC_CURVE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_ECC_CURVE_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_ECC_CURVE_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_ECC_CURVE_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_ECC_CURVE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_CLOCK_ADJUST_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_CLOCK_ADJUST_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_CLOCK_ADJUST_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPM_CLOCK_ADJUST_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_CLOCK_ADJUST_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_CLOCK_ADJUST_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPM_CLOCK_ADJUST_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CLOCK_ADJUST_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CLOCK_ADJUST_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CLOCK_ADJUST_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CLOCK_ADJUST_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CLOCK_ADJUST_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CLOCK_ADJUST_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CLOCK_ADJUST_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_EO_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_EO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_EO_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPM_EO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_EO_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_EO_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_EO_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_EO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_EO_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_EO_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_EO_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_EO_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_EO_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_EO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_SU_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_SU_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_SU_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPM_SU_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_SU_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_SU_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SU_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SU_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SU_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SU_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SU_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SU_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SU_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SU_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SU_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SU_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_SE_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_SE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_SE_mst>(),
-        16usize,
-        concat!("Size of: ", stringify!(TPM_SE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_SE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_SE_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SE_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SE_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SE_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SE_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SE_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SE_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_SE_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_SE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_CAP_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_CAP_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_CAP_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPM_CAP_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_CAP_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_CAP_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CAP_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CAP_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CAP_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CAP_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CAP_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CAP_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CAP_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CAP_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CAP_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CAP_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_CAP_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_CAP_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_YES_NO_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_YES_NO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_YES_NO_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_YES_NO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_YES_NO_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_YES_NO_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_YES_NO_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_YES_NO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_YES_NO_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_YES_NO_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_YES_NO_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_YES_NO_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_YES_NO_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_YES_NO_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_YES_NO_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_YES_NO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_OBJECT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_OBJECT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_OBJECT_mst>(),
-        28usize,
-        concat!("Size of: ", stringify!(TPMI_DH_OBJECT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_OBJECT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_OBJECT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_OBJECT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_OBJECT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_OBJECT_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_OBJECT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_OBJECT_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_OBJECT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_OBJECT_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_OBJECT_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_OBJECT_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_OBJECT_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_OBJECT_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_OBJECT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_PARENT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 8usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_PARENT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_PARENT_mst>(),
-        40usize,
-        concat!("Size of: ", stringify!(TPMI_DH_PARENT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_PARENT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_PARENT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PARENT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PARENT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PARENT_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PARENT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PARENT_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PARENT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PARENT_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PARENT_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PARENT_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PARENT_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PARENT_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PARENT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_PERSISTENT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_PERSISTENT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_PERSISTENT_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_DH_PERSISTENT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_PERSISTENT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_PERSISTENT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_DH_PERSISTENT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PERSISTENT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_DH_PERSISTENT_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PERSISTENT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_DH_PERSISTENT_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PERSISTENT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PERSISTENT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PERSISTENT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_ENTITY_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 15usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_ENTITY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_ENTITY_mst>(),
-        68usize,
-        concat!("Size of: ", stringify!(TPMI_DH_ENTITY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_ENTITY_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_ENTITY_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_ENTITY_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_ENTITY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_ENTITY_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_ENTITY_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_ENTITY_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_ENTITY_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_ENTITY_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_ENTITY_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_ENTITY_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_ENTITY_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_ENTITY_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_ENTITY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_PCR_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_PCR_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_PCR_mst>(),
-        16usize,
-        concat!("Size of: ", stringify!(TPMI_DH_PCR_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_PCR_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_PCR_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PCR_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PCR_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PCR_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PCR_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PCR_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PCR_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_PCR_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_PCR_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_SH_AUTH_SESSION_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_SH_AUTH_SESSION_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_SH_AUTH_SESSION_mst>(),
-        28usize,
-        concat!("Size of: ", stringify!(TPMI_SH_AUTH_SESSION_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_SH_AUTH_SESSION_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_SH_AUTH_SESSION_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_SH_AUTH_SESSION_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_AUTH_SESSION_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_SH_AUTH_SESSION_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_AUTH_SESSION_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_SH_AUTH_SESSION_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_AUTH_SESSION_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_AUTH_SESSION_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_AUTH_SESSION_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_SH_AUTH_SESSION_mst>())).singles as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_AUTH_SESSION_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_AUTH_SESSION_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_AUTH_SESSION_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_SH_HMAC_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_SH_HMAC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_SH_HMAC_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_SH_HMAC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_SH_HMAC_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_SH_HMAC_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_HMAC_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_HMAC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_HMAC_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_HMAC_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_HMAC_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_HMAC_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_HMAC_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_HMAC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_SH_POLICY_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_SH_POLICY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_SH_POLICY_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_SH_POLICY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_SH_POLICY_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_SH_POLICY_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_POLICY_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_POLICY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_POLICY_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_POLICY_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_POLICY_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_POLICY_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SH_POLICY_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SH_POLICY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_CONTEXT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_CONTEXT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_CONTEXT_mst>(),
-        32usize,
-        concat!("Size of: ", stringify!(TPMI_DH_CONTEXT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_CONTEXT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_CONTEXT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_CONTEXT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_CONTEXT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_CONTEXT_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_CONTEXT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_CONTEXT_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_CONTEXT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_CONTEXT_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_CONTEXT_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_CONTEXT_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_CONTEXT_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_CONTEXT_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_CONTEXT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_DH_SAVED_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 7usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_DH_SAVED_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_DH_SAVED_mst>(),
-        36usize,
-        concat!("Size of: ", stringify!(TPMI_DH_SAVED_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_DH_SAVED_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_DH_SAVED_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_SAVED_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_SAVED_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_SAVED_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_SAVED_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_SAVED_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_SAVED_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_SAVED_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_SAVED_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_SAVED_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_SAVED_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_DH_SAVED_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_DH_SAVED_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_HIERARCHY_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_HIERARCHY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_HIERARCHY_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_RH_HIERARCHY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_HIERARCHY_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_HIERARCHY_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_ENABLES_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_ENABLES_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_ENABLES_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_RH_ENABLES_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_ENABLES_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_ENABLES_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENABLES_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENABLES_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENABLES_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENABLES_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENABLES_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENABLES_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENABLES_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENABLES_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENABLES_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENABLES_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_HIERARCHY_AUTH_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_HIERARCHY_AUTH_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_HIERARCHY_AUTH_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_RH_HIERARCHY_AUTH_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_HIERARCHY_AUTH_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_HIERARCHY_AUTH_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_AUTH_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_AUTH_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_AUTH_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_AUTH_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_AUTH_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_AUTH_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_AUTH_mst>())).entries as *const _ as usize
-        },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_AUTH_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_AUTH_mst>())).values as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_AUTH_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_HIERARCHY_POLICY_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_HIERARCHY_POLICY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_HIERARCHY_POLICY_mst>(),
-        32usize,
-        concat!("Size of: ", stringify!(TPMI_RH_HIERARCHY_POLICY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_HIERARCHY_POLICY_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_HIERARCHY_POLICY_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_POLICY_mst>())).marshalType as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_POLICY_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_POLICY_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_POLICY_mst>())).ranges as *const _ as usize
-        },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_POLICY_mst>())).singles as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_HIERARCHY_POLICY_mst>())).values as *const _ as usize
-        },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_PLATFORM_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_PLATFORM_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_PLATFORM_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMI_RH_PLATFORM_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_PLATFORM_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_PLATFORM_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_PLATFORM_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PLATFORM_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PLATFORM_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PLATFORM_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PLATFORM_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PLATFORM_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PLATFORM_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PLATFORM_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PLATFORM_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PLATFORM_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_OWNER_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_OWNER_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_OWNER_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_OWNER_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_OWNER_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_OWNER_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_OWNER_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_OWNER_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_OWNER_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_OWNER_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_OWNER_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_OWNER_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_OWNER_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_OWNER_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_OWNER_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_OWNER_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_ENDORSEMENT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_ENDORSEMENT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_ENDORSEMENT_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_ENDORSEMENT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_ENDORSEMENT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_ENDORSEMENT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_ENDORSEMENT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENDORSEMENT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_ENDORSEMENT_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENDORSEMENT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_ENDORSEMENT_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENDORSEMENT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENDORSEMENT_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENDORSEMENT_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ENDORSEMENT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ENDORSEMENT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_PROVISION_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_PROVISION_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_PROVISION_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_PROVISION_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_PROVISION_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_PROVISION_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_PROVISION_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PROVISION_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PROVISION_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PROVISION_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PROVISION_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PROVISION_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PROVISION_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PROVISION_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_PROVISION_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_PROVISION_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_CLEAR_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_CLEAR_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_CLEAR_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_CLEAR_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_CLEAR_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_CLEAR_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_CLEAR_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_CLEAR_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_CLEAR_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_CLEAR_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_CLEAR_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_CLEAR_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_CLEAR_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_CLEAR_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_CLEAR_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_CLEAR_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_NV_AUTH_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_NV_AUTH_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_NV_AUTH_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_RH_NV_AUTH_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_NV_AUTH_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_NV_AUTH_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_AUTH_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_AUTH_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_AUTH_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_AUTH_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_AUTH_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_AUTH_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_AUTH_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_AUTH_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_AUTH_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_AUTH_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_AUTH_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_AUTH_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_LOCKOUT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_LOCKOUT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_LOCKOUT_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMI_RH_LOCKOUT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_LOCKOUT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_LOCKOUT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_LOCKOUT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_LOCKOUT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_LOCKOUT_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_LOCKOUT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_LOCKOUT_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_LOCKOUT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_LOCKOUT_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_LOCKOUT_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_LOCKOUT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_LOCKOUT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_NV_INDEX_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_NV_INDEX_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_NV_INDEX_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_NV_INDEX_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_NV_INDEX_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_NV_INDEX_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RH_NV_INDEX_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_INDEX_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_INDEX_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_INDEX_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_INDEX_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_INDEX_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_NV_INDEX_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_NV_INDEX_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_AC_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_AC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_AC_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_AC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_AC_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_AC_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_AC_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_AC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_AC_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_AC_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_AC_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_AC_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_AC_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_AC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RH_ACT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RH_ACT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RH_ACT_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_RH_ACT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RH_ACT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RH_ACT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ACT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ACT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ACT_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ACT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ACT_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ACT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RH_ACT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RH_ACT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_HASH_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_HASH_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_HASH_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_HASH_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_HASH_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_HASH_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_HASH_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_HASH_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_HASH_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_HASH_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_HASH_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_HASH_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_HASH_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_HASH_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_ASYM_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_ASYM_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_ASYM_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_ASYM_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_ASYM_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_ASYM_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_ASYM_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_ASYM_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_ASYM_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_ASYM_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_SYM_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_SYM_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_SYM_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_SYM_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_SYM_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_SYM_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_SYM_OBJECT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_SYM_OBJECT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_SYM_OBJECT_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_SYM_OBJECT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_SYM_OBJECT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_SYM_OBJECT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SYM_OBJECT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_OBJECT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SYM_OBJECT_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_OBJECT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SYM_OBJECT_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_OBJECT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_OBJECT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_OBJECT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_SYM_MODE_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_SYM_MODE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_SYM_MODE_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_SYM_MODE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_SYM_MODE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_SYM_MODE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SYM_MODE_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_MODE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_MODE_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_MODE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_MODE_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_MODE_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SYM_MODE_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SYM_MODE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_KDF_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_KDF_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_KDF_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_KDF_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_KDF_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_KDF_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_KDF_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KDF_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_KDF_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KDF_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_KDF_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KDF_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_KDF_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KDF_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_SIG_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_SIG_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_SIG_SCHEME_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_SIG_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_SIG_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_SIG_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SIG_SCHEME_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SIG_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SIG_SCHEME_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SIG_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_SIG_SCHEME_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SIG_SCHEME_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_SIG_SCHEME_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_SIG_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ECC_KEY_EXCHANGE_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ECC_KEY_EXCHANGE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ECC_KEY_EXCHANGE_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ECC_KEY_EXCHANGE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ECC_KEY_EXCHANGE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ECC_KEY_EXCHANGE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ECC_KEY_EXCHANGE_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_KEY_EXCHANGE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ECC_KEY_EXCHANGE_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_KEY_EXCHANGE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ECC_KEY_EXCHANGE_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_KEY_EXCHANGE_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ECC_KEY_EXCHANGE_mst>())).values as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_KEY_EXCHANGE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ST_COMMAND_TAG_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ST_COMMAND_TAG_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ST_COMMAND_TAG_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(TPMI_ST_COMMAND_TAG_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ST_COMMAND_TAG_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ST_COMMAND_TAG_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ST_COMMAND_TAG_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_COMMAND_TAG_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ST_COMMAND_TAG_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_COMMAND_TAG_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ST_COMMAND_TAG_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_COMMAND_TAG_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_COMMAND_TAG_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_COMMAND_TAG_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_COMMAND_TAG_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_COMMAND_TAG_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_MAC_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_MAC_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_MAC_SCHEME_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_MAC_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_MAC_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_MAC_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_MAC_SCHEME_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_MAC_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_MAC_SCHEME_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_MAC_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_MAC_SCHEME_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_MAC_SCHEME_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_MAC_SCHEME_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_MAC_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_CIPHER_MODE_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_CIPHER_MODE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_CIPHER_MODE_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_CIPHER_MODE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_CIPHER_MODE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_CIPHER_MODE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_CIPHER_MODE_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_CIPHER_MODE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_CIPHER_MODE_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_CIPHER_MODE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_CIPHER_MODE_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_CIPHER_MODE_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_CIPHER_MODE_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_CIPHER_MODE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_EMPTY_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_EMPTY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_EMPTY_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMS_EMPTY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_EMPTY_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_EMPTY_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_EMPTY_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_EMPTY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_EMPTY_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_EMPTY_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_EMPTY_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_EMPTY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_ALGORITHM_DESCRIPTION_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ALGORITHM_DESCRIPTION_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ALGORITHM_DESCRIPTION_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_ALGORITHM_DESCRIPTION_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ALGORITHM_DESCRIPTION_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ALGORITHM_DESCRIPTION_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALGORITHM_DESCRIPTION_mst>())).marshalType as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALGORITHM_DESCRIPTION_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALGORITHM_DESCRIPTION_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALGORITHM_DESCRIPTION_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALGORITHM_DESCRIPTION_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALGORITHM_DESCRIPTION_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_HA_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 9usize],
-    pub marshalingTypes: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_HA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_HA_mst>(),
-        60usize,
-        concat!("Size of: ", stringify!(TPMU_HA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_HA_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_HA_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_HA_mst>())).countOfselectors as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_HA_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_HA_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_HA_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_HA_mst>())).offsetOfUnmarshalTypes as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_HA_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_HA_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_HA_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_HA_mst>())).marshalingTypes as *const _ as usize },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_HA_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_HA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_HA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_HA_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_HA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_HA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_HA_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_HA_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_HA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_HA_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_HA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_HA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_HA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_PCR_SELECT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_PCR_SELECT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_PCR_SELECT_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_PCR_SELECT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_PCR_SELECT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_PCR_SELECT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_PCR_SELECT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_PCR_SELECT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_PCR_SELECT_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_PCR_SELECT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_PCR_SELECT_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_PCR_SELECT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_PCR_SELECTION_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_PCR_SELECTION_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_PCR_SELECTION_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMS_PCR_SELECTION_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_PCR_SELECTION_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_PCR_SELECTION_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_PCR_SELECTION_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_PCR_SELECTION_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_PCR_SELECTION_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_PCR_SELECTION_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_PCR_SELECTION_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_PCR_SELECTION_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_TK_CREATION_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_TK_CREATION_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_TK_CREATION_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMT_TK_CREATION_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_TK_CREATION_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_TK_CREATION_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_TK_CREATION_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_CREATION_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_CREATION_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_CREATION_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_CREATION_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_CREATION_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_TK_VERIFIED_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_TK_VERIFIED_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_TK_VERIFIED_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMT_TK_VERIFIED_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_TK_VERIFIED_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_TK_VERIFIED_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_TK_VERIFIED_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_VERIFIED_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_VERIFIED_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_VERIFIED_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_VERIFIED_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_VERIFIED_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_TK_AUTH_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_TK_AUTH_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_TK_AUTH_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMT_TK_AUTH_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_TK_AUTH_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_TK_AUTH_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_AUTH_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_AUTH_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_AUTH_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_AUTH_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_AUTH_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_AUTH_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_TK_HASHCHECK_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_TK_HASHCHECK_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_TK_HASHCHECK_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMT_TK_HASHCHECK_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_TK_HASHCHECK_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_TK_HASHCHECK_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_TK_HASHCHECK_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_HASHCHECK_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_HASHCHECK_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_HASHCHECK_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_TK_HASHCHECK_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_TK_HASHCHECK_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_ALG_PROPERTY_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ALG_PROPERTY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ALG_PROPERTY_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_ALG_PROPERTY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ALG_PROPERTY_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ALG_PROPERTY_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALG_PROPERTY_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALG_PROPERTY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ALG_PROPERTY_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALG_PROPERTY_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ALG_PROPERTY_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALG_PROPERTY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_TAGGED_PROPERTY_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_TAGGED_PROPERTY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_TAGGED_PROPERTY_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_TAGGED_PROPERTY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_TAGGED_PROPERTY_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_TAGGED_PROPERTY_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TAGGED_PROPERTY_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_PROPERTY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TAGGED_PROPERTY_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_PROPERTY_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_TAGGED_PROPERTY_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_PROPERTY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_TAGGED_PCR_SELECT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_TAGGED_PCR_SELECT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_TAGGED_PCR_SELECT_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMS_TAGGED_PCR_SELECT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_TAGGED_PCR_SELECT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_TAGGED_PCR_SELECT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TAGGED_PCR_SELECT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_PCR_SELECT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TAGGED_PCR_SELECT_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_PCR_SELECT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TAGGED_PCR_SELECT_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_PCR_SELECT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_TAGGED_POLICY_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_TAGGED_POLICY_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_TAGGED_POLICY_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_TAGGED_POLICY_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_TAGGED_POLICY_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_TAGGED_POLICY_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TAGGED_POLICY_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_POLICY_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_TAGGED_POLICY_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_POLICY_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_TAGGED_POLICY_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TAGGED_POLICY_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_ACT_DATA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ACT_DATA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ACT_DATA_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMS_ACT_DATA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ACT_DATA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ACT_DATA_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ACT_DATA_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ACT_DATA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ACT_DATA_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ACT_DATA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ACT_DATA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ACT_DATA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_CAPABILITIES_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 11usize],
-    pub marshalingTypes: [UINT16; 11usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_CAPABILITIES_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_CAPABILITIES_mst>(),
-        72usize,
-        concat!("Size of: ", stringify!(TPMU_CAPABILITIES_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_CAPABILITIES_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_CAPABILITIES_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_CAPABILITIES_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_CAPABILITIES_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_CAPABILITIES_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_CAPABILITIES_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_CAPABILITIES_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_CAPABILITIES_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_CAPABILITIES_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_CAPABILITIES_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_CAPABILITIES_mst>())).marshalingTypes as *const _ as usize
-        },
-        48usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_CAPABILITIES_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CAPABILITY_DATA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CAPABILITY_DATA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CAPABILITY_DATA_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_CAPABILITY_DATA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CAPABILITY_DATA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CAPABILITY_DATA_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_CAPABILITY_DATA_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CAPABILITY_DATA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_CAPABILITY_DATA_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CAPABILITY_DATA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CAPABILITY_DATA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CAPABILITY_DATA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CLOCK_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CLOCK_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CLOCK_INFO_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMS_CLOCK_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CLOCK_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CLOCK_INFO_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CLOCK_INFO_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CLOCK_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CLOCK_INFO_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CLOCK_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CLOCK_INFO_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CLOCK_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_TIME_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_TIME_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_TIME_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_TIME_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_TIME_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_TIME_INFO_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_TIME_INFO_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TIME_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_TIME_INFO_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TIME_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_TIME_INFO_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TIME_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_TIME_ATTEST_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_TIME_ATTEST_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_TIME_ATTEST_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_TIME_ATTEST_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_TIME_ATTEST_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_TIME_ATTEST_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TIME_ATTEST_INFO_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TIME_ATTEST_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TIME_ATTEST_INFO_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TIME_ATTEST_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_TIME_ATTEST_INFO_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_TIME_ATTEST_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CERTIFY_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CERTIFY_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CERTIFY_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_CERTIFY_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CERTIFY_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CERTIFY_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_CERTIFY_INFO_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CERTIFY_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CERTIFY_INFO_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CERTIFY_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CERTIFY_INFO_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CERTIFY_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_QUOTE_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_QUOTE_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_QUOTE_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_QUOTE_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_QUOTE_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_QUOTE_INFO_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_QUOTE_INFO_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_QUOTE_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_QUOTE_INFO_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_QUOTE_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_QUOTE_INFO_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_QUOTE_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_COMMAND_AUDIT_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_COMMAND_AUDIT_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_COMMAND_AUDIT_INFO_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMS_COMMAND_AUDIT_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_COMMAND_AUDIT_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_COMMAND_AUDIT_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_COMMAND_AUDIT_INFO_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_COMMAND_AUDIT_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_COMMAND_AUDIT_INFO_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_COMMAND_AUDIT_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_COMMAND_AUDIT_INFO_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_COMMAND_AUDIT_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SESSION_AUDIT_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SESSION_AUDIT_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SESSION_AUDIT_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_SESSION_AUDIT_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SESSION_AUDIT_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SESSION_AUDIT_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SESSION_AUDIT_INFO_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SESSION_AUDIT_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SESSION_AUDIT_INFO_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SESSION_AUDIT_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SESSION_AUDIT_INFO_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SESSION_AUDIT_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CREATION_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CREATION_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CREATION_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_CREATION_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CREATION_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CREATION_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_CREATION_INFO_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CREATION_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CREATION_INFO_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CREATION_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CREATION_INFO_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CREATION_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_NV_CERTIFY_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_NV_CERTIFY_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_NV_CERTIFY_INFO_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMS_NV_CERTIFY_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_NV_CERTIFY_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_NV_CERTIFY_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_CERTIFY_INFO_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_CERTIFY_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_CERTIFY_INFO_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_CERTIFY_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_NV_CERTIFY_INFO_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_CERTIFY_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_NV_DIGEST_CERTIFY_INFO_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_NV_DIGEST_CERTIFY_INFO_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_NV_DIGEST_CERTIFY_INFO_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_NV_DIGEST_CERTIFY_INFO_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_NV_DIGEST_CERTIFY_INFO_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_NV_DIGEST_CERTIFY_INFO_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_DIGEST_CERTIFY_INFO_mst>())).marshalType as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_DIGEST_CERTIFY_INFO_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_DIGEST_CERTIFY_INFO_mst>())).elements as *const _
-                as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_DIGEST_CERTIFY_INFO_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_DIGEST_CERTIFY_INFO_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_DIGEST_CERTIFY_INFO_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ST_ATTEST_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub ranges: UINT8,
-    pub singles: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ST_ATTEST_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ST_ATTEST_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ST_ATTEST_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ST_ATTEST_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ST_ATTEST_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_ATTEST_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_ATTEST_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_ATTEST_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_ATTEST_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_ATTEST_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_ATTEST_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_ATTEST_mst>())).ranges as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_ATTEST_mst),
-            "::",
-            stringify!(ranges)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_ATTEST_mst>())).singles as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_ATTEST_mst),
-            "::",
-            stringify!(singles)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ST_ATTEST_mst>())).values as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ST_ATTEST_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_ATTEST_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 8usize],
-    pub marshalingTypes: [UINT16; 8usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_ATTEST_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_ATTEST_mst>(),
-        52usize,
-        concat!("Size of: ", stringify!(TPMU_ATTEST_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_ATTEST_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_ATTEST_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ATTEST_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ATTEST_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_ATTEST_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ATTEST_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ATTEST_mst>())).offsetOfUnmarshalTypes as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ATTEST_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_ATTEST_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ATTEST_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_ATTEST_mst>())).marshalingTypes as *const _ as usize },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ATTEST_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_ATTEST_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 21usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ATTEST_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ATTEST_mst>(),
-        44usize,
-        concat!("Size of: ", stringify!(TPMS_ATTEST_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ATTEST_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ATTEST_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ATTEST_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ATTEST_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ATTEST_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ATTEST_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ATTEST_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ATTEST_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_AUTH_COMMAND_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_AUTH_COMMAND_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_AUTH_COMMAND_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMS_AUTH_COMMAND_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_AUTH_COMMAND_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_AUTH_COMMAND_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_AUTH_COMMAND_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AUTH_COMMAND_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AUTH_COMMAND_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AUTH_COMMAND_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AUTH_COMMAND_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AUTH_COMMAND_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_AUTH_RESPONSE_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_AUTH_RESPONSE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_AUTH_RESPONSE_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMS_AUTH_RESPONSE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_AUTH_RESPONSE_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_AUTH_RESPONSE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_AUTH_RESPONSE_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AUTH_RESPONSE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AUTH_RESPONSE_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AUTH_RESPONSE_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AUTH_RESPONSE_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AUTH_RESPONSE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_TDES_KEY_BITS_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_TDES_KEY_BITS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_TDES_KEY_BITS_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMI_TDES_KEY_BITS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_TDES_KEY_BITS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_TDES_KEY_BITS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_TDES_KEY_BITS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_TDES_KEY_BITS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_TDES_KEY_BITS_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_TDES_KEY_BITS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_TDES_KEY_BITS_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_TDES_KEY_BITS_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_TDES_KEY_BITS_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_TDES_KEY_BITS_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_TDES_KEY_BITS_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_TDES_KEY_BITS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_AES_KEY_BITS_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_AES_KEY_BITS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_AES_KEY_BITS_mst>(),
-        16usize,
-        concat!("Size of: ", stringify!(TPMI_AES_KEY_BITS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_AES_KEY_BITS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_AES_KEY_BITS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_AES_KEY_BITS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_AES_KEY_BITS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_AES_KEY_BITS_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_AES_KEY_BITS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_AES_KEY_BITS_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_AES_KEY_BITS_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_AES_KEY_BITS_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_AES_KEY_BITS_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_AES_KEY_BITS_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_AES_KEY_BITS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_SM4_KEY_BITS_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_SM4_KEY_BITS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_SM4_KEY_BITS_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMI_SM4_KEY_BITS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_SM4_KEY_BITS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_SM4_KEY_BITS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_SM4_KEY_BITS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SM4_KEY_BITS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SM4_KEY_BITS_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SM4_KEY_BITS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SM4_KEY_BITS_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SM4_KEY_BITS_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SM4_KEY_BITS_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SM4_KEY_BITS_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_SM4_KEY_BITS_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_SM4_KEY_BITS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_CAMELLIA_KEY_BITS_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_CAMELLIA_KEY_BITS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_CAMELLIA_KEY_BITS_mst>(),
-        16usize,
-        concat!("Size of: ", stringify!(TPMI_CAMELLIA_KEY_BITS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_CAMELLIA_KEY_BITS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_CAMELLIA_KEY_BITS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_CAMELLIA_KEY_BITS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_CAMELLIA_KEY_BITS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_CAMELLIA_KEY_BITS_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_CAMELLIA_KEY_BITS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_CAMELLIA_KEY_BITS_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_CAMELLIA_KEY_BITS_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_CAMELLIA_KEY_BITS_mst>())).entries as *const _ as usize
-        },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_CAMELLIA_KEY_BITS_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_CAMELLIA_KEY_BITS_mst>())).values as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_CAMELLIA_KEY_BITS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_SYM_KEY_BITS_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 6usize],
-    pub marshalingTypes: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_SYM_KEY_BITS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_SYM_KEY_BITS_mst>(),
-        40usize,
-        concat!("Size of: ", stringify!(TPMU_SYM_KEY_BITS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_SYM_KEY_BITS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_SYM_KEY_BITS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SYM_KEY_BITS_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_KEY_BITS_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SYM_KEY_BITS_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_KEY_BITS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SYM_KEY_BITS_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_KEY_BITS_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SYM_KEY_BITS_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_KEY_BITS_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SYM_KEY_BITS_mst>())).marshalingTypes as *const _ as usize
-        },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_KEY_BITS_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_SYM_MODE_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 6usize],
-    pub marshalingTypes: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_SYM_MODE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_SYM_MODE_mst>(),
-        40usize,
-        concat!("Size of: ", stringify!(TPMU_SYM_MODE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_SYM_MODE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_SYM_MODE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SYM_MODE_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_MODE_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SYM_MODE_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_MODE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SYM_MODE_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_MODE_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SYM_MODE_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_MODE_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SYM_MODE_mst>())).marshalingTypes as *const _ as usize
-        },
-        28usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SYM_MODE_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_SYM_DEF_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_SYM_DEF_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_SYM_DEF_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMT_SYM_DEF_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_SYM_DEF_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_SYM_DEF_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SYM_DEF_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SYM_DEF_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SYM_DEF_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SYM_DEF_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SYM_DEF_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SYM_DEF_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_SYM_DEF_OBJECT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_SYM_DEF_OBJECT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_SYM_DEF_OBJECT_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMT_SYM_DEF_OBJECT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_SYM_DEF_OBJECT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_SYM_DEF_OBJECT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_SYM_DEF_OBJECT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SYM_DEF_OBJECT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_SYM_DEF_OBJECT_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SYM_DEF_OBJECT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SYM_DEF_OBJECT_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SYM_DEF_OBJECT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SYMCIPHER_PARMS_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SYMCIPHER_PARMS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SYMCIPHER_PARMS_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMS_SYMCIPHER_PARMS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SYMCIPHER_PARMS_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SYMCIPHER_PARMS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SYMCIPHER_PARMS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SYMCIPHER_PARMS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SYMCIPHER_PARMS_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SYMCIPHER_PARMS_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SYMCIPHER_PARMS_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SYMCIPHER_PARMS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_DERIVE_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_DERIVE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_DERIVE_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_DERIVE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_DERIVE_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_DERIVE_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_DERIVE_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_DERIVE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_DERIVE_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_DERIVE_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_DERIVE_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_DERIVE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SENSITIVE_CREATE_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SENSITIVE_CREATE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SENSITIVE_CREATE_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_SENSITIVE_CREATE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SENSITIVE_CREATE_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SENSITIVE_CREATE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SENSITIVE_CREATE_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SENSITIVE_CREATE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SENSITIVE_CREATE_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SENSITIVE_CREATE_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SENSITIVE_CREATE_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SENSITIVE_CREATE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SCHEME_HASH_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SCHEME_HASH_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SCHEME_HASH_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMS_SCHEME_HASH_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SCHEME_HASH_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SCHEME_HASH_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SCHEME_HASH_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_HASH_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_HASH_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_HASH_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_HASH_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_HASH_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SCHEME_ECDAA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SCHEME_ECDAA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SCHEME_ECDAA_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_SCHEME_ECDAA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SCHEME_ECDAA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SCHEME_ECDAA_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SCHEME_ECDAA_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_ECDAA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_ECDAA_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_ECDAA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_ECDAA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_ECDAA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_KEYEDHASH_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_KEYEDHASH_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_KEYEDHASH_SCHEME_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_KEYEDHASH_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_KEYEDHASH_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_KEYEDHASH_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_KEYEDHASH_SCHEME_mst>())).marshalType as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_KEYEDHASH_SCHEME_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_KEYEDHASH_SCHEME_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_KEYEDHASH_SCHEME_mst>())).values as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SCHEME_XOR_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SCHEME_XOR_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SCHEME_XOR_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_SCHEME_XOR_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SCHEME_XOR_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SCHEME_XOR_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_XOR_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_XOR_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_XOR_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_XOR_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SCHEME_XOR_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SCHEME_XOR_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_SCHEME_KEYEDHASH_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 3usize],
-    pub marshalingTypes: [UINT16; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_SCHEME_KEYEDHASH_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_SCHEME_KEYEDHASH_mst>(),
-        24usize,
-        concat!("Size of: ", stringify!(TPMU_SCHEME_KEYEDHASH_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_SCHEME_KEYEDHASH_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_SCHEME_KEYEDHASH_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SCHEME_KEYEDHASH_mst>())).countOfselectors as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SCHEME_KEYEDHASH_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SCHEME_KEYEDHASH_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SCHEME_KEYEDHASH_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SCHEME_KEYEDHASH_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SCHEME_KEYEDHASH_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SCHEME_KEYEDHASH_mst>())).selectors as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SCHEME_KEYEDHASH_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SCHEME_KEYEDHASH_mst>())).marshalingTypes as *const _
-                as usize
-        },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SCHEME_KEYEDHASH_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_KEYEDHASH_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_KEYEDHASH_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_KEYEDHASH_SCHEME_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_KEYEDHASH_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_KEYEDHASH_SCHEME_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_KEYEDHASH_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_KEYEDHASH_SCHEME_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_KEYEDHASH_SCHEME_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_KEYEDHASH_SCHEME_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_KEYEDHASH_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_SIG_SCHEME_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 8usize],
-    pub marshalingTypes: [UINT16; 8usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_SIG_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_SIG_SCHEME_mst>(),
-        52usize,
-        concat!("Size of: ", stringify!(TPMU_SIG_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_SIG_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_SIG_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SIG_SCHEME_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIG_SCHEME_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SIG_SCHEME_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIG_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SIG_SCHEME_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIG_SCHEME_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SIG_SCHEME_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIG_SCHEME_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SIG_SCHEME_mst>())).marshalingTypes as *const _ as usize
-        },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIG_SCHEME_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_SIG_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_SIG_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_SIG_SCHEME_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_SIG_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_SIG_SCHEME_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_SIG_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SIG_SCHEME_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SIG_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SIG_SCHEME_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SIG_SCHEME_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SIG_SCHEME_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SIG_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_KDF_SCHEME_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 5usize],
-    pub marshalingTypes: [UINT16; 5usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_KDF_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_KDF_SCHEME_mst>(),
-        36usize,
-        concat!("Size of: ", stringify!(TPMU_KDF_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_KDF_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_KDF_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_KDF_SCHEME_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_KDF_SCHEME_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_KDF_SCHEME_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_KDF_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_KDF_SCHEME_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_KDF_SCHEME_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_KDF_SCHEME_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_KDF_SCHEME_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_KDF_SCHEME_mst>())).marshalingTypes as *const _ as usize
-        },
-        24usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_KDF_SCHEME_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_KDF_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_KDF_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_KDF_SCHEME_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_KDF_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_KDF_SCHEME_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_KDF_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_KDF_SCHEME_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_KDF_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_KDF_SCHEME_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_KDF_SCHEME_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_KDF_SCHEME_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_KDF_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_ASYM_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_ASYM_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_ASYM_SCHEME_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_ASYM_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_ASYM_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_ASYM_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_ASYM_SCHEME_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_ASYM_SCHEME_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_ASYM_SCHEME_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_SCHEME_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_ASYM_SCHEME_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ASYM_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_ASYM_SCHEME_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 11usize],
-    pub marshalingTypes: [UINT16; 11usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_ASYM_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_ASYM_SCHEME_mst>(),
-        72usize,
-        concat!("Size of: ", stringify!(TPMU_ASYM_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_ASYM_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_ASYM_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ASYM_SCHEME_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ASYM_SCHEME_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_ASYM_SCHEME_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ASYM_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ASYM_SCHEME_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ASYM_SCHEME_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_ASYM_SCHEME_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ASYM_SCHEME_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ASYM_SCHEME_mst>())).marshalingTypes as *const _ as usize
-        },
-        48usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ASYM_SCHEME_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_RSA_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_RSA_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_RSA_SCHEME_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_RSA_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_RSA_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_RSA_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_RSA_SCHEME_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_RSA_SCHEME_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_RSA_SCHEME_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_SCHEME_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_RSA_SCHEME_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_RSA_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_RSA_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_RSA_SCHEME_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_RSA_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_RSA_SCHEME_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_RSA_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_RSA_SCHEME_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_RSA_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_RSA_SCHEME_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_RSA_SCHEME_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_RSA_SCHEME_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_RSA_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_RSA_DECRYPT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_RSA_DECRYPT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_RSA_DECRYPT_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_RSA_DECRYPT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_RSA_DECRYPT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_RSA_DECRYPT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_RSA_DECRYPT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_DECRYPT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_RSA_DECRYPT_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_DECRYPT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_RSA_DECRYPT_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_DECRYPT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_RSA_DECRYPT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_RSA_DECRYPT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_RSA_DECRYPT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_RSA_DECRYPT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_RSA_DECRYPT_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_RSA_DECRYPT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_RSA_DECRYPT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_RSA_DECRYPT_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_RSA_DECRYPT_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_RSA_DECRYPT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_RSA_DECRYPT_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_RSA_DECRYPT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_RSA_DECRYPT_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_RSA_DECRYPT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_RSA_KEY_BITS_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_RSA_KEY_BITS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_RSA_KEY_BITS_mst>(),
-        16usize,
-        concat!("Size of: ", stringify!(TPMI_RSA_KEY_BITS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_RSA_KEY_BITS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_RSA_KEY_BITS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_RSA_KEY_BITS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RSA_KEY_BITS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RSA_KEY_BITS_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RSA_KEY_BITS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RSA_KEY_BITS_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RSA_KEY_BITS_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RSA_KEY_BITS_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RSA_KEY_BITS_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_RSA_KEY_BITS_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_RSA_KEY_BITS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_ECC_POINT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ECC_POINT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ECC_POINT_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_ECC_POINT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ECC_POINT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ECC_POINT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ECC_POINT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ECC_POINT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ECC_POINT_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ECC_POINT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ECC_POINT_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ECC_POINT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_ECC_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_ECC_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_ECC_SCHEME_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_ECC_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_ECC_SCHEME_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_ECC_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_ECC_SCHEME_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ECC_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_ECC_SCHEME_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ECC_SCHEME_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMI_ALG_ECC_SCHEME_mst>())).errorCode as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ECC_SCHEME_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_ECC_SCHEME_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_ECC_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ECC_CURVE_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ECC_CURVE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ECC_CURVE_mst>(),
-        16usize,
-        concat!("Size of: ", stringify!(TPMI_ECC_CURVE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ECC_CURVE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ECC_CURVE_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ECC_CURVE_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_CURVE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ECC_CURVE_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_CURVE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ECC_CURVE_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_CURVE_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ECC_CURVE_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ECC_CURVE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_ECC_SCHEME_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_ECC_SCHEME_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_ECC_SCHEME_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_ECC_SCHEME_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_ECC_SCHEME_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_ECC_SCHEME_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_ECC_SCHEME_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_ECC_SCHEME_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_ECC_SCHEME_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_ECC_SCHEME_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_ECC_SCHEME_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_ECC_SCHEME_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct TPMS_ALGORITHM_DETAIL_ECC_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 33usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ALGORITHM_DETAIL_ECC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ALGORITHM_DETAIL_ECC_mst>(),
-        68usize,
-        concat!("Size of: ", stringify!(TPMS_ALGORITHM_DETAIL_ECC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ALGORITHM_DETAIL_ECC_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ALGORITHM_DETAIL_ECC_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALGORITHM_DETAIL_ECC_mst>())).marshalType as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALGORITHM_DETAIL_ECC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALGORITHM_DETAIL_ECC_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALGORITHM_DETAIL_ECC_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_ALGORITHM_DETAIL_ECC_mst>())).values as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ALGORITHM_DETAIL_ECC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SIGNATURE_RSA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SIGNATURE_RSA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SIGNATURE_RSA_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_SIGNATURE_RSA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SIGNATURE_RSA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SIGNATURE_RSA_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SIGNATURE_RSA_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SIGNATURE_RSA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SIGNATURE_RSA_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SIGNATURE_RSA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SIGNATURE_RSA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SIGNATURE_RSA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_SIGNATURE_ECC_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 9usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_SIGNATURE_ECC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_SIGNATURE_ECC_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMS_SIGNATURE_ECC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_SIGNATURE_ECC_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_SIGNATURE_ECC_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_SIGNATURE_ECC_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SIGNATURE_ECC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SIGNATURE_ECC_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SIGNATURE_ECC_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_SIGNATURE_ECC_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_SIGNATURE_ECC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_SIGNATURE_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 8usize],
-    pub marshalingTypes: [UINT16; 8usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_SIGNATURE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_SIGNATURE_mst>(),
-        52usize,
-        concat!("Size of: ", stringify!(TPMU_SIGNATURE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_SIGNATURE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_SIGNATURE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SIGNATURE_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIGNATURE_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SIGNATURE_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIGNATURE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SIGNATURE_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIGNATURE_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_SIGNATURE_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIGNATURE_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SIGNATURE_mst>())).marshalingTypes as *const _ as usize
-        },
-        36usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SIGNATURE_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_SIGNATURE_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_SIGNATURE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_SIGNATURE_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_SIGNATURE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_SIGNATURE_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_SIGNATURE_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SIGNATURE_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SIGNATURE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SIGNATURE_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SIGNATURE_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SIGNATURE_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SIGNATURE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_ENCRYPTED_SECRET_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 4usize],
-    pub marshalingTypes: [UINT16; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_ENCRYPTED_SECRET_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_ENCRYPTED_SECRET_mst>(),
-        28usize,
-        concat!("Size of: ", stringify!(TPMU_ENCRYPTED_SECRET_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_ENCRYPTED_SECRET_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_ENCRYPTED_SECRET_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ENCRYPTED_SECRET_mst>())).countOfselectors as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ENCRYPTED_SECRET_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ENCRYPTED_SECRET_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ENCRYPTED_SECRET_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ENCRYPTED_SECRET_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ENCRYPTED_SECRET_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ENCRYPTED_SECRET_mst>())).selectors as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ENCRYPTED_SECRET_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_ENCRYPTED_SECRET_mst>())).marshalingTypes as *const _
-                as usize
-        },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_ENCRYPTED_SECRET_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMI_ALG_PUBLIC_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMI_ALG_PUBLIC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMI_ALG_PUBLIC_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPMI_ALG_PUBLIC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMI_ALG_PUBLIC_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMI_ALG_PUBLIC_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_PUBLIC_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_PUBLIC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_PUBLIC_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_PUBLIC_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_PUBLIC_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_PUBLIC_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMI_ALG_PUBLIC_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMI_ALG_PUBLIC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_PUBLIC_ID_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 4usize],
-    pub marshalingTypes: [UINT16; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_PUBLIC_ID_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_PUBLIC_ID_mst>(),
-        28usize,
-        concat!("Size of: ", stringify!(TPMU_PUBLIC_ID_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_PUBLIC_ID_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_PUBLIC_ID_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_PUBLIC_ID_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_ID_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_PUBLIC_ID_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_ID_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_PUBLIC_ID_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_ID_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_PUBLIC_ID_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_ID_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_PUBLIC_ID_mst>())).marshalingTypes as *const _ as usize
-        },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_ID_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_KEYEDHASH_PARMS_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 3usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_KEYEDHASH_PARMS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_KEYEDHASH_PARMS_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(TPMS_KEYEDHASH_PARMS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_KEYEDHASH_PARMS_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_KEYEDHASH_PARMS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_KEYEDHASH_PARMS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_KEYEDHASH_PARMS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_KEYEDHASH_PARMS_mst>())).elements as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_KEYEDHASH_PARMS_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_KEYEDHASH_PARMS_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_KEYEDHASH_PARMS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_RSA_PARMS_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_RSA_PARMS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_RSA_PARMS_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMS_RSA_PARMS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_RSA_PARMS_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_RSA_PARMS_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_RSA_PARMS_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_RSA_PARMS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_RSA_PARMS_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_RSA_PARMS_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_RSA_PARMS_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_RSA_PARMS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_ECC_PARMS_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_ECC_PARMS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_ECC_PARMS_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMS_ECC_PARMS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_ECC_PARMS_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_ECC_PARMS_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ECC_PARMS_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ECC_PARMS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ECC_PARMS_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ECC_PARMS_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_ECC_PARMS_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_ECC_PARMS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_PUBLIC_PARMS_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 4usize],
-    pub marshalingTypes: [UINT16; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_PUBLIC_PARMS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_PUBLIC_PARMS_mst>(),
-        28usize,
-        concat!("Size of: ", stringify!(TPMU_PUBLIC_PARMS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_PUBLIC_PARMS_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_PUBLIC_PARMS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_PUBLIC_PARMS_mst>())).countOfselectors as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_PUBLIC_PARMS_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_PUBLIC_PARMS_mst>())).offsetOfUnmarshalTypes as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMU_PUBLIC_PARMS_mst>())).selectors as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_PUBLIC_PARMS_mst>())).marshalingTypes as *const _ as usize
-        },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_PUBLIC_PARMS_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_PUBLIC_PARMS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_PUBLIC_PARMS_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMT_PUBLIC_PARMS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_PUBLIC_PARMS_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_PUBLIC_PARMS_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMT_PUBLIC_PARMS_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_PUBLIC_PARMS_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_PUBLIC_PARMS_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_PUBLIC_PARMS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_PUBLIC_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 18usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_PUBLIC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_PUBLIC_mst>(),
-        38usize,
-        concat!("Size of: ", stringify!(TPMT_PUBLIC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_PUBLIC_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_PUBLIC_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_PUBLIC_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_PUBLIC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_PUBLIC_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_PUBLIC_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_PUBLIC_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_PUBLIC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMU_SENSITIVE_COMPOSITE_mst {
-    pub countOfselectors: BYTE,
-    pub modifiers: BYTE,
-    pub offsetOfUnmarshalTypes: UINT16,
-    pub selectors: [UINT32; 4usize],
-    pub marshalingTypes: [UINT16; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPMU_SENSITIVE_COMPOSITE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMU_SENSITIVE_COMPOSITE_mst>(),
-        28usize,
-        concat!("Size of: ", stringify!(TPMU_SENSITIVE_COMPOSITE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMU_SENSITIVE_COMPOSITE_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPMU_SENSITIVE_COMPOSITE_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SENSITIVE_COMPOSITE_mst>())).countOfselectors as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SENSITIVE_COMPOSITE_mst),
-            "::",
-            stringify!(countOfselectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SENSITIVE_COMPOSITE_mst>())).modifiers as *const _ as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SENSITIVE_COMPOSITE_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SENSITIVE_COMPOSITE_mst>())).offsetOfUnmarshalTypes
-                as *const _ as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SENSITIVE_COMPOSITE_mst),
-            "::",
-            stringify!(offsetOfUnmarshalTypes)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SENSITIVE_COMPOSITE_mst>())).selectors as *const _ as usize
-        },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SENSITIVE_COMPOSITE_mst),
-            "::",
-            stringify!(selectors)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMU_SENSITIVE_COMPOSITE_mst>())).marshalingTypes as *const _
-                as usize
-        },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMU_SENSITIVE_COMPOSITE_mst),
-            "::",
-            stringify!(marshalingTypes)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMT_SENSITIVE_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMT_SENSITIVE_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMT_SENSITIVE_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMT_SENSITIVE_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMT_SENSITIVE_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMT_SENSITIVE_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SENSITIVE_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SENSITIVE_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SENSITIVE_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SENSITIVE_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMT_SENSITIVE_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMT_SENSITIVE_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_NV_PIN_COUNTER_PARAMETERS_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_NV_PIN_COUNTER_PARAMETERS_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_NV_PIN_COUNTER_PARAMETERS_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_NV_PIN_COUNTER_PARAMETERS_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_NV_PIN_COUNTER_PARAMETERS_mst>(),
-        2usize,
-        concat!(
-            "Alignment of ",
-            stringify!(TPMS_NV_PIN_COUNTER_PARAMETERS_mst)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_PIN_COUNTER_PARAMETERS_mst>())).marshalType as *const _
-                as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_PIN_COUNTER_PARAMETERS_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_PIN_COUNTER_PARAMETERS_mst>())).elements as *const _
-                as usize
-        },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_PIN_COUNTER_PARAMETERS_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_NV_PIN_COUNTER_PARAMETERS_mst>())).values as *const _
-                as usize
-        },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_PIN_COUNTER_PARAMETERS_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_NV_PUBLIC_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 15usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_NV_PUBLIC_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_NV_PUBLIC_mst>(),
-        32usize,
-        concat!("Size of: ", stringify!(TPMS_NV_PUBLIC_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_NV_PUBLIC_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_NV_PUBLIC_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_NV_PUBLIC_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_PUBLIC_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_NV_PUBLIC_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_PUBLIC_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_NV_PUBLIC_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_NV_PUBLIC_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CONTEXT_DATA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CONTEXT_DATA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CONTEXT_DATA_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_CONTEXT_DATA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CONTEXT_DATA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CONTEXT_DATA_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_CONTEXT_DATA_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CONTEXT_DATA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CONTEXT_DATA_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CONTEXT_DATA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CONTEXT_DATA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CONTEXT_DATA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CONTEXT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 12usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CONTEXT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CONTEXT_mst>(),
-        26usize,
-        concat!("Size of: ", stringify!(TPMS_CONTEXT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CONTEXT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CONTEXT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CONTEXT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CONTEXT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CONTEXT_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CONTEXT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CONTEXT_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CONTEXT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_CREATION_DATA_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 21usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_CREATION_DATA_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_CREATION_DATA_mst>(),
-        44usize,
-        concat!("Size of: ", stringify!(TPMS_CREATION_DATA_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_CREATION_DATA_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_CREATION_DATA_mst))
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<TPMS_CREATION_DATA_mst>())).marshalType as *const _ as usize
-        },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CREATION_DATA_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CREATION_DATA_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CREATION_DATA_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_CREATION_DATA_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_CREATION_DATA_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPM_AT_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 4usize],
-}
-#[test]
-fn bindgen_test_layout_TPM_AT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPM_AT_mst>(),
-        20usize,
-        concat!("Size of: ", stringify!(TPM_AT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPM_AT_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(TPM_AT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_AT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_AT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_AT_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_AT_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_AT_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_AT_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_AT_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_AT_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPM_AT_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPM_AT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct TPMS_AC_OUTPUT_mst {
-    pub marshalType: UINT8,
-    pub elements: UINT8,
-    pub values: [UINT16; 6usize],
-}
-#[test]
-fn bindgen_test_layout_TPMS_AC_OUTPUT_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<TPMS_AC_OUTPUT_mst>(),
-        14usize,
-        concat!("Size of: ", stringify!(TPMS_AC_OUTPUT_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<TPMS_AC_OUTPUT_mst>(),
-        2usize,
-        concat!("Alignment of ", stringify!(TPMS_AC_OUTPUT_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AC_OUTPUT_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AC_OUTPUT_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AC_OUTPUT_mst>())).elements as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AC_OUTPUT_mst),
-            "::",
-            stringify!(elements)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<TPMS_AC_OUTPUT_mst>())).values as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(TPMS_AC_OUTPUT_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type02_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type02_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type02_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type02_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type02_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type02_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type02_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type02_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type02_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type02_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type02_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type02_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type02_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type02_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type03_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type03_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type03_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type03_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type03_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type03_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type03_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type03_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type03_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type03_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type03_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type03_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type03_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type03_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type04_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type04_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type04_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type04_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type04_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type04_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type04_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type04_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type04_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type04_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type04_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type04_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type04_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type04_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type06_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type06_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type06_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type06_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type06_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type06_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type06_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type06_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type06_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type06_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type06_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type06_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type06_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type06_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type08_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type08_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type08_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type08_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type08_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type08_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type08_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type08_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type08_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type08_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type08_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type08_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type08_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type08_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type10_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_Type10_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type10_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(Type10_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type10_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type10_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type10_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type10_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type10_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type10_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type10_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type10_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type10_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type10_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type10_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type10_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type11_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_Type11_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type11_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(Type11_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type11_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type11_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type11_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type11_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type11_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type11_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type11_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type11_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type11_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type11_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type11_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type11_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type12_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type12_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type12_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type12_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type12_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type12_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type12_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type12_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type12_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type12_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type12_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type12_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type12_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type12_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type12_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type12_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type13_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub entries: UINT8,
-    pub values: [UINT32; 1usize],
-}
-#[test]
-fn bindgen_test_layout_Type13_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type13_mst>(),
-        8usize,
-        concat!("Size of: ", stringify!(Type13_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type13_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type13_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type13_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type13_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type13_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type13_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type13_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type13_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type13_mst>())).entries as *const _ as usize },
-        3usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type13_mst),
-            "::",
-            stringify!(entries)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type13_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type13_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type15_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type15_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type15_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type15_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type15_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type15_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type15_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type15_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type15_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type15_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type15_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type15_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type15_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type15_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type17_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type17_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type17_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type17_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type17_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type17_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type17_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type17_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type17_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type17_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type17_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type17_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type17_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type17_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type18_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type18_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type18_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type18_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type18_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type18_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type18_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type18_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type18_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type18_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type18_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type18_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type18_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type18_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type19_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type19_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type19_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type19_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type19_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type19_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type19_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type19_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type19_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type19_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type19_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type19_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type19_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type19_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type20_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type20_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type20_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type20_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type20_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type20_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type20_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type20_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type20_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type20_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type20_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type20_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type20_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type20_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type22_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type22_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type22_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type22_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type22_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type22_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type22_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type22_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type22_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type22_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type22_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type22_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type22_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type22_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type23_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type23_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type23_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type23_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type23_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type23_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type23_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type23_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type23_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type23_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type23_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type23_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type23_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type23_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type24_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type24_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type24_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type24_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type24_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type24_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type24_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type24_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type24_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type24_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type24_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type24_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type24_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type24_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type25_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type25_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type25_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type25_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type25_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type25_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type25_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type25_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type25_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type25_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type25_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type25_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type25_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type25_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type26_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type26_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type26_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type26_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type26_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type26_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type26_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type26_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type26_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type26_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type26_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type26_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type26_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type26_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type27_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type27_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type27_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type27_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type27_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type27_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type27_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type27_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type27_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type27_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type27_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type27_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type27_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type27_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type29_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type29_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type29_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type29_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type29_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type29_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type29_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type29_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type29_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type29_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type29_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type29_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type29_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type29_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type30_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type30_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type30_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type30_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type30_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type30_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type30_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type30_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type30_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type30_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type30_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type30_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type30_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type30_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type33_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type33_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type33_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type33_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type33_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type33_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type33_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type33_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type33_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type33_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type33_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type33_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type33_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type33_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type34_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type34_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type34_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type34_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type34_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type34_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type34_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type34_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type34_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type34_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type34_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type34_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type34_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type34_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type35_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type35_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type35_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type35_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type35_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type35_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type35_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type35_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type35_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type35_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type35_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type35_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type35_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type35_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type38_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type38_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type38_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type38_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type38_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type38_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type38_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type38_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type38_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type38_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type38_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type38_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type38_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type38_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type41_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type41_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type41_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type41_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type41_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type41_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type41_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type41_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type41_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type41_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type41_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type41_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type41_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type41_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type42_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type42_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type42_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type42_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type42_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type42_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type42_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type42_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type42_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type42_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type42_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type42_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type42_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type42_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Debug, Copy, Clone)]
-pub struct Type44_mst {
-    pub marshalType: UINT8,
-    pub modifiers: UINT8,
-    pub errorCode: UINT8,
-    pub values: [UINT32; 2usize],
-}
-#[test]
-fn bindgen_test_layout_Type44_mst() {
-    assert_eq!(
-        ::std::mem::size_of::<Type44_mst>(),
-        12usize,
-        concat!("Size of: ", stringify!(Type44_mst))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<Type44_mst>(),
-        4usize,
-        concat!("Alignment of ", stringify!(Type44_mst))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type44_mst>())).marshalType as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type44_mst),
-            "::",
-            stringify!(marshalType)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type44_mst>())).modifiers as *const _ as usize },
-        1usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type44_mst),
-            "::",
-            stringify!(modifiers)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type44_mst>())).errorCode as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type44_mst),
-            "::",
-            stringify!(errorCode)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<Type44_mst>())).values as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(Type44_mst),
-            "::",
-            stringify!(values)
-        )
-    );
-}
-#[repr(C)]
-#[derive(Copy, Clone)]
-pub struct MarshalData_st {
-    pub UINT8_DATA: UintMarshal_mst,
-    pub UINT16_DATA: UintMarshal_mst,
-    pub UINT32_DATA: UintMarshal_mst,
-    pub UINT64_DATA: UintMarshal_mst,
-    pub INT8_DATA: UintMarshal_mst,
-    pub INT16_DATA: UintMarshal_mst,
-    pub INT32_DATA: UintMarshal_mst,
-    pub INT64_DATA: UintMarshal_mst,
-    pub UINT0_DATA: UintMarshal_mst,
-    pub TPM_ECC_CURVE_DATA: TPM_ECC_CURVE_mst,
-    pub TPM_CLOCK_ADJUST_DATA: TPM_CLOCK_ADJUST_mst,
-    pub TPM_EO_DATA: TPM_EO_mst,
-    pub TPM_SU_DATA: TPM_SU_mst,
-    pub TPM_SE_DATA: TPM_SE_mst,
-    pub TPM_CAP_DATA: TPM_CAP_mst,
-    pub TPMA_ALGORITHM_DATA: AttributesMarshal_mst,
-    pub TPMA_OBJECT_DATA: AttributesMarshal_mst,
-    pub TPMA_SESSION_DATA: AttributesMarshal_mst,
-    pub TPMA_ACT_DATA: AttributesMarshal_mst,
-    pub TPMI_YES_NO_DATA: TPMI_YES_NO_mst,
-    pub TPMI_DH_OBJECT_DATA: TPMI_DH_OBJECT_mst,
-    pub TPMI_DH_PARENT_DATA: TPMI_DH_PARENT_mst,
-    pub TPMI_DH_PERSISTENT_DATA: TPMI_DH_PERSISTENT_mst,
-    pub TPMI_DH_ENTITY_DATA: TPMI_DH_ENTITY_mst,
-    pub TPMI_DH_PCR_DATA: TPMI_DH_PCR_mst,
-    pub TPMI_SH_AUTH_SESSION_DATA: TPMI_SH_AUTH_SESSION_mst,
-    pub TPMI_SH_HMAC_DATA: TPMI_SH_HMAC_mst,
-    pub TPMI_SH_POLICY_DATA: TPMI_SH_POLICY_mst,
-    pub TPMI_DH_CONTEXT_DATA: TPMI_DH_CONTEXT_mst,
-    pub TPMI_DH_SAVED_DATA: TPMI_DH_SAVED_mst,
-    pub TPMI_RH_HIERARCHY_DATA: TPMI_RH_HIERARCHY_mst,
-    pub TPMI_RH_ENABLES_DATA: TPMI_RH_ENABLES_mst,
-    pub TPMI_RH_HIERARCHY_AUTH_DATA: TPMI_RH_HIERARCHY_AUTH_mst,
-    pub TPMI_RH_HIERARCHY_POLICY_DATA: TPMI_RH_HIERARCHY_POLICY_mst,
-    pub TPMI_RH_PLATFORM_DATA: TPMI_RH_PLATFORM_mst,
-    pub TPMI_RH_OWNER_DATA: TPMI_RH_OWNER_mst,
-    pub TPMI_RH_ENDORSEMENT_DATA: TPMI_RH_ENDORSEMENT_mst,
-    pub TPMI_RH_PROVISION_DATA: TPMI_RH_PROVISION_mst,
-    pub TPMI_RH_CLEAR_DATA: TPMI_RH_CLEAR_mst,
-    pub TPMI_RH_NV_AUTH_DATA: TPMI_RH_NV_AUTH_mst,
-    pub TPMI_RH_LOCKOUT_DATA: TPMI_RH_LOCKOUT_mst,
-    pub TPMI_RH_NV_INDEX_DATA: TPMI_RH_NV_INDEX_mst,
-    pub TPMI_RH_AC_DATA: TPMI_RH_AC_mst,
-    pub TPMI_RH_ACT_DATA: TPMI_RH_ACT_mst,
-    pub TPMI_ALG_HASH_DATA: TPMI_ALG_HASH_mst,
-    pub TPMI_ALG_ASYM_DATA: TPMI_ALG_ASYM_mst,
-    pub TPMI_ALG_SYM_DATA: TPMI_ALG_SYM_mst,
-    pub TPMI_ALG_SYM_OBJECT_DATA: TPMI_ALG_SYM_OBJECT_mst,
-    pub TPMI_ALG_SYM_MODE_DATA: TPMI_ALG_SYM_MODE_mst,
-    pub TPMI_ALG_KDF_DATA: TPMI_ALG_KDF_mst,
-    pub TPMI_ALG_SIG_SCHEME_DATA: TPMI_ALG_SIG_SCHEME_mst,
-    pub TPMI_ECC_KEY_EXCHANGE_DATA: TPMI_ECC_KEY_EXCHANGE_mst,
-    pub TPMI_ST_COMMAND_TAG_DATA: TPMI_ST_COMMAND_TAG_mst,
-    pub TPMI_ALG_MAC_SCHEME_DATA: TPMI_ALG_MAC_SCHEME_mst,
-    pub TPMI_ALG_CIPHER_MODE_DATA: TPMI_ALG_CIPHER_MODE_mst,
-    pub TPMS_EMPTY_DATA: TPMS_EMPTY_mst,
-    pub TPMS_ALGORITHM_DESCRIPTION_DATA: TPMS_ALGORITHM_DESCRIPTION_mst,
-    pub TPMU_HA_DATA: TPMU_HA_mst,
-    pub TPMT_HA_DATA: TPMT_HA_mst,
-    pub TPM2B_DIGEST_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_DATA_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_EVENT_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_MAX_BUFFER_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_MAX_NV_BUFFER_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_TIMEOUT_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_IV_DATA: Tpm2bMarshal_mst,
-    pub NULL_UNION_DATA: NullUnionMarshal_mst,
-    pub TPM2B_NAME_DATA: Tpm2bMarshal_mst,
-    pub TPMS_PCR_SELECT_DATA: TPMS_PCR_SELECT_mst,
-    pub TPMS_PCR_SELECTION_DATA: TPMS_PCR_SELECTION_mst,
-    pub TPMT_TK_CREATION_DATA: TPMT_TK_CREATION_mst,
-    pub TPMT_TK_VERIFIED_DATA: TPMT_TK_VERIFIED_mst,
-    pub TPMT_TK_AUTH_DATA: TPMT_TK_AUTH_mst,
-    pub TPMT_TK_HASHCHECK_DATA: TPMT_TK_HASHCHECK_mst,
-    pub TPMS_ALG_PROPERTY_DATA: TPMS_ALG_PROPERTY_mst,
-    pub TPMS_TAGGED_PROPERTY_DATA: TPMS_TAGGED_PROPERTY_mst,
-    pub TPMS_TAGGED_PCR_SELECT_DATA: TPMS_TAGGED_PCR_SELECT_mst,
-    pub TPMS_TAGGED_POLICY_DATA: TPMS_TAGGED_POLICY_mst,
-    pub TPMS_ACT_DATA_DATA: TPMS_ACT_DATA_mst,
-    pub TPML_CC_DATA: ListMarshal_mst,
-    pub TPML_CCA_DATA: ListMarshal_mst,
-    pub TPML_ALG_DATA: ListMarshal_mst,
-    pub TPML_HANDLE_DATA: ListMarshal_mst,
-    pub TPML_DIGEST_DATA: ListMarshal_mst,
-    pub TPML_DIGEST_VALUES_DATA: ListMarshal_mst,
-    pub TPML_PCR_SELECTION_DATA: ListMarshal_mst,
-    pub TPML_ALG_PROPERTY_DATA: ListMarshal_mst,
-    pub TPML_TAGGED_TPM_PROPERTY_DATA: ListMarshal_mst,
-    pub TPML_TAGGED_PCR_PROPERTY_DATA: ListMarshal_mst,
-    pub TPML_ECC_CURVE_DATA: ListMarshal_mst,
-    pub TPML_TAGGED_POLICY_DATA: ListMarshal_mst,
-    pub TPML_ACT_DATA_DATA: ListMarshal_mst,
-    pub TPMU_CAPABILITIES_DATA: TPMU_CAPABILITIES_mst,
-    pub TPMS_CAPABILITY_DATA_DATA: TPMS_CAPABILITY_DATA_mst,
-    pub TPMS_CLOCK_INFO_DATA: TPMS_CLOCK_INFO_mst,
-    pub TPMS_TIME_INFO_DATA: TPMS_TIME_INFO_mst,
-    pub TPMS_TIME_ATTEST_INFO_DATA: TPMS_TIME_ATTEST_INFO_mst,
-    pub TPMS_CERTIFY_INFO_DATA: TPMS_CERTIFY_INFO_mst,
-    pub TPMS_QUOTE_INFO_DATA: TPMS_QUOTE_INFO_mst,
-    pub TPMS_COMMAND_AUDIT_INFO_DATA: TPMS_COMMAND_AUDIT_INFO_mst,
-    pub TPMS_SESSION_AUDIT_INFO_DATA: TPMS_SESSION_AUDIT_INFO_mst,
-    pub TPMS_CREATION_INFO_DATA: TPMS_CREATION_INFO_mst,
-    pub TPMS_NV_CERTIFY_INFO_DATA: TPMS_NV_CERTIFY_INFO_mst,
-    pub TPMS_NV_DIGEST_CERTIFY_INFO_DATA: TPMS_NV_DIGEST_CERTIFY_INFO_mst,
-    pub TPMI_ST_ATTEST_DATA: TPMI_ST_ATTEST_mst,
-    pub TPMU_ATTEST_DATA: TPMU_ATTEST_mst,
-    pub TPMS_ATTEST_DATA: TPMS_ATTEST_mst,
-    pub TPM2B_ATTEST_DATA: Tpm2bMarshal_mst,
-    pub TPMS_AUTH_COMMAND_DATA: TPMS_AUTH_COMMAND_mst,
-    pub TPMS_AUTH_RESPONSE_DATA: TPMS_AUTH_RESPONSE_mst,
-    pub TPMI_TDES_KEY_BITS_DATA: TPMI_TDES_KEY_BITS_mst,
-    pub TPMI_AES_KEY_BITS_DATA: TPMI_AES_KEY_BITS_mst,
-    pub TPMI_SM4_KEY_BITS_DATA: TPMI_SM4_KEY_BITS_mst,
-    pub TPMI_CAMELLIA_KEY_BITS_DATA: TPMI_CAMELLIA_KEY_BITS_mst,
-    pub TPMU_SYM_KEY_BITS_DATA: TPMU_SYM_KEY_BITS_mst,
-    pub TPMU_SYM_MODE_DATA: TPMU_SYM_MODE_mst,
-    pub TPMT_SYM_DEF_DATA: TPMT_SYM_DEF_mst,
-    pub TPMT_SYM_DEF_OBJECT_DATA: TPMT_SYM_DEF_OBJECT_mst,
-    pub TPM2B_SYM_KEY_DATA: Tpm2bMarshal_mst,
-    pub TPMS_SYMCIPHER_PARMS_DATA: TPMS_SYMCIPHER_PARMS_mst,
-    pub TPM2B_LABEL_DATA: Tpm2bMarshal_mst,
-    pub TPMS_DERIVE_DATA: TPMS_DERIVE_mst,
-    pub TPM2B_DERIVE_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_SENSITIVE_DATA_DATA: Tpm2bMarshal_mst,
-    pub TPMS_SENSITIVE_CREATE_DATA: TPMS_SENSITIVE_CREATE_mst,
-    pub TPM2B_SENSITIVE_CREATE_DATA: Tpm2bsMarshal_mst,
-    pub TPMS_SCHEME_HASH_DATA: TPMS_SCHEME_HASH_mst,
-    pub TPMS_SCHEME_ECDAA_DATA: TPMS_SCHEME_ECDAA_mst,
-    pub TPMI_ALG_KEYEDHASH_SCHEME_DATA: TPMI_ALG_KEYEDHASH_SCHEME_mst,
-    pub TPMS_SCHEME_XOR_DATA: TPMS_SCHEME_XOR_mst,
-    pub TPMU_SCHEME_KEYEDHASH_DATA: TPMU_SCHEME_KEYEDHASH_mst,
-    pub TPMT_KEYEDHASH_SCHEME_DATA: TPMT_KEYEDHASH_SCHEME_mst,
-    pub TPMU_SIG_SCHEME_DATA: TPMU_SIG_SCHEME_mst,
-    pub TPMT_SIG_SCHEME_DATA: TPMT_SIG_SCHEME_mst,
-    pub TPMU_KDF_SCHEME_DATA: TPMU_KDF_SCHEME_mst,
-    pub TPMT_KDF_SCHEME_DATA: TPMT_KDF_SCHEME_mst,
-    pub TPMI_ALG_ASYM_SCHEME_DATA: TPMI_ALG_ASYM_SCHEME_mst,
-    pub TPMU_ASYM_SCHEME_DATA: TPMU_ASYM_SCHEME_mst,
-    pub TPMI_ALG_RSA_SCHEME_DATA: TPMI_ALG_RSA_SCHEME_mst,
-    pub TPMT_RSA_SCHEME_DATA: TPMT_RSA_SCHEME_mst,
-    pub TPMI_ALG_RSA_DECRYPT_DATA: TPMI_ALG_RSA_DECRYPT_mst,
-    pub TPMT_RSA_DECRYPT_DATA: TPMT_RSA_DECRYPT_mst,
-    pub TPM2B_PUBLIC_KEY_RSA_DATA: Tpm2bMarshal_mst,
-    pub TPMI_RSA_KEY_BITS_DATA: TPMI_RSA_KEY_BITS_mst,
-    pub TPM2B_PRIVATE_KEY_RSA_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_ECC_PARAMETER_DATA: Tpm2bMarshal_mst,
-    pub TPMS_ECC_POINT_DATA: TPMS_ECC_POINT_mst,
-    pub TPM2B_ECC_POINT_DATA: Tpm2bsMarshal_mst,
-    pub TPMI_ALG_ECC_SCHEME_DATA: TPMI_ALG_ECC_SCHEME_mst,
-    pub TPMI_ECC_CURVE_DATA: TPMI_ECC_CURVE_mst,
-    pub TPMT_ECC_SCHEME_DATA: TPMT_ECC_SCHEME_mst,
-    pub TPMS_ALGORITHM_DETAIL_ECC_DATA: TPMS_ALGORITHM_DETAIL_ECC_mst,
-    pub TPMS_SIGNATURE_RSA_DATA: TPMS_SIGNATURE_RSA_mst,
-    pub TPMS_SIGNATURE_ECC_DATA: TPMS_SIGNATURE_ECC_mst,
-    pub TPMU_SIGNATURE_DATA: TPMU_SIGNATURE_mst,
-    pub TPMT_SIGNATURE_DATA: TPMT_SIGNATURE_mst,
-    pub TPMU_ENCRYPTED_SECRET_DATA: TPMU_ENCRYPTED_SECRET_mst,
-    pub TPM2B_ENCRYPTED_SECRET_DATA: Tpm2bMarshal_mst,
-    pub TPMI_ALG_PUBLIC_DATA: TPMI_ALG_PUBLIC_mst,
-    pub TPMU_PUBLIC_ID_DATA: TPMU_PUBLIC_ID_mst,
-    pub TPMS_KEYEDHASH_PARMS_DATA: TPMS_KEYEDHASH_PARMS_mst,
-    pub TPMS_RSA_PARMS_DATA: TPMS_RSA_PARMS_mst,
-    pub TPMS_ECC_PARMS_DATA: TPMS_ECC_PARMS_mst,
-    pub TPMU_PUBLIC_PARMS_DATA: TPMU_PUBLIC_PARMS_mst,
-    pub TPMT_PUBLIC_PARMS_DATA: TPMT_PUBLIC_PARMS_mst,
-    pub TPMT_PUBLIC_DATA: TPMT_PUBLIC_mst,
-    pub TPM2B_PUBLIC_DATA: Tpm2bsMarshal_mst,
-    pub TPM2B_TEMPLATE_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_PRIVATE_VENDOR_SPECIFIC_DATA: Tpm2bMarshal_mst,
-    pub TPMU_SENSITIVE_COMPOSITE_DATA: TPMU_SENSITIVE_COMPOSITE_mst,
-    pub TPMT_SENSITIVE_DATA: TPMT_SENSITIVE_mst,
-    pub TPM2B_SENSITIVE_DATA: Tpm2bsMarshal_mst,
-    pub TPM2B_PRIVATE_DATA: Tpm2bMarshal_mst,
-    pub TPM2B_ID_OBJECT_DATA: Tpm2bMarshal_mst,
-    pub TPMS_NV_PIN_COUNTER_PARAMETERS_DATA: TPMS_NV_PIN_COUNTER_PARAMETERS_mst,
-    pub TPMA_NV_DATA: AttributesMarshal_mst,
-    pub TPMS_NV_PUBLIC_DATA: TPMS_NV_PUBLIC_mst,
-    pub TPM2B_NV_PUBLIC_DATA: Tpm2bsMarshal_mst,
-    pub TPM2B_CONTEXT_SENSITIVE_DATA: Tpm2bMarshal_mst,
-    pub TPMS_CONTEXT_DATA_DATA: TPMS_CONTEXT_DATA_mst,
-    pub TPM2B_CONTEXT_DATA_DATA: Tpm2bMarshal_mst,
-    pub TPMS_CONTEXT_DATA: TPMS_CONTEXT_mst,
-    pub TPMS_CREATION_DATA_DATA: TPMS_CREATION_DATA_mst,
-    pub TPM2B_CREATION_DATA_DATA: Tpm2bsMarshal_mst,
-    pub TPM_AT_DATA: TPM_AT_mst,
-    pub TPMS_AC_OUTPUT_DATA: TPMS_AC_OUTPUT_mst,
-    pub TPML_AC_CAPABILITIES_DATA: ListMarshal_mst,
-    pub Type00_DATA: MinMaxMarshal_mst,
-    pub Type01_DATA: MinMaxMarshal_mst,
-    pub Type02_DATA: Type02_mst,
-    pub Type03_DATA: Type03_mst,
-    pub Type04_DATA: Type04_mst,
-    pub Type05_DATA: MinMaxMarshal_mst,
-    pub Type06_DATA: Type06_mst,
-    pub Type07_DATA: MinMaxMarshal_mst,
-    pub Type08_DATA: Type08_mst,
-    pub Type10_DATA: Type10_mst,
-    pub Type11_DATA: Type11_mst,
-    pub Type12_DATA: Type12_mst,
-    pub Type13_DATA: Type13_mst,
-    pub Type15_DATA: Type15_mst,
-    pub Type17_DATA: Type17_mst,
-    pub Type18_DATA: Type18_mst,
-    pub Type19_DATA: Type19_mst,
-    pub Type20_DATA: Type20_mst,
-    pub Type22_DATA: Type22_mst,
-    pub Type23_DATA: Type23_mst,
-    pub Type24_DATA: Type24_mst,
-    pub Type25_DATA: Type25_mst,
-    pub Type26_DATA: Type26_mst,
-    pub Type27_DATA: Type27_mst,
-    pub Type28_DATA: MinMaxMarshal_mst,
-    pub Type29_DATA: Type29_mst,
-    pub Type30_DATA: Type30_mst,
-    pub Type31_DATA: MinMaxMarshal_mst,
-    pub Type32_DATA: MinMaxMarshal_mst,
-    pub Type33_DATA: Type33_mst,
-    pub Type34_DATA: Type34_mst,
-    pub Type35_DATA: Type35_mst,
-    pub Type36_DATA: MinMaxMarshal_mst,
-    pub Type37_DATA: MinMaxMarshal_mst,
-    pub Type38_DATA: Type38_mst,
-    pub Type39_DATA: MinMaxMarshal_mst,
-    pub Type40_DATA: MinMaxMarshal_mst,
-    pub Type41_DATA: Type41_mst,
-    pub Type42_DATA: Type42_mst,
-    pub Type43_DATA: MinMaxMarshal_mst,
-    pub Type44_DATA: Type44_mst,
-}
-#[test]
-fn bindgen_test_layout_MarshalData_st() {
-    assert_eq!(
-        ::std::mem::size_of::<MarshalData_st>(),
-        3584usize,
-        concat!("Size of: ", stringify!(MarshalData_st))
-    );
-    assert_eq!(
-        ::std::mem::align_of::<MarshalData_st>(),
-        4usize,
-        concat!("Alignment of ", stringify!(MarshalData_st))
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).UINT8_DATA as *const _ as usize },
-        0usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(UINT8_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).UINT16_DATA as *const _ as usize },
-        2usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(UINT16_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).UINT32_DATA as *const _ as usize },
-        4usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(UINT32_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).UINT64_DATA as *const _ as usize },
-        6usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(UINT64_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).INT8_DATA as *const _ as usize },
-        8usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(INT8_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).INT16_DATA as *const _ as usize },
-        10usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(INT16_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).INT32_DATA as *const _ as usize },
-        12usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(INT32_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).INT64_DATA as *const _ as usize },
-        14usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(INT64_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).UINT0_DATA as *const _ as usize },
-        16usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(UINT0_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM_ECC_CURVE_DATA as *const _ as usize
-        },
-        20usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_ECC_CURVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM_CLOCK_ADJUST_DATA as *const _ as usize
-        },
-        40usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_CLOCK_ADJUST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM_EO_DATA as *const _ as usize },
-        52usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_EO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM_SU_DATA as *const _ as usize },
-        64usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_SU_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM_SE_DATA as *const _ as usize },
-        76usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_SE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM_CAP_DATA as *const _ as usize },
-        92usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_CAP_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMA_ALGORITHM_DATA as *const _ as usize
-        },
-        112usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMA_ALGORITHM_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMA_OBJECT_DATA as *const _ as usize },
-        120usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMA_OBJECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMA_SESSION_DATA as *const _ as usize
-        },
-        128usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMA_SESSION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMA_ACT_DATA as *const _ as usize },
-        136usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMA_ACT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMI_YES_NO_DATA as *const _ as usize },
-        144usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_YES_NO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_OBJECT_DATA as *const _ as usize
-        },
-        156usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_OBJECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_PARENT_DATA as *const _ as usize
-        },
-        184usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_PARENT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_PERSISTENT_DATA as *const _ as usize
-        },
-        224usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_PERSISTENT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_ENTITY_DATA as *const _ as usize
-        },
-        236usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_ENTITY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_PCR_DATA as *const _ as usize },
-        304usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_PCR_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_SH_AUTH_SESSION_DATA as *const _
-                as usize
-        },
-        320usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_SH_AUTH_SESSION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_SH_HMAC_DATA as *const _ as usize
-        },
-        348usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_SH_HMAC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_SH_POLICY_DATA as *const _ as usize
-        },
-        360usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_SH_POLICY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_CONTEXT_DATA as *const _ as usize
-        },
-        372usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_CONTEXT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_DH_SAVED_DATA as *const _ as usize
-        },
-        404usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_DH_SAVED_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_HIERARCHY_DATA as *const _ as usize
-        },
-        440usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_HIERARCHY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_ENABLES_DATA as *const _ as usize
-        },
-        460usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_ENABLES_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_HIERARCHY_AUTH_DATA as *const _
-                as usize
-        },
-        484usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_HIERARCHY_AUTH_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_HIERARCHY_POLICY_DATA as *const _
-                as usize
-        },
-        504usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_HIERARCHY_POLICY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_PLATFORM_DATA as *const _ as usize
-        },
-        536usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_PLATFORM_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_OWNER_DATA as *const _ as usize
-        },
-        544usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_OWNER_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_ENDORSEMENT_DATA as *const _ as usize
-        },
-        556usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_ENDORSEMENT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_PROVISION_DATA as *const _ as usize
-        },
-        568usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_PROVISION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_CLEAR_DATA as *const _ as usize
-        },
-        580usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_CLEAR_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_NV_AUTH_DATA as *const _ as usize
-        },
-        592usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_NV_AUTH_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_LOCKOUT_DATA as *const _ as usize
-        },
-        616usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_LOCKOUT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_NV_INDEX_DATA as *const _ as usize
-        },
-        624usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_NV_INDEX_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_AC_DATA as *const _ as usize },
-        636usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_AC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RH_ACT_DATA as *const _ as usize },
-        648usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RH_ACT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_HASH_DATA as *const _ as usize
-        },
-        660usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_HASH_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_ASYM_DATA as *const _ as usize
-        },
-        684usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_ASYM_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_SYM_DATA as *const _ as usize
-        },
-        708usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_SYM_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_SYM_OBJECT_DATA as *const _ as usize
-        },
-        732usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_SYM_OBJECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_SYM_MODE_DATA as *const _ as usize
-        },
-        756usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_SYM_MODE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_KDF_DATA as *const _ as usize
-        },
-        776usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_KDF_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_SIG_SCHEME_DATA as *const _ as usize
-        },
-        796usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_SIG_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ECC_KEY_EXCHANGE_DATA as *const _
-                as usize
-        },
-        816usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ECC_KEY_EXCHANGE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ST_COMMAND_TAG_DATA as *const _ as usize
-        },
-        836usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ST_COMMAND_TAG_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_MAC_SCHEME_DATA as *const _ as usize
-        },
-        848usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_MAC_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_CIPHER_MODE_DATA as *const _
-                as usize
-        },
-        872usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_CIPHER_MODE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMS_EMPTY_DATA as *const _ as usize },
-        892usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_EMPTY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ALGORITHM_DESCRIPTION_DATA as *const _
-                as usize
-        },
-        900usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ALGORITHM_DESCRIPTION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMU_HA_DATA as *const _ as usize },
-        916usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_HA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMT_HA_DATA as *const _ as usize },
-        976usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_HA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_DIGEST_DATA as *const _ as usize
-        },
-        990usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_DIGEST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_DATA_DATA as *const _ as usize },
-        994usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_EVENT_DATA as *const _ as usize },
-        998usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_EVENT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_MAX_BUFFER_DATA as *const _ as usize
-        },
-        1002usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_MAX_BUFFER_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_MAX_NV_BUFFER_DATA as *const _ as usize
-        },
-        1006usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_MAX_NV_BUFFER_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_TIMEOUT_DATA as *const _ as usize
-        },
-        1010usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_TIMEOUT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_IV_DATA as *const _ as usize },
-        1014usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_IV_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).NULL_UNION_DATA as *const _ as usize },
-        1018usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(NULL_UNION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_NAME_DATA as *const _ as usize },
-        1020usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_NAME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_PCR_SELECT_DATA as *const _ as usize
-        },
-        1024usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_PCR_SELECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_PCR_SELECTION_DATA as *const _ as usize
-        },
-        1038usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_PCR_SELECTION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_TK_CREATION_DATA as *const _ as usize
-        },
-        1058usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_TK_CREATION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_TK_VERIFIED_DATA as *const _ as usize
-        },
-        1078usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_TK_VERIFIED_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_TK_AUTH_DATA as *const _ as usize
-        },
-        1098usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_TK_AUTH_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_TK_HASHCHECK_DATA as *const _ as usize
-        },
-        1118usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_TK_HASHCHECK_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ALG_PROPERTY_DATA as *const _ as usize
-        },
-        1138usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ALG_PROPERTY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_TAGGED_PROPERTY_DATA as *const _
-                as usize
-        },
-        1152usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_TAGGED_PROPERTY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_TAGGED_PCR_SELECT_DATA as *const _
-                as usize
-        },
-        1166usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_TAGGED_PCR_SELECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_TAGGED_POLICY_DATA as *const _ as usize
-        },
-        1186usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_TAGGED_POLICY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ACT_DATA_DATA as *const _ as usize
-        },
-        1200usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ACT_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPML_CC_DATA as *const _ as usize },
-        1220usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_CC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPML_CCA_DATA as *const _ as usize },
-        1226usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_CCA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPML_ALG_DATA as *const _ as usize },
-        1232usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_ALG_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPML_HANDLE_DATA as *const _ as usize },
-        1238usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_HANDLE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPML_DIGEST_DATA as *const _ as usize },
-        1244usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_DIGEST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_DIGEST_VALUES_DATA as *const _ as usize
-        },
-        1250usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_DIGEST_VALUES_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_PCR_SELECTION_DATA as *const _ as usize
-        },
-        1256usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_PCR_SELECTION_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_ALG_PROPERTY_DATA as *const _ as usize
-        },
-        1262usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_ALG_PROPERTY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_TAGGED_TPM_PROPERTY_DATA as *const _
-                as usize
-        },
-        1268usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_TAGGED_TPM_PROPERTY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_TAGGED_PCR_PROPERTY_DATA as *const _
-                as usize
-        },
-        1274usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_TAGGED_PCR_PROPERTY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_ECC_CURVE_DATA as *const _ as usize
-        },
-        1280usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_ECC_CURVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_TAGGED_POLICY_DATA as *const _ as usize
-        },
-        1286usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_TAGGED_POLICY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_ACT_DATA_DATA as *const _ as usize
-        },
-        1292usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_ACT_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_CAPABILITIES_DATA as *const _ as usize
-        },
-        1300usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_CAPABILITIES_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CAPABILITY_DATA_DATA as *const _
-                as usize
-        },
-        1372usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CAPABILITY_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CLOCK_INFO_DATA as *const _ as usize
-        },
-        1386usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CLOCK_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_TIME_INFO_DATA as *const _ as usize
-        },
-        1412usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_TIME_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_TIME_ATTEST_INFO_DATA as *const _
-                as usize
-        },
-        1426usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_TIME_ATTEST_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CERTIFY_INFO_DATA as *const _ as usize
-        },
-        1440usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CERTIFY_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_QUOTE_INFO_DATA as *const _ as usize
-        },
-        1454usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_QUOTE_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_COMMAND_AUDIT_INFO_DATA as *const _
-                as usize
-        },
-        1468usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_COMMAND_AUDIT_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SESSION_AUDIT_INFO_DATA as *const _
-                as usize
-        },
-        1494usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SESSION_AUDIT_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CREATION_INFO_DATA as *const _ as usize
-        },
-        1508usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CREATION_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_NV_CERTIFY_INFO_DATA as *const _
-                as usize
-        },
-        1522usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_NV_CERTIFY_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_NV_DIGEST_CERTIFY_INFO_DATA as *const _
-                as usize
-        },
-        1542usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_NV_DIGEST_CERTIFY_INFO_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ST_ATTEST_DATA as *const _ as usize
-        },
-        1556usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ST_ATTEST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMU_ATTEST_DATA as *const _ as usize },
-        1576usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_ATTEST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ATTEST_DATA as *const _ as usize },
-        1628usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ATTEST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_ATTEST_DATA as *const _ as usize
-        },
-        1672usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_ATTEST_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_AUTH_COMMAND_DATA as *const _ as usize
-        },
-        1676usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_AUTH_COMMAND_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_AUTH_RESPONSE_DATA as *const _ as usize
-        },
-        1702usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_AUTH_RESPONSE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_TDES_KEY_BITS_DATA as *const _ as usize
-        },
-        1724usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_TDES_KEY_BITS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_AES_KEY_BITS_DATA as *const _ as usize
-        },
-        1732usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_AES_KEY_BITS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_SM4_KEY_BITS_DATA as *const _ as usize
-        },
-        1748usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_SM4_KEY_BITS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_CAMELLIA_KEY_BITS_DATA as *const _
-                as usize
-        },
-        1756usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_CAMELLIA_KEY_BITS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_SYM_KEY_BITS_DATA as *const _ as usize
-        },
-        1772usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_SYM_KEY_BITS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_SYM_MODE_DATA as *const _ as usize
-        },
-        1812usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_SYM_MODE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_SYM_DEF_DATA as *const _ as usize
-        },
-        1852usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_SYM_DEF_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_SYM_DEF_OBJECT_DATA as *const _ as usize
-        },
-        1872usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_SYM_DEF_OBJECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_SYM_KEY_DATA as *const _ as usize
-        },
-        1892usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_SYM_KEY_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SYMCIPHER_PARMS_DATA as *const _
-                as usize
-        },
-        1896usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SYMCIPHER_PARMS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_LABEL_DATA as *const _ as usize },
-        1904usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_LABEL_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMS_DERIVE_DATA as *const _ as usize },
-        1908usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_DERIVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_DERIVE_DATA as *const _ as usize
-        },
-        1922usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_DERIVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_SENSITIVE_DATA_DATA as *const _
-                as usize
-        },
-        1926usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_SENSITIVE_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SENSITIVE_CREATE_DATA as *const _
-                as usize
-        },
-        1930usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SENSITIVE_CREATE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_SENSITIVE_CREATE_DATA as *const _
-                as usize
-        },
-        1944usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_SENSITIVE_CREATE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SCHEME_HASH_DATA as *const _ as usize
-        },
-        1950usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SCHEME_HASH_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SCHEME_ECDAA_DATA as *const _ as usize
-        },
-        1958usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SCHEME_ECDAA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_KEYEDHASH_SCHEME_DATA as *const _
-                as usize
-        },
-        1972usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_KEYEDHASH_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SCHEME_XOR_DATA as *const _ as usize
-        },
-        1992usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SCHEME_XOR_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_SCHEME_KEYEDHASH_DATA as *const _
-                as usize
-        },
-        2008usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_SCHEME_KEYEDHASH_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_KEYEDHASH_SCHEME_DATA as *const _
-                as usize
-        },
-        2032usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_KEYEDHASH_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_SIG_SCHEME_DATA as *const _ as usize
-        },
-        2048usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_SIG_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_SIG_SCHEME_DATA as *const _ as usize
-        },
-        2100usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_SIG_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_KDF_SCHEME_DATA as *const _ as usize
-        },
-        2116usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_KDF_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_KDF_SCHEME_DATA as *const _ as usize
-        },
-        2152usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_KDF_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_ASYM_SCHEME_DATA as *const _
-                as usize
-        },
-        2168usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_ASYM_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_ASYM_SCHEME_DATA as *const _ as usize
-        },
-        2188usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_ASYM_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_RSA_SCHEME_DATA as *const _ as usize
-        },
-        2260usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_RSA_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_RSA_SCHEME_DATA as *const _ as usize
-        },
-        2280usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_RSA_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_RSA_DECRYPT_DATA as *const _
-                as usize
-        },
-        2296usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_RSA_DECRYPT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_RSA_DECRYPT_DATA as *const _ as usize
-        },
-        2316usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_RSA_DECRYPT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_PUBLIC_KEY_RSA_DATA as *const _
-                as usize
-        },
-        2330usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_PUBLIC_KEY_RSA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_RSA_KEY_BITS_DATA as *const _ as usize
-        },
-        2336usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_RSA_KEY_BITS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_PRIVATE_KEY_RSA_DATA as *const _
-                as usize
-        },
-        2352usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_PRIVATE_KEY_RSA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_ECC_PARAMETER_DATA as *const _ as usize
-        },
-        2356usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_ECC_PARAMETER_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ECC_POINT_DATA as *const _ as usize
-        },
-        2360usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ECC_POINT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_ECC_POINT_DATA as *const _ as usize
-        },
-        2374usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_ECC_POINT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_ECC_SCHEME_DATA as *const _ as usize
-        },
-        2380usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_ECC_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ECC_CURVE_DATA as *const _ as usize
-        },
-        2400usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ECC_CURVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_ECC_SCHEME_DATA as *const _ as usize
-        },
-        2416usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_ECC_SCHEME_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ALGORITHM_DETAIL_ECC_DATA as *const _
-                as usize
-        },
-        2430usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ALGORITHM_DETAIL_ECC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SIGNATURE_RSA_DATA as *const _ as usize
-        },
-        2498usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SIGNATURE_RSA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_SIGNATURE_ECC_DATA as *const _ as usize
-        },
-        2512usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_SIGNATURE_ECC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_SIGNATURE_DATA as *const _ as usize
-        },
-        2532usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_SIGNATURE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_SIGNATURE_DATA as *const _ as usize
-        },
-        2584usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_SIGNATURE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_ENCRYPTED_SECRET_DATA as *const _
-                as usize
-        },
-        2600usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_ENCRYPTED_SECRET_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_ENCRYPTED_SECRET_DATA as *const _
-                as usize
-        },
-        2628usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_ENCRYPTED_SECRET_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMI_ALG_PUBLIC_DATA as *const _ as usize
-        },
-        2632usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMI_ALG_PUBLIC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_PUBLIC_ID_DATA as *const _ as usize
-        },
-        2652usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_PUBLIC_ID_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_KEYEDHASH_PARMS_DATA as *const _
-                as usize
-        },
-        2680usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_KEYEDHASH_PARMS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_RSA_PARMS_DATA as *const _ as usize
-        },
-        2688usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_RSA_PARMS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_ECC_PARMS_DATA as *const _ as usize
-        },
-        2714usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_ECC_PARMS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_PUBLIC_PARMS_DATA as *const _ as usize
-        },
-        2740usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_PUBLIC_PARMS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_PUBLIC_PARMS_DATA as *const _ as usize
-        },
-        2768usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_PUBLIC_PARMS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMT_PUBLIC_DATA as *const _ as usize },
-        2782usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_PUBLIC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_PUBLIC_DATA as *const _ as usize
-        },
-        2820usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_PUBLIC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_TEMPLATE_DATA as *const _ as usize
-        },
-        2826usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_TEMPLATE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_PRIVATE_VENDOR_SPECIFIC_DATA
-                as *const _ as usize
-        },
-        2830usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_PRIVATE_VENDOR_SPECIFIC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMU_SENSITIVE_COMPOSITE_DATA as *const _
-                as usize
-        },
-        2836usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMU_SENSITIVE_COMPOSITE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMT_SENSITIVE_DATA as *const _ as usize
-        },
-        2864usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMT_SENSITIVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_SENSITIVE_DATA as *const _ as usize
-        },
-        2890usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_SENSITIVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_PRIVATE_DATA as *const _ as usize
-        },
-        2896usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_PRIVATE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_ID_OBJECT_DATA as *const _ as usize
-        },
-        2900usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_ID_OBJECT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_NV_PIN_COUNTER_PARAMETERS_DATA
-                as *const _ as usize
-        },
-        2904usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_NV_PIN_COUNTER_PARAMETERS_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPMA_NV_DATA as *const _ as usize },
-        2920usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMA_NV_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_NV_PUBLIC_DATA as *const _ as usize
-        },
-        2928usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_NV_PUBLIC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_NV_PUBLIC_DATA as *const _ as usize
-        },
-        2960usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_NV_PUBLIC_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_CONTEXT_SENSITIVE_DATA as *const _
-                as usize
-        },
-        2966usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_CONTEXT_SENSITIVE_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CONTEXT_DATA_DATA as *const _ as usize
-        },
-        2970usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CONTEXT_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_CONTEXT_DATA_DATA as *const _ as usize
-        },
-        2984usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_CONTEXT_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CONTEXT_DATA as *const _ as usize
-        },
-        2988usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CONTEXT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_CREATION_DATA_DATA as *const _ as usize
-        },
-        3014usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_CREATION_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPM2B_CREATION_DATA_DATA as *const _ as usize
-        },
-        3058usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM2B_CREATION_DATA_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).TPM_AT_DATA as *const _ as usize },
-        3064usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPM_AT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPMS_AC_OUTPUT_DATA as *const _ as usize
-        },
-        3084usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPMS_AC_OUTPUT_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe {
-            &(*(::std::ptr::null::<MarshalData_st>())).TPML_AC_CAPABILITIES_DATA as *const _
-                as usize
-        },
-        3098usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(TPML_AC_CAPABILITIES_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type00_DATA as *const _ as usize },
-        3104usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type00_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type01_DATA as *const _ as usize },
-        3116usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type01_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type02_DATA as *const _ as usize },
-        3128usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type02_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type03_DATA as *const _ as usize },
-        3140usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type03_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type04_DATA as *const _ as usize },
-        3152usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type04_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type05_DATA as *const _ as usize },
-        3164usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type05_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type06_DATA as *const _ as usize },
-        3176usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type06_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type07_DATA as *const _ as usize },
-        3188usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type07_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type08_DATA as *const _ as usize },
-        3200usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type08_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type10_DATA as *const _ as usize },
-        3212usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type10_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type11_DATA as *const _ as usize },
-        3220usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type11_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type12_DATA as *const _ as usize },
-        3228usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type12_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type13_DATA as *const _ as usize },
-        3240usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type13_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type15_DATA as *const _ as usize },
-        3248usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type15_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type17_DATA as *const _ as usize },
-        3260usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type17_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type18_DATA as *const _ as usize },
-        3272usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type18_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type19_DATA as *const _ as usize },
-        3284usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type19_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type20_DATA as *const _ as usize },
-        3296usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type20_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type22_DATA as *const _ as usize },
-        3308usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type22_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type23_DATA as *const _ as usize },
-        3320usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type23_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type24_DATA as *const _ as usize },
-        3332usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type24_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type25_DATA as *const _ as usize },
-        3344usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type25_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type26_DATA as *const _ as usize },
-        3356usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type26_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type27_DATA as *const _ as usize },
-        3368usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type27_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type28_DATA as *const _ as usize },
-        3380usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type28_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type29_DATA as *const _ as usize },
-        3392usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type29_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type30_DATA as *const _ as usize },
-        3404usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type30_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type31_DATA as *const _ as usize },
-        3416usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type31_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type32_DATA as *const _ as usize },
-        3428usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type32_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type33_DATA as *const _ as usize },
-        3440usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type33_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type34_DATA as *const _ as usize },
-        3452usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type34_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type35_DATA as *const _ as usize },
-        3464usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type35_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type36_DATA as *const _ as usize },
-        3476usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type36_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type37_DATA as *const _ as usize },
-        3488usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type37_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type38_DATA as *const _ as usize },
-        3500usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type38_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type39_DATA as *const _ as usize },
-        3512usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type39_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type40_DATA as *const _ as usize },
-        3524usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type40_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type41_DATA as *const _ as usize },
-        3536usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type41_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type42_DATA as *const _ as usize },
-        3548usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type42_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type43_DATA as *const _ as usize },
-        3560usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type43_DATA)
-        )
-    );
-    assert_eq!(
-        unsafe { &(*(::std::ptr::null::<MarshalData_st>())).Type44_DATA as *const _ as usize },
-        3572usize,
-        concat!(
-            "Offset of field: ",
-            stringify!(MarshalData_st),
-            "::",
-            stringify!(Type44_DATA)
-        )
-    );
-}
-extern "C" {
-    pub fn FillInAttestInfo(
-        signHandle: TPMI_DH_OBJECT,
-        scheme: *mut TPMT_SIG_SCHEME,
-        data: *mut TPM2B_DATA,
-        attest: *mut TPMS_ATTEST,
-    );
-}
-extern "C" {
-    pub fn SignAttestInfo(
-        signKey: *mut OBJECT,
-        scheme: *mut TPMT_SIG_SCHEME,
-        certifyInfo: *mut TPMS_ATTEST,
-        qualifyingData: *mut TPM2B_DATA,
-        attest: *mut TPM2B_ATTEST,
-        signature: *mut TPMT_SIGNATURE,
-    ) -> TPM_RC;
-}
-extern "C" {
-    pub fn IsSigningObject(object: *mut OBJECT) -> BOOL;
-}
-extern "C" {
-    pub fn EncryptDecryptShared(
-        keyHandleIn: TPMI_DH_OBJECT,
-        decryptIn: TPMI_YES_NO,
-        modeIn: TPMI_ALG_SYM_MODE,
-        ivIn: *mut TPM2B_IV,
-        inData: *mut TPM2B_MAX_BUFFER,
-        out: *mut EncryptDecrypt_Out,
-    ) -> TPM_RC;
-}
-extern "C" {
-    pub fn ExecuteCommand(
-        requestSize: u32,
-        request: *mut ::std::os::raw::c_uchar,
-        responseSize: *mut u32,
-        response: *mut *mut ::std::os::raw::c_uchar,
-    );
 }
 extern "C" {
     pub fn PolicyParameterChecks(
@@ -61491,6 +47424,564 @@ extern "C" {
         size: UINT16,
     ) -> BOOL;
 }
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Quote_In {
+    pub signHandle: TPMI_DH_OBJECT,
+    pub qualifyingData: TPM2B_DATA,
+    pub inScheme: TPMT_SIG_SCHEME,
+    pub PCRselect: TPML_PCR_SELECTION,
+}
+#[test]
+fn bindgen_test_layout_Quote_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Quote_In>(),
+        88usize,
+        concat!("Size of: ", stringify!(Quote_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Quote_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Quote_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Quote_In>())).signHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Quote_In),
+            "::",
+            stringify!(signHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Quote_In>())).qualifyingData as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Quote_In),
+            "::",
+            stringify!(qualifyingData)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Quote_In>())).inScheme as *const _ as usize },
+        56usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Quote_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Quote_In>())).PCRselect as *const _ as usize },
+        64usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Quote_In),
+            "::",
+            stringify!(PCRselect)
+        )
+    );
+}
+impl Default for Quote_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Quote_Out {
+    pub quoted: TPM2B_ATTEST,
+    pub signature: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_Quote_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Quote_Out>(),
+        1496usize,
+        concat!("Size of: ", stringify!(Quote_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Quote_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Quote_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Quote_Out>())).quoted as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Quote_Out),
+            "::",
+            stringify!(quoted)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Quote_Out>())).signature as *const _ as usize },
+        1234usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Quote_Out),
+            "::",
+            stringify!(signature)
+        )
+    );
+}
+impl Default for Quote_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Quote(in_: *mut Quote_In, out: *mut Quote_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct RSA_Decrypt_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub cipherText: TPM2B_PUBLIC_KEY_RSA,
+    pub inScheme: TPMT_RSA_DECRYPT,
+    pub label: TPM2B_DATA,
+}
+#[test]
+fn bindgen_test_layout_RSA_Decrypt_In() {
+    assert_eq!(
+        ::std::mem::size_of::<RSA_Decrypt_In>(),
+        320usize,
+        concat!("Size of: ", stringify!(RSA_Decrypt_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<RSA_Decrypt_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(RSA_Decrypt_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Decrypt_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).cipherText as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Decrypt_In),
+            "::",
+            stringify!(cipherText)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).inScheme as *const _ as usize },
+        262usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Decrypt_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_In>())).label as *const _ as usize },
+        268usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Decrypt_In),
+            "::",
+            stringify!(label)
+        )
+    );
+}
+impl Default for RSA_Decrypt_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct RSA_Decrypt_Out {
+    pub message: TPM2B_PUBLIC_KEY_RSA,
+}
+#[test]
+fn bindgen_test_layout_RSA_Decrypt_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<RSA_Decrypt_Out>(),
+        258usize,
+        concat!("Size of: ", stringify!(RSA_Decrypt_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<RSA_Decrypt_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(RSA_Decrypt_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Decrypt_Out>())).message as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Decrypt_Out),
+            "::",
+            stringify!(message)
+        )
+    );
+}
+impl Default for RSA_Decrypt_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_RSA_Decrypt(in_: *mut RSA_Decrypt_In, out: *mut RSA_Decrypt_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct RSA_Encrypt_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub message: TPM2B_PUBLIC_KEY_RSA,
+    pub inScheme: TPMT_RSA_DECRYPT,
+    pub label: TPM2B_DATA,
+}
+#[test]
+fn bindgen_test_layout_RSA_Encrypt_In() {
+    assert_eq!(
+        ::std::mem::size_of::<RSA_Encrypt_In>(),
+        320usize,
+        concat!("Size of: ", stringify!(RSA_Encrypt_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<RSA_Encrypt_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(RSA_Encrypt_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Encrypt_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).message as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Encrypt_In),
+            "::",
+            stringify!(message)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).inScheme as *const _ as usize },
+        262usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Encrypt_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_In>())).label as *const _ as usize },
+        268usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Encrypt_In),
+            "::",
+            stringify!(label)
+        )
+    );
+}
+impl Default for RSA_Encrypt_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct RSA_Encrypt_Out {
+    pub outData: TPM2B_PUBLIC_KEY_RSA,
+}
+#[test]
+fn bindgen_test_layout_RSA_Encrypt_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<RSA_Encrypt_Out>(),
+        258usize,
+        concat!("Size of: ", stringify!(RSA_Encrypt_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<RSA_Encrypt_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(RSA_Encrypt_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<RSA_Encrypt_Out>())).outData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(RSA_Encrypt_Out),
+            "::",
+            stringify!(outData)
+        )
+    );
+}
+impl Default for RSA_Encrypt_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_RSA_Encrypt(in_: *mut RSA_Encrypt_In, out: *mut RSA_Encrypt_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ReadClock_Out {
+    pub currentTime: TPMS_TIME_INFO,
+}
+#[test]
+fn bindgen_test_layout_ReadClock_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ReadClock_Out>(),
+        32usize,
+        concat!("Size of: ", stringify!(ReadClock_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ReadClock_Out>(),
+        8usize,
+        concat!("Alignment of ", stringify!(ReadClock_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ReadClock_Out>())).currentTime as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ReadClock_Out),
+            "::",
+            stringify!(currentTime)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_ReadClock(out: *mut ReadClock_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct ReadPublic_In {
+    pub objectHandle: TPMI_DH_OBJECT,
+}
+#[test]
+fn bindgen_test_layout_ReadPublic_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ReadPublic_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(ReadPublic_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ReadPublic_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ReadPublic_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ReadPublic_In>())).objectHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ReadPublic_In),
+            "::",
+            stringify!(objectHandle)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ReadPublic_Out {
+    pub outPublic: TPM2B_PUBLIC,
+    pub name: TPM2B_NAME,
+    pub qualifiedName: TPM2B_NAME,
+}
+#[test]
+fn bindgen_test_layout_ReadPublic_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ReadPublic_Out>(),
+        452usize,
+        concat!("Size of: ", stringify!(ReadPublic_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ReadPublic_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ReadPublic_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ReadPublic_Out>())).outPublic as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ReadPublic_Out),
+            "::",
+            stringify!(outPublic)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ReadPublic_Out>())).name as *const _ as usize },
+        344usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ReadPublic_Out),
+            "::",
+            stringify!(name)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ReadPublic_Out>())).qualifiedName as *const _ as usize },
+        398usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ReadPublic_Out),
+            "::",
+            stringify!(qualifiedName)
+        )
+    );
+}
+impl Default for ReadPublic_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ReadPublic(in_: *mut ReadPublic_In, out: *mut ReadPublic_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Rewrap_In {
+    pub oldParent: TPMI_DH_OBJECT,
+    pub newParent: TPMI_DH_OBJECT,
+    pub inDuplicate: TPM2B_PRIVATE,
+    pub name: TPM2B_NAME,
+    pub inSymSeed: TPM2B_ENCRYPTED_SECRET,
+}
+#[test]
+fn bindgen_test_layout_Rewrap_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Rewrap_In>(),
+        1168usize,
+        concat!("Size of: ", stringify!(Rewrap_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Rewrap_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Rewrap_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).oldParent as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_In),
+            "::",
+            stringify!(oldParent)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).newParent as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_In),
+            "::",
+            stringify!(newParent)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).inDuplicate as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_In),
+            "::",
+            stringify!(inDuplicate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).name as *const _ as usize },
+        856usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_In),
+            "::",
+            stringify!(name)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_In>())).inSymSeed as *const _ as usize },
+        910usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_In),
+            "::",
+            stringify!(inSymSeed)
+        )
+    );
+}
+impl Default for Rewrap_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Rewrap_Out {
+    pub outDuplicate: TPM2B_PRIVATE,
+    pub outSymSeed: TPM2B_ENCRYPTED_SECRET,
+}
+#[test]
+fn bindgen_test_layout_Rewrap_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Rewrap_Out>(),
+        1106usize,
+        concat!("Size of: ", stringify!(Rewrap_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Rewrap_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Rewrap_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_Out>())).outDuplicate as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_Out),
+            "::",
+            stringify!(outDuplicate)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Rewrap_Out>())).outSymSeed as *const _ as usize },
+        848usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Rewrap_Out),
+            "::",
+            stringify!(outSymSeed)
+        )
+    );
+}
+impl Default for Rewrap_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Rewrap(in_: *mut Rewrap_In, out: *mut Rewrap_Out) -> TPM_RC;
+}
 extern "C" {
     pub fn RsaKeyCacheControl(state: ::std::os::raw::c_int);
 }
@@ -61500,6 +47991,759 @@ extern "C" {
         sensitive: *mut TPMT_SENSITIVE,
         rand: *mut RAND_STATE,
     ) -> BOOL;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct SelfTest_In {
+    pub fullTest: TPMI_YES_NO,
+}
+#[test]
+fn bindgen_test_layout_SelfTest_In() {
+    assert_eq!(
+        ::std::mem::size_of::<SelfTest_In>(),
+        1usize,
+        concat!("Size of: ", stringify!(SelfTest_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SelfTest_In>(),
+        1usize,
+        concat!("Alignment of ", stringify!(SelfTest_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SelfTest_In>())).fullTest as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SelfTest_In),
+            "::",
+            stringify!(fullTest)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_SelfTest(in_: *mut SelfTest_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct SequenceComplete_In {
+    pub sequenceHandle: TPMI_DH_OBJECT,
+    pub buffer: TPM2B_MAX_BUFFER,
+    pub hierarchy: TPMI_RH_HIERARCHY,
+}
+#[test]
+fn bindgen_test_layout_SequenceComplete_In() {
+    assert_eq!(
+        ::std::mem::size_of::<SequenceComplete_In>(),
+        1036usize,
+        concat!("Size of: ", stringify!(SequenceComplete_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SequenceComplete_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(SequenceComplete_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<SequenceComplete_In>())).sequenceHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceComplete_In),
+            "::",
+            stringify!(sequenceHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SequenceComplete_In>())).buffer as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceComplete_In),
+            "::",
+            stringify!(buffer)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SequenceComplete_In>())).hierarchy as *const _ as usize },
+        1032usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceComplete_In),
+            "::",
+            stringify!(hierarchy)
+        )
+    );
+}
+impl Default for SequenceComplete_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct SequenceComplete_Out {
+    pub result: TPM2B_DIGEST,
+    pub validation: TPMT_TK_HASHCHECK,
+}
+#[test]
+fn bindgen_test_layout_SequenceComplete_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<SequenceComplete_Out>(),
+        112usize,
+        concat!("Size of: ", stringify!(SequenceComplete_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SequenceComplete_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(SequenceComplete_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SequenceComplete_Out>())).result as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceComplete_Out),
+            "::",
+            stringify!(result)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SequenceComplete_Out>())).validation as *const _ as usize },
+        52usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceComplete_Out),
+            "::",
+            stringify!(validation)
+        )
+    );
+}
+impl Default for SequenceComplete_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_SequenceComplete(
+        in_: *mut SequenceComplete_In,
+        out: *mut SequenceComplete_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct SequenceUpdate_In {
+    pub sequenceHandle: TPMI_DH_OBJECT,
+    pub buffer: TPM2B_MAX_BUFFER,
+}
+#[test]
+fn bindgen_test_layout_SequenceUpdate_In() {
+    assert_eq!(
+        ::std::mem::size_of::<SequenceUpdate_In>(),
+        1032usize,
+        concat!("Size of: ", stringify!(SequenceUpdate_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SequenceUpdate_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(SequenceUpdate_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<SequenceUpdate_In>())).sequenceHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceUpdate_In),
+            "::",
+            stringify!(sequenceHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SequenceUpdate_In>())).buffer as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SequenceUpdate_In),
+            "::",
+            stringify!(buffer)
+        )
+    );
+}
+impl Default for SequenceUpdate_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_SequenceUpdate(in_: *mut SequenceUpdate_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct SetAlgorithmSet_In {
+    pub authHandle: TPMI_RH_PLATFORM,
+    pub algorithmSet: UINT32,
+}
+#[test]
+fn bindgen_test_layout_SetAlgorithmSet_In() {
+    assert_eq!(
+        ::std::mem::size_of::<SetAlgorithmSet_In>(),
+        8usize,
+        concat!("Size of: ", stringify!(SetAlgorithmSet_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SetAlgorithmSet_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(SetAlgorithmSet_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SetAlgorithmSet_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetAlgorithmSet_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SetAlgorithmSet_In>())).algorithmSet as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetAlgorithmSet_In),
+            "::",
+            stringify!(algorithmSet)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_SetAlgorithmSet(in_: *mut SetAlgorithmSet_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct SetCommandCodeAuditStatus_In {
+    pub auth: TPMI_RH_PROVISION,
+    pub auditAlg: TPMI_ALG_HASH,
+    pub setList: TPML_CC,
+    pub clearList: TPML_CC,
+}
+#[test]
+fn bindgen_test_layout_SetCommandCodeAuditStatus_In() {
+    assert_eq!(
+        ::std::mem::size_of::<SetCommandCodeAuditStatus_In>(),
+        2048usize,
+        concat!("Size of: ", stringify!(SetCommandCodeAuditStatus_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SetCommandCodeAuditStatus_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(SetCommandCodeAuditStatus_In))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).auth as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetCommandCodeAuditStatus_In),
+            "::",
+            stringify!(auth)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).auditAlg as *const _ as usize
+        },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetCommandCodeAuditStatus_In),
+            "::",
+            stringify!(auditAlg)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).setList as *const _ as usize
+        },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetCommandCodeAuditStatus_In),
+            "::",
+            stringify!(setList)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<SetCommandCodeAuditStatus_In>())).clearList as *const _ as usize
+        },
+        1028usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetCommandCodeAuditStatus_In),
+            "::",
+            stringify!(clearList)
+        )
+    );
+}
+impl Default for SetCommandCodeAuditStatus_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_SetCommandCodeAuditStatus(in_: *mut SetCommandCodeAuditStatus_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct SetPrimaryPolicy_In {
+    pub authHandle: TPMI_RH_HIERARCHY_POLICY,
+    pub authPolicy: TPM2B_DIGEST,
+    pub hashAlg: TPMI_ALG_HASH,
+}
+#[test]
+fn bindgen_test_layout_SetPrimaryPolicy_In() {
+    assert_eq!(
+        ::std::mem::size_of::<SetPrimaryPolicy_In>(),
+        56usize,
+        concat!("Size of: ", stringify!(SetPrimaryPolicy_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<SetPrimaryPolicy_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(SetPrimaryPolicy_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SetPrimaryPolicy_In>())).authHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetPrimaryPolicy_In),
+            "::",
+            stringify!(authHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SetPrimaryPolicy_In>())).authPolicy as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetPrimaryPolicy_In),
+            "::",
+            stringify!(authPolicy)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<SetPrimaryPolicy_In>())).hashAlg as *const _ as usize },
+        54usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(SetPrimaryPolicy_In),
+            "::",
+            stringify!(hashAlg)
+        )
+    );
+}
+impl Default for SetPrimaryPolicy_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_SetPrimaryPolicy(in_: *mut SetPrimaryPolicy_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct Shutdown_In {
+    pub shutdownType: TPM_SU,
+}
+#[test]
+fn bindgen_test_layout_Shutdown_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Shutdown_In>(),
+        2usize,
+        concat!("Size of: ", stringify!(Shutdown_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Shutdown_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Shutdown_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Shutdown_In>())).shutdownType as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Shutdown_In),
+            "::",
+            stringify!(shutdownType)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_Shutdown(in_: *mut Shutdown_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Sign_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub digest: TPM2B_DIGEST,
+    pub inScheme: TPMT_SIG_SCHEME,
+    pub validation: TPMT_TK_HASHCHECK,
+}
+#[test]
+fn bindgen_test_layout_Sign_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Sign_In>(),
+        120usize,
+        concat!("Size of: ", stringify!(Sign_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Sign_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Sign_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Sign_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Sign_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Sign_In>())).digest as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Sign_In),
+            "::",
+            stringify!(digest)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Sign_In>())).inScheme as *const _ as usize },
+        54usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Sign_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Sign_In>())).validation as *const _ as usize },
+        60usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Sign_In),
+            "::",
+            stringify!(validation)
+        )
+    );
+}
+impl Default for Sign_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Sign_Out {
+    pub signature: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_Sign_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Sign_Out>(),
+        262usize,
+        concat!("Size of: ", stringify!(Sign_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Sign_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Sign_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Sign_Out>())).signature as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Sign_Out),
+            "::",
+            stringify!(signature)
+        )
+    );
+}
+impl Default for Sign_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Sign(in_: *mut Sign_In, out: *mut Sign_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct StartAuthSession_In {
+    pub tpmKey: TPMI_DH_OBJECT,
+    pub bind: TPMI_DH_ENTITY,
+    pub nonceCaller: TPM2B_NONCE,
+    pub encryptedSalt: TPM2B_ENCRYPTED_SECRET,
+    pub sessionType: TPM_SE,
+    pub symmetric: TPMT_SYM_DEF,
+    pub authHash: TPMI_ALG_HASH,
+}
+#[test]
+fn bindgen_test_layout_StartAuthSession_In() {
+    assert_eq!(
+        ::std::mem::size_of::<StartAuthSession_In>(),
+        328usize,
+        concat!("Size of: ", stringify!(StartAuthSession_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<StartAuthSession_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(StartAuthSession_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).tpmKey as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(tpmKey)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).bind as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(bind)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).nonceCaller as *const _ as usize },
+        8usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(nonceCaller)
+        )
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<StartAuthSession_In>())).encryptedSalt as *const _ as usize
+        },
+        58usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(encryptedSalt)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).sessionType as *const _ as usize },
+        316usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(sessionType)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).symmetric as *const _ as usize },
+        318usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(symmetric)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_In>())).authHash as *const _ as usize },
+        324usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_In),
+            "::",
+            stringify!(authHash)
+        )
+    );
+}
+impl Default for StartAuthSession_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct StartAuthSession_Out {
+    pub sessionHandle: TPMI_SH_AUTH_SESSION,
+    pub nonceTPM: TPM2B_NONCE,
+}
+#[test]
+fn bindgen_test_layout_StartAuthSession_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<StartAuthSession_Out>(),
+        56usize,
+        concat!("Size of: ", stringify!(StartAuthSession_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<StartAuthSession_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(StartAuthSession_Out))
+    );
+    assert_eq!(
+        unsafe {
+            &(*(::std::ptr::null::<StartAuthSession_Out>())).sessionHandle as *const _ as usize
+        },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_Out),
+            "::",
+            stringify!(sessionHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StartAuthSession_Out>())).nonceTPM as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StartAuthSession_Out),
+            "::",
+            stringify!(nonceTPM)
+        )
+    );
+}
+impl Default for StartAuthSession_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_StartAuthSession(
+        in_: *mut StartAuthSession_In,
+        out: *mut StartAuthSession_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct Startup_In {
+    pub startupType: TPM_SU,
+}
+#[test]
+fn bindgen_test_layout_Startup_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Startup_In>(),
+        2usize,
+        concat!("Size of: ", stringify!(Startup_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Startup_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Startup_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Startup_In>())).startupType as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Startup_In),
+            "::",
+            stringify!(startupType)
+        )
+    );
+}
+extern "C" {
+    pub fn TPM2_Startup(in_: *mut Startup_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct StirRandom_In {
+    pub inData: TPM2B_SENSITIVE_DATA,
+}
+#[test]
+fn bindgen_test_layout_StirRandom_In() {
+    assert_eq!(
+        ::std::mem::size_of::<StirRandom_In>(),
+        130usize,
+        concat!("Size of: ", stringify!(StirRandom_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<StirRandom_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(StirRandom_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<StirRandom_In>())).inData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(StirRandom_In),
+            "::",
+            stringify!(inData)
+        )
+    );
+}
+impl Default for StirRandom_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_StirRandom(in_: *mut StirRandom_In) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct TestParms_In {
+    pub parameters: TPMT_PUBLIC_PARMS,
+}
+#[test]
+fn bindgen_test_layout_TestParms_In() {
+    assert_eq!(
+        ::std::mem::size_of::<TestParms_In>(),
+        24usize,
+        concat!("Size of: ", stringify!(TestParms_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<TestParms_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(TestParms_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<TestParms_In>())).parameters as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(TestParms_In),
+            "::",
+            stringify!(parameters)
+        )
+    );
+}
+impl Default for TestParms_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_TestParms(in_: *mut TestParms_In) -> TPM_RC;
 }
 extern "C" {
     pub fn ASN1UnmarshalContextInitialize(
@@ -61574,6 +48818,236 @@ extern "C" {
 extern "C" {
     pub fn BigInitialized(toInit: *mut BIGNUM, initializer: bigConst) -> *mut BIGNUM;
 }
+#[repr(C)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
+pub struct Unseal_In {
+    pub itemHandle: TPMI_DH_OBJECT,
+}
+#[test]
+fn bindgen_test_layout_Unseal_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Unseal_In>(),
+        4usize,
+        concat!("Size of: ", stringify!(Unseal_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Unseal_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(Unseal_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Unseal_In>())).itemHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Unseal_In),
+            "::",
+            stringify!(itemHandle)
+        )
+    );
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Unseal_Out {
+    pub outData: TPM2B_SENSITIVE_DATA,
+}
+#[test]
+fn bindgen_test_layout_Unseal_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Unseal_Out>(),
+        130usize,
+        concat!("Size of: ", stringify!(Unseal_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Unseal_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Unseal_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Unseal_Out>())).outData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Unseal_Out),
+            "::",
+            stringify!(outData)
+        )
+    );
+}
+impl Default for Unseal_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Unseal(in_: *mut Unseal_In, out: *mut Unseal_Out) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Vendor_TCG_Test_In {
+    pub inputData: TPM2B_DATA,
+}
+#[test]
+fn bindgen_test_layout_Vendor_TCG_Test_In() {
+    assert_eq!(
+        ::std::mem::size_of::<Vendor_TCG_Test_In>(),
+        52usize,
+        concat!("Size of: ", stringify!(Vendor_TCG_Test_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Vendor_TCG_Test_In>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Vendor_TCG_Test_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Vendor_TCG_Test_In>())).inputData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Vendor_TCG_Test_In),
+            "::",
+            stringify!(inputData)
+        )
+    );
+}
+impl Default for Vendor_TCG_Test_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Vendor_TCG_Test_Out {
+    pub outputData: TPM2B_DATA,
+}
+#[test]
+fn bindgen_test_layout_Vendor_TCG_Test_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<Vendor_TCG_Test_Out>(),
+        52usize,
+        concat!("Size of: ", stringify!(Vendor_TCG_Test_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<Vendor_TCG_Test_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(Vendor_TCG_Test_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<Vendor_TCG_Test_Out>())).outputData as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(Vendor_TCG_Test_Out),
+            "::",
+            stringify!(outputData)
+        )
+    );
+}
+impl Default for Vendor_TCG_Test_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_Vendor_TCG_Test(
+        in_: *mut Vendor_TCG_Test_In,
+        out: *mut Vendor_TCG_Test_Out,
+    ) -> TPM_RC;
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct VerifySignature_In {
+    pub keyHandle: TPMI_DH_OBJECT,
+    pub digest: TPM2B_DIGEST,
+    pub signature: TPMT_SIGNATURE,
+}
+#[test]
+fn bindgen_test_layout_VerifySignature_In() {
+    assert_eq!(
+        ::std::mem::size_of::<VerifySignature_In>(),
+        316usize,
+        concat!("Size of: ", stringify!(VerifySignature_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<VerifySignature_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(VerifySignature_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<VerifySignature_In>())).keyHandle as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(VerifySignature_In),
+            "::",
+            stringify!(keyHandle)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<VerifySignature_In>())).digest as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(VerifySignature_In),
+            "::",
+            stringify!(digest)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<VerifySignature_In>())).signature as *const _ as usize },
+        54usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(VerifySignature_In),
+            "::",
+            stringify!(signature)
+        )
+    );
+}
+impl Default for VerifySignature_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct VerifySignature_Out {
+    pub validation: TPMT_TK_VERIFIED,
+}
+#[test]
+fn bindgen_test_layout_VerifySignature_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<VerifySignature_Out>(),
+        60usize,
+        concat!("Size of: ", stringify!(VerifySignature_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<VerifySignature_Out>(),
+        4usize,
+        concat!("Alignment of ", stringify!(VerifySignature_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<VerifySignature_Out>())).validation as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(VerifySignature_Out),
+            "::",
+            stringify!(validation)
+        )
+    );
+}
+impl Default for VerifySignature_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_VerifySignature(
+        in_: *mut VerifySignature_In,
+        out: *mut VerifySignature_Out,
+    ) -> TPM_RC;
+}
 extern "C" {
     pub fn X509PushPoint(ctx: *mut ASN1MarshalContext, p: *mut TPMS_ECC_POINT) -> INT16;
 }
@@ -61626,12 +49100,136 @@ extern "C" {
         OID: *const BYTE,
     ) -> INT16;
 }
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ZGen_2Phase_In {
+    pub keyA: TPMI_DH_OBJECT,
+    pub inQsB: TPM2B_ECC_POINT,
+    pub inQeB: TPM2B_ECC_POINT,
+    pub inScheme: TPMI_ECC_KEY_EXCHANGE,
+    pub counter: UINT16,
+}
+#[test]
+fn bindgen_test_layout_ZGen_2Phase_In() {
+    assert_eq!(
+        ::std::mem::size_of::<ZGen_2Phase_In>(),
+        212usize,
+        concat!("Size of: ", stringify!(ZGen_2Phase_In))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ZGen_2Phase_In>(),
+        4usize,
+        concat!("Alignment of ", stringify!(ZGen_2Phase_In))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).keyA as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_In),
+            "::",
+            stringify!(keyA)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).inQsB as *const _ as usize },
+        4usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_In),
+            "::",
+            stringify!(inQsB)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).inQeB as *const _ as usize },
+        106usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_In),
+            "::",
+            stringify!(inQeB)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).inScheme as *const _ as usize },
+        208usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_In),
+            "::",
+            stringify!(inScheme)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_In>())).counter as *const _ as usize },
+        210usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_In),
+            "::",
+            stringify!(counter)
+        )
+    );
+}
+impl Default for ZGen_2Phase_In {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct ZGen_2Phase_Out {
+    pub outZ1: TPM2B_ECC_POINT,
+    pub outZ2: TPM2B_ECC_POINT,
+}
+#[test]
+fn bindgen_test_layout_ZGen_2Phase_Out() {
+    assert_eq!(
+        ::std::mem::size_of::<ZGen_2Phase_Out>(),
+        204usize,
+        concat!("Size of: ", stringify!(ZGen_2Phase_Out))
+    );
+    assert_eq!(
+        ::std::mem::align_of::<ZGen_2Phase_Out>(),
+        2usize,
+        concat!("Alignment of ", stringify!(ZGen_2Phase_Out))
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_Out>())).outZ1 as *const _ as usize },
+        0usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_Out),
+            "::",
+            stringify!(outZ1)
+        )
+    );
+    assert_eq!(
+        unsafe { &(*(::std::ptr::null::<ZGen_2Phase_Out>())).outZ2 as *const _ as usize },
+        102usize,
+        concat!(
+            "Offset of field: ",
+            stringify!(ZGen_2Phase_Out),
+            "::",
+            stringify!(outZ2)
+        )
+    );
+}
+impl Default for ZGen_2Phase_Out {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
+extern "C" {
+    pub fn TPM2_ZGen_2Phase(in_: *mut ZGen_2Phase_In, out: *mut ZGen_2Phase_Out) -> TPM_RC;
+}
 extern "C" {
     pub fn _TPM_Init();
 }
 pub type __builtin_va_list = [__va_list_tag; 1usize];
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __va_list_tag {
     pub gp_offset: ::std::os::raw::c_uint,
     pub fp_offset: ::std::os::raw::c_uint,
@@ -61691,8 +49289,13 @@ fn bindgen_test_layout___va_list_tag() {
         )
     );
 }
+impl Default for __va_list_tag {
+    fn default() -> Self {
+        unsafe { ::std::mem::zeroed() }
+    }
+}
 #[repr(C)]
-#[derive(Debug, Copy, Clone)]
+#[derive(Debug, Default, Copy, Clone, Hash, PartialOrd, Ord, PartialEq, Eq)]
 pub struct __locale_data {
     pub _address: u8,
 }

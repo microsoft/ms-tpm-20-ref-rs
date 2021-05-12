@@ -10,6 +10,11 @@ fi
 
 bindgen \
     ./bindgen.h \
+    --with-derive-default \
+    --with-derive-eq \
+    --with-derive-hash \
+    --with-derive-ord \
+    --enable-function-attribute-detection \
     -o src/bindgen.rs \
     -- \
     -I./ms-tpm-20-ref/TPMCmd/tpm/include/ \
