@@ -1,3 +1,5 @@
+//! Raw FFI bindings to the microsoft/ms-tpm-20-ref C library.
+
 #[allow(
     clippy::all,
     non_upper_case_globals,
@@ -6,5 +8,4 @@
     improper_ctypes, // u128
 )]
 mod bindgen;
-
 pub use bindgen::*;
