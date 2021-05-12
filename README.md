@@ -2,25 +2,34 @@
 
 Rust FFI bindings to [microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref).
 
-## Dependencies
+**NOTE:** Unless the `sample_platform` cargo feature is enabled, this crate will _not_ compile a platform implementation!
 
-### Windows
+Users are expected to provide their own platform implementation by ensuring the functions defined by [TPMCmd/Platform/include/prototypes/Platform_fp.h](https://github.com/microsoft/ms-tpm-20-ref/blob/master/TPMCmd/Platform/include/prototypes/Platform_fp.h) and [TPMCmd/Platform/include/Platform.h](https://github.com/microsoft/ms-tpm-20-ref/blob/master/TPMCmd/Platform/include/prototypes/Platform_fp.h) are available at link time.
 
-TBD
+Reminder: if implementing platform layer in Rust, make sure to mark the functions as `#[no_mangle] pub extern "C"`.
+
+## Features
+
+- `vendored` - if enabled, `openssl` will be compiled from source
+- `sample_platfom` - if enabled, the microsoft/ms-tpm-20-ref sample platform implementation will be compiled + linked in
+
+## Build Dependencies
 
 ### Linux
 
 On Debian-based systems (such as Ubuntu):
 
 ```bash
-sudo apt install autoconf-archive pkg-config build-essential automake libssl-dev
+sudo apt install pkg-config build-essential libssl-dev
 ```
+
+### Windows
+
+TODO
 
 ## Updating `ms-tpm-20-ref`
 
-After bumping the git submodule, make sure to regenerate `bindgen.rs`!
-
-This can be done by running `./bindgen.sh` from the root of the repo.
+After bumping the git submodule, make sure to regenerate `src/bindgen.rs` using the `./bindgen.sh` script!
 
 ## Attribution
 

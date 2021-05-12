@@ -11,12 +11,13 @@ categories = ["cryptography", "external-ffi-bindings"]
 build = "build/main.rs"
 
 [features]
+default = []
+
 vendored = ['openssl-src']
+sample_platform = []
 
 [dependencies]
 libc = "0.2"
-serde = { version = "1.0", features = ["derive"] }
-zerocopy = "0.3"
 
 [build-dependencies]
 autocfg = "1.0"

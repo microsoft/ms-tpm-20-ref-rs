@@ -1,12 +1,29 @@
 #![deny(clippy::exit)]
 
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 mod openssl;
 
 const MS_TPM_20_REF_SRC_PATH: &str = "./ms-tpm-20-ref/TPMCmd/";
 
+fn add_deps(builder: &mut cc::Build, sources: &Path) -> Result<(), Box<dyn std::error::Error>> {
+    for entry in walkdir::WalkDir::new(sources) {
+        let entry = entry?;
+        if entry.file_type().is_dir() {
+            continue;
+        }
+
+        if entry.file_name().to_string_lossy().ends_with(".c") {
+            builder.file(entry.path());
+        }
+    }
+
+    Ok(())
+}
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
+
     println!("cargo:rerun-if-changed=build.rs");
 
     // locate / build openssl
@@ -16,25 +33,23 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut builder = cc::Build::new();
     builder.include(ossl_include_dir);
 
-    let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
 
-    builder.include(tpm_src_path.join("tpm/include"));
-    builder.include(tpm_src_path.join("tpm/include/prototypes"));
-    builder.include(tpm_src_path.join("tpm/include/ossl"));
-    builder.include(tpm_src_path.join("Platform/include"));
-    builder.include(tpm_src_path.join("Platform/include/prototypes"));
-    for entry in walkdir::WalkDir::new(tpm_src_path.join("tpm"))
-        .into_iter()
-        .chain(walkdir::WalkDir::new(tpm_src_path.join("Platform")))
-    {
-        let entry = entry?;
-        if entry.file_type().is_dir() {
-            continue;
-        }
+    let includes = [
+        tpm_src_path.join("tpm/include"),
+        tpm_src_path.join("tpm/include/prototypes"),
+        tpm_src_path.join("tpm/include/ossl"),
+        tpm_src_path.join("Platform/include"),
+        tpm_src_path.join("Platform/include/prototypes"),
+    ];
 
-        if entry.file_name().to_string_lossy().ends_with(".c") {
-            builder.file(entry.path());
-        }
+    for path in includes.iter() {
+        builder.include(path);
+    }
+
+    add_deps(&mut builder, &tpm_src_path.join("tpm"))?;
+
+    if cfg!(feature = "sample_platform") {
+        add_deps(&mut builder, &tpm_src_path.join("Platform"))?;
     }
 
     builder

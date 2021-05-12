@@ -9,8 +9,6 @@
 #include "VendorString.h"
 #include "X509.h"
 
-#include "Platform.h"
-
 // everything in tpm/include/prototypes
 #include "ACT_SetTimeout_fp.h"
 #include "ACT_spt_fp.h"
@@ -211,3 +209,6 @@
 #include "_TPM_Hash_End_fp.h"
 #include "_TPM_Hash_Start_fp.h"
 #include "_TPM_Init_fp.h"
+
+// Also generate the platform level bindings (even through they're not implemented in-tree)
+#include "Platform.h"
