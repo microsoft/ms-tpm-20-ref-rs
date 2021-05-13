@@ -24,7 +24,7 @@ fn add_deps(builder: &mut cc::Build, sources: &Path) -> Result<(), Box<dyn std::
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
 
-    println!("cargo:rerun-if-changed=build.rs");
+    // println!("cargo:rerun-if-changed=build.rs");
 
     // locate / build openssl
     let ossl_include_dir = openssl::main();
@@ -32,7 +32,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     // build tpm
     let mut builder = cc::Build::new();
     builder.include(ossl_include_dir);
-
 
     let includes = [
         tpm_src_path.join("tpm/include"),
