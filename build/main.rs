@@ -55,6 +55,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .flag_if_supported("-Wno-cast-function-type")
         .flag_if_supported("-Wno-implicit-fallthrough")
         .flag_if_supported("-Wno-missing-field-initializers")
+        .define("CERTIFYX509_DEBUG", "NO")
         .compile("tpm");
 
     Ok(())
