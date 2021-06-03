@@ -1,17 +1,13 @@
-# ms-tpm-20-ref-sys
+# ms-tpm-20-ref
 
-Rust FFI bindings to [microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref).
+Rust wrapper around [microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref).
 
-**NOTE:** Unless the `sample_platform` cargo feature is enabled, this crate will _not_ compile a platform implementation!
-
-Users are expected to provide their own platform implementation by ensuring the functions defined by [TPMCmd/Platform/include/prototypes/Platform_fp.h](https://github.com/microsoft/ms-tpm-20-ref/blob/master/TPMCmd/Platform/include/prototypes/Platform_fp.h) and [TPMCmd/Platform/include/Platform.h](https://github.com/microsoft/ms-tpm-20-ref/blob/master/TPMCmd/Platform/include/prototypes/Platform_fp.h) are available at link time.
-
-Reminder: if implementing platform layer in Rust, make sure to mark the functions as `#[no_mangle] pub extern "C"`.
+In an ideal world, we'd be able to have a separate `*-sys` crate that encapsulates the bindings to the underlying ms-tpm-20-ref lib, but unfortunately, due to the library's bi-directional communication with the platform layer, both the platform layer implementation and the C library bindings need to be performed within a single Rust crate (i.e: a single translation unit).
 
 ## Features
 
 - `vendored` - if enabled, `openssl` will be compiled from source
-- `sample_platfom` - if enabled, the microsoft/ms-tpm-20-ref sample platform implementation will be compiled + linked in
+- `sample_platfom` - if enabled, the `microsoft/ms-tpm-20-ref` sample platform implementation will be compiled + linked in instead of the Rust, callback based platform. The API will remain the same, but all provided callbacks / state blobs will simply be ignored. **This should only be used for testing.**
 
 ## Build Dependencies
 
@@ -30,6 +26,8 @@ TODO
 ## Updating `ms-tpm-20-ref`
 
 After bumping the git submodule, make sure to regenerate `src/bindgen.rs` using the `./bindgen.sh` script!
+
+Since this crate also provides an _implementation_ of the platform API, any changes in the underlying `ms-tpm-20-ref` platform API will require updating this crate's implementation as well. This cannot be automated, and will require a human to audit / validate that all signatures line up correctly.
 
 ## Attribution
 

@@ -22,17 +22,24 @@ fn add_deps(builder: &mut cc::Build, sources: &Path) -> Result<(), Box<dyn std::
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
-
-    // println!("cargo:rerun-if-changed=build.rs");
-
-    // locate / build openssl
-    let ossl_include_dir = openssl::main();
+    // get this out of the way real quick...
+    if !cfg!(feature = "sample_platform") {
+        cc::Build::new()
+            .file("./src/callback_plat/RunCommand.c")
+            .compile("run_command");
+    }
 
     // build tpm
-    let mut builder = cc::Build::new();
-    builder.include(ossl_include_dir);
+    //
+    // NOTE: calling ossl::main() first won't work, as it will println!
+    // `cargo:rustc-link-lib` calls before tpm, which will mess up the link order.
+    //
+    // Aren't linkers just great?
 
+    let mut builder = cc::Build::new();
+    builder.include(openssl::get_include_dir());
+
+    let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
     let includes = [
         tpm_src_path.join("tpm/include"),
         tpm_src_path.join("tpm/include/prototypes"),
@@ -58,6 +65,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .define("CERTIFYX509_DEBUG", "NO")
         .define("SIMULATION", "NO")
         .compile("tpm");
+
+    // build openssl
+    openssl::main();
 
     Ok(())
 }

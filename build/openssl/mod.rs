@@ -65,6 +65,14 @@ fn find_openssl(target: &str) -> FoundUsing {
     find_normal::get_openssl(target)
 }
 
+pub fn get_include_dir() -> PathBuf {
+    let target = env::var("TARGET").unwrap();
+    match find_openssl(&target) {
+        FoundUsing::Paths { include_dir, .. } => include_dir,
+        FoundUsing::Package { include_dir } => include_dir,
+    }
+}
+
 pub fn main() -> PathBuf {
     check_rustc_versions();
 
