@@ -35,9 +35,6 @@ impl MsTpm20RefPlatformImpl {
         self.state.locality.locality = 0;
         self.state.cancel.flag = false;
 
-        // SAFETY: _TPM_Init has no documented preconditions
-        unsafe { crate::bindgen::_TPM_Init() };
-
         // if we are doing reset but did not have a power failure, then we should
         // not need to reload NV ...
 
@@ -76,13 +73,20 @@ mod c_api {
     #[log_derive::logfn(Trace)]
     #[log_derive::logfn_inputs(Trace)]
     pub unsafe extern "C" fn _plat__Signal_Reset() -> i32 {
-        match platform!().signal_reset() {
+        let ret = match platform!().signal_reset() {
             Ok(()) => 0,
             Err(e) => {
                 log::error!("error while signalling reset: {}", e);
                 -1
             }
-        }
+        };
+
+        // Must call _TPM_Init outside of the platform context to avoid deadlock
+        //
+        // SAFETY: _TPM_Init has no documented preconditions
+        unsafe { crate::bindgen::_TPM_Init() };
+
+        ret
     }
 
     #[no_mangle]

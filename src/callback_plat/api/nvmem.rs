@@ -6,7 +6,7 @@ use crate::error::Error;
 
 use super::super::MsTpm20RefPlatformImpl;
 
-const NV_MEMORY_SIZE: usize = 0x8000;
+const NV_MEMORY_SIZE: usize = 0x4000;
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct NvState {
@@ -64,6 +64,7 @@ impl MsTpm20RefPlatformImpl {
     pub fn nv_enable(&mut self) -> Result<(), Error> {
         if !self.state.nvmem.is_init {
             self.state.nvmem.region = vec![0; NV_MEMORY_SIZE];
+            self.state.nvmem.is_init = true;
         } else {
             log::warn!("called __plat_NvEnable after nvmem has already been initialized")
         }
@@ -267,8 +268,8 @@ mod c_api {
                     data,
                     e
                 );
-                1 // need to return something... might as well say the memory is
-                  // different?
+                // need to return something... might as well say the memory is different?
+                true as i32
             }
         }
     }
@@ -284,7 +285,7 @@ mod c_api {
         let buf = unsafe { core::slice::from_raw_parts(data as *const u8, size as usize) };
 
         match platform!().nv_memory_write(start_offset as usize, buf) {
-            Ok(()) => 0,
+            Ok(()) => true as i32,
             Err(e) => {
                 log::error!(
                     "error calling _plat__NvMemoryWrite(start_offset: {:#x?}, size: {:#x?}, data: {:?}): {}",
@@ -293,7 +294,7 @@ mod c_api {
                     data,
                     e
                 );
-                1
+                false as i32
             }
         }
     }
