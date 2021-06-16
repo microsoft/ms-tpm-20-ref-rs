@@ -7,7 +7,7 @@ In an ideal world, we'd be able to have a separate `*-sys` crate that encapsulat
 ## Features
 
 - `vendored` - if enabled, `openssl` will be compiled from source
-- `sample_platfom` - if enabled, the `microsoft/ms-tpm-20-ref` sample platform implementation will be compiled + linked in instead of the Rust, callback based platform. The API will remain the same, but all provided callbacks / state blobs will simply be ignored. **This should only be used for testing.**
+- `sample_platfom` - if enabled, the `microsoft/ms-tpm-20-ref` sample platform implementation will be compiled + linked in instead of the Rust, callback based platform. The API will remain the same, but all provided callbacks / state blobs will simply be ignored. **This should only be used for testing and cross-validation.**
 
 ## Build Dependencies
 
@@ -25,9 +25,7 @@ TODO
 
 ## Updating `ms-tpm-20-ref`
 
-After bumping the git submodule, make sure to regenerate `src/bindgen.rs` using the `./bindgen.sh` script!
-
-Since this crate also provides an _implementation_ of the platform API, any changes in the underlying `ms-tpm-20-ref` platform API will require updating this crate's implementation as well. This cannot be automated, and will require a human to audit / validate that all signatures line up correctly.
+Since this crate also provides an _implementation_ of the platform API, any changes in the underlying `ms-tpm-20-ref` platform API will require updating this crate's implementation as well. This cannot be automated, and will require a human to audit / validate that all platform API signatures line up correctly.
 
 ## Attribution
 

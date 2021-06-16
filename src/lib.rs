@@ -38,17 +38,8 @@
 // crate-specific warnings
 #![warn(unsafe_op_in_unsafe_fn)]
 
-#[allow(
-    clippy::all,
-    dead_code,
-    non_upper_case_globals,
-    non_camel_case_types,
-    non_snake_case,
-    improper_ctypes, // u128
-)]
-mod bindgen;
-
 mod error;
+mod ffi;
 mod tpmlib_state;
 
 cfg_if::cfg_if! {
@@ -61,19 +52,32 @@ cfg_if::cfg_if! {
     }
 }
 
-pub use plat::{MsTpm20RefPlatform, MsTpm20RefRuntimeState};
+use std::borrow::Cow;
 
 pub use error::*;
+pub use plat::{MsTpm20RefPlatform, MsTpm20RefRuntimeState};
 
 pub enum InitKind<'a> {
     ColdInit,
     ColdInitWithPersistentState {
-        nvmem_blob: &'a [u8],
+        nvmem_blob: Cow<'a, [u8]>,
     },
     WarmInit {
-        nvmem_blob: &'a [u8],
+        nvmem_blob: Cow<'a, [u8]>,
         runtime_state: MsTpm20RefRuntimeState,
     },
+}
+
+impl core::fmt::Debug for InitKind<'_> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            InitKind::ColdInit => write!(f, "ColdInit"),
+            InitKind::ColdInitWithPersistentState { .. } => {
+                write!(f, "ColdInitWithPersistentState {{ .. }}")
+            }
+            InitKind::WarmInit { .. } => write!(f, "WarmInit {{ .. }}"),
+        }
+    }
 }
 
 /// Implementation-specific platform callbacks.

@@ -64,6 +64,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .flag_if_supported("-Wno-missing-field-initializers")
         .define("CERTIFYX509_DEBUG", "NO")
         .define("SIMULATION", "NO")
+        .define("ALG_CAMELLIA", "NO")
         .compile("tpm");
 
     // build openssl

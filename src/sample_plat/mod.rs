@@ -57,24 +57,24 @@ impl MsTpm20RefPlatform {
             log::trace!("Initializing TPM...");
 
             unsafe {
-                crate::bindgen::_plat__SetNvAvail();
+                crate::ffi::_plat__SetNvAvail();
                 log::trace!("TPM _plat__SetNvAvail Completed");
 
-                cerr(crate::bindgen::_plat__NVEnable(std::ptr::null_mut()))?;
+                cerr(crate::ffi::_plat__NVEnable(std::ptr::null_mut()))?;
                 log::trace!("TPM _plat__NVEnable Completed");
 
-                cerr(crate::bindgen::_plat__Signal_PowerOn())?;
+                cerr(crate::ffi::_plat__Signal_PowerOn())?;
                 log::trace!("TPM _plat__Signal_PowerOn Completed");
 
-                let needs_manufacture = crate::bindgen::_plat__NVNeedsManufacture() == 1;
+                let needs_manufacture = crate::ffi::_plat__NVNeedsManufacture() == 1;
                 log::trace!("TPM _plat__NVNeedsManufacture Completed");
 
                 if needs_manufacture {
-                    cerr(crate::bindgen::TPM_Manufacture(1))?;
+                    cerr(crate::ffi::TPM_Manufacture(1))?;
                     log::trace!("TPM TPM_Manufacture Completed");
                 }
 
-                crate::bindgen::_TPM_Init();
+                crate::ffi::_TPM_Init();
                 log::trace!("TPM _TPM_Init Completed");
             }
 
@@ -87,7 +87,7 @@ impl MsTpm20RefPlatform {
 
     fn shutdown(&mut self) {
         unsafe {
-            crate::bindgen::_plat__Signal_PowerOff();
+            crate::ffi::_plat__Signal_PowerOff();
         }
     }
 
@@ -116,7 +116,7 @@ impl MsTpm20RefPlatform {
 
         let prev_response_ptr = response_ptr;
         unsafe {
-            crate::bindgen::_plat__RunCommand(
+            crate::ffi::_plat__RunCommand(
                 request_size,
                 request_ptr,
                 &mut response_size,
@@ -157,7 +157,7 @@ impl MsTpm20RefPlatform {
 
         let prev_response_ptr = response_ptr;
         unsafe {
-            crate::bindgen::_plat__RunCommand(
+            crate::ffi::_plat__RunCommand(
                 request_size,
                 request_ptr,
                 &mut response_size,

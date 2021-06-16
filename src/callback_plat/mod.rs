@@ -64,7 +64,7 @@ impl MsTpm20RefPlatform {
             Some(_platform) => return Err(Error::AlreadyInitialized),
             None => {
                 let mut platform = MsTpm20RefPlatformImpl::new(callbacks);
-                match init_kind {
+                match &init_kind {
                     InitKind::ColdInit => platform.nv_enable()?,
                     InitKind::ColdInitWithPersistentState { nvmem_blob }
                     | InitKind::WarmInit { nvmem_blob, .. } => {
@@ -88,7 +88,7 @@ impl MsTpm20RefPlatform {
             // platform, and Rust's std mutex is not reentrant!
             drop(maybe_platform);
 
-            let ret = crate::bindgen::TPM_Manufacture(true as i32);
+            let ret = crate::ffi::TPM_Manufacture(true as i32);
             if ret != 0 {
                 return Err(Error::Ffi {
                     function: "TPM_Manufacture",
@@ -96,7 +96,7 @@ impl MsTpm20RefPlatform {
                 });
             }
 
-            crate::bindgen::_TPM_Init();
+            crate::ffi::_TPM_Init();
             log::trace!("_TPM_Init Completed");
         }
 
