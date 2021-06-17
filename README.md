@@ -2,7 +2,7 @@
 
 Rust wrapper around [microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref).
 
-In an ideal world, we'd be able to have a separate `*-sys` crate that encapsulates the bindings to the underlying ms-tpm-20-ref lib, but unfortunately, due to the library's bi-directional communication with the platform layer, both the platform layer implementation and the C library bindings need to be performed within a single Rust crate (i.e: a single translation unit).
+Ideally, we'd be able to have a separate `*-sys` crate that encapsulates the bindings to the underlying ms-tpm-20-ref lib, but unfortunately, due to the library's bi-directional communication with the platform layer, both the platform layer implementation and the C library bindings need to be performed within a single Rust crate (i.e: a single translation unit).
 
 ## Features
 
