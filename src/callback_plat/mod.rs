@@ -88,12 +88,14 @@ impl MsTpm20RefPlatform {
             // platform, and Rust's std mutex is not reentrant!
             drop(maybe_platform);
 
-            let ret = crate::ffi::TPM_Manufacture(true as i32);
-            if ret != 0 {
-                return Err(Error::Ffi {
-                    function: "TPM_Manufacture",
-                    error: ret,
-                });
+            if matches!(&init_kind, InitKind::ColdInit) {
+                let ret = crate::ffi::TPM_Manufacture(true as i32);
+                if ret != 0 {
+                    return Err(Error::Ffi {
+                        function: "TPM_Manufacture",
+                        error: ret,
+                    });
+                }
             }
 
             crate::ffi::_TPM_Init();
