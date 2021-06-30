@@ -129,10 +129,18 @@ impl MsTpm20RefPlatform {
     /// Reset the TPM device (i.e: simulate power off + power on)
     pub fn reset(&mut self) -> Result<(), Error> {
         log::trace!("Resetting TPM library...");
-        let mut platform = PLATFORM.lock().unwrap();
-        platform.as_mut().unwrap().signal_power_off();
-        platform.as_mut().unwrap().signal_power_on()?;
-        drop(platform);
+        // open new scope to drop the mutex before calling _TPM_Init
+        {
+            let mut platform = PLATFORM.lock().unwrap();
+            let platform = platform.as_mut().unwrap();
+            platform.signal_power_off();
+            // instead of requiring the caller to do a full roundtrip through their backing
+            // nvmem storage as part of the reset, we cheat and set this flag to true (after
+            // it was cleared as part of signal_power_off), which lets us re-use the current
+            // nvmem state in memory.
+            platform.state.nvmem.is_init = true;
+            platform.signal_power_on()?;
+        }
         // SAFETY: nvram is in a valid state, and the device is powered on.
         unsafe {
             crate::ffi::_TPM_Init();

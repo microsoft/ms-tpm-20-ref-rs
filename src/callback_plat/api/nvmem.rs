@@ -10,8 +10,8 @@ const NV_MEMORY_SIZE: usize = 0x4000;
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct NvState {
-    region: Vec<u8>,
-    is_init: bool,
+    pub region: Vec<u8>,
+    pub is_init: bool,
 }
 
 impl NvState {
