@@ -82,7 +82,7 @@ impl core::fmt::Debug for InitKind<'_> {
 
 /// Implementation-specific platform callbacks.
 pub trait PlatformCallbacks {
-    /// Persist the provided non volative state.
+    /// Persist the provided non volatile state.
     fn commit_nv_state(&mut self, state: &[u8]) -> DynResult<()>;
 
     /// Write cryptographically secure random bytes into `buf`.

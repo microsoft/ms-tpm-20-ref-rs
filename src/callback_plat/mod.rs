@@ -81,26 +81,27 @@ impl MsTpm20RefPlatform {
         // itself to prep the TPM.
         log::trace!("Initializing TPM library...");
 
-        unsafe {
-            maybe_platform.as_mut().unwrap().signal_power_on()?;
+        maybe_platform.as_mut().unwrap().signal_power_on()?;
 
-            // Make sure to drop the mutex guard, as the TPM library will call back into the
-            // platform, and Rust's std mutex is not reentrant!
-            drop(maybe_platform);
+        // Make sure to drop the mutex guard, as the TPM library will call back into the
+        // platform, and Rust's std mutex is not reentrant!
+        drop(maybe_platform);
 
-            if matches!(&init_kind, InitKind::ColdInit) {
-                let ret = crate::ffi::TPM_Manufacture(true as i32);
-                if ret != 0 {
-                    return Err(Error::Ffi {
-                        function: "TPM_Manufacture",
-                        error: ret,
-                    });
-                }
+        if matches!(&init_kind, InitKind::ColdInit) {
+            // SAFETY: TPM_Manufacture doesn't have any preconditions
+            let ret = unsafe { crate::ffi::TPM_Manufacture(true as i32) };
+            if ret != 0 {
+                return Err(Error::Ffi {
+                    function: "TPM_Manufacture",
+                    error: ret,
+                });
             }
-
-            crate::ffi::_TPM_Init();
-            log::trace!("_TPM_Init Completed");
         }
+
+        // SAFETY: the nvram state has been manufactured (either by loading an existing
+        // nvram blob, or through TPM_Manufacture), and has been powered on.
+        unsafe { crate::ffi::_TPM_Init() }
+        log::trace!("_TPM_Init Completed");
 
         log::info!("TPM library initialized");
 
@@ -123,6 +124,21 @@ impl MsTpm20RefPlatform {
         let mut platform = PLATFORM.lock().unwrap();
         platform.as_mut().unwrap().signal_power_off();
         *platform = None;
+    }
+
+    /// Reset the TPM device (i.e: simulate power off + power on)
+    pub fn reset(&mut self) -> Result<(), Error> {
+        log::trace!("Resetting TPM library...");
+        let mut platform = PLATFORM.lock().unwrap();
+        platform.as_mut().unwrap().signal_power_off();
+        platform.as_mut().unwrap().signal_power_on()?;
+        drop(platform);
+        // SAFETY: nvram is in a valid state, and the device is powered on.
+        unsafe {
+            crate::ffi::_TPM_Init();
+        }
+        log::trace!("TPM Reset");
+        Ok(())
     }
 
     /// Execute a command on the TPM without checking / truncating request /
@@ -149,6 +165,7 @@ impl MsTpm20RefPlatform {
         let mut response_ptr = response.as_mut_ptr();
 
         let prev_response_ptr = response_ptr;
+        // SAFETY: The request / response buffers point to valid memory locations
         unsafe {
             RunCommand(
                 request_size,
@@ -158,7 +175,14 @@ impl MsTpm20RefPlatform {
             );
         }
 
+        // NOTE: the API of the underlying C library makes it possible for the
+        // underlying C library to modify the response pointer to point to a different
+        // buffer than the one passed in.
+        //
+        // AFAIK, this never actually happens, but nonetheless, we handle this edge case
+        // gracefully, just in case.
         if prev_response_ptr != response_ptr {
+            // SAFETY: we trust the C library's response
             let tmp_buf =
                 unsafe { core::slice::from_raw_parts_mut(response_ptr, response_size as usize) };
             response[..response_size as usize].copy_from_slice(tmp_buf);
@@ -190,6 +214,7 @@ impl MsTpm20RefPlatform {
         let mut response_ptr = response.as_mut_ptr();
 
         let prev_response_ptr = response_ptr;
+        // SAFETY: The request / response buffers point to valid memory locations
         unsafe {
             RunCommand(
                 request_size,
@@ -199,7 +224,14 @@ impl MsTpm20RefPlatform {
             );
         }
 
+        // NOTE: the API of the underlying C library makes it possible for the
+        // underlying C library to modify the response pointer to point to a different
+        // buffer than the one passed in.
+        //
+        // AFAIK, this never actually happens, but nonetheless, we handle this edge case
+        // gracefully, just in case.
         if prev_response_ptr != response_ptr {
+            // SAFETY: we trust the C library's response
             let tmp_buf =
                 unsafe { core::slice::from_raw_parts_mut(response_ptr, response_size as usize) };
             response
