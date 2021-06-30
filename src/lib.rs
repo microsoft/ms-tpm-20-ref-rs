@@ -36,7 +36,7 @@
     clippy::type_complexity
 )]
 // crate-specific warnings
-#![warn(unsafe_op_in_unsafe_fn)]
+#![warn(unsafe_op_in_unsafe_fn, missing_docs)]
 
 mod error;
 mod ffi;
@@ -57,13 +57,22 @@ use std::borrow::Cow;
 pub use error::*;
 pub use plat::{MsTpm20RefPlatform, MsTpm20RefRuntimeState};
 
+/// Various library initialization modes
 pub enum InitKind<'a> {
+    /// Initialize the TPM entirely from scratch, having it manufacture an
+    /// initial nvmem blob.
     ColdInit,
+    /// Initialize the TPM from an existing saved nvmem blob.
     ColdInitWithPersistentState {
+        /// Opaque nvmem blob
         nvmem_blob: Cow<'a, [u8]>,
     },
+    /// Initialize the TPM from an existing saved nvmem blob + runtime state
+    /// blob.
     WarmInit {
+        /// Opaque nvmem blob
         nvmem_blob: Cow<'a, [u8]>,
+        /// Opaque runtime state struct
         runtime_state: MsTpm20RefRuntimeState,
     },
 }
