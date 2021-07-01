@@ -188,12 +188,6 @@ impl MsTpm20RefPlatform {
     ///
     /// Callers must ensure that the request buffer is appropriately sized for
     /// the contained command.
-    ///
-    /// # Panics
-    ///
-    /// If the TPM library returns a response using a internally allocated
-    /// buffer larger than the provided user-allocated response buffer, this
-    /// function will panic instead of truncating the output.
     pub unsafe fn execute_command_unchecked(
         &mut self,
         request: &mut [u8],
@@ -215,17 +209,21 @@ impl MsTpm20RefPlatform {
             );
         }
 
-        // NOTE: the API of the underlying C library makes it possible for the
-        // underlying C library to modify the response pointer to point to a different
-        // buffer than the one passed in.
+        // NOTE: the API of the underlying C library technically makes it possible for
+        // the underlying C library to modify the response pointer to point to a
+        // different buffer than the one passed in.
         //
-        // AFAIK, this never actually happens, but nonetheless, we handle this edge case
-        // gracefully, just in case.
+        // Gracefully handling the behavior is surprisingly complicated, as the C
+        // library could theoretically return a response pointer that points into the
+        // provided request buffer. In that case, naively using
+        // `slice::from_raw_parts_mut` would result in UB, as it would result in two
+        // mutable Rust slices which alias the same memory location.
+        //
+        // At the time of writing, this seems to be an API wart, rather than something
+        // that can actually happen. As such, we simply perform a sanity-check to make
+        // sure the pointer hasn't been changed, and panic if it has.
         if prev_response_ptr != response_ptr {
-            // SAFETY: we trust the C library's response
-            let tmp_buf =
-                unsafe { core::slice::from_raw_parts_mut(response_ptr, response_size as usize) };
-            response[..response_size as usize].copy_from_slice(tmp_buf);
+            panic!("TPM library returned a response ptr that doesn't match the provided response buffer")
         }
 
         response_size as usize
@@ -239,48 +237,24 @@ impl MsTpm20RefPlatform {
         request: &mut [u8],
         response: &mut [u8],
     ) -> Result<usize, Error> {
+        let request_len = request.len();
         let request_header_size = request
             .get(2..6)
             .map(|b| u32::from_be_bytes(b.try_into().unwrap()))
             .ok_or(Error::InvalidRequestSize)?;
 
-        if request_header_size as usize > request.len() {
+        if request_header_size > request_len as u32 {
             return Err(Error::InvalidRequestSize);
         }
 
-        let request_size = (request.len() as u32).min(request_header_size);
-        let request_ptr = request.as_mut_ptr();
-        let mut response_size = response.len() as u32;
-        let mut response_ptr = response.as_mut_ptr();
-
-        let prev_response_ptr = response_ptr;
-        // SAFETY: The request / response buffers point to valid memory locations
-        unsafe {
-            RunCommand(
-                request_size,
-                request_ptr,
-                &mut response_size,
-                &mut response_ptr,
-            );
-        }
-
-        // NOTE: the API of the underlying C library makes it possible for the
-        // underlying C library to modify the response pointer to point to a different
-        // buffer than the one passed in.
-        //
-        // AFAIK, this never actually happens, but nonetheless, we handle this edge case
-        // gracefully, just in case.
-        if prev_response_ptr != response_ptr {
-            // SAFETY: we trust the C library's response
-            let tmp_buf =
-                unsafe { core::slice::from_raw_parts_mut(response_ptr, response_size as usize) };
-            response
-                .get_mut(..response_size as usize)
-                .ok_or(Error::InvalidResponseSize)?
-                .copy_from_slice(tmp_buf);
-        }
-
-        Ok(response_size as usize)
+        // SAFETY: the request buffer has been truncated to the size specified in the
+        // request header
+        Ok(unsafe {
+            self.execute_command_unchecked(
+                &mut request[..request_len.min(request_header_size as usize)],
+                response,
+            )
+        })
     }
 
     /// Return a serde de/serializable structure containing the vTPM's current

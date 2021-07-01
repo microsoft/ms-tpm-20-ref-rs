@@ -18,7 +18,7 @@ pub enum Error {
     InvalidRequestSize,
     /// Mismatch between response buffer size and reply header size
     InvalidResponseSize,
-    /// Nvmem callback error
+    /// Error calling nvmem platform API
     #[cfg(not(feature = "sample_platform"))]
     NvMem(crate::callback_plat::api::nvmem::NvError),
 }
