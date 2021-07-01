@@ -1,6 +1,7 @@
 //! Clock.c
 
 use std::convert::TryInto;
+use std::time::Instant;
 
 use serde::{Deserialize, Serialize};
 
@@ -15,6 +16,11 @@ const CLOCK_ADJUST_FINE: i32 = 1;
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct ClockState {
+    // it's fine for this instant to get reset on de/serialize, as it's only purpose is to serve as
+    // a monotonically increasing clock that eventually feeds into `tpm_time`.
+    #[serde(skip, default = "Instant::now")]
+    start_instant: Instant,
+
     adjust_rate: u32,
 
     timer_reset: bool,
@@ -36,6 +42,8 @@ pub struct ClockState {
 impl ClockState {
     pub fn new() -> ClockState {
         ClockState {
+            start_instant: Instant::now(),
+
             adjust_rate: CLOCK_NOMINAL,
 
             timer_reset: true,
@@ -59,6 +67,7 @@ impl MsTpm20RefPlatformImpl {
     // Ported over from ms-tps-20-re/TPMCmd/Platform/src/Clock.c
     fn timer_read(&mut self) -> u64 {
         let ClockState {
+            start_instant,
             adjust_rate,
             last_system_time,
             last_reported_time,
@@ -67,10 +76,7 @@ impl MsTpm20RefPlatformImpl {
             ..
         } = &mut self.state.clock;
 
-        let now = std::time::SystemTime::now()
-            .duration_since(std::time::SystemTime::UNIX_EPOCH)
-            .expect("failed to fetch system time")
-            .as_millis();
+        let now = start_instant.elapsed().as_millis();
 
         if *last_system_time == 0 {
             *last_system_time = now;

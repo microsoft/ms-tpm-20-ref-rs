@@ -17,7 +17,7 @@ impl LocalityState {
 
 impl MsTpm20RefPlatformImpl {
     fn locality_set(&mut self, mut locality: u8) {
-        if (4..32).contains(&locality) {
+        if (5..32).contains(&locality) {
             log::warn!(
                 "tried to set invalid locality {}. defaulting to zero...",
                 locality

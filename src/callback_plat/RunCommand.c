@@ -22,11 +22,15 @@ void _plat__Fail(void)
     longjmp(&s_jumpBuffer[0], 1);
 }
 
-// safe wrapper around ExecuteCommand that includes the required error handling logic
+// safe wrapper around ExecuteCommand that includes the required setjmp/longjmp
+// error handling logic
 void RunCommand(
     uint32_t requestSize, unsigned char *request,
     uint32_t *responseSize, unsigned char **response)
 {
+    // If the longjmp is taken, then the TPM will have been put in failure mode,
+    // and ExecuteCommand will return with failure information immediately
+    // without calling _plat__Fail again.
     setjmp(s_jumpBuffer);
     ExecuteCommand(requestSize, request, responseSize, response);
 }

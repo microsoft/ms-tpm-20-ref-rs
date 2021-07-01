@@ -1,3 +1,4 @@
+use core::marker::PhantomData;
 use std::convert::TryInto;
 use std::sync::Mutex;
 
@@ -11,6 +12,30 @@ use crate::PlatformCallbacks;
 
 pub(crate) mod api;
 
+// NOTE: Stashing the platform implementation behind a global Mutex is *not*
+// done to enforce serialized access to the platform's various methods. The
+// underlying C library is single-threaded, and will never call multiple
+// platform methods at the same time. In addition, by marking
+// `MsTpm20RefPlatform` as `!Sync`, we can leverage the Rust type system to
+// statically guarantee that Rust code will only ever invoke platform methods on
+// a single thread.
+//
+// Indeed, if you read through this wrapper code, you'll find that the
+// potentially-deadlocking `.lock()` method is never called on the platform
+// mutex, with `.try_lock()` being used instead.
+//
+// So, why use a mutex at all?
+//
+// 1. It serves as a good "assert" mechanism to ensure that the underlying C
+// library is indeed single-threaded, and isn't calling platform methods at the
+// same time. The current platform implementation is _not_ reentrant, and if the
+// underlying TPM library ever switches to a multithreaded model, we'd want to
+// fail-fast.
+//
+// 2. It's nicer than using a `static mut PLATFORM` + copious `unsafe` blocks to
+// access the global platform. Moreover, this is not supposed to be "high
+// performance" code, so the minor overhead of going through a mutex isn't
+// important.
 static PLATFORM: Lazy<Mutex<Option<MsTpm20RefPlatformImpl>>> = Lazy::new(|| Mutex::new(None));
 
 #[link(name = "run_command")]
@@ -43,7 +68,12 @@ pub struct MsTpm20RefRuntimeState {
 /// allowing a subsequent call to [`MsTpm20Platform::initialize`] to succeed.
 #[non_exhaustive]
 #[derive(Debug)]
-pub struct MsTpm20RefPlatform {}
+pub struct MsTpm20RefPlatform {
+    _not_sync: PhantomData<*const ()>,
+}
+
+// SAFETY: the underlying C library is single threaded, and doesn't use TLS
+unsafe impl Send for MsTpm20RefPlatform {}
 
 impl MsTpm20RefPlatform {
     /// Initialize the TPM library with the given implementation-specific
@@ -58,7 +88,7 @@ impl MsTpm20RefPlatform {
     ) -> Result<MsTpm20RefPlatform, Error> {
         log::trace!("Initializing TPM platform...");
 
-        let mut maybe_platform = PLATFORM.lock().unwrap();
+        let mut maybe_platform = PLATFORM.try_lock().unwrap();
 
         match &mut *maybe_platform {
             Some(_platform) => return Err(Error::AlreadyInitialized),
@@ -108,7 +138,7 @@ impl MsTpm20RefPlatform {
         // apply any warm init state, if available
         if let InitKind::WarmInit { runtime_state, .. } = init_kind {
             PLATFORM
-                .lock()
+                .try_lock()
                 .unwrap()
                 .as_mut()
                 .unwrap()
@@ -117,11 +147,13 @@ impl MsTpm20RefPlatform {
             tpmlib_state::restore_runtime_state(runtime_state.tpmlib_state);
         }
 
-        Ok(MsTpm20RefPlatform {})
+        Ok(MsTpm20RefPlatform {
+            _not_sync: PhantomData,
+        })
     }
 
     fn shutdown(&mut self) {
-        let mut platform = PLATFORM.lock().unwrap();
+        let mut platform = PLATFORM.try_lock().unwrap();
         platform.as_mut().unwrap().signal_power_off();
         *platform = None;
     }
@@ -131,7 +163,7 @@ impl MsTpm20RefPlatform {
         log::trace!("Resetting TPM library...");
         // open new scope to drop the mutex before calling _TPM_Init
         {
-            let mut platform = PLATFORM.lock().unwrap();
+            let mut platform = PLATFORM.try_lock().unwrap();
             let platform = platform.as_mut().unwrap();
             platform.signal_power_off();
             // instead of requiring the caller to do a full roundtrip through their backing
@@ -259,7 +291,7 @@ impl MsTpm20RefPlatform {
         MsTpm20RefRuntimeState {
             tpmlib_state: tpmlib_state::get_runtime_state(),
             platform_state: PLATFORM
-                .lock()
+                .try_lock()
                 .unwrap()
                 .as_mut()
                 .expect("platform is initialized")
@@ -274,7 +306,7 @@ impl MsTpm20RefPlatform {
     ///
     /// Corresponds to `VTpmSetCancelFlag`
     pub fn set_cancel_flag(&mut self, enabled: bool) {
-        let mut platform = PLATFORM.lock().unwrap();
+        let mut platform = PLATFORM.try_lock().unwrap();
         let platform = platform.as_mut().expect("platform is initialized");
         if enabled {
             platform.set_cancel()
