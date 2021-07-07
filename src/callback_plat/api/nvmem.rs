@@ -71,8 +71,9 @@ impl MsTpm20RefPlatformImpl {
         Ok(())
     }
 
-    pub fn nv_disable(&mut self, _delete: bool) {
-        // TODO: handle delete
+    pub fn nv_disable(&mut self, delete: bool) {
+        // `delete` is only ever used by the simulator code.
+        assert_eq!(delete, false);
         self.state.nvmem.is_init = false;
     }
 

@@ -2,6 +2,7 @@
 
 #![deny(future_incompatible, nonstandard_style, rust_2018_idioms)]
 #![warn(
+    unsafe_op_in_unsafe_fn,
     clippy::dbg_macro,
     clippy::debug_assert_with_mut_call,
     clippy::filter_map_next,
@@ -33,10 +34,12 @@
     clippy::too_many_arguments,
     clippy::transmute_ptr_to_ptr,
     clippy::transmutes_expressible_as_ptr_casts,
-    clippy::type_complexity
+    clippy::type_complexity,
+    clippy::manual_flatten,
+    clippy::bool_assert_comparison
 )]
 // crate-specific warnings
-#![warn(unsafe_op_in_unsafe_fn, missing_docs)]
+#![warn(missing_docs)]
 
 mod error;
 mod ffi;
