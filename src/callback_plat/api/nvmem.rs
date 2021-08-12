@@ -6,7 +6,7 @@ use crate::error::Error;
 
 use super::super::MsTpm20RefPlatformImpl;
 
-const NV_MEMORY_SIZE: usize = 0x4000;
+const NV_MEMORY_SIZE: usize = 0x8000;
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct NvState {

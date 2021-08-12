@@ -13,11 +13,15 @@ within a single Rust crate (i.e: a single translation unit).
 
 - `vendored` - if enabled, `openssl` will be compiled from source. **WARNING: This will
   substantially bump compile-from-clean times!**
+
 - `sample_platform` - if enabled, the `microsoft/ms-tpm-20-ref` sample platform
   implementation will be compiled + linked in instead of the Rust, callback
   based platform. The API will remain the same, but all provided callbacks /
   state blobs will simply be ignored. **This should only be used for testing and
   cross-validation.**
+
+- `dll_platform` - use the legacy TPM implementation provided by `TpmEngUM138.dll`.
+  Will not build `microsoft/ms-tpm-20-ref` from source.
 
 ## Build Dependencies
 

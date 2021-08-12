@@ -6,6 +6,8 @@ impl MsTpm20RefPlatformImpl {
     fn get_unique(&mut self, _which: u32, buf: &mut [u8]) -> usize {
         // TODO: how to handle `which`?
 
+        log::debug!("fetching first {} unique value bytes", buf.len());
+
         let unique = self.callbacks.get_unique_value();
 
         let n = buf.len().min(unique.len());

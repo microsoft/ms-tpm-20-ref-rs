@@ -49,6 +49,9 @@ cfg_if::cfg_if! {
     if #[cfg(feature = "sample_platform")] {
         mod sample_plat;
         use sample_plat as plat;
+    } else if #[cfg(feature = "dll_platform")] {
+        mod dll_plat;
+        use dll_plat as plat;
     } else {
         mod callback_plat;
         use callback_plat as plat;

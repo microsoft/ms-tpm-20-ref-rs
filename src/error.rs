@@ -19,7 +19,7 @@ pub enum Error {
     /// Mismatch between response buffer size and reply header size
     InvalidResponseSize,
     /// Error calling nvmem platform API
-    #[cfg(not(feature = "sample_platform"))]
+    #[cfg(not(any(feature = "sample_platform", feature = "dll_platform")))]
     NvMem(crate::callback_plat::api::nvmem::NvError),
 }
 
@@ -33,7 +33,11 @@ impl fmt::Display for Error {
             AlreadyInitialized => write!(f, "platform is already initialized"),
             PlatformCallback(e) => write!(f, "error when calling platform callback: {}", e),
             Ffi { function, error } => {
-                write!(f, "error calling C API: {} returned {}", function, error)
+                write!(
+                    f,
+                    "error calling C API: {} returned {:#x?}",
+                    function, error
+                )
             }
 
             InvalidRequestSize => write!(
@@ -44,7 +48,7 @@ impl fmt::Display for Error {
                 f,
                 "mismatch between response buffer size and reply header size"
             ),
-            #[cfg(not(feature = "sample_platform"))]
+            #[cfg(not(any(feature = "sample_platform", feature = "dll_platform")))]
             NvMem(e) => write!(f, "nvmem error: {:?}", e),
         }
     }

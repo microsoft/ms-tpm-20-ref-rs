@@ -209,21 +209,38 @@ impl MsTpm20RefPlatform {
             );
         }
 
-        // NOTE: the API of the underlying C library technically makes it possible for
-        // the underlying C library to modify the response pointer to point to a
+        // NOTE: the API of the underlying C library makes it possible for the
+        // underlying C library to modify the response pointer to point to a
         // different buffer than the one passed in.
         //
-        // Gracefully handling the behavior is surprisingly complicated, as the C
-        // library could theoretically return a response pointer that points into the
-        // provided request buffer. In that case, naively using
-        // `slice::from_raw_parts_mut` would result in UB, as it would result in two
-        // mutable Rust slices which alias the same memory location.
+        // The common use case is to return a pointer to a global static buffer
+        // when the TPM enters a failure mode. This is pretty easy to handle, as we can
+        // simply copy data from said buffer into the response buffer prior to
+        // returning from the function.
         //
-        // At the time of writing, this seems to be an API wart, rather than something
-        // that can actually happen. As such, we simply perform a sanity-check to make
-        // sure the pointer hasn't been changed, and panic if it has.
+        // That said, we do need to be careful against the possible case of the C
+        // library returning a response pointer that points into the provided request
+        // buffer. In that case, naively using `slice::from_raw_parts_mut` would
+        // result in UB, as it would result in two mutable Rust slices which
+        // alias the same memory location.
+        //
+        // This doesn't happen in the current version of the library, but we
+        // double-check this invariant regardless, as introducing UB would be bad.
         if prev_response_ptr != response_ptr {
-            panic!("TPM library returned a response ptr that doesn't match the provided response buffer")
+            if response_ptr == request_ptr {
+                panic!("TPM library unexpectedly returned a response in request buffer");
+            }
+
+            if response_ptr.is_null() {
+                panic!("TPM library set response pointer to null");
+            }
+
+            log::warn!("TPM library returned a response ptr that doesn't match the provided response buffer: {:#x?} != {:#x?}", prev_response_ptr, response_ptr);
+
+            // copy response from library provided response buffer into user response buffer
+            let c_response =
+                unsafe { core::slice::from_raw_parts_mut(response_ptr, response_size as usize) };
+            response[..response_size as usize].copy_from_slice(c_response);
         }
 
         response_size as usize
