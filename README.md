@@ -54,12 +54,11 @@ TODO: actually figure this out.
 For now, the `vendored` feature must be enabled, which will build openSSL from
 source.
 
-## Updating `ms-tpm-20-ref`
+## Upgrading `ms-tpm-20-ref`
 
-Since this crate also provides an _implementation_ of the platform API, any
-changes in the underlying `ms-tpm-20-ref` platform API will require updating
-this crate's implementation as well. This cannot be automated, and will require
-a human to audit / validate that all platform API signatures line up correctly.
+See the `UPGRADE_PATH.md` document for information on how to update the
+underlying `ms-tpm-20-ref` version, along with a brief discussion around
+maintaining backwards-compatibility with earlier library versions.
 
 ## Attribution
 
