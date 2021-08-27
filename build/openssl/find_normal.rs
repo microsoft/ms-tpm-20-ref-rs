@@ -23,7 +23,7 @@ pub fn get_openssl(target: &str) -> FoundUsing {
             include_dir,
         },
         (lib_dir, include_dir) => {
-            let openssl_dir = env("OPENSSL_DIR").unwrap_or_else(|| find_openssl_dir(&target));
+            let openssl_dir = env("OPENSSL_DIR").unwrap_or_else(|| find_openssl_dir(target));
             let openssl_dir = Path::new(&openssl_dir);
             let lib_dir = lib_dir.unwrap_or_else(|| openssl_dir.join("lib"));
             let include_dir = include_dir.unwrap_or_else(|| openssl_dir.join("include"));
@@ -38,7 +38,8 @@ pub fn get_openssl(target: &str) -> FoundUsing {
 fn resolve_with_wellknown_homebrew_location(dir: &str) -> Option<PathBuf> {
     // Check up default aarch 64 Homebrew installation location first
     // for quick resolution if possible.
-    //  `pkg-config` on brew doesn't necessarily contain settings for openssl apparently.
+    //  `pkg-config` on brew doesn't necessarily contain settings for openssl
+    // apparently.
     let homebrew = Path::new(dir).join("opt/openssl@1.1");
     if homebrew.exists() {
         return Some(homebrew);
@@ -92,7 +93,8 @@ fn find_openssl_dir(target: &str) -> OsString {
         return OsString::from("/usr");
     }
 
-    // DragonFly has libressl (or openssl) in ports, but this doesn't include a pkg-config file
+    // DragonFly has libressl (or openssl) in ports, but this doesn't include a
+    // pkg-config file
     if host == target && target.contains("dragonfly") {
         return OsString::from("/usr/local");
     }

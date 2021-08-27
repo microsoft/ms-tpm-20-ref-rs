@@ -108,7 +108,7 @@ pub fn main() -> PathBuf {
 
     let libs_env = env("OPENSSL_LIBS");
     let libs = match libs_env.as_ref().and_then(|s| s.to_str()) {
-        Some(ref v) => {
+        Some(v) => {
             if v.is_empty() {
                 vec![]
             } else {
@@ -173,22 +173,17 @@ fn validate_headers(include_dirs: &[PathBuf]) -> Version {
                 "
 Header expansion error:
 {:?}
-
 Failed to find OpenSSL development headers.
-
 You can try fixing this setting the `OPENSSL_DIR` environment variable
 pointing to your OpenSSL installation or installing OpenSSL headers package
 specific to your distribution:
-
     # On Ubuntu
     sudo apt-get install libssl-dev
     # On Arch Linux
     sudo pacman -S openssl
     # On Fedora
     sudo dnf install openssl-devel
-
 See rust-openssl README for more information:
-
     https://github.com/sfackler/rust-openssl#linux
 ",
                 e
@@ -204,11 +199,15 @@ See rust-openssl README for more information:
         let line = line.trim();
 
         let openssl_prefix = "RUST_VERSION_OPENSSL_";
+        let new_openssl_prefix = "RUST_VERSION_NEW_OPENSSL_";
         let libressl_prefix = "RUST_VERSION_LIBRESSL_";
         let conf_prefix = "RUST_CONF_";
         if line.starts_with(openssl_prefix) {
             let version = &line[openssl_prefix.len()..];
             openssl_version = Some(parse_version(version));
+        } else if line.starts_with(new_openssl_prefix) {
+            let version = &line[new_openssl_prefix.len()..];
+            openssl_version = Some(parse_new_version(version));
         } else if line.starts_with(libressl_prefix) {
             let version = &line[libressl_prefix.len()..];
             libressl_version = Some(parse_version(version));
@@ -269,8 +268,10 @@ See rust-openssl README for more information:
         let openssl_version = openssl_version.unwrap();
         println!("cargo:version_number={:x}", openssl_version);
 
-        if openssl_version >= 0x1_01_02_00_0 {
+        if openssl_version >= 0x4_00_00_00_0 {
             version_error()
+        } else if openssl_version >= 0x3_00_00_00_0 {
+            Version::Openssl11x
         } else if openssl_version >= 0x1_01_01_00_0 {
             println!("cargo:version=111");
             Version::Openssl11x
@@ -320,6 +321,17 @@ fn parse_version(version: &str) -> u64 {
     });
 
     u64::from_str_radix(version, 16).unwrap()
+}
+
+// parses a string that looks like 3_0_0
+fn parse_new_version(version: &str) -> u64 {
+    println!("version: {}", version);
+    let mut it = version.split('_');
+    let major = it.next().unwrap().parse::<u64>().unwrap();
+    let minor = it.next().unwrap().parse::<u64>().unwrap();
+    let patch = it.next().unwrap().parse::<u64>().unwrap();
+
+    (major << 28) | (minor << 20) | (patch << 4)
 }
 
 /// Given a libdir for OpenSSL (where artifacts are located) as well as the name
