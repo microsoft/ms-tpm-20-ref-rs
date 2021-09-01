@@ -122,6 +122,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .flag_if_supported("-Wno-implicit-fallthrough")
         .flag_if_supported("-Wno-missing-field-initializers")
         .flag_if_supported("-Wno-parentheses")
+        .flag_if_supported("-Wno-ignored-qualifiers")
+        .flag_if_supported("-Wno-deprecated-declarations")
+
         // disable debug / unused code
         .define("CERTIFYX509_DEBUG", "NO")
         .define("SIMULATION", "NO")
