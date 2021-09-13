@@ -30,7 +30,7 @@ libloading = { version = "0.7.0", optional = true }
 
 [build-dependencies]
 autocfg = "1.0"
-cc = { version = "1.0", features = ["parallel"] }
+cc = "1.0"
 openssl-src = { git = "https://github.com/yuandrew/openssl-src-rs.git", branch = "openssl3-fix", optional = true }
 pkg-config = "0.3.9"
 walkdir = "2.3.2"
