@@ -83,8 +83,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     //
     // Aren't linkers just great?
 
+    let found_using = openssl::find_openssl();
+    let ossl_include = match &found_using {
+        openssl::FoundUsing::Paths { include_dir, .. } => include_dir,
+        openssl::FoundUsing::Package { include_dir } => include_dir,
+    };
+
     let mut builder = cc::Build::new();
-    builder.include(openssl::get_include_dir());
+    builder.include(&ossl_include);
 
     let includes = [
         "./overrides/include".into(),
@@ -154,7 +160,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .compile("tpm");
 
     // build openssl
-    openssl::main();
+    openssl::main(found_using);
 
     Ok(())
 }

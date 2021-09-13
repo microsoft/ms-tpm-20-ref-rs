@@ -53,31 +53,25 @@ fn env(name: &str) -> Option<OsString> {
     env_inner(&prefixed).or_else(|| env_inner(name))
 }
 
-fn find_openssl(target: &str) -> FoundUsing {
+pub fn find_openssl() -> FoundUsing {
+    let target = env::var("TARGET").unwrap();
+
     #[cfg(feature = "vendored")]
     {
         // vendor if the feature is present, unless
         // OPENSSL_NO_VENDOR exists and isn't `0`
         if env("OPENSSL_NO_VENDOR").map_or(true, |s| s == "0") {
-            return find_vendored::get_openssl(target);
+            return find_vendored::get_openssl(&target);
         }
     }
-    find_normal::get_openssl(target)
+    find_normal::get_openssl(&target)
 }
 
-pub fn get_include_dir() -> PathBuf {
-    let target = env::var("TARGET").unwrap();
-    match find_openssl(&target) {
-        FoundUsing::Paths { include_dir, .. } => include_dir,
-        FoundUsing::Package { include_dir } => include_dir,
-    }
-}
-
-pub fn main() -> PathBuf {
+pub fn main(found_using: FoundUsing) -> PathBuf {
     check_rustc_versions();
 
     let target = env::var("TARGET").unwrap();
-    let (lib_dir, include_dir) = match find_openssl(&target) {
+    let (lib_dir, include_dir) = match found_using {
         FoundUsing::Paths {
             lib_dir,
             include_dir,
