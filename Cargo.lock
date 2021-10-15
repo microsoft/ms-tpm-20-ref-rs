@@ -190,7 +190,7 @@ checksum = "af8b08b04175473088b46763e51ee54da5f9a164bc162f615b91bc179dbf15a3"
 [[package]]
 name = "openssl-src"
 version = "111.15.0+1.1.1k"
-source = "git+https://github.com/yuandrew/openssl-src-rs.git?branch=openssl3-fix#bd0d7e2648f9c2f9ade23ad52ffdb60c12348294"
+source = "git+https://microsoft.visualstudio.com/DefaultCollection/HyperVCloud/_git/openssl-src-rs?branch=openssl3#b7ab8a4d9a63b28c85631ea9a275f83d2e9fec21"
 dependencies = [
  "cc",
 ]
