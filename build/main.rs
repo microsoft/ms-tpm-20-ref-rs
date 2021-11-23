@@ -2,8 +2,6 @@
 
 use std::path::{Path, PathBuf};
 
-mod openssl;
-
 const MS_TPM_20_REF_SRC_PATH: &str = "./ms-tpm-20-ref/TPMCmd/";
 
 fn add_deps(
@@ -78,15 +76,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
     }
 
-    // NOTE: calling ossl::main() first won't work, as it will println!
-    // `cargo:rustc-link-lib` calls before tpm, which will mess up the link order.
-    //
-    // Aren't linkers just great?
-
-    let found_using = openssl::find_openssl();
-    let ossl_include = match &found_using {
-        openssl::FoundUsing::Paths { include_dir, .. } => include_dir,
-        openssl::FoundUsing::Package { include_dir } => include_dir,
+    // Get the openssl include path from the openssl-sys crate.
+    let ossl_include = if let Ok(include) = std::env::var("DEP_OPENSSL_INCLUDE") {
+        PathBuf::from(include)
+    } else {
+        return Err("openssl not found".into());
     };
 
     let mut builder = cc::Build::new();
@@ -158,9 +152,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         // .define("SKIP_PROOF_ERRORS", "YES")
 
         .compile("tpm");
-
-    // build openssl
-    openssl::main(found_using);
 
     Ok(())
 }

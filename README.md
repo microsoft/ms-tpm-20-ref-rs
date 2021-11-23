@@ -59,10 +59,3 @@ source.
 See the `UPGRADE_PATH.md` document for information on how to update the
 underlying `ms-tpm-20-ref` version, along with a brief discussion around
 maintaining backwards-compatibility with earlier library versions.
-
-## Attribution
-
-The code under `build/openssl/` was extracted and lightly modified from the
-[openssl-sys](https://github.com/sfackler/rust-openssl/tree/master/openssl-sys)
-crate, used with permission under the MIT license. See `build/openssl/LICENSE`
-for a copy of the original license.

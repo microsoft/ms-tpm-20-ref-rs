@@ -358,3 +358,17 @@ impl MsTpm20RefPlatformImpl {
         self.state.clone()
     }
 }
+
+/// This function is never called but is present to ensure openssl-sys is linked
+/// in, which ensures that libcrypto is linked in, which ensures that the C code
+/// in `overrides` can reference the crypto primitives.
+///
+/// This is the least bad way we could find to ensure this. If we find a better
+/// way, then this should be removed.
+#[allow(dead_code)]
+unsafe fn ensure_openssl_is_linked() {
+    unsafe {
+        let mut ctx = std::mem::zeroed();
+        openssl_sys::SHA256_Init(&mut ctx);
+    }
+}
