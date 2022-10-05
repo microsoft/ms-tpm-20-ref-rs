@@ -1,5 +1,7 @@
 # ms-tpm-20-ref
 
+**HvLite is currently using the `138-compat` branch!**
+
 Rust wrapper around
 [microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref).
 

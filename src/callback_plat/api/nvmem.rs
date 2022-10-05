@@ -49,7 +49,7 @@ impl MsTpm20RefPlatformImpl {
             return Err(NvError::AlreadyInitialized.into());
         }
 
-        if blob.len() != NV_MEMORY_SIZE {
+        if blob.len() > NV_MEMORY_SIZE {
             return Err(NvError::MismatchedBlobSize.into());
         }
 
