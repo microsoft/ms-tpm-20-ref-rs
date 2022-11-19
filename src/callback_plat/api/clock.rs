@@ -47,7 +47,7 @@ impl ClockState {
             adjust_rate: CLOCK_NOMINAL,
 
             timer_reset: true,
-            timer_stopped: true,
+            timer_stopped: false,
 
             last_system_time: 0,
             last_reported_time: 0,
@@ -136,7 +136,7 @@ impl MsTpm20RefPlatformImpl {
 
     fn timer_was_stopped(&mut self) -> bool {
         let ret = self.state.clock.timer_stopped;
-        self.state.clock.timer_stopped = true;
+        self.state.clock.timer_stopped = false;
         ret
     }
 
