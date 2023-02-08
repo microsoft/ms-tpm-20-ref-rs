@@ -1,23 +1,57 @@
+use crate::error::Error;
 use serde::{Deserialize, Serialize};
 
-// TODO: actually dump all the C library's global variables.
-//
-// This is a real PITA, since the library doesn't come with any off-the-shelf
-// way to dump it's global state. Instead, a human has to parse the `Globals.h`
-// header from the C library, and write a custom function that dumps
-// de/serialized this state.
-//
-// At the moment, HvLite doesn't support classic VM-style full-suspend save
-// states, and as such, we can punt this feature down the line.
-#[derive(Clone, Serialize, Deserialize)]
-pub struct MsTpm20RefLibraryState {}
+extern "C" {
+    // Returns:
+    // - 0 on success
+    // - 1 for invalid arg
+    // - 2 for insufficient size (setting pBufferSize to required size)
+    pub fn INJECTED_GetRuntimeState(pBuffer: *mut u8, pBufferSize: *mut u32) -> i32;
 
-/// NOTE: THIS FUNCTION IS CURRENTLY `unimplemented!`
-pub fn restore_runtime_state(_state: MsTpm20RefLibraryState) {
-    unimplemented!()
+    // Returns:
+    // - 0 on success
+    // - 1 for invalid arg
+    // - 2 for size mismatch
+    // - 3 for format validation error
+    pub fn INJECTED_ApplyRuntimeState(pBuffer: *const u8, pBufferSize: u32) -> i32;
 }
 
-/// NOTE: THIS FUNCTION IS CURRENTLY `unimplemented!`
+#[derive(Clone, Serialize, Deserialize)]
+pub struct MsTpm20RefLibraryState {
+    opaque: Vec<u8>,
+}
+
 pub fn get_runtime_state() -> MsTpm20RefLibraryState {
-    unimplemented!()
+    let mut size: u32 = 0;
+    // SAFETY: passing a nullptr will simply return the required size
+    let ret = unsafe { INJECTED_GetRuntimeState(std::ptr::null_mut(), &mut size) };
+
+    assert_eq!(ret, 2);
+    assert_ne!(size, 0);
+
+    let mut state = MsTpm20RefLibraryState {
+        opaque: vec![0; size as usize],
+    };
+
+    // SAFETY: passing in pointer + size corresponding to perfectly-sized buffer
+    // (as per previous call)
+    let ret = unsafe { INJECTED_GetRuntimeState(state.opaque.as_mut_ptr(), &mut size) };
+
+    assert_eq!(ret, 0);
+
+    state
+}
+
+pub fn restore_runtime_state(state: MsTpm20RefLibraryState) -> Result<(), Error> {
+    // SAFETY: pointer + size are both from the same allocation
+    let ret =
+        unsafe { INJECTED_ApplyRuntimeState(state.opaque.as_ptr(), state.opaque.len() as u32) };
+
+    match ret {
+        0 => Ok(()),
+        1 => unreachable!(), // API is being used correctly
+        2 => Err(Error::InvalidRestoreSize),
+        3 => Err(Error::InvalidRestoreFormat),
+        _ => unreachable!(),
+    }
 }

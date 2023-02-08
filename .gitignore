@@ -3,3 +3,5 @@
 *.nvmem
 *.dll
 *.zip
+
+.vscode

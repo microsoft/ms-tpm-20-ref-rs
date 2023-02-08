@@ -21,6 +21,12 @@ pub enum Error {
     /// Error calling nvmem platform API
     #[cfg(not(any(feature = "sample_platform", feature = "dll_platform")))]
     NvMem(crate::callback_plat::api::nvmem::NvError),
+    /// Error restoring platform state
+    FailedPlatformRestore(postcard::Error),
+    /// Invalid saved state size
+    InvalidRestoreSize,
+    /// Invalid saved state format
+    InvalidRestoreFormat,
 }
 
 /// Alias for `Result<T, Box<dyn std::error::Error + Send + Sync>>`
@@ -50,6 +56,9 @@ impl fmt::Display for Error {
             ),
             #[cfg(not(any(feature = "sample_platform", feature = "dll_platform")))]
             NvMem(e) => write!(f, "nvmem error: {:?}", e),
+            FailedPlatformRestore(e) => write!(f, "failed restore: {}", e),
+            InvalidRestoreSize => write!(f, "invalid saved state size"),
+            InvalidRestoreFormat => write!(f, "invalid saved state format"),
         }
     }
 }

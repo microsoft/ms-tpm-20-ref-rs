@@ -109,6 +109,7 @@ typedef OSSL_CURVE_DATA      *bigCurve;
 
 
 #include "TpmToOsslSupport_fp.h"
+#include "TpmToOsslMath_fp.h"
 
 // Start and end a context within which the OpenSSL memory management works
 #define OSSL_ENTER()    BN_CTX          *CTX = OsslContextEnter()

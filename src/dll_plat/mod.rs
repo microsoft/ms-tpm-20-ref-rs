@@ -161,7 +161,6 @@ impl MsTpm20RefPlatform {
                     });
                 }
             },
-            InitKind::WarmInit { .. } => unimplemented!(),
         }
 
         Ok(MsTpm20RefPlatform {

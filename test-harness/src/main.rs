@@ -1,18 +1,20 @@
 use ms_tpm_20_ref::{DynResult, InitKind, MsTpm20RefPlatform, PlatformCallbacks};
 use std::convert::TryInto;
 use std::fs;
-use std::io::{Read, Seek, SeekFrom, Write};
+use std::io::{Read, Seek, Write};
+use std::time::Instant;
 
 /// Sample platform callback implementation that simply logs invocations +
 /// returns dummy data.
 pub struct TestPlatformCallbacks {
     file: fs::File,
+    time: Instant,
 }
 
 impl PlatformCallbacks for TestPlatformCallbacks {
     fn commit_nv_state(&mut self, state: &[u8]) -> DynResult<()> {
         log::info!("committing nv state with len {}", state.len());
-        self.file.seek(SeekFrom::Start(0))?;
+        self.file.rewind()?;
         self.file.write_all(state)?;
         Ok(())
     }
@@ -25,6 +27,10 @@ impl PlatformCallbacks for TestPlatformCallbacks {
         }
 
         Ok(buf.len())
+    }
+
+    fn monotonic_timer(&mut self) -> std::time::Duration {
+        self.time.elapsed()
     }
 
     fn get_unique_value(&self) -> &'static [u8] {
@@ -84,13 +90,18 @@ fn main() -> DynResult<()> {
         }
     };
 
-    let mut platform =
-        MsTpm20RefPlatform::initialize(Box::new(TestPlatformCallbacks { file }), init_kind)
-            .unwrap();
+    let mut platform = MsTpm20RefPlatform::initialize(
+        Box::new(TestPlatformCallbacks {
+            file,
+            time: Instant::now(),
+        }),
+        init_kind,
+    )
+    .unwrap();
 
     let mut res = vec![0; 4096];
 
-    if false {
+    if true {
         // send startup command
         platform.execute_command(
             &mut [

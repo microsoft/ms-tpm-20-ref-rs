@@ -117,13 +117,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     #[rustfmt::skip]
     builder
-        // suppress warning
+        // suppress warnings that fire _everywhere_ in the TPM codebase
         .flag_if_supported("-Wno-cast-function-type")
-        .flag_if_supported("-Wno-implicit-fallthrough")
-        .flag_if_supported("-Wno-missing-field-initializers")
-        .flag_if_supported("-Wno-parentheses")
         .flag_if_supported("-Wno-ignored-qualifiers")
+        // warnings specific to ossl 3.0 stuff
         .flag_if_supported("-Wno-deprecated-declarations")
+        // crank up this warning (to catch issues in custom override code)
+        .flag_if_supported("-Werror=implicit-function-declaration")
+        .flag_if_supported("-Werror=pointer-arith")
 
         // disable debug / unused code
         .define("CERTIFYX509_DEBUG", "NO")

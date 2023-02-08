@@ -22,6 +22,27 @@ fn cerr(val: std::os::raw::c_int) -> Result<i32, Error> {
     }
 }
 
+mod sample_plat_ffi {
+    extern "C" {
+        pub fn _TPM_Init();
+        pub fn TPM_Manufacture(firstTime: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
+
+        pub fn _plat__RunCommand(
+            requestSize: u32,
+            request: *mut ::std::os::raw::c_uchar,
+            responseSize: *mut u32,
+            response: *mut *mut ::std::os::raw::c_uchar,
+        );
+        pub fn _plat__SetNvAvail();
+        pub fn _plat__NVEnable(platParameter: *mut ::std::os::raw::c_void)
+            -> ::std::os::raw::c_int;
+        pub fn _plat__Signal_PowerOn() -> ::std::os::raw::c_int;
+        pub fn _plat__NVNeedsManufacture() -> ::std::os::raw::c_int;
+        pub fn _plat__Signal_PowerOff();
+
+    }
+}
+
 /// A handle which encapsulates the logical ownership of the global platform
 /// singleton.
 ///
@@ -57,24 +78,24 @@ impl MsTpm20RefPlatform {
             log::trace!("Initializing TPM...");
 
             unsafe {
-                crate::ffi::_plat__SetNvAvail();
+                sample_plat_ffi::_plat__SetNvAvail();
                 log::trace!("TPM _plat__SetNvAvail Completed");
 
-                cerr(crate::ffi::_plat__NVEnable(std::ptr::null_mut()))?;
+                cerr(sample_plat_ffi::_plat__NVEnable(std::ptr::null_mut()))?;
                 log::trace!("TPM _plat__NVEnable Completed");
 
-                cerr(crate::ffi::_plat__Signal_PowerOn())?;
+                cerr(sample_plat_ffi::_plat__Signal_PowerOn())?;
                 log::trace!("TPM _plat__Signal_PowerOn Completed");
 
-                let needs_manufacture = crate::ffi::_plat__NVNeedsManufacture() == 1;
+                let needs_manufacture = sample_plat_ffi::_plat__NVNeedsManufacture() == 1;
                 log::trace!("TPM _plat__NVNeedsManufacture Completed");
 
                 if needs_manufacture {
-                    cerr(crate::ffi::TPM_Manufacture(1))?;
+                    cerr(sample_plat_ffi::TPM_Manufacture(1))?;
                     log::trace!("TPM TPM_Manufacture Completed");
                 }
 
-                crate::ffi::_TPM_Init();
+                sample_plat_ffi::_TPM_Init();
                 log::trace!("TPM _TPM_Init Completed");
             }
 
@@ -87,7 +108,7 @@ impl MsTpm20RefPlatform {
 
     fn shutdown(&mut self) {
         unsafe {
-            crate::ffi::_plat__Signal_PowerOff();
+            sample_plat_ffi::_plat__Signal_PowerOff();
         }
     }
 
@@ -116,7 +137,7 @@ impl MsTpm20RefPlatform {
 
         let prev_response_ptr = response_ptr;
         unsafe {
-            crate::ffi::_plat__RunCommand(
+            sample_plat_ffi::_plat__RunCommand(
                 request_size,
                 request_ptr,
                 &mut response_size,
@@ -157,7 +178,7 @@ impl MsTpm20RefPlatform {
 
         let prev_response_ptr = response_ptr;
         unsafe {
-            crate::ffi::_plat__RunCommand(
+            sample_plat_ffi::_plat__RunCommand(
                 request_size,
                 request_ptr,
                 &mut response_size,

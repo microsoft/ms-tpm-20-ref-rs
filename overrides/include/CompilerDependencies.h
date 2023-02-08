@@ -123,7 +123,7 @@ __pragma(warning(pop))
 #   define LIB_IMPORT
 #   define _REDUCE_WARNING_LEVEL_(n) 
 #   define _NORMAL_WARNING_LEVEL_
-#   define  NOT_REFERENCED(x) (x = x)
+#   define  NOT_REFERENCED(x) ((void)x)
 #endif
 
 #ifdef _POSIX_

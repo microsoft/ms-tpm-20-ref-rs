@@ -48,6 +48,14 @@ extern "C" {
     );
 }
 
+// methods defined within ms-tpm-20-ref
+mod ffi {
+    extern "C" {
+        pub fn _TPM_Init();
+        pub fn TPM_Manufacture(firstTime: ::std::os::raw::c_int) -> ::std::os::raw::c_int;
+    }
+}
+
 /// Serde de/serializable representation of the ms-tpm-20-ref library's runtime
 /// state (both core C library runtime, and Rust platform runtime)
 #[derive(Clone, Serialize, Deserialize)]
@@ -96,8 +104,7 @@ impl MsTpm20RefPlatform {
                 let mut platform = MsTpm20RefPlatformImpl::new(callbacks);
                 match &init_kind {
                     InitKind::ColdInit => platform.nv_enable()?,
-                    InitKind::ColdInitWithPersistentState { nvmem_blob }
-                    | InitKind::WarmInit { nvmem_blob, .. } => {
+                    InitKind::ColdInitWithPersistentState { nvmem_blob } => {
                         platform.nv_enable_from_blob(nvmem_blob)?
                     }
                 };
@@ -119,7 +126,7 @@ impl MsTpm20RefPlatform {
 
         if matches!(&init_kind, InitKind::ColdInit) {
             // SAFETY: TPM_Manufacture doesn't have any preconditions
-            let ret = unsafe { crate::ffi::TPM_Manufacture(true as i32) };
+            let ret = unsafe { ffi::TPM_Manufacture(true as i32) };
             if ret != 0 {
                 return Err(Error::Ffi {
                     function: "TPM_Manufacture",
@@ -130,22 +137,10 @@ impl MsTpm20RefPlatform {
 
         // SAFETY: the nvram state has been manufactured (either by loading an existing
         // nvram blob, or through TPM_Manufacture), and has been powered on.
-        unsafe { crate::ffi::_TPM_Init() }
+        unsafe { ffi::_TPM_Init() }
         log::trace!("_TPM_Init Completed");
 
         log::info!("TPM library initialized");
-
-        // apply any warm init state, if available
-        if let InitKind::WarmInit { runtime_state, .. } = init_kind {
-            PLATFORM
-                .try_lock()
-                .unwrap()
-                .as_mut()
-                .unwrap()
-                .restore_runtime_state(runtime_state.platform_state);
-
-            tpmlib_state::restore_runtime_state(runtime_state.tpmlib_state);
-        }
 
         Ok(MsTpm20RefPlatform {
             _not_sync: PhantomData,
@@ -175,7 +170,7 @@ impl MsTpm20RefPlatform {
         }
         // SAFETY: nvram is in a valid state, and the device is powered on.
         unsafe {
-            crate::ffi::_TPM_Init();
+            ffi::_TPM_Init();
         }
         log::trace!("TPM Reset");
         Ok(())
@@ -274,12 +269,12 @@ impl MsTpm20RefPlatform {
         })
     }
 
-    /// Return a serde de/serializable structure containing the vTPM's current
-    /// runtime state.
+    /// Return an opaque `Vec<u8>` corresponding to the vTPM's current runtime
+    /// state.
     ///
     /// Corresponds to `VTpmGetRuntimeState`
-    pub fn get_runtime_state(&self) -> MsTpm20RefRuntimeState {
-        MsTpm20RefRuntimeState {
+    pub fn get_runtime_state(&self) -> Vec<u8> {
+        let state = MsTpm20RefRuntimeState {
             tpmlib_state: tpmlib_state::get_runtime_state(),
             platform_state: PLATFORM
                 .try_lock()
@@ -287,7 +282,26 @@ impl MsTpm20RefPlatform {
                 .as_mut()
                 .expect("platform is initialized")
                 .get_runtime_state(),
-        }
+        };
+
+        postcard::to_stdvec(&state).expect("failed to serialize state")
+    }
+
+    /// Restore the vTPM's runtime state.
+    pub fn set_runtime_state(&mut self, state: Vec<u8>) -> Result<(), Error> {
+        let state: MsTpm20RefRuntimeState =
+            postcard::from_bytes(&state).map_err(Error::FailedPlatformRestore)?;
+
+        PLATFORM
+            .try_lock()
+            .unwrap()
+            .as_mut()
+            .expect("platform is initialized")
+            .restore_runtime_state(state.platform_state);
+
+        tpmlib_state::restore_runtime_state(state.tpmlib_state)?;
+
+        Ok(())
     }
 
     /// Sets or resets the Cancel flag.
