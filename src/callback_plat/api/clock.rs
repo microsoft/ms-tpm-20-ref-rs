@@ -166,29 +166,25 @@ mod c_api {
     // }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__TimerRead() -> u64 {
         platform!().timer_read()
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__TimerWasReset() -> i32 {
         platform!().timer_was_reset() as i32
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__TimerWasStopped() -> i32 {
         platform!().timer_was_stopped() as i32
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ClockAdjustRate(adjust: i32) {
         platform!().clock_adjust_rate(adjust)
     }

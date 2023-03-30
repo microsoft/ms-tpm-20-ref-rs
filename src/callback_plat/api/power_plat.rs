@@ -50,33 +50,30 @@ impl MsTpm20RefPlatformImpl {
 
 mod c_api {
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__Signal_PowerOn() -> i32 {
         match platform!().signal_power_on() {
             Ok(()) => 0,
             Err(e) => {
-                log::error!("error while powering on: {}", e);
+                tracing::error!("error while powering on: {}", e);
                 -1
             }
         }
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__WasPowerLost() -> i32 {
         platform!().was_power_lost() as i32
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__Signal_Reset() -> i32 {
         let ret = match platform!().signal_reset() {
             Ok(()) => 0,
             Err(e) => {
-                log::error!("error while signalling reset: {}", e);
+                tracing::error!("error while signalling reset: {}", e);
                 -1
             }
         };
@@ -90,8 +87,7 @@ mod c_api {
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__Signal_PowerOff() {
         platform!().signal_power_off()
     }

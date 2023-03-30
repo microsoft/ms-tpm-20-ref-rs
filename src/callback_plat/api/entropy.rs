@@ -14,15 +14,14 @@ impl MsTpm20RefPlatformImpl {
 
 mod c_api {
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__GetEntropy(entropy: *mut u8, amount: u32) -> i32 {
         let buf = unsafe { core::slice::from_raw_parts_mut(entropy, amount as usize) };
 
         match platform!().get_entropy(buf) {
             Ok(len) => len as i32,
             Err(e) => {
-                log::error!(
+                tracing::error!(
                     "error calling _plat__GetEntropy(entropy: {:?}, amount: {:#x?}): {}",
                     entropy,
                     amount,

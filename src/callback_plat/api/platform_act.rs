@@ -37,64 +37,55 @@ impl MsTpm20RefPlatformImpl {
 
 mod c_api {
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_GetImplemented(act: u32) -> i32 {
         platform!().act_get_implemented(act) as i32
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_GetRemaining(act: u32) -> u32 {
         platform!().act_get_remaining(act)
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_GetSignaled(act: u32) -> i32 {
         platform!().act_get_signaled(act)
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_SetSignaled(act: u32, on: i32) {
         platform!().act_set_signaled(act, on)
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_GetPending(act: u32) -> i32 {
         platform!().act_get_pending(act)
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_UpdateCounter(act: u32, new_value: u32) -> i32 {
         platform!().act_update_counter(act, new_value) as i32
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_EnableTicks(enable: i32) {
         platform!().act_enable_ticks(enable != 0)
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_Tick() {
         platform!().act_tick()
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__ACT_Initialize() -> i32 {
         platform!().act_initialize() as i32
     }

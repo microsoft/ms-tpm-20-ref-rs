@@ -21,22 +21,19 @@ impl MsTpm20RefPlatformImpl {
 
 mod c_api {
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__PhysicalPresenceAsserted() -> i32 {
         platform!().physical_presence_asserted() as i32
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__Signal_PhysicalPresenceOn() {
         platform!().signal_physical_presence_on()
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__Signal_PhysicalPresenceOff() {
         platform!().signal_physical_presence_off()
     }

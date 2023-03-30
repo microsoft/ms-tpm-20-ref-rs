@@ -94,7 +94,7 @@ impl MsTpm20RefPlatform {
         callbacks: Box<dyn PlatformCallbacks + Send>,
         init_kind: InitKind<'_>,
     ) -> Result<MsTpm20RefPlatform, Error> {
-        log::trace!("Initializing TPM platform...");
+        tracing::trace!("Initializing TPM platform...");
 
         let mut maybe_platform = PLATFORM.try_lock().unwrap();
 
@@ -112,11 +112,11 @@ impl MsTpm20RefPlatform {
             }
         }
 
-        log::trace!("TPM platform initialized");
+        tracing::trace!("TPM platform initialized");
 
         // now that the platform layer has been set up, we can call into the TPM lib
         // itself to prep the TPM.
-        log::trace!("Initializing TPM library...");
+        tracing::trace!("Initializing TPM library...");
 
         maybe_platform.as_mut().unwrap().signal_power_on()?;
 
@@ -138,9 +138,9 @@ impl MsTpm20RefPlatform {
         // SAFETY: the nvram state has been manufactured (either by loading an existing
         // nvram blob, or through TPM_Manufacture), and has been powered on.
         unsafe { ffi::_TPM_Init() }
-        log::trace!("_TPM_Init Completed");
+        tracing::trace!("_TPM_Init Completed");
 
-        log::info!("TPM library initialized");
+        tracing::info!("TPM library initialized");
 
         Ok(MsTpm20RefPlatform {
             _not_sync: PhantomData,
@@ -155,7 +155,7 @@ impl MsTpm20RefPlatform {
 
     /// Reset the TPM device (i.e: simulate power off + power on)
     pub fn reset(&mut self) -> Result<(), Error> {
-        log::trace!("Resetting TPM library...");
+        tracing::trace!("Resetting TPM library...");
         // open new scope to drop the mutex before calling _TPM_Init
         {
             let mut platform = PLATFORM.try_lock().unwrap();
@@ -172,7 +172,7 @@ impl MsTpm20RefPlatform {
         unsafe {
             ffi::_TPM_Init();
         }
-        log::trace!("TPM Reset");
+        tracing::trace!("TPM Reset");
         Ok(())
     }
 
@@ -230,7 +230,7 @@ impl MsTpm20RefPlatform {
                 panic!("TPM library set response pointer to null");
             }
 
-            log::warn!("TPM library returned a response ptr that doesn't match the provided response buffer: {:#x?} != {:#x?}", prev_response_ptr, response_ptr);
+            tracing::warn!("TPM library returned a response ptr that doesn't match the provided response buffer: {:#x?} != {:#x?}", prev_response_ptr, response_ptr);
 
             // copy response from library provided response buffer into user response buffer
             let c_response =

@@ -76,7 +76,7 @@ extern "C" fn state_persist_callback(
     blob: *const u8,
     blob_size: u32,
 ) -> u32 {
-    log::debug!("called state persist callback");
+    tracing::debug!("called state persist callback");
 
     if blob_size != 0x8000 {
         eprintln!(
@@ -89,7 +89,7 @@ extern "C" fn state_persist_callback(
     }
 
     if blob.is_null() {
-        log::debug!("passed null blob to state persist callback!");
+        tracing::debug!("passed null blob to state persist callback!");
         return 0;
     }
 
@@ -100,7 +100,7 @@ extern "C" fn state_persist_callback(
     let ret: i32 = match callbacks.commit_nv_state(blob) {
         Ok(()) => 0,
         Err(e) => {
-            log::error!("error committing nv state: {}", e);
+            tracing::error!("error committing nv state: {}", e);
             -1
         }
     };
@@ -178,7 +178,7 @@ impl MsTpm20RefPlatform {
 
         let ret = unsafe { vtpm_cold_init_with_persistent_state() };
         if ret != 0 {
-            log::error!("TPM dll failed to shutdown: {}", ret);
+            tracing::error!("TPM dll failed to shutdown: {}", ret);
         }
     }
 

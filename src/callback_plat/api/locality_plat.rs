@@ -18,7 +18,7 @@ impl LocalityState {
 impl MsTpm20RefPlatformImpl {
     fn locality_set(&mut self, mut locality: u8) {
         if (5..32).contains(&locality) {
-            log::warn!(
+            tracing::warn!(
                 "tried to set invalid locality {}. defaulting to zero...",
                 locality
             );
@@ -35,15 +35,13 @@ impl MsTpm20RefPlatformImpl {
 
 mod c_api {
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__LocalityGet() -> u8 {
         platform!().locality_get()
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__LocalitySet(locality: u8) {
         platform!().locality_set(locality)
     }

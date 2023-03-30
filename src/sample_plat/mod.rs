@@ -69,37 +69,37 @@ impl MsTpm20RefPlatform {
         _callbacks: Box<dyn PlatformCallbacks + Send>,
         _init_kind: InitKind<'_>,
     ) -> Result<MsTpm20RefPlatform, Error> {
-        log::warn!("Using sample platform implementation!");
-        log::warn!("Ignoring the provided callbacks...");
-        log::warn!("Ignoring both the runtime and persistent state blobs...");
-        log::warn!("Reading/Writing from/to '{}' file directly", NV_STATE_FILE);
+        tracing::warn!("Using sample platform implementation!");
+        tracing::warn!("Ignoring the provided callbacks...");
+        tracing::warn!("Ignoring both the runtime and persistent state blobs...");
+        tracing::warn!("Reading/Writing from/to '{}' file directly", NV_STATE_FILE);
 
         if !INITIALIZED.fetch_or(true, std::sync::atomic::Ordering::SeqCst) {
-            log::trace!("Initializing TPM...");
+            tracing::trace!("Initializing TPM...");
 
             unsafe {
                 sample_plat_ffi::_plat__SetNvAvail();
-                log::trace!("TPM _plat__SetNvAvail Completed");
+                tracing::trace!("TPM _plat__SetNvAvail Completed");
 
                 cerr(sample_plat_ffi::_plat__NVEnable(std::ptr::null_mut()))?;
-                log::trace!("TPM _plat__NVEnable Completed");
+                tracing::trace!("TPM _plat__NVEnable Completed");
 
                 cerr(sample_plat_ffi::_plat__Signal_PowerOn())?;
-                log::trace!("TPM _plat__Signal_PowerOn Completed");
+                tracing::trace!("TPM _plat__Signal_PowerOn Completed");
 
                 let needs_manufacture = sample_plat_ffi::_plat__NVNeedsManufacture() == 1;
-                log::trace!("TPM _plat__NVNeedsManufacture Completed");
+                tracing::trace!("TPM _plat__NVNeedsManufacture Completed");
 
                 if needs_manufacture {
                     cerr(sample_plat_ffi::TPM_Manufacture(1))?;
-                    log::trace!("TPM TPM_Manufacture Completed");
+                    tracing::trace!("TPM TPM_Manufacture Completed");
                 }
 
                 sample_plat_ffi::_TPM_Init();
-                log::trace!("TPM _TPM_Init Completed");
+                tracing::trace!("TPM _TPM_Init Completed");
             }
 
-            log::info!("TPM Initialized");
+            tracing::info!("TPM Initialized");
             Ok(MsTpm20RefPlatform {})
         } else {
             Err(Error::AlreadyInitialized)

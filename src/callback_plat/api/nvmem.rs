@@ -63,7 +63,7 @@ impl MsTpm20RefPlatformImpl {
 impl MsTpm20RefPlatformImpl {
     pub fn nv_enable(&mut self) -> Result<(), Error> {
         if !self.state.nvmem.is_init {
-            log::warn!("calling __plat_NvEnable before `nv_enable_from_blob` was called");
+            tracing::warn!("calling __plat_NvEnable before `nv_enable_from_blob` was called");
             self.state.nvmem.region = vec![0; NV_MEMORY_SIZE];
             self.state.nvmem.is_init = true;
         }
@@ -201,43 +201,39 @@ mod c_api {
     // }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NVEnable(plat_parameter: *mut c_void) -> i32 {
         match platform!().nv_enable() {
             Ok(()) => 0,
             Err(e) => {
-                log::error!("error calling _plat__NVEnable({:?}): {}", plat_parameter, e);
+                tracing::error!("error calling _plat__NVEnable({:?}): {}", plat_parameter, e);
                 -1 // TODO: assign different error IDs to each error variant?
             }
         }
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NVDisable(delete: i32) {
         platform!().nv_disable(delete != 0)
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__IsNvAvailable() -> i32 {
         platform!().is_nv_available() as i32
     }
 
     // NOTE: Why doesn't NvMemoryRead return a bool like NvMemoryWrite??
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvMemoryRead(start_offset: u32, size: u32, data: *mut c_void) {
         let buf = unsafe { core::slice::from_raw_parts_mut(data as *mut u8, size as usize) };
 
         match platform!().nv_memory_read(start_offset as usize, buf) {
             Ok(()) => {}
             Err(e) => {
-                log::error!(
+                tracing::error!(
                     "error calling _plat__NvMemoryRead(start_offset: {:#x?}, size: {:#x?}, data: {:?}): {}",
                     start_offset,
                     size,
@@ -249,8 +245,7 @@ mod c_api {
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvIsDifferent(
         start_offset: u32,
         size: u32,
@@ -261,7 +256,7 @@ mod c_api {
         match platform!().nv_is_different(start_offset as usize, buf) {
             Ok(is_diff) => is_diff as i32,
             Err(e) => {
-                log::error!(
+                tracing::error!(
                     "error calling _plat__NvIsDifferent(start_offset: {:#x?}, size: {:#x?}, data: {:?}): {}",
                     start_offset,
                     size,
@@ -275,8 +270,7 @@ mod c_api {
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvMemoryWrite(
         start_offset: u32,
         size: u32,
@@ -287,7 +281,7 @@ mod c_api {
         match platform!().nv_memory_write(start_offset as usize, buf) {
             Ok(()) => true as i32,
             Err(e) => {
-                log::error!(
+                tracing::error!(
                     "error calling _plat__NvMemoryWrite(start_offset: {:#x?}, size: {:#x?}, data: {:?}): {}",
                     start_offset,
                     size,
@@ -301,13 +295,12 @@ mod c_api {
 
     // NOTE: Why doesn't NvMemoryClear return a bool??
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvMemoryClear(start: u32, size: u32) {
         match platform!().nv_memory_clear(start as usize, size as usize) {
             Ok(()) => {}
             Err(e) => {
-                log::error!(
+                tracing::error!(
                     "error calling _plat__NvMemoryClear(start: {:#x?}, size: {:#x?}): {}",
                     start,
                     size,
@@ -319,8 +312,7 @@ mod c_api {
 
     // NOTE: Why doesn't NvMemoryClear return a bool??
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvMemoryMove(source_offset: u32, dest_offset: u32, size: u32) {
         match platform!().nv_memory_move(
             source_offset as usize,
@@ -329,7 +321,7 @@ mod c_api {
         ) {
             Ok(()) => {}
             Err(e) => {
-                log::error!(
+                tracing::error!(
                     "error calling _plat__NvMemoryMove(source_offset: {:#x?}, dest_offset: {:#x?}, size: {:#x?}): {}",
                     source_offset,
                     dest_offset,
@@ -341,13 +333,12 @@ mod c_api {
     }
 
     #[no_mangle]
-    #[log_derive::logfn(Trace)]
-    #[log_derive::logfn_inputs(Trace)]
+    #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvCommit() -> i32 {
         match platform!().nv_commit() {
             Ok(()) => 0,
             Err(e) => {
-                log::error!("error calling _plat__NvCommit(): {}", e);
+                tracing::error!("error calling _plat__NvCommit(): {}", e);
                 1
             }
         }

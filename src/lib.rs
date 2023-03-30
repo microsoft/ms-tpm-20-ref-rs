@@ -77,12 +77,12 @@ pub struct DummyPlatformCallbacks;
 
 impl PlatformCallbacks for DummyPlatformCallbacks {
     fn commit_nv_state(&mut self, state: &[u8]) -> DynResult<()> {
-        log::info!("committing nv state with len {}", state.len());
+        tracing::info!("committing nv state with len {}", state.len());
         Ok(())
     }
 
     fn get_crypt_random(&mut self, buf: &mut [u8]) -> DynResult<usize> {
-        log::info!("returning dummy entropy into buf of len {}", buf.len());
+        tracing::info!("returning dummy entropy into buf of len {}", buf.len());
         if let Some(b) = buf.get_mut(0) {
             *b = 1;
         }
@@ -91,12 +91,12 @@ impl PlatformCallbacks for DummyPlatformCallbacks {
     }
 
     fn monotonic_timer(&mut self) -> std::time::Duration {
-        log::info!("checking time from the platform");
+        tracing::info!("checking time from the platform");
         std::time::Duration::ZERO
     }
 
     fn get_unique_value(&self) -> &'static [u8] {
-        log::info!("fetching unique value from platform");
+        tracing::info!("fetching unique value from platform");
         b"somebody once told me the world was gonna roll me, I ain't the sharpest tool in the shed"
     }
 }

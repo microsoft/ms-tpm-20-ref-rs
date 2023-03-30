@@ -11,5 +11,5 @@ vendored = ["ms-tpm-20-ref/vendored"]
 [dependencies]
 ms-tpm-20-ref = { path = "../" }
 
-pretty_env_logger = "0.4.0"
-log = "0.4"
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
