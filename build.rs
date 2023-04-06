@@ -41,6 +41,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // build tpm
 
+    if let Ok(var) = std::env::var("TPM_LIB_DIR") {
+        println!("cargo:rustc-link-search=native={var}");
+        println!("cargo:rustc-link-lib=static=tpm");
+
+        // skip building TPM
+        return Ok(());
+    }
+
     // a little sketchy, but we want to override some of C headers with our own
     // tweaked versions.
     //

@@ -1,6 +1,7 @@
 use crate::error::Error;
 use serde::{Deserialize, Serialize};
 
+#[link(name = "tpm")]
 extern "C" {
     // Returns:
     // - 0 on success

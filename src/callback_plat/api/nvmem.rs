@@ -343,4 +343,10 @@ mod c_api {
             }
         }
     }
+
+    #[no_mangle]
+    #[tracing::instrument(level = "trace", ret)]
+    pub unsafe extern "C" fn _plat__GetNvSize() -> u32 {
+        super::NV_MEMORY_SIZE as u32
+    }
 }
