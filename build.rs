@@ -32,23 +32,31 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         return Ok(());
     }
 
-    // get this out of the way real quick...
+    // `RunCommand.c` contains setjmp/longjmp code, and must be compiled in
+    // separately
     if !(cfg!(feature = "sample_platform") || cfg!(feature = "dll_platform")) {
         cc::Build::new()
             .file("./src/callback_plat/RunCommand.c")
             .compile("run_command");
     }
 
-    // build tpm
+    println!("cargo:rerun-if-env-changed=TPM_LIB_DIR");
 
-    if let Ok(var) = std::env::var("TPM_LIB_DIR") {
-        println!("cargo:rustc-link-search=native={var}");
-        println!("cargo:rustc-link-lib=static=tpm");
-
-        // skip building TPM
-        return Ok(());
+    // users can link against a pre-built `libtpm.a` if they don't want to use
+    // the version of `ms-tpm-20-ref` included in-tree
+    match std::env::var("TPM_LIB_DIR").ok() {
+        Some(var) => {
+            println!("cargo:rustc-link-search=native={var}");
+            println!("cargo:rustc-link-lib=static=tpm");
+            return Ok(());
+        }
+        None => compile_ms_tpm_20_ref()?,
     }
 
+    Ok(())
+}
+
+fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
     // a little sketchy, but we want to override some of C headers with our own
     // tweaked versions.
     //
