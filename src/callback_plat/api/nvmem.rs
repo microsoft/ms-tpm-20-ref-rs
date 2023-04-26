@@ -63,7 +63,7 @@ impl MsTpm20RefPlatformImpl {
 impl MsTpm20RefPlatformImpl {
     pub fn nv_enable(&mut self) -> Result<(), Error> {
         if !self.state.nvmem.is_init {
-            tracing::warn!("calling __plat_NvEnable before `nv_enable_from_blob` was called");
+            tracing::debug!("calling __plat_NvEnable before `nv_enable_from_blob` was called");
             self.state.nvmem.region = vec![0; NV_MEMORY_SIZE];
             self.state.nvmem.is_init = true;
         }

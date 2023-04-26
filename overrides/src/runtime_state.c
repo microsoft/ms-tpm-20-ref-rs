@@ -73,38 +73,52 @@ static const TPM_RUNTIME_STATE_ENTRY s_TpmRuntimeVariables[] =
         {(char *)&g_pcrReConfig, sizeof(g_pcrReConfig)},
         {(char *)&g_DRTMHandle, sizeof(g_DRTMHandle)},
         {(char *)&g_DrtmPreStartup, sizeof(g_DrtmPreStartup)},
+        {(char *)&g_StartupLocality3, sizeof(g_StartupLocality3)},
+        {(char *)&g_daUsed, sizeof(g_daUsed)},
         {(char *)&g_updateNV, sizeof(g_updateNV)},
-        {(char *)&g_nvOk, sizeof(g_nvOk)},
+        {(char *)&g_powerWasLost, sizeof(g_powerWasLost)},
         {(char *)&g_clearOrderly, sizeof(g_clearOrderly)},
         {(char *)&g_prevOrderlyState, sizeof(g_prevOrderlyState)},
+        {(char *)&g_nvOk, sizeof(g_nvOk)},
+        {(char *)&g_NvStatus, sizeof(g_NvStatus)},
+        // {(char *)&g_platformUniqueAuthorities, sizeof(g_platformUniqueAuthorities)}, // not ref'd
+        {(char *)&g_platformUniqueDetails, sizeof(g_platformUniqueDetails)},
         {(char *)&gp, sizeof(gp)},
         {(char *)&go, sizeof(go)},
         {(char *)&gc, sizeof(gc)},
         {(char *)&gr, sizeof(gr)},
+        {(char *)&g_manufactured, sizeof(g_manufactured)},
+        {(char *)&g_initialized, sizeof(g_initialized)},
         {(char *)s_sessionHandles, sizeof(s_sessionHandles)},
         {(char *)s_attributes, sizeof(s_attributes)},
         {(char *)s_associatedHandles, sizeof(s_associatedHandles)},
         {(char *)s_nonceCaller, sizeof(s_nonceCaller)},
         {(char *)s_inputAuthValues, sizeof(s_inputAuthValues)},
+        // {(char *)s_usedSessions, sizeof(s_usedSessions)}, // pointer
         {(char *)&s_encryptSessionIndex, sizeof(s_encryptSessionIndex)},
         {(char *)&s_decryptSessionIndex, sizeof(s_decryptSessionIndex)},
         {(char *)&s_auditSessionIndex, sizeof(s_auditSessionIndex)},
         {(char *)&s_cpHashForCommandAudit, sizeof(s_cpHashForCommandAudit)},
         {(char *)&s_DAPendingOnNV, sizeof(s_DAPendingOnNV)},
         {(char *)&s_selfHealTimer, sizeof(s_selfHealTimer)},
-        {(char *)&g_NvStatus, sizeof(g_NvStatus)},
+        // {(char *)&s_evictNvEnd, sizeof(s_evictNvEnd)},  // pointer
+        {(char *)&s_indexOrderlyRam, sizeof(s_indexOrderlyRam)},
+        {(char *)&s_maxCounter, sizeof(s_maxCounter)},
+        {(char *)&s_cachedNvIndex, sizeof(s_cachedNvIndex)},
+        // {(char *)&s_cachedNvRef, sizeof(s_cachedNvRef)},  // pointer
+        // {(char *)&s_cachedNvRamRef, sizeof(s_cachedNvRamRef)}, // pointer
         {(char *)s_objects, sizeof(s_objects)},
         {(char *)s_pcrs, sizeof(s_pcrs)},
         {(char *)s_sessions, sizeof(s_sessions)},
         {(char *)&s_oldestSavedSession, sizeof(s_oldestSavedSession)},
         {(char *)&s_freeSessionSlots, sizeof(s_freeSessionSlots)},
-        {(char *)&g_manufactured, sizeof(g_manufactured)},
-        {(char *)&g_initialized, sizeof(g_initialized)},
-        {(char *)&g_forceFailureMode, sizeof(g_forceFailureMode)},
         {(char *)&g_inFailureMode, sizeof(g_inFailureMode)},
-        {(char *)&s_failFunction, sizeof(s_failFunction)},
+        {(char *)&g_forceFailureMode, sizeof(g_forceFailureMode)},
+        // {(char *)&s_failFunction, sizeof(s_failFunction)}, // pointer
         {(char *)&s_failLine, sizeof(s_failLine)},
-        {(char *)&s_failCode, sizeof(s_failCode)}};
+        {(char *)&s_failCode, sizeof(s_failCode)}
+        //
+};
 
 static uint32_t
 GetRuntimeStateSize()

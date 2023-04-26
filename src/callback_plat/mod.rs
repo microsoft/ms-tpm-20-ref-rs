@@ -154,18 +154,25 @@ impl MsTpm20RefPlatform {
     }
 
     /// Reset the TPM device (i.e: simulate power off + power on)
-    pub fn reset(&mut self) -> Result<(), Error> {
+    pub fn reset(&mut self, with_new_nvmem_blob: Option<&[u8]>) -> Result<(), Error> {
         tracing::trace!("Resetting TPM library...");
         // open new scope to drop the mutex before calling _TPM_Init
         {
             let mut platform = PLATFORM.try_lock().unwrap();
             let platform = platform.as_mut().unwrap();
             platform.signal_power_off();
-            // instead of requiring the caller to do a full roundtrip through their backing
-            // nvmem storage as part of the reset, we cheat and set this flag to true (after
-            // it was cleared as part of signal_power_off), which lets us re-use the current
-            // nvmem state in memory.
-            platform.state.nvmem.is_init = true;
+
+            if let Some(nvmem_blob) = with_new_nvmem_blob {
+                platform.nv_enable_from_blob(nvmem_blob)?;
+            } else {
+                // instead of requiring the caller to do a full roundtrip
+                // through their backing nvmem storage as part of the reset, we
+                // cheat and set this flag to true (after it was cleared as part
+                // of signal_power_off), which lets us re-use the current nvmem
+                // state in memory.
+                platform.state.nvmem.is_init = true;
+            }
+
             platform.signal_power_on()?;
         }
         // SAFETY: nvram is in a valid state, and the device is powered on.
@@ -269,11 +276,10 @@ impl MsTpm20RefPlatform {
         })
     }
 
-    /// Return an opaque `Vec<u8>` corresponding to the vTPM's current runtime
-    /// state.
+    /// Save the current vTPM's current state into an opaque saved-state blob.
     ///
     /// Corresponds to `VTpmGetRuntimeState`
-    pub fn get_runtime_state(&self) -> Vec<u8> {
+    pub fn save_state(&self) -> Vec<u8> {
         let state = MsTpm20RefRuntimeState {
             tpmlib_state: tpmlib_state::get_runtime_state(),
             platform_state: PLATFORM
@@ -287,8 +293,8 @@ impl MsTpm20RefPlatform {
         postcard::to_stdvec(&state).expect("failed to serialize state")
     }
 
-    /// Restore the vTPM's runtime state.
-    pub fn set_runtime_state(&mut self, state: Vec<u8>) -> Result<(), Error> {
+    /// Restore the vTPM from a previously-saved blob.
+    pub fn restore_state(&mut self, state: Vec<u8>) -> Result<(), Error> {
         let state: MsTpm20RefRuntimeState =
             postcard::from_bytes(&state).map_err(Error::FailedPlatformRestore)?;
 

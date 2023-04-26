@@ -101,6 +101,9 @@ fn main() -> DynResult<()> {
     )
     .unwrap();
 
+    let state = platform.save_state();
+    platform.restore_state(state).unwrap();
+
     let mut res = vec![0; 4096];
 
     if true {
