@@ -168,6 +168,18 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         // .define("USE_SPEC_COMPLIANT_PROOFS", "NO")
         // .define("SKIP_PROOF_ERRORS", "YES")
 
+        // avoid throwing libtpm.a directly into OUT_DIR for insidious linker
+        // order reasons.
+        //
+        // Without this fix, if you build without `TPM_LIB_DIR`, and then set
+        // `TPM_LIB_DIR`, you'll actually end up linking the _old_ libtpm.a from
+        // OUT_DIR.
+        //
+        // This is because `ms-tpm-20-ref-rs` will add OUT_DIR to the linker
+        // search path in order to pick up some of those other C dependencies
+        // (e.g: RunCommand.c), and since the linker will pick the _first_
+        // libfoo.a it encounters, it'll end up using the non-custom one.
+        .out_dir(Path::new(&std::env::var("OUT_DIR").unwrap()).join("ms-tpm-20-ref"))
         .compile("tpm");
 
     Ok(())
