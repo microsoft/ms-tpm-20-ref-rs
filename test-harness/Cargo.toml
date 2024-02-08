@@ -1,0 +1,15 @@
+[package]
+name = "test-harness"
+version = "0.1.0"
+edition = "2018"
+
+[features]
+default = []
+
+vendored = ["ms-tpm-20-ref/vendored"]
+
+[dependencies]
+ms-tpm-20-ref = { path = "../" }
+
+tracing = { version = "0.1", features = ["log"] }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
