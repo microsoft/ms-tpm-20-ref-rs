@@ -1,7 +1,10 @@
 #![deny(clippy::exit)]
 
-use std::path::{Path, PathBuf};
+use std::ffi::OsString;
+use std::path::Path;
+use std::path::PathBuf;
 
+// corresponds to path within git submodule.
 const MS_TPM_20_REF_SRC_PATH: &str = "./ms-tpm-20-ref/TPMCmd/";
 
 fn add_deps(
@@ -44,9 +47,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // users can link against a pre-built `libtpm.a` if they don't want to use
     // the version of `ms-tpm-20-ref` included in-tree
-    match std::env::var("TPM_LIB_DIR").ok() {
+    match env("TPM_LIB_DIR") {
         Some(var) => {
-            println!("cargo:rustc-link-search=native={var}");
+            println!("cargo:rustc-link-search=native={}", var.to_string_lossy());
             println!("cargo:rustc-link-lib=static=tpm");
             return Ok(());
         }
@@ -183,4 +186,29 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         .compile("tpm");
 
     Ok(())
+}
+
+/// Read a environment variable that may / may-not have a target-specific
+/// prefix. e.g: `env("FOO")` would first try and read from
+/// `X86_64_UNKNOWN_LINUX_GNU_FOO`,  and then fall back to just `FOO`.
+// yoinked from openssl-sys/build/main.rs
+fn env(name: &str) -> Option<OsString> {
+    fn env_inner(name: &str) -> Option<OsString> {
+        let var = std::env::var_os(name);
+        println!("cargo:rerun-if-env-changed={}", name);
+
+        match var {
+            Some(ref v) => println!("{} = {}", name, v.to_string_lossy()),
+            None => println!("{} unset", name),
+        }
+
+        var
+    }
+
+    let prefix = std::env::var("TARGET")
+        .unwrap()
+        .to_uppercase()
+        .replace('-', "_");
+    let prefixed = format!("{}_{}", prefix, name);
+    env_inner(&prefixed).or_else(|| env_inner(name))
 }
