@@ -20,6 +20,9 @@ mod c_api {
     #[no_mangle]
     #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__GetUnique(which: u32, b_size: u32, b: *mut u8) -> u32 {
+        assert!(!b.is_null());
+
+        // SAFETY: Caller guarantees `b` and `b_size` are valid.
         let buf = unsafe { core::slice::from_raw_parts_mut(b, b_size as usize) };
         platform!().get_unique(which, buf) as u32
     }

@@ -39,6 +39,7 @@ pub(crate) mod api;
 // important.
 static PLATFORM: Lazy<Mutex<Option<MsTpm20RefPlatformImpl>>> = Lazy::new(|| Mutex::new(None));
 
+// Defined in `RunCommand.c`
 #[link(name = "run_command")]
 extern "C" {
     fn RunCommand(
@@ -184,13 +185,13 @@ impl MsTpm20RefPlatform {
         Ok(())
     }
 
-    /// Execute a command on the TPM without checking / truncating request /
-    /// response buffers to the size specified by the contained command.
+    /// Execute a command on the TPM, without parsing the request header to
+    /// validate an appropriately sized request / response buffer.
     ///
     /// # Safety
     ///
-    /// Callers must ensure that the request buffer is appropriately sized for
-    /// the contained command.
+    /// Callers must ensure that the request and response buffers are
+    /// appropriately sized for the respective command.
     pub unsafe fn execute_command_unchecked(
         &mut self,
         request: &mut [u8],
@@ -202,7 +203,7 @@ impl MsTpm20RefPlatform {
         let mut response_ptr = response.as_mut_ptr();
 
         let prev_response_ptr = response_ptr;
-        // SAFETY: The request / response buffers point to valid memory locations
+        // SAFETY: The request / response buffers point to valid Rust slices
         unsafe {
             RunCommand(
                 request_size,
@@ -217,18 +218,18 @@ impl MsTpm20RefPlatform {
         // different buffer than the one passed in.
         //
         // The common use case is to return a pointer to a global static buffer
-        // when the TPM enters a failure mode. This is pretty easy to handle, as we can
-        // simply copy data from said buffer into the response buffer prior to
-        // returning from the function.
+        // when the TPM enters a failure mode. This is pretty easy to handle, as
+        // we can simply copy data from said buffer into the response buffer
+        // prior to returning from the function.
         //
-        // That said, we do need to be careful against the possible case of the C
-        // library returning a response pointer that points into the provided request
-        // buffer. In that case, naively using `slice::from_raw_parts_mut` would
-        // result in UB, as it would result in two mutable Rust slices which
-        // alias the same memory location.
+        // That said, we do need to be careful against the possible case of the
+        // C library returning a response pointer that points into the provided
+        // request buffer. In that case, naively using
+        // `slice::from_raw_parts_mut` would result in UB, as it would result in
+        // two mutable Rust slices which alias the same memory location.
         //
         // This doesn't happen in the current version of the library, but we
-        // double-check this invariant regardless, as introducing UB would be bad.
+        // double-check and handle this edge-case regardless.
         if prev_response_ptr != response_ptr {
             if response_ptr == request_ptr {
                 panic!("TPM library unexpectedly returned a response in request buffer");
@@ -241,6 +242,8 @@ impl MsTpm20RefPlatform {
             tracing::warn!("TPM library returned a response ptr that doesn't match the provided response buffer: {:#x?} != {:#x?}", prev_response_ptr, response_ptr);
 
             // copy response from library provided response buffer into user response buffer
+            //
+            // SAFETY: C library is returning a valid, albeit different, pointer.
             let c_response =
                 unsafe { core::slice::from_raw_parts_mut(response_ptr, response_size as usize) };
             response[..response_size as usize].copy_from_slice(c_response);
@@ -267,8 +270,8 @@ impl MsTpm20RefPlatform {
             return Err(Error::InvalidRequestSize);
         }
 
-        // SAFETY: the request buffer has been truncated to the size specified in the
-        // request header
+        // SAFETY: the request buffer has been truncated to the size specified
+        // in the request header
         Ok(unsafe {
             self.execute_command_unchecked(
                 &mut request[..request_len.min(request_header_size as usize)],
@@ -388,6 +391,8 @@ impl MsTpm20RefPlatformImpl {
 /// way, then this should be removed.
 #[allow(dead_code)]
 unsafe fn ensure_openssl_is_linked() {
+    // SAFETY: SHA256_Init has no preconditions, and the `SHA256_CTX` structure
+    // is a POD C type.
     unsafe {
         let mut ctx = std::mem::zeroed();
         openssl_sys::SHA256_Init(&mut ctx);

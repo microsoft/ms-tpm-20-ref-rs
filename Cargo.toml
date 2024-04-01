@@ -27,9 +27,6 @@ serde = { version = "1.0", features = ["derive"] }
 cc = { version = "1.0", features = [ "parallel" ] }
 walkdir = "2.3.2"
 
-[dev-dependencies]
-pretty_env_logger = "0.4.0"
-
 [lints]
 workspace = true
 

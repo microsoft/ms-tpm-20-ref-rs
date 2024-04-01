@@ -229,6 +229,9 @@ mod c_api {
     #[no_mangle]
     #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NvMemoryRead(start_offset: u32, size: u32, data: *mut c_void) {
+        assert!(!data.is_null());
+
+        // SAFETY: caller ensures `data` and `size` are valid
         let buf = unsafe { core::slice::from_raw_parts_mut(data as *mut u8, size as usize) };
 
         match platform!().nv_memory_read(start_offset as usize, buf) {
@@ -252,6 +255,9 @@ mod c_api {
         size: u32,
         data: *mut c_void,
     ) -> i32 {
+        assert!(!data.is_null());
+
+        // SAFETY: caller ensures `data` and `size` are valid
         let buf = unsafe { core::slice::from_raw_parts(data as *const u8, size as usize) };
 
         match platform!().nv_is_different(start_offset as usize, buf) {
@@ -277,6 +283,9 @@ mod c_api {
         size: u32,
         data: *mut c_void,
     ) -> i32 {
+        assert!(!data.is_null());
+
+        // SAFETY: caller ensures `data` and `size` are valid
         let buf = unsafe { core::slice::from_raw_parts(data as *const u8, size as usize) };
 
         match platform!().nv_memory_write(start_offset as usize, buf) {

@@ -25,7 +25,7 @@ pub struct MsTpm20RefLibraryState {
 
 pub fn get_runtime_state() -> MsTpm20RefLibraryState {
     let mut size: u32 = 0;
-    // SAFETY: passing a nullptr will simply return the required size
+    // SAFETY: passing a nullptr returns the required size
     let ret = unsafe { INJECTED_GetRuntimeState(std::ptr::null_mut(), &mut size) };
 
     assert_eq!(ret, 2);
@@ -45,7 +45,7 @@ pub fn get_runtime_state() -> MsTpm20RefLibraryState {
 }
 
 pub fn restore_runtime_state(state: MsTpm20RefLibraryState) -> Result<(), Error> {
-    // SAFETY: pointer + size are both from the same allocation
+    // SAFETY: passing valid pointer + size pair from a Rust Vec<u8>
     let ret =
         unsafe { INJECTED_ApplyRuntimeState(state.opaque.as_ptr(), state.opaque.len() as u32) };
 

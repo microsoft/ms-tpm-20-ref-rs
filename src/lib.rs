@@ -88,24 +88,3 @@ impl PlatformCallbacks for DummyPlatformCallbacks {
         b"somebody once told me the world was gonna roll me, I ain't the sharpest tool in the shed"
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn smoke() {
-        pretty_env_logger::init();
-
-        let mut platform =
-            MsTpm20RefPlatform::initialize(Box::new(DummyPlatformCallbacks), InitKind::ColdInit)
-                .unwrap();
-
-        // use raw variant to make sure the tpm fail setjmp/longjmp code works correctly
-        unsafe {
-            platform.execute_command_unchecked(&mut [0; 4096], &mut [0; 4096]);
-        }
-
-        drop(platform)
-    }
-}

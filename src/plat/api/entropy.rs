@@ -16,6 +16,9 @@ mod c_api {
     #[no_mangle]
     #[tracing::instrument(level = "trace")]
     pub unsafe extern "C" fn _plat__GetEntropy(entropy: *mut u8, amount: u32) -> i32 {
+        assert!(!entropy.is_null());
+
+        // SAFETY: Caller guarantees `entropy` and `amount` are valid.
         let buf = unsafe { core::slice::from_raw_parts_mut(entropy, amount as usize) };
 
         match platform!().get_entropy(buf) {
