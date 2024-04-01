@@ -13,3 +13,6 @@ ms-tpm-20-ref = { path = "../" }
 
 tracing = { version = "0.1", features = ["log"] }
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[lints]
+workspace = true

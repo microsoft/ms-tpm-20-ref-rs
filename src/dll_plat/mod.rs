@@ -1,6 +1,7 @@
 use core::marker::PhantomData;
 
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+use serde::Serialize;
 
 use crate::error::*;
 use crate::InitKind;

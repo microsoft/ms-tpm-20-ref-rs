@@ -1,7 +1,12 @@
-use ms_tpm_20_ref::{DynResult, InitKind, MsTpm20RefPlatform, PlatformCallbacks};
+use ms_tpm_20_ref::DynResult;
+use ms_tpm_20_ref::InitKind;
+use ms_tpm_20_ref::MsTpm20RefPlatform;
+use ms_tpm_20_ref::PlatformCallbacks;
 use std::convert::TryInto;
 use std::fs;
-use std::io::{Read, Seek, Write};
+use std::io::Read;
+use std::io::Seek;
+use std::io::Write;
 use std::time::Instant;
 
 /// Sample platform callback implementation that simply logs invocations +
@@ -23,7 +28,7 @@ impl PlatformCallbacks for TestPlatformCallbacks {
         tracing::info!("returning dummy entropy into buf of len {}", buf.len());
 
         if let Some(b) = buf.get_mut(0) {
-            *b = 1;
+            *b = 0xff;
         }
 
         Ok(buf.len())
@@ -42,21 +47,6 @@ impl PlatformCallbacks for TestPlatformCallbacks {
 const USAGE: &str = r#"
 usage: test-harness <.nvmem file>
 "#;
-
-fn extract_res(res: &[u8]) -> (u16, u32, String) {
-    let tag = u16::from_be_bytes(res[0..2].try_into().unwrap());
-    let size = u32::from_be_bytes(res[2..6].try_into().unwrap());
-    let code = u32::from_be_bytes(res[6..10].try_into().unwrap());
-    (
-        tag,
-        code,
-        // format for use with Ron Aigner's TPM 2.0 Parser app on the Windows Store
-        res[..size as usize]
-            .iter()
-            .map(|b| format!("{:02x?}", b))
-            .collect::<String>(),
-    )
-}
 
 fn main() -> DynResult<()> {
     tracing_subscriber::fmt::fmt()
@@ -98,35 +88,53 @@ fn main() -> DynResult<()> {
             time: Instant::now(),
         }),
         init_kind,
-    )
-    .unwrap();
+    )?;
 
-    let state = platform.save_state();
-    platform.restore_state(state).unwrap();
+    smoke_test_tpm(&mut platform)?;
 
+    Ok(())
+}
+
+fn extract_res(res: &[u8]) -> (u16, u32, String) {
+    let tag = u16::from_be_bytes(res[0..2].try_into().unwrap());
+    let size = u32::from_be_bytes(res[2..6].try_into().unwrap());
+    let code = u32::from_be_bytes(res[6..10].try_into().unwrap());
+
+    let mut res_str = String::new();
+    for b in &res[..size as usize] {
+        res_str.push_str(&format!("{:02x?}", b));
+    }
+
+    (tag, code, res_str)
+}
+
+/// Sends a few basic commands to ensure basic TPM engine functionality works.
+fn smoke_test_tpm(platform: &mut MsTpm20RefPlatform) -> DynResult<()> {
     let mut res = vec![0; 4096];
 
-    if true {
-        // send startup command
-        platform.execute_command(
-            &mut [
-                0x80, 0x01, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x01, 0x44, 0x00, 0x00,
-            ],
-            &mut res,
-        )?;
+    // send startup command
+    platform.execute_command(
+        &mut [
+            0x80, 0x01, 0x00, 0x00, 0x00, 0x0c, 0x00, 0x00, 0x01, 0x44, 0x00, 0x00,
+        ],
+        &mut res,
+    )?;
 
-        eprintln!("startup cmd response: {:x?}", extract_res(&res));
+    eprintln!("startup cmd response: {:x?}", extract_res(&res));
 
-        // send self test command
-        platform.execute_command(
-            &mut [
-                0x80, 0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x00, 0x01, 0x43, 0x01,
-            ],
-            &mut res,
-        )?;
+    // send self test command
+    platform.execute_command(
+        &mut [
+            0x80, 0x01, 0x00, 0x00, 0x00, 0x0b, 0x00, 0x00, 0x01, 0x43, 0x01,
+        ],
+        &mut res,
+    )?;
 
-        eprintln!("self test cmd response: {:x?}", extract_res(&res));
-    }
+    eprintln!("self test cmd response: {:x?}", extract_res(&res));
+
+    // quick sanity check
+    let state = platform.save_state();
+    platform.restore_state(state).unwrap();
 
     // clear tpm hierarchy control
     platform.execute_command(
@@ -142,6 +150,5 @@ fn main() -> DynResult<()> {
         "clear tpm hierarchy control cmd response: {:x?}",
         extract_res(&res)
     );
-
     Ok(())
 }

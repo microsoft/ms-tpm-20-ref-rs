@@ -1,7 +1,8 @@
 use std::convert::TryInto;
 use std::sync::atomic::AtomicBool;
 
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+use serde::Serialize;
 
 use crate::error::*;
 use crate::InitKind;

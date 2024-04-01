@@ -3,7 +3,8 @@ use std::convert::TryInto;
 use std::sync::Mutex;
 
 use once_cell::sync::Lazy;
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+use serde::Serialize;
 
 use crate::error::*;
 use crate::tpmlib_state;

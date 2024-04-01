@@ -1,6 +1,7 @@
 //! NVMem.c
 
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+use serde::Serialize;
 
 use crate::error::Error;
 
