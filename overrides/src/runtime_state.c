@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 // Hooks to save/restore all live global state of the TPM library
 //
 // This is not functionality built into ms-tpm-20-ref, as it's a pretty niche

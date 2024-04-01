@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 use std::fmt;
 
 /// ms-tpm-20-ref errors

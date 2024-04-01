@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 //! Cancel.c
 
 use serde::Deserialize;

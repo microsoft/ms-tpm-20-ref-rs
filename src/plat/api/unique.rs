@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 //! Unique.c
 
 use super::super::MsTpm20RefPlatformImpl;

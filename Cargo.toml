@@ -1,3 +1,5 @@
+# Copyright (C) Microsoft Corporation. All rights reserved.
+
 [package]
 name = "ms-tpm-20-ref"
 version = "0.1.0"

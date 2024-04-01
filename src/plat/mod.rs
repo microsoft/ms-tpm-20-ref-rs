@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 use core::marker::PhantomData;
 use std::convert::TryInto;
 use std::sync::Mutex;

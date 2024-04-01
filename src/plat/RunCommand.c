@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 //! This code needs to be written in C, as it uses setjmp/longjmp, which cannot
 //! be called from Rust without running into potential UB. There is a tracking
 //! issue to add support for at least a subset of setjmp/longjmp to Rust, but

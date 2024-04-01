@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 use ms_tpm_20_ref::DynResult;
 use ms_tpm_20_ref::InitKind;
 use ms_tpm_20_ref::MsTpm20RefPlatform;

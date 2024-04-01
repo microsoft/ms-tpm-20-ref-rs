@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 //! Callback-based Platform implementation for `ms-tpm-20-ref`
 
 #![warn(missing_docs)]

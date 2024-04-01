@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 macro_rules! platform {
     () => {
         crate::plat::PLATFORM

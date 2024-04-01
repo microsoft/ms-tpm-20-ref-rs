@@ -1,3 +1,5 @@
+// Copyright (C) Microsoft Corporation. All rights reserved.
+
 //! Clock.c
 
 use std::convert::TryInto;
