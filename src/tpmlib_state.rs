@@ -1,5 +1,8 @@
 // Copyright (C) Microsoft Corporation. All rights reserved.
 
+//! Bindings to injected `runtime_state.c`, which allows doing hot save/restores
+//! of TPM C library state.
+
 use crate::error::Error;
 use serde::Deserialize;
 use serde::Serialize;

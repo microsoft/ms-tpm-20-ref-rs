@@ -71,13 +71,13 @@ pub struct MsTpm20RefRuntimeState {
 /// A handle which encapsulates the logical ownership of the global platform
 /// singleton.
 ///
-/// Only a single instance of `MsTpm20Platform` can be live at any given time.
-/// If [`MsTpm20Platform::initialize`] is called while a instance of
+/// Only a single instance of `MsTpm20RefPlatform` can be live at any given
+/// time. If [`MsTpm20RefPlatform::initialize`] is called while a instance of
 /// `MsTpm20Platform` is still live, it will return an
 /// [`Error::AlreadyInitialized`].
 ///
-/// When `MsTpm20Platform` is dropped, it will uninitialize the platform,
-/// allowing a subsequent call to [`MsTpm20Platform::initialize`] to succeed.
+/// When `MsTpm20RefPlatform` is dropped, it will uninitialize the platform,
+/// allowing a subsequent call to [`MsTpm20RefPlatform::initialize`] to succeed.
 #[non_exhaustive]
 #[derive(Debug)]
 pub struct MsTpm20RefPlatform {
@@ -91,9 +91,7 @@ impl MsTpm20RefPlatform {
     /// Initialize the TPM library with the given implementation-specific
     /// callbacks.
     ///
-    /// Corresponds to both `VTpmColdInitWithPersistentState` and `VTpmWarmInit`
-    ///
-    /// NOTE: This method will NOT send the TPM startup or selftest commands.
+    /// NOTE: This method does NOT automatically send any TPM startup commands.
     pub fn initialize(
         callbacks: Box<dyn PlatformCallbacks + Send>,
         init_kind: InitKind<'_>,
@@ -149,12 +147,6 @@ impl MsTpm20RefPlatform {
         Ok(MsTpm20RefPlatform {
             _not_sync: PhantomData,
         })
-    }
-
-    fn shutdown(&mut self) {
-        let mut platform = PLATFORM.try_lock().unwrap();
-        platform.as_mut().unwrap().signal_power_off();
-        *platform = None;
     }
 
     /// Reset the TPM device (i.e: simulate power off + power on)
@@ -254,9 +246,7 @@ impl MsTpm20RefPlatform {
         response_size as usize
     }
 
-    /// Execute a command on the vTPM.
-    ///
-    /// Corresponds to `VTpmExecuteCommand`
+    /// Execute a command on the TPM.
     pub fn execute_command(
         &mut self,
         request: &mut [u8],
@@ -282,9 +272,7 @@ impl MsTpm20RefPlatform {
         })
     }
 
-    /// Save the current vTPM's current state into an opaque saved-state blob.
-    ///
-    /// Corresponds to `VTpmGetRuntimeState`
+    /// Save the current state into an opaque saved-state blob.
     pub fn save_state(&self) -> Vec<u8> {
         let state = MsTpm20RefRuntimeState {
             tpmlib_state: tpmlib_state::get_runtime_state(),
@@ -299,7 +287,7 @@ impl MsTpm20RefPlatform {
         postcard::to_stdvec(&state).expect("failed to serialize state")
     }
 
-    /// Restore the vTPM from a previously-saved blob.
+    /// Restore the TPM from a previously-saved blob.
     pub fn restore_state(&mut self, state: Vec<u8>) -> Result<(), Error> {
         let state: MsTpm20RefRuntimeState =
             postcard::from_bytes(&state).map_err(Error::FailedPlatformRestore)?;
@@ -320,8 +308,6 @@ impl MsTpm20RefPlatform {
     ///
     /// When set the TPM library will opportunistically abort the command being
     /// executed.
-    ///
-    /// Corresponds to `VTpmSetCancelFlag`
     pub fn set_cancel_flag(&mut self, enabled: bool) {
         let mut platform = PLATFORM.try_lock().unwrap();
         let platform = platform.as_mut().expect("platform is initialized");
@@ -331,14 +317,13 @@ impl MsTpm20RefPlatform {
             platform.clear_cancel()
         }
     }
-
-    // `VTpmSetTargetVersion` omitted for now (never used)
 }
 
 impl Drop for MsTpm20RefPlatform {
-    /// Corresponds to `VTpmShutdown`
     fn drop(&mut self) {
-        self.shutdown()
+        let mut platform = PLATFORM.try_lock().unwrap();
+        platform.as_mut().unwrap().signal_power_off();
+        *platform = None;
     }
 }
 
