@@ -9,37 +9,12 @@ use std::path::PathBuf;
 // corresponds to path within git submodule.
 const MS_TPM_20_REF_SRC_PATH: &str = "./ms-tpm-20-ref/TPMCmd/";
 
-fn add_deps(
-    builder: &mut cc::Build,
-    sources: impl AsRef<Path>,
-    exclude: &[PathBuf],
-) -> Result<(), Box<dyn std::error::Error>> {
-    for entry in walkdir::WalkDir::new(sources) {
-        let entry = entry?;
-        if entry.file_type().is_dir() {
-            continue;
-        }
-
-        if exclude.iter().any(|p| p.as_os_str() == entry.file_name()) {
-            continue;
-        }
-
-        if entry.file_name().to_string_lossy().ends_with(".c") {
-            builder.file(entry.path());
-        }
-    }
-
-    Ok(())
-}
-
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     // `RunCommand.c` contains setjmp/longjmp code, and must be compiled in
     // separately
     cc::Build::new()
         .file("./src/plat/RunCommand.c")
         .compile("run_command");
-
-    println!("cargo:rerun-if-env-changed=TPM_LIB_DIR");
 
     // users can link against a pre-built `libtpm.a` if they don't want to use
     // the version of `ms-tpm-20-ref` included in-tree
@@ -54,13 +29,30 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
-
+/// Compile the `ms-tpm-20-ref` C codebase to a statically linked `tpmlib.a`.
+///
+/// # Supported TPM library version
+///
+/// At this time, `ms-tpm-20-ref-rs` only supports compiling and linking against
+/// version 1.38 of the `ms-tpm-20-ref` C codebase.
+///
+/// If you are interested in refactoring `ms-tpm-20-ref-rs` to support compiling
+/// / linking against various alternative TPM C library versions - PRs are more
+/// than welcome :)
+///
+/// # Supported crypto-backend
+///
+/// At this time, the only supported crypto backend is OpenSSL 3.x.
+///
+/// This is because `ms-tpm-20-ref-rs` was originally written to run within a
+/// binary that was already using OpenSSL 3.x elsewhere in its codebase, and
+/// linking two copies of OpenSSL wasn't an option.
+///
+/// If you are interested in refactoring this code to support running with
+/// various alternative crypto backends, PRs are more than welcome :)
 fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
-    // a little sketchy, but we want to override some of C headers with our own
-    // tweaked versions.
-    //
-    // as such, we have to do a bit of "intrusive modification" to the
-    // submodule, and delete the headers we are overriding...
+    // DEVNOTE: While there are undoubtedly better ways one could've structured
+    // this code... this approach has worked _well enough_, so
 
     let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
 
@@ -133,7 +125,7 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         .flag_if_supported("-Wno-ignored-qualifiers")
         // warnings specific to ossl 3.0 stuff
         .flag_if_supported("-Wno-deprecated-declarations")
-        // crank up this warning (to catch issues in custom override code)
+        // crank up this warning to catch issues in custom override code
         .flag_if_supported("-Werror=implicit-function-declaration")
         .flag_if_supported("-Werror=pointer-arith")
 
@@ -149,19 +141,9 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         .define("VENDOR_STRING_3",       r#""lato""#)
         .define("VENDOR_STRING_4",       r#""r   ""#)
         .define("FIRMWARE_V1", "0x20200312")
-        // the less significant 32-bits of a vendor-specific value
-        // indicating the version of the firmware
-        // 0x00115400 - original snapshot for rev 1.38
-        // 0x00120000 - fix padding check for RSAES_Decode() function (errata 1.11)
-        // 0x00120001 - fix missing size parameters when copying out parameters for ECC_Parameters (errata 1.3)
-        // 0x00120002 - NV size is determined by platform
-        // 0x00120003 - 4k NV Index max size
         .define("FIRMWARE_V2", "0x00120003")
 
         .define("NV_MEMORY_SIZE", "0x8000")
-
-        // .define("USE_SPEC_COMPLIANT_PROOFS", "NO")
-        // .define("SKIP_PROOF_ERRORS", "YES")
 
         // avoid throwing libtpm.a directly into OUT_DIR for insidious linker
         // order reasons.
@@ -176,6 +158,29 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         // libfoo.a it encounters, it'll end up using the non-custom one.
         .out_dir(Path::new(&std::env::var("OUT_DIR").unwrap()).join("ms-tpm-20-ref"))
         .compile("tpm");
+
+    Ok(())
+}
+
+fn add_deps(
+    builder: &mut cc::Build,
+    sources: impl AsRef<Path>,
+    exclude: &[PathBuf],
+) -> Result<(), Box<dyn std::error::Error>> {
+    for entry in walkdir::WalkDir::new(sources) {
+        let entry = entry?;
+        if entry.file_type().is_dir() {
+            continue;
+        }
+
+        if exclude.iter().any(|p| p.as_os_str() == entry.file_name()) {
+            continue;
+        }
+
+        if entry.file_name().to_string_lossy().ends_with(".c") {
+            builder.file(entry.path());
+        }
+    }
 
     Ok(())
 }

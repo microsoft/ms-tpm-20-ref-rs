@@ -4,9 +4,9 @@
 name = "ms-tpm-20-ref"
 version = "0.1.0"
 authors = ["Daniel Prilik <daprilik@microsoft.com>"]
-edition = "2018"
+edition = "2021"
 license = "MIT"
-description = "Rust wrapper around ms-tpm-20-ref"
+description = "Rust bindings to ms-tpm-20-ref"
 repository = "https://github.com/daprilik/ms-tpm-20-ref-rs"
 readme = "README.md"
 categories = ["cryptography", "external-ffi-bindings"]

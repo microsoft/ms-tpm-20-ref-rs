@@ -61,20 +61,20 @@ pub trait PlatformCallbacks {
     fn get_unique_value(&self) -> &'static [u8];
 }
 
-/// Sample platform callback implementation that simply logs invocations +
-/// returns dummy data.
-pub struct DummyPlatformCallbacks;
+/// A noop implementation of [`PlatformCallbacks`]` that simply logs invocations
+/// + returns dummy data.
+pub struct NoopPlatformCallbacks;
 
-impl PlatformCallbacks for DummyPlatformCallbacks {
+impl PlatformCallbacks for NoopPlatformCallbacks {
     fn commit_nv_state(&mut self, state: &[u8]) -> DynResult<()> {
         tracing::info!("committing nv state with len {}", state.len());
         Ok(())
     }
 
     fn get_crypt_random(&mut self, buf: &mut [u8]) -> DynResult<usize> {
-        tracing::info!("returning dummy entropy into buf of len {}", buf.len());
+        tracing::info!("returning fake entropy into buf of len {}", buf.len());
         if let Some(b) = buf.get_mut(0) {
-            *b = 1;
+            *b = 0xff;
         }
 
         Ok(buf.len())
