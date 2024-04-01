@@ -29,27 +29,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     Ok(())
 }
+
 /// Compile the `ms-tpm-20-ref` C codebase to a statically linked `tpmlib.a`.
 ///
-/// # Supported TPM library version
-///
-/// At this time, `ms-tpm-20-ref-rs` only supports compiling and linking against
-/// version 1.38 of the `ms-tpm-20-ref` C codebase.
-///
-/// If you are interested in refactoring `ms-tpm-20-ref-rs` to support compiling
-/// / linking against various alternative TPM C library versions - PRs are more
-/// than welcome :)
-///
-/// # Supported crypto-backend
-///
-/// At this time, the only supported crypto backend is OpenSSL 3.x.
-///
-/// This is because `ms-tpm-20-ref-rs` was originally written to run within a
-/// binary that was already using OpenSSL 3.x elsewhere in its codebase, and
-/// linking two copies of OpenSSL wasn't an option.
-///
-/// If you are interested in refactoring this code to support running with
-/// various alternative crypto backends, PRs are more than welcome :)
+/// See `README.md` for additional info regarding supported TPM library versions
+/// and crypto backends.
 fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
     // DEVNOTE: While there are undoubtedly better ways one could've structured
     // this code... this approach has worked _well enough_, so

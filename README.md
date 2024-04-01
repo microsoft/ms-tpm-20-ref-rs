@@ -1,54 +1,75 @@
-# ms-tpm-20-ref
+# ms-tpm-20-ref-rs
 
-**HvLite is currently using the `138-compat` branch!**
-
-Rust wrapper around
-[microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref).
-
-Ideally, we'd be able to have a separate `*-sys` crate that encapsulates the
-bindings to the underlying ms-tpm-20-ref lib, but unfortunately, due to the
-library's bi-directional communication with the platform layer, both the
-platform layer implementation and the C library bindings need to be performed
-within a single Rust crate (i.e: a single translation unit).
+Rust bindings to the
+[microsoft/ms-tpm-20-ref](https://github.com/microsoft/ms-tpm-20-ref) C library.
 
 ## Features
 
-- `vendored` - if enabled, `openssl` will be compiled from source. **WARNING: This will
-  substantially bump compile-from-clean times!**
+All features are disabled by default.
 
-## Build Dependencies
+- `vendored` - Compile OpenSSL from source (corresponds to `openssl/vendored`)
 
-The `ms-tpm-20-ref` library technically supports several different crypto
-backends: openSSL, wolfSSL, and SymCrypt.
+## Building
 
-At the moment, only the openSSL backend is supported.
+The core C code in `microsoft/ms-tpm-20-ref` has no external dependencies, and
+can be compiled with just about any C compiler.
 
-### Linux
+See the `openssl` crate documentation for instructions on how to build + link
+against OpenSSL: <https://docs.rs/openssl/latest/openssl/#building>
 
-On Debian-based systems (such as Ubuntu):
+## Relationship to `tpm-rs`
 
-```bash
-sudo apt install pkg-config build-essential libssl-dev
-```
+This crate is NOT associated with the <https://github.com/tpm-rs> project.
 
-### Linux MUSL
+This crate wraps the existing C-based TPM codebase, only rewriting the generic
+"platform" layer in Rust, without porting the underlying "engine" to Rust.
 
-At the moment, compiling on Linux MUSL targets requires using the `vendored`
-feature, as the builds system doesn't have any logic for ingesting pre-built
-MUSL openSSL static libs.
+For a pure Rust implementation of the TPM 2.0 specification, see (and support!)
+the effort over at <https://github.com/tpm-rs/tpm-rs>.
 
-### Windows
+## Versioning
 
-_Theoretically_, it is possible to use a pre-compiled openSSL binary via vcpkg,
-but this isn't something that's been tested working.
+### Supported `ms-tpm-20-ref` versions
 
-TODO: actually figure this out.
+At this time, the only supported version of `microsoft/ms-tpm-20-ref` that this
+crate can compile + link against is revision 1.38.
 
-For now, the `vendored` feature must be enabled, which will build openSSL from
-source.
+This particular revision was selected in order to maintain compatibility with
+the vTPM device used in Hyper-V.
 
-## Upgrading `ms-tpm-20-ref`
+In the future, this crate may be updated to support compiling + linking against
+alternate versions of `microsoft/ms-tpm-20-ref`, though at this time, there is
+no concrete roadmap as to when that is going to happen.
 
-See the `UPGRADE_PATH.md` document for information on how to update the
-underlying `ms-tpm-20-ref` version, along with a brief discussion around
-maintaining backwards-compatibility with earlier library versions.
+If you are interested in extending `ms-tpm-20-ref-rs` to work with multiple
+alternate versions of `microsoft/ms-tpm-20-ref`, please feel free to reach out
+by opening a GitHub Issue.
+
+### Supported crypto backends
+
+While the underlying `microsoft/ms-tpm-20-ref` library does support multiple
+different crypto backends, at this time, the only supported crypto backend is
+OpenSSL 3.x.
+
+This particular backend was selected in order to seamlessly integrate
+`ms-tpm-20-ref-rs` into a larger codebase that was already using OpenSSL 3.x.
+
+In the future, this crate may be updated to support linking against alternate
+crypto backends, though at this time, there is no concrete roadmap as to when
+that is going to happen.
+
+If you are interested in extending `ms-tpm-20-ref-rs` to work with
+alternate crypto backends, please feel free to reach out by opening a
+GitHub Issue.
+
+### Saved-state compatibility
+
+At this time, `microsoft/ms-tpm-20-ref` makes no guarantees as to the stability
+of its saved state across major revisions. This applies to both volatile
+(in-memory), and non-volatile (nvram) state.
+
+As such, `ms-tpm-20-ref-rs` makes the exact same guarantees wrt. saved state.
+
+If you are interested as to why this is the case, and why it is not trivial to
+support inter-revision migration, see
+[docs/upgrade_138_to_162.md](docs/upgrade_138_to_162.md).
