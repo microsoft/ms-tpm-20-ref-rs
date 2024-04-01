@@ -19,8 +19,7 @@ pub enum Error {
     /// Mismatch between response buffer size and reply header size
     InvalidResponseSize,
     /// Error calling nvmem platform API
-    #[cfg(not(any(feature = "sample_platform", feature = "dll_platform")))]
-    NvMem(crate::callback_plat::api::nvmem::NvError),
+    NvMem(crate::plat::api::nvmem::NvError),
     /// Error restoring platform state
     FailedPlatformRestore(postcard::Error),
     /// Invalid saved state size
@@ -54,7 +53,6 @@ impl fmt::Display for Error {
                 f,
                 "mismatch between response buffer size and reply header size"
             ),
-            #[cfg(not(any(feature = "sample_platform", feature = "dll_platform")))]
             NvMem(e) => write!(f, "nvmem error: {:?}", e),
             FailedPlatformRestore(e) => write!(f, "failed restore: {}", e),
             InvalidRestoreSize => write!(f, "invalid saved state size"),

@@ -1,6 +1,6 @@
 macro_rules! platform {
     () => {
-        crate::callback_plat::PLATFORM
+        crate::plat::PLATFORM
             .try_lock()
             .expect("TPM platform is neither reentrant or multithread capable!")
             .as_mut()

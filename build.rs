@@ -31,17 +31,11 @@ fn add_deps(
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    if cfg!(feature = "dll_platform") {
-        return Ok(());
-    }
-
     // `RunCommand.c` contains setjmp/longjmp code, and must be compiled in
     // separately
-    if !(cfg!(feature = "sample_platform") || cfg!(feature = "dll_platform")) {
-        cc::Build::new()
-            .file("./src/callback_plat/RunCommand.c")
-            .compile("run_command");
-    }
+    cc::Build::new()
+        .file("./src/plat/RunCommand.c")
+        .compile("run_command");
 
     println!("cargo:rerun-if-env-changed=TPM_LIB_DIR");
 
@@ -129,10 +123,6 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
 
     add_deps(&mut builder, &tpm_src_path.join("tpm"), &excludes)?;
     add_deps(&mut builder, "./overrides/src/", &[])?;
-
-    if cfg!(feature = "sample_platform") {
-        add_deps(&mut builder, &tpm_src_path.join("Platform"), &[])?;
-    }
 
     #[rustfmt::skip]
     builder

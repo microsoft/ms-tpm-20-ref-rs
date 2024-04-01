@@ -82,7 +82,7 @@ mod c_api {
         // Must call _TPM_Init outside of the platform context to avoid deadlock
         //
         // SAFETY: _TPM_Init has no documented preconditions
-        unsafe { crate::callback_plat::ffi::_TPM_Init() };
+        unsafe { crate::plat::ffi::_TPM_Init() };
 
         ret
     }

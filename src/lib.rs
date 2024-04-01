@@ -3,20 +3,8 @@
 #![warn(missing_docs)]
 
 mod error;
+mod plat;
 mod tpmlib_state;
-
-cfg_if::cfg_if! {
-    if #[cfg(feature = "sample_platform")] {
-        mod sample_plat;
-        use sample_plat as plat;
-    } else if #[cfg(feature = "dll_platform")] {
-        mod dll_plat;
-        use dll_plat as plat;
-    } else {
-        mod callback_plat;
-        use callback_plat as plat;
-    }
-}
 
 pub use error::DynResult;
 pub use error::Error;
