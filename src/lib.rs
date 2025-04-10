@@ -10,6 +10,7 @@ mod tpmlib_state;
 
 pub use error::DynResult;
 pub use error::Error;
+pub use plat::api::nvmem::NvError;
 pub use plat::MsTpm20RefPlatform;
 pub use plat::MsTpm20RefRuntimeState;
 
