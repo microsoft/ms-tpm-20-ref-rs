@@ -93,6 +93,7 @@ impl MsTpm20RefPlatformImpl {
         {
             Some(region) => buf.copy_from_slice(region),
             None => {
+                buf.fill(0);
                 return Err(NvError::InvalidAccess {
                     start_offset,
                     len: buf.len(),
@@ -185,6 +186,13 @@ impl MsTpm20RefPlatformImpl {
         self.callbacks
             .commit_nv_state(&self.state.nvmem.region)
             .map_err(Error::PlatformCallback)
+    }
+
+    fn nv_size(&self) -> usize {
+        self.state
+            .nvmem
+            .region
+            .len()
     }
 }
 
@@ -359,6 +367,6 @@ mod c_api {
     #[no_mangle]
     #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__GetNvSize() -> u32 {
-        super::NV_MEMORY_SIZE as u32
+        platform!().nv_size() as u32
     }
 }
