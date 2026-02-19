@@ -105,7 +105,8 @@ impl MsTpm20RefPlatform {
             None => {
                 let mut platform = MsTpm20RefPlatformImpl::new(callbacks);
                 match &init_kind {
-                    InitKind::ColdInit => platform.nv_enable()?,
+                    InitKind::ColdInit => platform.nv_enable(api::nvmem::NV_MEMORY_SIZE)?,
+                    InitKind::ColdInitWithSize(size) => platform.nv_enable(*size)?,
                     InitKind::ColdInitWithPersistentState { nvmem_blob } => {
                         platform.nv_enable_from_blob(nvmem_blob)?
                     }
@@ -126,7 +127,7 @@ impl MsTpm20RefPlatform {
         // platform, and Rust's std mutex is not reentrant!
         drop(maybe_platform);
 
-        if matches!(&init_kind, InitKind::ColdInit) {
+        if matches!(&init_kind, InitKind::ColdInit | InitKind::ColdInitWithSize(_)) {
             // SAFETY: TPM_Manufacture doesn't have any preconditions
             let ret = unsafe { ffi::TPM_Manufacture(true as i32) };
             if ret != 0 {
