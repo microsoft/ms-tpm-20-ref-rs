@@ -150,6 +150,12 @@ impl MsTpm20RefPlatform {
         })
     }
 
+    pub fn nv_size(&self) -> u32 {
+        let mut platform = PLATFORM.try_lock().unwrap();
+        let platform = platform.as_mut().unwrap();
+        platform.state.nvmem.region.len() as u32
+    }
+
     /// Reset the TPM device (i.e: simulate power off + power on)
     pub fn reset(&mut self, with_new_nvmem_blob: Option<&[u8]>) -> Result<(), Error> {
         tracing::trace!("Resetting TPM library...");
