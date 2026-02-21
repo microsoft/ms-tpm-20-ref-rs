@@ -7,7 +7,6 @@ use serde::Serialize;
 
 use crate::error::Error;
 
-use super::nvmem::NV_MEMORY_SIZE;
 use super::super::MsTpm20RefPlatformImpl;
 
 #[derive(Clone, Serialize, Deserialize)]
@@ -25,7 +24,7 @@ impl MsTpm20RefPlatformImpl {
     pub fn signal_power_on(&mut self) -> Result<(), Error> {
         self.timer_reset();
         self.state.power_plat.power_lost = true;
-        self.nv_enable(NV_MEMORY_SIZE)?;
+        self.nv_enable()?;
         Ok(())
     }
 

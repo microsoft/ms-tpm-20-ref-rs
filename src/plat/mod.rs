@@ -103,12 +103,21 @@ impl MsTpm20RefPlatform {
         match &mut *maybe_platform {
             Some(_platform) => return Err(Error::AlreadyInitialized),
             None => {
-                let mut platform = MsTpm20RefPlatformImpl::new(callbacks);
-                match &init_kind {
-                    InitKind::ColdInit => platform.nv_enable(api::nvmem::NV_MEMORY_SIZE)?,
-                    InitKind::ColdInitWithSize(size) => platform.nv_enable(*size)?,
+                let platform = match &init_kind {
+                    InitKind::ColdInit => {
+                        let mut platform = MsTpm20RefPlatformImpl::new(callbacks, api::nvmem::NV_MEMORY_SIZE);
+                        platform.nv_enable()?;
+                        platform
+                    }
+                    InitKind::ColdInitWithSize(size) => {
+                        let mut platform = MsTpm20RefPlatformImpl::new(callbacks, *size);
+                        platform.nv_enable()?;
+                        platform
+                    }
                     InitKind::ColdInitWithPersistentState { nvmem_blob } => {
-                        platform.nv_enable_from_blob(nvmem_blob)?
+                        let mut platform = MsTpm20RefPlatformImpl::new(callbacks, nvmem_blob.len());
+                        platform.nv_enable_from_blob(nvmem_blob)?;
+                        platform
                     }
                 };
                 *maybe_platform = Some(platform);
@@ -338,13 +347,13 @@ struct MsTpm20PlatformState {
 }
 
 impl MsTpm20PlatformState {
-    fn new() -> MsTpm20PlatformState {
+    fn new(size: usize) -> MsTpm20PlatformState {
         MsTpm20PlatformState {
             cancel: api::cancel::CancelState::new(),
             locality: api::locality_plat::LocalityState::new(),
             clock: api::clock::ClockState::new(),
             power_plat: api::power_plat::PowerPlatState::new(),
-            nvmem: api::nvmem::NvState::new(),
+            nvmem: api::nvmem::NvState::new(size),
         }
     }
 }
@@ -355,10 +364,10 @@ struct MsTpm20RefPlatformImpl {
 }
 
 impl MsTpm20RefPlatformImpl {
-    fn new(callbacks: Box<dyn PlatformCallbacks + Send>) -> MsTpm20RefPlatformImpl {
+    fn new(callbacks: Box<dyn PlatformCallbacks + Send>, size: usize) -> MsTpm20RefPlatformImpl {
         MsTpm20RefPlatformImpl {
             callbacks,
-            state: MsTpm20PlatformState::new(),
+            state: MsTpm20PlatformState::new(size),
         }
     }
 

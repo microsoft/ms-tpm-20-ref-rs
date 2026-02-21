@@ -18,9 +18,9 @@ pub struct NvState {
 }
 
 impl NvState {
-    pub fn new() -> NvState {
+    pub fn new(size: usize) -> NvState {
         NvState {
-            region: Vec::new(),
+            region: vec![0; size],
             is_init: false,
         }
     }
@@ -64,10 +64,10 @@ impl MsTpm20RefPlatformImpl {
 }
 
 impl MsTpm20RefPlatformImpl {
-    pub fn nv_enable(&mut self, size: usize) -> Result<(), Error> {
+    pub fn nv_enable(&mut self) -> Result<(), Error> {
         if !self.state.nvmem.is_init {
             tracing::debug!("calling __plat_NvEnable before `nv_enable_from_blob` was called");
-            self.state.nvmem.region = vec![0; size];
+            self.state.nvmem.region = vec![0; self.nv_size()];
             self.state.nvmem.is_init = true;
         }
 
@@ -198,7 +198,6 @@ impl MsTpm20RefPlatformImpl {
 
 mod c_api {
     use core::ffi::c_void;
-    use super::NV_MEMORY_SIZE;
 
     // NOTE: The commented out functions are only ever called from the simulator,
     // and as such, they really shouldn't have been specified as part of the the
@@ -215,7 +214,7 @@ mod c_api {
     #[no_mangle]
     #[tracing::instrument(level = "trace", ret)]
     pub unsafe extern "C" fn _plat__NVEnable(plat_parameter: *mut c_void) -> i32 {
-        match platform!().nv_enable(NV_MEMORY_SIZE) {
+        match platform!().nv_enable() {
             Ok(()) => 0,
             Err(e) => {
                 tracing::error!("error calling _plat__NVEnable({:?}): {}", plat_parameter, e);
