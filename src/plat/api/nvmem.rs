@@ -9,7 +9,7 @@ use crate::error::Error;
 
 use super::super::MsTpm20RefPlatformImpl;
 
-const NV_MEMORY_SIZE: usize = 0x8000;
+pub const NV_MEMORY_SIZE: usize = 0x8000;
 
 #[derive(Clone, Serialize, Deserialize)]
 pub struct NvState {
@@ -18,9 +18,9 @@ pub struct NvState {
 }
 
 impl NvState {
-    pub fn new() -> NvState {
+    pub fn new(size: usize) -> NvState {
         NvState {
-            region: Vec::new(),
+            region: vec![0; size],
             is_init: false,
         }
     }
@@ -67,7 +67,7 @@ impl MsTpm20RefPlatformImpl {
     pub fn nv_enable(&mut self) -> Result<(), Error> {
         if !self.state.nvmem.is_init {
             tracing::debug!("calling __plat_NvEnable before `nv_enable_from_blob` was called");
-            self.state.nvmem.region = vec![0; NV_MEMORY_SIZE];
+            self.state.nvmem.region = vec![0; self.nv_size()];
             self.state.nvmem.is_init = true;
         }
 

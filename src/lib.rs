@@ -11,6 +11,7 @@ mod tpmlib_state;
 pub use error::DynResult;
 pub use error::Error;
 pub use plat::api::nvmem::NvError;
+pub use plat::api::nvmem::NV_MEMORY_SIZE;
 pub use plat::MsTpm20RefPlatform;
 pub use plat::MsTpm20RefRuntimeState;
 
@@ -21,6 +22,9 @@ pub enum InitKind<'a> {
     /// Initialize the TPM entirely from scratch, having it manufacture an
     /// initial nvmem blob.
     ColdInit,
+    /// Initialize the TPM entirely from scratch, having it manufacture an
+    /// initial nvmem blob of the provided size.
+    ColdInitWithSize(usize),
     /// Initialize the TPM from an existing saved nvmem blob.
     ColdInitWithPersistentState {
         /// Opaque nvmem blob
@@ -32,6 +36,7 @@ impl core::fmt::Debug for InitKind<'_> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             InitKind::ColdInit => write!(f, "ColdInit"),
+            InitKind::ColdInitWithSize(size) => write!(f, "ColdInitWithSize({})", size),
             InitKind::ColdInitWithPersistentState { .. } => {
                 write!(f, "ColdInitWithPersistentState {{ .. }}")
             }
