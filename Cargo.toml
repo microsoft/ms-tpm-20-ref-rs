@@ -2,8 +2,6 @@
 
 [package]
 name = "ms-tpm-20-ref"
-version = "0.1.0"
-authors = ["Daniel Prilik <daprilik@microsoft.com>"]
 edition = "2021"
 license = "MIT"
 description = "Rust bindings to ms-tpm-20-ref"
@@ -12,13 +10,14 @@ readme = "README.md"
 categories = ["cryptography", "external-ffi-bindings"]
 
 [features]
-default = []
+default = ["openssl"]
 
-vendored = ["openssl-sys/vendored"]
+openssl = ["dep:openssl-sys"]
+vendored = ["openssl-sys?/vendored"]
 
 [dependencies]
 once_cell = "1.7.2"
-openssl-sys = "0.9.71"
+openssl-sys = { version =  "0.9.71", optional = true }
 tracing = "0.1"
 
 # state de/serialization

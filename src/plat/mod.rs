@@ -386,6 +386,7 @@ impl MsTpm20RefPlatformImpl {
 ///
 /// This is the least bad way we could find to ensure this. If we find a better
 /// way, then this should be removed.
+#[cfg(feature = "openssl")]
 #[allow(dead_code)]
 unsafe fn ensure_openssl_is_linked() {
     // SAFETY: SHA256_Init has no preconditions, and the `SHA256_CTX` structure
