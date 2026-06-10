@@ -5,7 +5,11 @@ Rust bindings to the
 
 ## Features
 
-All features are disabled by default.
+The following features are enabled by default:
+
+- `openssl` - Include a dependency on openssl-sys, and include a link-time check that it is present.
+
+The following features are disabled by default:
 
 - `vendored` - Compile OpenSSL from source (corresponds to `openssl/vendored`)
 
