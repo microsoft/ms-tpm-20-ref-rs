@@ -13,7 +13,7 @@ categories = ["cryptography", "external-ffi-bindings"]
 default = ["openssl"]
 
 openssl = ["dep:openssl-sys"]
-vendored = ["openssl-sys?/vendored"]
+vendored = ["openssl-sys/vendored"]
 
 [dependencies]
 once_cell = "1.7.2"
