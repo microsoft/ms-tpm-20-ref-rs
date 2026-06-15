@@ -10,18 +10,14 @@ use std::path::PathBuf;
 const MS_TPM_20_REF_SRC_PATH: &str = "./ms-tpm-20-ref/TPMCmd/";
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    // `RunCommand.c` contains setjmp/longjmp code, and must be compiled in
-    // separately
-    cc::Build::new()
-        .file("./src/plat/RunCommand.c")
-        .compile("run_command");
 
-    // users can link against a pre-built `libtpm.a` if they don't want to use
-    // the version of `ms-tpm-20-ref` included in-tree
+    // users can link against a pre-built `libtpm.a` and `librun_command.a` if 
+    //they don't want to use the version of `ms-tpm-20-ref` included in-tree
     match env("TPM_LIB_DIR") {
         Some(var) => {
             println!("cargo:rustc-link-search=native={}", var.to_string_lossy());
             println!("cargo:rustc-link-lib=static=tpm");
+            println!("cargo:rustc-link-lib=static=run_command");
             return Ok(());
         }
         None => compile_ms_tpm_20_ref()?,
@@ -37,6 +33,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
     // DEVNOTE: While there are undoubtedly better ways one could've structured
     // this code... this approach has worked _well enough_, so
+
+    // `RunCommand.c` contains setjmp/longjmp code, and must be compiled in
+    // separately
+    cc::Build::new()
+        .file("./src/plat/RunCommand.c")
+        .compile("run_command");
 
     let tpm_src_path = PathBuf::from(MS_TPM_20_REF_SRC_PATH);
 
@@ -99,7 +101,7 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         tpm_src_path.join("tpm/src/crypt/ossl/TpmToOsslSupport.c"),
     ];
 
-    add_deps(&mut builder, &tpm_src_path.join("tpm"), &excludes)?;
+    add_deps(&mut builder, tpm_src_path.join("tpm"), &excludes)?;
     add_deps(&mut builder, "./overrides/src/", &[])?;
 
     #[rustfmt::skip]
