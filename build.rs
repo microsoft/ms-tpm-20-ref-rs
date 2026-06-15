@@ -12,7 +12,7 @@ const MS_TPM_20_REF_SRC_PATH: &str = "./ms-tpm-20-ref/TPMCmd/";
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // users can link against a pre-built `libtpm.a` and `librun_command.a` if 
-    //they don't want to use the version of `ms-tpm-20-ref` included in-tree
+    // they don't want to use the version of `ms-tpm-20-ref` included in-tree
     match env("TPM_LIB_DIR") {
         Some(var) => {
             println!("cargo:rustc-link-search=native={}", var.to_string_lossy());
