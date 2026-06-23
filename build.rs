@@ -46,6 +46,7 @@ fn compile_ms_tpm_20_ref() -> Result<(), Box<dyn std::error::Error>> {
         "tpm/src/crypt/ossl/TpmToOsslSupport.c",
         "tpm/src/crypt/ossl/TpmToOsslMath.c",
         "tpm/src/crypt/ossl/TpmToOsslDesSupport.c",
+        "tpm/src/crypt/CryptRand.c",
         "tpm/include/prototypes/TpmToOsslMath_fp.h",
         "tpm/include/prototypes/TpmToOsslDesSupport_fp.h",
         "tpm/include/prototypes/TpmToOsslSupport_fp.h",
